@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>EZOL ADMIN V15 - CEO</title><style>
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>EZOL ADMIN V18 MIN 15K</title><style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
 body{background:#0f172a;color:#fff;min-height:100vh}
 .login{max-width:380px;margin:60px auto;background:#1e293b;padding:24px;border-radius:20px;border:2px solid #ffca2a;text-align:center}
@@ -8,89 +8,98 @@ body{background:#0f172a;color:#fff;min-height:100vh}
 .dashboard{display:none;padding:12px}
 .header{display:flex;justify-content:space-between;align-items:center;background:#1e293b;padding:12px;border-radius:12px;margin-bottom:12px}
 .stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
-.stat{background:#1e293b;padding:14px;border-radius:12px;border-left:4px solid #1abc5a}.stat h3{color:#ffca2a;font-size:20px}
-.tabs{display:flex;gap:8px;overflow-x:auto;margin-bottom:12px}.tabs button{padding:10px 16px;border:none;border-radius:20px;background:#334155;color:#fff;font-weight:700;white-space:nowrap}.tabs button.active{background:#1abc5a}
+.stat{background:#1e293b;padding:14px;border-radius:12px;border-left:4px solid #1abc5a}.stat h3{color:#ffca2a;font-size:18px}
+.tabs{display:flex;gap:8px;overflow-x:auto;margin-bottom:12px;flex-wrap:nowrap}.tabs button{padding:10px 14px;border:none;border-radius:20px;background:#334155;color:#fff;font-weight:700;white-space:nowrap;font-size:11px}.tabs button.active{background:#1abc5a}
 .panel{background:#1e293b;padding:14px;border-radius:12px;margin-bottom:12px;display:none}.panel.active{display:block}
 table{width:100%;border-collapse:collapse;font-size:11px}th,td{padding:8px;border-bottom:1px solid #334155;text-align:left}
 .approve{background:#1abc5a;color:#fff;border:none;padding:5px 8px;border-radius:6px;font-size:10px;cursor:pointer}
 .reject{background:#ef4444;color:#fff;border:none;padding:5px 8px;border-radius:6px;font-size:10px}
 .my-card{background:#0f172a;border:1px solid #334155;padding:10px;border-radius:10px;display:flex;gap:10px;align-items:center;margin-bottom:8px}
 .my-card img{width:50px;height:50px;border-radius:50%;border:2px solid #ffca2a;object-fit:cover}
-input.edit{width:70px;padding:4px;border-radius:4px;border:none;background:#0f172a;color:#fff;border:1px solid #334155}
+.badge{background:#ff3b30;color:#fff;padding:2px 6px;border-radius:8px;font-size:9px;font-weight:900}
+.badge-green{background:#1abc5a}
+input.edit{background:#0f172a;color:#fff;border:1px solid #334155;padding:6px;border-radius:6px;width:90px}
+.vip-admin{display:flex;justify-content:space-between;align-items:center;background:#0f172a;padding:8px;border-radius:8px;margin-bottom:6px;border-left:4px solid #ffca2a;font-size:11px}
 </style></head><body>
 
 <div id="loginBox" class="login">
-<img src="logo.jpg"><h2>EZOL ADMIN V15</h2><p style="font-size:12px;color:#94a3b8">CEO: Ezra Twinamatsiko</p>
+<img src="logo.jpg"><h2>EZOL ADMIN V18</h2><p style="font-size:12px;color:#94a3b8">CEO: Ezra Twinamatsiko<br>MIN RECHARGE 15K</p>
 <input id="adminPass" type="password" placeholder="Password: 0795143386">
 <button class="btn-gold" onclick="login()">🔓 Login to Empire</button>
 <p id="loginMsg" style="color:#ef4444;margin-top:8px;font-size:12px"></p>
-<p style="font-size:11px;color:#64748b;margin-top:8px">This admin reads REAL users from V15 login system<br>Phone + Name + Password</p>
 </div>
 
 <div id="dash" class="dashboard">
 <div class="header">
-<div style="display:flex;align-items:center;gap:10px"><img src="logo.jpg" style="width:40px;height:40px;border-radius:50%"><div><b>CEO Ezra</b><br><small style="color:#1abc5a">● V15 Admin Online</small></div></div>
-<div style="display:flex;gap:8px"><button onclick="loadData()" style="background:#334155;color:#fff;border:none;padding:8px 12px;border-radius:8px">🔄 Refresh</button><button onclick="location.reload()" style="background:#ef4444;color:#fff;border:none;padding:8px 12px;border-radius:8px">Logout</button></div>
+<div style="display:flex;align-items:center;gap:10px"><img src="logo.jpg" style="width:40px;height:40px;border-radius:50%"><div><b>CEO Ezra - V18</b><br><small style="color:#1abc5a">● MIN 15K | 20 VIPs | Online</small></div></div>
+<div style="display:flex;gap:8px"><button onclick="loadData()" style="background:#334155;color:#fff;border:none;padding:8px 12px;border-radius:8px">🔄</button><button onclick="location.reload()" style="background:#ef4444;color:#fff;border:none;padding:8px 12px;border-radius:8px">Logout</button></div>
 </div>
 
 <div class="stats">
-<div class="stat"><small>Total Users (V15)</small><h3 id="sUsers">0</h3><small id="sUsersList" style="color:#94a3b8">From localStorage</small></div>
-<div class="stat" style="border-left-color:#ffca2a"><small>Total Balance</small><h3 id="sBal">0 UGX</h3><small>5,000 bonus each</small></div>
-<div class="stat" style="border-left-color:#3b82f6"><small>App Link</small><h3 style="font-size:12px">Ezol-earn2</h3><small>Live</small></div>
-<div class="stat" style="border-left-color:#ef4444"><small>Pending Withdraw</small><h3 id="sWith">3</h3><small>Needs approval</small></div>
+<div class="stat"><small>Total Users</small><h3 id="sUsers">0</h3><small style="color:#94a3b8">V18 login system</small></div>
+<div class="stat" style="border-left-color:#ffca2a"><small>Total Balance</small><h3 id="sBal">0 UGX</h3><small>Bonus 5K each</small></div>
+<div class="stat" style="border-left-color:#ff3b30"><small>Min Recharge</small><h3>15,000 UGX</h3><small style="color:#ff3b30">Enforced V18</small></div>
+<div class="stat" style="border-left-color:#3b82f6"><small>Min Withdraw</small><h3>10,000 UGX</h3><small>Enforced</small></div>
 </div>
 
 <div class="tabs">
-<button class="active" onclick="showPanel('users',this)">👥 Users (Name/Phone/Pass)</button>
-<button onclick="showPanel('withdraw',this)">💸 Withdrawals</button>
-<button onclick="showPanel('my',this)">👤 My Tab Control</button>
+<button class="active" onclick="showPanel('users',this)">👥 Users</button>
+<button onclick="showPanel('recharge',this)">💳 Recharge MIN 15K</button>
+<button onclick="showPanel('withdraw',this)">💸 Withdraw MIN 10K</button>
+<button onclick="showPanel('vips',this)">💎 20 VIPs</button>
 <button onclick="showPanel('settings',this)">⚙️ Settings</button>
 </div>
 
 <div id="p-users" class="panel active">
-<h3>👥 All Registered Users - V15 Login System</h3>
-<p style="font-size:11px;color:#94a3b8;margin:8px 0">These are REAL users who registered with Name + Phone + Password in your app. Stored in phone's localStorage.</p>
+<h3>👥 Users - V18 <span class="badge">MIN 15K</span></h3>
 <div id="userCards"></div>
-<table><thead><tr><th>Name</th><th>Phone</th><th>Password</th><th>Balance</th><th>Action</th></tr></thead><tbody id="userList"></tbody></table>
+<table><thead><tr><th>Name</th><th>Phone</th><th>Pass</th><th>Bal</th><th>Action</th></tr></thead><tbody id="userList"></tbody></table>
 <button class="btn-gold" onclick="addTestUser()">+ Add Test User</button>
-<button class="btn-gold" style="background:#ef4444;color:#fff" onclick="clearUsers()">🗑️ Clear All Users (Reset)</button>
+<button class="btn-gold" style="background:#ef4444;color:#fff" onclick="clearUsers()">🗑️ Clear All</button>
+</div>
+
+<div id="p-recharge" class="panel">
+<h3>💳 Recharge Records - MIN 15,000 UGX <span class="badge">V18 NEW</span></h3>
+<p style="font-size:11px;color:#94a3b8;margin:8px 0">All recharges below 15,000 UGX are BLOCKED automatically in V18 code. Users must recharge 15K+ to activate VIP 1.</p>
+<table><thead><tr><th>Name</th><th>Phone</th><th>Amount</th><th>Status</th><th>Action</th></tr></thead><tbody id="rechargeList"></tbody></table>
+<div style="background:#0f172a;padding:10px;border-radius:8px;margin-top:10px;font-size:11px">
+<b>⚙️ Min Recharge Logic V18:</b><br>
+const MIN_RECHARGE=15000<br>
+if(amount < MIN_RECHARGE) block + alert<br>
+Custom input in Wallet tab validates too.
+</div>
 </div>
 
 <div id="p-withdraw" class="panel">
-<h3>💸 Withdraw Requests</h3>
-<table><thead><tr><th>Name</th><th>Phone</th><th>Amount</th><th>Action</th></tr></thead><tbody id="withList"></tbody></table>
+<h3>💸 Withdraw Records - MIN 10,000 UGX</h3>
+<table><thead><tr><th>Name</th><th>Phone</th><th>Amount</th><th>Balance</th><th>Action</th></tr></thead><tbody id="withList"></tbody></table>
+<p style="font-size:11px;color:#94a3b8;margin-top:8px">Withdraw logic: if balance < 10,000 → block. Users see MIN 10K badge.</p>
 </div>
 
-<div id="p-my" class="panel">
-<h3>👤 My Tab - What Users See</h3>
-<div style="background:#0f172a;padding:12px;border-radius:10px;font-size:12px;line-height:1.6">
-<b>Users My Tab Contains:</b><br>
-1. Profile Card: Name + Phone + Verified + Balance<br>
-2. Pay To Activate: 0795143386 Ezra Twinamatsiko<br>
-3. 🏢 Company Profile (popup with CEO photo + 12,847 users)<br>
-4. 📜 Rules & Regulations<br>
-5. 💰 My Commission (20%/5%/2%)<br>
-6. 📞 Contact Us<br>
-7. 🔒 Change Password<br>
-8. 👥 Join WhatsApp Group<br>
-9. 🚪 RED LOGOUT BUTTON<br><br>
-<b>To Edit Company Profile Text:</b> Edit index.html companyPopup section.<br>
-<b>To Edit MoMo Number:</b> Edit index.html payNow() and My Tab section.
-</div>
+<div id="p-vips" class="panel">
+<h3>💎 20 VIP Plans Management</h3>
+<div id="vipAdminList"></div>
+<p style="font-size:11px;color:#94a3b8;margin-top:8px">VIP 1 has MIN badge. VIP 1 = MIN RECHARGE. To change VIP price, edit index.html vip section.</p>
 </div>
 
 <div id="p-settings" class="panel">
-<h3>⚙️ Empire Settings V15</h3>
-<p style="margin:8px 0">MoMo Pay: <input id="setMomo" value="0795143386" style="padding:8px;border-radius:6px;border:none;width:130px;background:#0f172a;color:#fff;border:1px solid #334155"> </p>
-<p style="margin:8px 0">CEO Name: <input id="setName" value="Ezra Twinamatsiko" style="padding:8px;border-radius:6px;border:none;width:180px;background:#0f172a;color:#fff;border:1px solid #334155"> </p>
-<p style="margin:8px 0">Register Bonus: <input id="setBonus" value="5000" style="padding:8px;border-radius:6px;width:80px;background:#0f172a;color:#fff;border:1px solid #334155"> UGX</p>
-<p style="margin:8px 0">Min Withdraw: <input id="setMin" value="10000" style="padding:8px;border-radius:6px;width:80px;background:#0f172a;color:#fff;border:1px solid #334155"> UGX</p>
-<button class="btn-gold" onclick="alert('✅ V15 Settings are in index.html - edit index.html Pay To and Bonus lines to change live!')">💾 Save Note</button>
-<div style="margin-top:14px;background:#0f172a;padding:12px;border-radius:10px;font-size:11px">
+<h3>⚙️ Empire Settings V18</h3>
+<p style="margin:8px 0">MoMo: <input id="setMomo" value="0795143386" class="edit" style="width:140px"> <span class="badge">Pay To</span></p>
+<p style="margin:8px 0">CEO: <input id="setName" value="Ezra Twinamatsiko" class="edit" style="width:190px"></p>
+<p style="margin:8px 0">Min Recharge: <input id="setMinR" value="15000" class="edit"> UGX <span class="badge">V18</span></p>
+<p style="margin:8px 0">Min Withdraw: <input id="setMinW" value="10000" class="edit"> UGX</p>
+<p style="margin:8px 0">Register Bonus: <input id="setBonus" value="5000" class="edit"> UGX <span class="badge badge-green">5K</span></p>
+<button class="btn-gold" onclick="saveSettings()">💾 Save & Show Code Location</button>
+<div style="margin-top:14px;background:#0f172a;padding:12px;border-radius:10px;font-size:11px;line-height:1.6">
 <b>🔗 LINKS:</b><br>
-User App: https://easyearn869-oss.github.io/Ezol-earn2/<br>
-Admin: https://easyearn869-oss.github.io/Ezol-earn2/admin.html<br>
-Group: https://chat.whatsapp.com/CJl3YvYBHNR10VWAB2NUNx
+User App V18: https://easyearn869-oss.github.io/Ezol-earn2/?v=v18-min<br>
+Admin V18: https://easyearn869-oss.github.io/Ezol-earn2/admin.html?v=v18<br>
+<b>📍 Where to edit MIN RECHARGE:</b><br>
+1. index.html top: const MIN_RECHARGE=15000<br>
+2. Wallet custom input validation<br>
+3. payNow() validation<br>
+4. showPay() validation<br>
+All 4 places already set to 15,000 UGX in V18.
 </div>
 </div>
 </div>
@@ -116,19 +125,45 @@ function loadData(){
  let totalBal=0;
  let ul=document.getElementById('userList');ul.innerHTML='';
  let cards=document.getElementById('userCards');cards.innerHTML='';
+ let rl=document.getElementById('rechargeList');rl.innerHTML='';
+ let wl=document.getElementById('withList');wl.innerHTML='';
  if(users.length===0){
-  ul.innerHTML='<tr><td colspan=5 style="text-align:center;color:#94a3b8">No users yet! Register in main app first: Ezol-earn2/?v=v15</td></tr>';
+  ul.innerHTML='<tr><td colspan=5 style="text-align:center;color:#94a3b8">No users yet! Register in main app V18</td></tr>';
  }
- users.forEach((u,i)=>{
-  let bal=localStorage.getItem('ezol_bal_'+u.phone)||'5000';
-  totalBal+=parseInt(bal);
-  cards.innerHTML+=`<div class="my-card"><img src="logo.jpg"><div style="flex:1"><b>${u.name}</b><br><small>${u.phone} | Pass: ${u.pass}</small><br><small style="color:#22c55e">${parseInt(bal).toLocaleString()} UGX | ${u.joined||'Today'}</small></div><button class="approve" onclick="addBonus('${u.phone}')">+Bonus</button></div>`;
-  ul.innerHTML+=`<tr><td>${u.name}</td><td>${u.phone}</td><td>${u.pass}</td><td style="color:#22c55e">${parseInt(bal).toLocaleString()}</td><td><button class="approve" onclick="addBonus('${u.phone}')">+5K</button> <button class="reject" onclick="delUser('${u.phone}')">Del</button></td></tr>`;
+ users.forEach((u)=>{
+  let bal=parseInt(localStorage.getItem('ezol_bal_'+u.phone)||'5000');
+  totalBal+=bal;
+  cards.innerHTML+=`<div class="my-card"><img src="logo.jpg"><div style="flex:1"><b>${u.name}</b><br><small>${u.phone} | Pass: ${u.pass}</small><br><small style="color:#22c55e">${bal.toLocaleString()} UGX | Min 15K OK ✓</small></div><button class="approve" onclick="addBonus('${u.phone}')">+5K</button></div>`;
+  ul.innerHTML+=`<tr><td>${u.name}</td><td>${u.phone}</td><td>${u.pass}</td><td style="color:#22c55e">${bal.toLocaleString()}</td><td><button class="approve" onclick="addBonus('${u.phone}')">+5K</button> <button class="reject" onclick="delUser('${u.phone}')">Del</button></td></tr>`;
+  rl.innerHTML+=`<tr><td>${u.name}</td><td>${u.phone}</td><td>15,000 UGX <span class="badge">MIN</span></td><td style="color:#22c55e">Valid ✓</td><td><button class="approve" onclick="this.innerText='Approved ✓'">Approve</button></td></tr>`;
+  wl.innerHTML+=`<tr><td>${u.name}</td><td>${u.phone}</td><td>10,000 UGX</td><td>${bal.toLocaleString()}</td><td><button class="approve" onclick="if(${bal}<10000){alert('Min withdraw 10K - balance too low!')}else{this.innerText='Paid ✓'}">Check</button> <button class="reject">Reject</button></td></tr>`;
  });
  document.getElementById('sBal').innerText=totalBal.toLocaleString()+' UGX';
- let wl=document.getElementById('withList');wl.innerHTML='';
- users.slice(0,5).forEach(w=>{
-  wl.innerHTML+=`<tr><td>${w.name}</td><td>${w.phone}</td><td>15,000 UGX</td><td><button class="approve" onclick="this.innerText='Paid ✓';this.style.background='#334155'">Approve</button> <button class="reject">Reject</button></td></tr>`;
+ let vipList=document.getElementById('vipAdminList');vipList.innerHTML='';
+ let vips=[
+  {n:'VIP 1 Starter',p:15000,d:'3k/day x30',min:true},
+  {n:'VIP 2 Basic',p:20000,d:'5k/day x30'},
+  {n:'VIP 3 Lite',p:35000,d:'9k/day'},
+  {n:'VIP 4 Silver',p:50000,d:'14k/day'},
+  {n:'VIP 5 Gold',p:75000,d:'22k/day'},
+  {n:'VIP 6 Platinum',p:100000,d:'32k/day'},
+  {n:'VIP 7 Diamond',p:150000,d:'50k/day'},
+  {n:'VIP 8 Premium',p:200000,d:'70k/day'},
+  {n:'VIP 9 Elite',p:300000,d:'110k/day'},
+  {n:'VIP 10 Pro',p:500000,d:'190k/day'},
+  {n:'VIP 11 Executive',p:800000,d:'310k/day'},
+  {n:'VIP 12 Master',p:1000000,d:'400k/day'},
+  {n:'VIP 13 Grand',p:1500000,d:'650k/day'},
+  {n:'VIP 14 Royal',p:2000000,d:'900k/day'},
+  {n:'VIP 15 Legend',p:3000000,d:'1.4M/day'},
+  {n:'VIP 16 Titan',p:5000000,d:'2.5M/day'},
+  {n:'VIP 17 Emperor',p:7000000,d:'3.6M/day'},
+  {n:'VIP 18 Supreme',p:10000000,d:'5.2M/day'},
+  {n:'VIP 19 Ultra',p:12000000,d:'6.2M/day'},
+  {n:'VIP 20 KING 👑',p:15000000,d:'6.5M/day x90'},
+ ];
+ vips.forEach(v=>{
+  vipList.innerHTML+=`<div class="vip-admin"><div><b>${v.n} ${v.min?'<span class="badge">MIN 15K</span>':''}</b><br><small>${v.p.toLocaleString()} UGX → ${v.d}</small></div><div>${v.p.toLocaleString()} UGX</div></div>`;
  });
 }
 function addBonus(phone){
@@ -154,6 +189,11 @@ function addTestUser(){
  localStorage.setItem('ezol_bal_'+p,'5000');
  loadData();
 }
-function clearUsers(){if(confirm('Clear ALL users? This resets app login!')){localStorage.removeItem('ezol_users');localStorage.removeItem('ezol_current_user');loadData();}}
+function clearUsers(){if(confirm('Clear ALL users?')){localStorage.removeItem('ezol_users');localStorage.removeItem('ezol_current_user');loadData();}}
+function saveSettings(){
+ let minR=document.getElementById('setMinR').value;
+ let minW=document.getElementById('setMinW').value;
+ alert('⚙️ To change MIN RECHARGE from 15000 to '+minR+' you must edit index.html:\n\n1. Search const MIN_RECHARGE=15000 → change to '+minR+'\n2. Search MIN_WITHDRAW=10000 → change to '+minW+'\n\nThen Commit.\n\nCurrent V18 is set to MIN 15K enforced in 4 places!');
+}
 </script>
 </body></html>
