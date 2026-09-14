@@ -1,9 +1,9 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>EZOL WALLET V16 - 20 VIPs</title><style>
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>EZOL V17 FINAL</title><style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
 body{background:#eef5ee;padding-bottom:80px;min-height:100vh;position:relative}
 body::before{content:"";position:fixed;top:0;left:0;width:100%;height:100%;background:url('logo.jpg') center no-repeat;background-size:cover;opacity:0.12;z-index:-1}
 body::after{content:"";position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(238,245,238,0.7);z-index:-1}
-.header{display:flex;align-items:center;justify-content:space-between;padding:12px;background:rgba(255,255,255,0.95);z-index:2}
+.header{display:flex;align-items:center;justify-content:space-between;padding:12px;background:#fff;z-index:2}
 .e{width:36px;height:36px;background:#0f3d2e;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900}
 .tab{display:none}.tab.active{display:block}
 .login-screen{position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,#0f3d2e,#1abc5a);z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px}
@@ -12,149 +12,118 @@ body::after{content:"";position:fixed;top:0;left:0;width:100%;height:100%;backgr
 .login-box input{width:100%;padding:12px;margin:8px 0;border-radius:10px;border:1px solid #ddd}
 .btn-gold{background:linear-gradient(#ffda6a,#ff9f1a);border:none;padding:12px;border-radius:10px;width:100%;font-weight:900;margin-top:8px;cursor:pointer}
 .btn-dark{background:#0f3d2e;color:#fff;border:none;padding:12px;border-radius:10px;width:100%;font-weight:800;margin-top:8px}
-.wag{background:linear-gradient(135deg,#1abc5aee,#0f8a5aee);margin:12px;border-radius:16px;padding:14px;color:#fff;z-index:1;position:relative}
-.wag-btns{display:flex;gap:8px;margin-top:8px}.wag-btns button{flex:1;padding:10px;border:none;border-radius:10px;font-weight:700}
-.btn-white{background:#fff;color:#0f6a44}.btn-black{background:#0d241c;color:#fff}
-.actions{display:flex;gap:10px;margin:12px}.actions button{flex:1;padding:13px;border:none;border-radius:24px;font-weight:800;color:#fff}
-.green{background:#0f8a3a}.orange{background:#ff7a00}
-.live{background:rgba(255,255,255,0.9);margin:12px;border-radius:16px;padding:12px;border:2px solid #1abc5a;z-index:1;position:relative}.live-item{display:flex;justify-content:space-between;font-size:13px;padding:7px 0;border-bottom:1px solid #eee}
-.big-logo{text-align:center;background:rgba(255,255,255,0.92);margin:12px;border-radius:16px;overflow:hidden;z-index:1;position:relative;box-shadow:0 4px 15px rgba(0,0,0,.2)}.logo-fill{width:100%;height:380px;object-fit:cover;display:block}.logo-overlay{padding:16px;background:linear-gradient(to top,rgba(255,255,255,0.96),rgba(255,255,255,0.88));margin-top:-70px;position:relative}
-.download-card{background:linear-gradient(135deg,#0f3d2e,#1abc5a);margin:12px;border-radius:16px;padding:16px;color:#fff;z-index:1;position:relative;display:flex;align-items:center;gap:14px;border:2px solid #ffca2a}.download-card img{width:56px;height:56px;border-radius:12px;border:2px solid #fff}.download-btn{background:#fff;color:#0f3d2e;border:none;padding:10px 18px;border-radius:20px;font-weight:900}
-.vip{background:rgba(255,255,255,0.92);margin:8px 12px;border-radius:14px;padding:10px;display:flex;gap:10px;border-left:5px solid #0f8a3a;z-index:1;position:relative;align-items:center}.vip img{width:64px;height:64px;border-radius:12px;object-fit:cover;border:2px solid #ffca2a}.vip-btn{background:#0f8a3a;color:#fff;border:none;padding:8px 14px;border-radius:8px;font-weight:700;font-size:12px;margin-top:5px}
-.refbox{background:rgba(255,255,255,0.92);margin:12px;border-radius:16px;padding:16px;text-align:center;z-index:1;position:relative}.reflink{background:#f0f0f0;padding:10px;border-radius:8px;font-size:12px;word-break:break-all;margin:10px 0;border:1px dashed #0f8a3a}
+.vip{background:#fff;margin:8px 12px;border-radius:14px;padding:10px;display:flex;gap:10px;border-left:5px solid #0f8a3a;align-items:center;z-index:1;position:relative}.vip img{width:64px;height:64px;border-radius:12px;object-fit:cover;border:2px solid #ffca2a}.vip-btn{background:#0f8a3a;color:#fff;border:none;padding:8px 14px;border-radius:8px;font-weight:700;font-size:12px;margin-top:5px}
 .wallet-card{background:linear-gradient(135deg,#0f3d2eee,#1abc5aee);color:#fff;margin:12px;border-radius:16px;padding:20px;z-index:1;position:relative}
-.my-card{background:rgba(255,255,255,0.95);margin:12px;border-radius:16px;padding:16px;z-index:1;position:relative;display:flex;align-items:center;gap:12px;border:2px solid #0f3d2e}
+.my-card{background:#fff;margin:12px;border-radius:16px;padding:16px;display:flex;align-items:center;gap:12px;border:2px solid #0f3d2e;z-index:1;position:relative}
 .my-card img{width:64px;height:64px;border-radius:50%;border:3px solid #ffca2a;object-fit:cover}
-.menu-list{background:rgba(255,255,255,0.92);margin:8px 12px;border-radius:12px;z-index:1;position:relative;overflow:hidden}
-.menu-row{display:flex;justify-content:space-between;align-items:center;padding:14px;border-bottom:1px solid #eee;cursor:pointer}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,0.96);display:flex;justify-content:space-around;padding:8px 0;border-top:1px solid #ddd;z-index:999}.bottom div{text-align:center;font-size:11px;color:#777;cursor:pointer}
-.float-cs{position:fixed;right:12px;bottom:90px;z-index:9999;width:70px;height:70px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(0,0,0,.5);animation:pulse 2s infinite;cursor:pointer;border:3px solid #25D366;overflow:hidden}.float-cs img{width:100%;height:100%;object-fit:cover}
-.float-group{position:fixed;right:12px;bottom:172px;z-index:9999;width:64px;height:64px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(0,0,0,.5);cursor:pointer;border:3px solid #0088cc;overflow:hidden}.float-group img{width:100%;height:100%;object-fit:cover}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.7)}70%{box-shadow:0 0 0 15px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
-.cs-label{position:fixed;right:88px;bottom:110px;z-index:9998;background:#25D366;color:#fff;padding:5px 12px;border-radius:20px;font-size:11px;font-weight:700}
-.group-label{position:fixed;right:88px;bottom:190px;z-index:9998;background:#0088cc;color:#fff;padding:5px 12px;border-radius:20px;font-size:11px;font-weight:700}
+.menu-list{background:#fff;margin:8px 12px;border-radius:12px;overflow:hidden;z-index:1;position:relative}
+.menu-row{display:flex;justify-content:space-between;align-items:center;padding:14px;border-bottom:1px solid #eee;cursor:pointer}.menu-row:active{background:#f0f0f0}
+.menu-row b{font-size:13px}.menu-row small{color:#888;font-size:11px}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:8px 0;border-top:1px solid #ddd;z-index:999}.bottom div{text-align:center;font-size:11px;color:#777;cursor:pointer}
+.float-cs{position:fixed;right:12px;bottom:90px;z-index:9999;width:70px;height:70px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(0,0,0,.5);border:3px solid #25D366;overflow:hidden}.float-cs img{width:100%;height:100%;object-fit:cover}
+.float-group{position:fixed;right:12px;bottom:172px;z-index:9999;width:64px;height:64px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(0,0,0,.5);border:3px solid #0088cc;overflow:hidden}.float-group img{width:100%;height:100%;object-fit:cover}
 .popup{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6);z-index:100000;display:none;align-items:center;justify-content:center;padding:20px}.popup-box{background:#fff;border-radius:16px;padding:20px;max-width:380px;width:100%;max-height:80vh;overflow:auto}
+.big-logo{text-align:center;background:#fff;margin:12px;border-radius:16px;overflow:hidden;z-index:1;position:relative;box-shadow:0 4px 15px rgba(0,0,0,.2)}.logo-fill{width:100%;height:380px;object-fit:cover;display:block}.logo-overlay{padding:16px;background:linear-gradient(to top,rgba(255,255,255,0.96),rgba(255,255,255,0.88));margin-top:-70px;position:relative}
+.wag{background:linear-gradient(135deg,#1abc5aee,#0f8a5aee);margin:12px;border-radius:16px;padding:14px;color:#fff;z-index:1;position:relative}.wag-btns{display:flex;gap:8px;margin-top:8px}.wag-btns button{flex:1;padding:10px;border:none;border-radius:10px;font-weight:700}.btn-white{background:#fff;color:#0f6a44}.btn-black{background:#0d241c;color:#fff}
+.actions{display:flex;gap:10px;margin:12px}.actions button{flex:1;padding:13px;border:none;border-radius:24px;font-weight:800;color:#fff}.green{background:#0f8a3a}.orange{background:#ff7a00}
+.live{background:#fff;margin:12px;border-radius:16px;padding:12px;border:2px solid #1abc5a;z-index:1;position:relative}.live-item{display:flex;justify-content:space-between;font-size:13px;padding:7px 0;border-bottom:1px solid #eee}
+.download-card{background:linear-gradient(135deg,#0f3d2e,#1abc5a);margin:12px;border-radius:16px;padding:16px;color:#fff;z-index:1;position:relative;display:flex;align-items:center;gap:14px;border:2px solid #ffca2a}.download-card img{width:56px;height:56px;border-radius:12px;border:2px solid #fff}.download-btn{background:#fff;color:#0f3d2e;border:none;padding:10px 18px;border-radius:20px;font-weight:900}
+.refbox{background:#fff;margin:12px;border-radius:16px;padding:16px;text-align:center;z-index:1;position:relative}.reflink{background:#f0f0f0;padding:10px;border-radius:8px;font-size:12px;word-break:break-all;margin:10px 0;border:1px dashed #0f8a3a}
 </style></head><body>
 
-<div id="loginScreen" class="login-screen">
-<div class="login-box"><img src="logo.jpg"><h2>EZOL EARN2</h2><p style="font-size:12px;color:#666">CEO: Ezra Twinamatsiko</p>
+<div id="loginScreen" class="login-screen"><div class="login-box"><img src="logo.jpg"><h2>EZOL EARN2</h2><p style="font-size:12px;color:#666">CEO: Ezra Twinamatsiko</p>
 <div id="regForm"><h3 style="margin:10px 0">Create Account</h3><input id="regName" placeholder="Full Names"><input id="regPhone" placeholder="Phone 07XXXXXXXX"><input id="regPass" type="password" placeholder="Password"><button class="btn-gold" onclick="register()">✅ Register & Get 5000 UGX</button><p style="font-size:12px;margin-top:10px">Already? <b style="color:#0f8a3a;cursor:pointer" onclick="showLogin()">Login</b></p></div>
 <div id="logForm" style="display:none"><h3 style="margin:10px 0">Welcome Back!</h3><input id="logPhone" placeholder="Phone"><input id="logPass" type="password" placeholder="Password"><button class="btn-dark" onclick="loginUser()">🔓 Login</button><p style="font-size:12px;margin-top:10px">No account? <b style="color:#ff9f1a;cursor:pointer" onclick="showReg()">Register</b></p></div>
-<p id="authMsg" style="font-size:12px;color:red;margin-top:8px"></p></div>
-</div>
+<p id="authMsg" style="font-size:12px;color:red;margin-top:8px"></p></div></div>
 
 <div class="header"><div style="display:flex;align-items:center;gap:10px"><div class="e">E</div><div><b id="userNameDisplay">EZOL</b><br><small id="userPhoneDisplay">WALLET</small></div></div><div style="color:#22a35d;font-size:12px;font-weight:700">● 5,248 online</div></div>
 
 <div id="tab-home" class="tab active">
-<div class="big-logo"><img class="logo-fill" src="logo.jpg"><div class="logo-overlay"><h2>EZOL EARN2</h2><p style="font-size:13px">CEO: Ezra | <span id="helloName">Kampala</span></p><p style="color:#0f8a3a;font-weight:800">12,847+ Users | 20 VIP Plans</p><button class="btn-gold" style="margin-top:10px" onclick="switchTab('product')">View 20 VIP Plans - 15,000 UGX</button></div></div>
-<div class="download-card"><img src="logo.jpg"><div style="flex:1"><b>📲 Download & Earn 5,000 UGX</b><br><small>🔥 2,847 downloaded</small></div><button class="download-btn" onclick="downloadApp()">⬇️ Download</button></div>
+<div class="big-logo"><img class="logo-fill" src="logo.jpg"><div class="logo-overlay"><h2>EZOL EARN2</h2><p>CEO: Ezra | <span id="helloName">Kampala</span></p><p style="color:#0f8a3a;font-weight:800">12,847+ Users | 20 VIPs</p><button class="btn-gold" style="margin-top:10px" onclick="switchTab('product')">View 20 VIP Plans</button></div></div>
+<div class="download-card"><img src="logo.jpg"><div style="flex:1"><b>📲 Download & Earn 5,000 UGX</b></div><button class="download-btn" onclick="downloadApp()">⬇️ Download</button></div>
 <div class="wag"><h3>👥 WhatsApp Group - 1,247 Members</h3><div class="wag-btns"><button class="btn-white" onclick="window.open('https://chat.whatsapp.com/CJl3YvYBHNR10VWAB2NUNx','_blank')">👥 Join Group</button><button class="btn-black" onclick="copyLink()">🔗 Copy Link</button></div></div>
 <div class="actions"><button class="green" onclick="showPay(15000,'Recharge')">◧ Recharge</button><button class="orange" onclick="showPay(15000,'Withdraw')">✈ Withdraw</button></div>
-<div class="live"><h4>🔴 Live - 133 Online</h4><div id="liveList"></div></div>
+<div class="live"><h4>🔴 Live</h4><div id="liveList"></div></div>
 </div>
 
-<!-- 20 VIP FULL LIST -->
-<div id="tab-product" class="tab"><h3 style="padding:12px;background:rgba(255,255,255,0.9);margin:12px;border-radius:10px">💎 20 VIP Plans - Start 15,000 UGX</h3>
-
-<div class="vip"><img src="logo.jpg"><div><b>VIP 1 - Starter</b><br><small>15,000 UGX → 3,000/day ×30 = 90,000 UGX</small><br><button class="vip-btn" onclick="showPay(15000,'VIP 1 Starter')">Buy 15,000 UGX</button></div></div>
-<div class="vip"><img src="logo.jpg"><div><b>VIP 2 - Basic</b><br><small>20,000 UGX → 5,000/day ×30 = 150,000 UGX</small><br><button class="vip-btn" onclick="showPay(20000,'VIP 2 Basic')">Buy 20,000 UGX</button></div></div>
-<div class="vip"><img src="logo.jpg"><div><b>VIP 3 - Lite</b><br><small>35,000 UGX → 9,000/day ×30 = 270,000 UGX</small><br><button class="vip-btn" onclick="showPay(35000,'VIP 3 Lite')">Buy 35,000 UGX</button></div></div>
-<div class="vip"><img src="logo.jpg"><div><b>VIP 4 - Silver</b><br><small>50,000 UGX → 14,000/day ×30 = 420,000 UGX</small><br><button class="vip-btn" onclick="showPay(50000,'VIP 4 Silver')">Buy 50,000 UGX</button></div></div>
-<div class="vip"><img src="logo.jpg"><div><b>VIP 5 - Gold</b><br><small>75,000 UGX → 22,000/day ×30 = 660,000 UGX</small><br><button class="vip-btn" onclick="showPay(75000,'VIP 5 Gold')">Buy 75,000 UGX</button></div></div>
-<div class="vip"><img src="logo.jpg"><div><b>VIP 6 - Platinum</b><br><small>100,000 UGX → 32,000/day ×30 = 960,000 UGX</small><br><button class="vip-btn" onclick="showPay(100000,'VIP 6 Platinum')">Buy 100,000 UGX</button></div></div>
-<div class="vip"><img src="logo.jpg"><div><b>VIP 7 - Diamond</b><br><small>150,000 UGX → 50,000/day ×30 = 1,500,000 UGX</small><br><button class="vip-btn" onclick="showPay(150000,'VIP 7 Diamond')">Buy 150,000 UGX</button></div></div>
-<div class="vip"><img src="logo.jpg"><div><b>VIP 8 - Premium</b><br><small>200,000 UGX → 70,000/day ×30 = 2,100,000 UGX</small><br><button class="vip-btn" onclick="showPay(200000,'VIP 8 Premium')">Buy 200,000 UGX</button></div></div>
-<div class="vip"><img src="logo.jpg"><div><b>VIP 9 - Elite</b><br><small>300,000 UGX → 110,000/day ×30 = 3,300,000 UGX</small><br><button class="vip-btn" onclick="showPay(300000,'VIP 9 Elite')">Buy 300,000 UGX</button></div></div>
-<div class="vip"><img src="logo.jpg"><div><b>VIP 10 - Pro</b><br><small>500,000 UGX → 190,000/day ×30 = 5,700,000 UGX</small><br><button class="vip-btn" onclick="showPay(500000,'VIP 10 Pro')">Buy 500,000 UGX</button></div></div>
-<div class="vip"><img src="logo.jpg"><div><b>VIP 11 - Executive</b><br><small>800,000 UGX → 310,000/day ×30 = 9,300,000 UGX</small><br><button class="vip-btn" onclick="showPay(800000,'VIP 11 Executive')">Buy 800,000 UGX</button></div></div>
-<div class="vip"><img src="logo.jpg"><div><b>VIP 12 - Master</b><br><small>1,000,000 UGX → 400,000/day ×30 = 12,000,000 UGX</small><br><button class="vip-btn" onclick="showPay(1000000,'VIP 12 Master')">Buy 1,000,000 UGX</button></div></div>
-<div class="vip"><img src="logo.jpg"><div><b>VIP 13 - Grand</b><br><small>1,500,000 UGX → 650,000/day ×30 = 19,500,000 UGX</small><br><button class="vip-btn" onclick="showPay(1500000,'VIP 13 Grand')">Buy 1,500,000 UGX</button></div></div>
-<div class="vip"><img src="logo.jpg"><div><b>VIP 14 - Royal</b><br><small>2,000,000 UGX → 900,000/day ×30 = 27,000,000 UGX</small><br><button class="vip-btn" onclick="showPay(2000000,'VIP 14 Royal')">Buy 2,000,000 UGX</button></div></div>
-<div class="vip"><img src="logo.jpg"><div><b>VIP 15 - Legend</b><br><small>3,000,000 UGX → 1,400,000/day ×45 = 63,000,000 UGX</small><br><button class="vip-btn" onclick="showPay(3000000,'VIP 15 Legend')">Buy 3,000,000 UGX</button></div></div>
-<div class="vip"><img src="logo.jpg"><div><b>VIP 16 - Titan</b><br><small>5,000,000 UGX → 2,500,000/day ×45 = 112,500,000 UGX</small><br><button class="vip-btn" onclick="showPay(5000000,'VIP 16 Titan')">Buy 5,000,000 UGX</button></div></div>
-<div class="vip"><img src="logo.jpg"><div><b>VIP 17 - Emperor</b><br><small>7,000,000 UGX → 3,600,000/day ×60 = 216,000,000 UGX</small><br><button class="vip-btn" onclick="showPay(7000000,'VIP 17 Emperor')">Buy 7,000,000 UGX</button></div></div>
-<div class="vip"><img src="logo.jpg"><div><b>VIP 18 - Supreme</b><br><small>10,000,000 UGX → 5,200,000/day ×60 = 312,000,000 UGX</small><br><button class="vip-btn" onclick="showPay(10000000,'VIP 18 Supreme')">Buy 10,000,000 UGX</button></div></div>
-<div class="vip"><img src="logo.jpg"><div><b>VIP 19 - Ultra</b><br><small>12,000,000 UGX → 6,200,000/day ×75 = 465,000,000 UGX</small><br><button class="vip-btn" onclick="showPay(12000000,'VIP 19 Ultra')">Buy 12,000,000 UGX</button></div></div>
-<div class="vip" style="border-left-color:#ffd700;background:linear-gradient(90deg,rgba(255,255,255,0.95),#fff8e1)"><img src="logo.jpg"><div><b>VIP 20 - KING 👑</b><br><small>15,000,000 UGX → 6,500,000/day ×90 = 585,000,000 UGX</small><br><button class="vip-btn" style="background:linear-gradient(#ffd700,#ff9f1a)" onclick="showPay(15000000,'VIP 20 KING')">Buy 15,000,000 UGX 👑</button></div></div>
-
+<div id="tab-product" class="tab"><h3 style="padding:12px;background:#fff;margin:12px;border-radius:10px">💎 20 VIP Plans - Start 15,000 UGX</h3>
+<div class="vip"><img src="logo.jpg"><div><b>VIP 1 - Starter</b><br><small>15,000 UGX → 3,000/day ×30 = 90,000</small><br><button class="vip-btn" onclick="showPay(15000,'VIP 1')">Buy 15,000 UGX</button></div></div>
+<div class="vip"><img src="logo.jpg"><div><b>VIP 2 - Basic</b><br><small>20,000 UGX → 5,000/day ×30 = 150,000</small><br><button class="vip-btn" onclick="showPay(20000,'VIP 2')">Buy 20,000 UGX</button></div></div>
+<div class="vip"><img src="logo.jpg"><div><b>VIP 3 - Lite</b><br><small>35,000 UGX → 9,000/day ×30 = 270,000</small><br><button class="vip-btn" onclick="showPay(35000,'VIP 3')">Buy 35,000 UGX</button></div></div>
+<div class="vip"><img src="logo.jpg"><div><b>VIP 4 - Silver</b><br><small>50,000 UGX → 14,000/day ×30 = 420,000</small><br><button class="vip-btn" onclick="showPay(50000,'VIP 4')">Buy 50,000 UGX</button></div></div>
+<div class="vip"><img src="logo.jpg"><div><b>VIP 5 - Gold</b><br><small>75,000 UGX → 22,000/day ×30 = 660,000</small><br><button class="vip-btn" onclick="showPay(75000,'VIP 5')">Buy 75,000 UGX</button></div></div>
+<div class="vip"><img src="logo.jpg"><div><b>VIP 6 - Platinum</b><br><small>100,000 UGX → 32,000/day ×30 = 960,000</small><br><button class="vip-btn" onclick="showPay(100000,'VIP 6')">Buy 100,000 UGX</button></div></div>
+<div class="vip"><img src="logo.jpg"><div><b>VIP 7 - Diamond</b><br><small>150,000 UGX → 50,000/day ×30 = 1.5M</small><br><button class="vip-btn" onclick="showPay(150000,'VIP 7')">Buy 150,000 UGX</button></div></div>
+<div class="vip"><img src="logo.jpg"><div><b>VIP 8 - Premium</b><br><small>200,000 UGX → 70,000/day ×30 = 2.1M</small><br><button class="vip-btn" onclick="showPay(200000,'VIP 8')">Buy 200,000 UGX</button></div></div>
+<div class="vip"><img src="logo.jpg"><div><b>VIP 9 - Elite</b><br><small>300,000 UGX → 110,000/day ×30 = 3.3M</small><br><button class="vip-btn" onclick="showPay(300000,'VIP 9')">Buy 300,000 UGX</button></div></div>
+<div class="vip"><img src="logo.jpg"><div><b>VIP 10 - Pro</b><br><small>500,000 UGX → 190,000/day ×30 = 5.7M</small><br><button class="vip-btn" onclick="showPay(500000,'VIP 10')">Buy 500,000 UGX</button></div></div>
+<div class="vip"><img src="logo.jpg"><div><b>VIP 11 - Executive</b><br><small>800,000 UGX → 310,000/day ×30 = 9.3M</small><br><button class="vip-btn" onclick="showPay(800000,'VIP 11')">Buy 800,000 UGX</button></div></div>
+<div class="vip"><img src="logo.jpg"><div><b>VIP 12 - Master</b><br><small>1,000,000 UGX → 400,000/day ×30 = 12M</small><br><button class="vip-btn" onclick="showPay(1000000,'VIP 12')">Buy 1M UGX</button></div></div>
+<div class="vip"><img src="logo.jpg"><div><b>VIP 13 - Grand</b><br><small>1,500,000 UGX → 650,000/day ×30 = 19.5M</small><br><button class="vip-btn" onclick="showPay(1500000,'VIP 13')">Buy 1.5M UGX</button></div></div>
+<div class="vip"><img src="logo.jpg"><div><b>VIP 14 - Royal</b><br><small>2,000,000 UGX → 900,000/day ×30 = 27M</small><br><button class="vip-btn" onclick="showPay(2000000,'VIP 14')">Buy 2M UGX</button></div></div>
+<div class="vip"><img src="logo.jpg"><div><b>VIP 15 - Legend</b><br><small>3,000,000 UGX → 1.4M/day ×45 = 63M</small><br><button class="vip-btn" onclick="showPay(3000000,'VIP 15')">Buy 3M UGX</button></div></div>
+<div class="vip"><img src="logo.jpg"><div><b>VIP 16 - Titan</b><br><small>5,000,000 UGX → 2.5M/day ×45 = 112.5M</small><br><button class="vip-btn" onclick="showPay(5000000,'VIP 16')">Buy 5M UGX</button></div></div>
+<div class="vip"><img src="logo.jpg"><div><b>VIP 17 - Emperor</b><br><small>7,000,000 UGX → 3.6M/day ×60 = 216M</small><br><button class="vip-btn" onclick="showPay(7000000,'VIP 17')">Buy 7M UGX</button></div></div>
+<div class="vip"><img src="logo.jpg"><div><b>VIP 18 - Supreme</b><br><small>10,000,000 UGX → 5.2M/day ×60 = 312M</small><br><button class="vip-btn" onclick="showPay(10000000,'VIP 18')">Buy 10M UGX</button></div></div>
+<div class="vip"><img src="logo.jpg"><div><b>VIP 19 - Ultra</b><br><small>12,000,000 UGX → 6.2M/day ×75 = 465M</small><br><button class="vip-btn" onclick="showPay(12000000,'VIP 19')">Buy 12M UGX</button></div></div>
+<div class="vip" style="border-left-color:#ffd700;background:linear-gradient(90deg,#fff,#fff8e1)"><img src="logo.jpg"><div><b>VIP 20 - KING 👑</b><br><small>15,000,000 UGX → 6,500,000/day ×90 = 585M</small><br><button class="vip-btn" style="background:linear-gradient(#ffd700,#ff9f1a)" onclick="showPay(15000000,'VIP 20 KING')">Buy 15M 👑</button></div></div>
 </div>
 
 <div id="tab-share" class="tab"><div class="refbox"><h2>🔗 Invite & Earn 5,000 UGX</h2><div class="reflink" id="myLink">https://easyearn869-oss.github.io/Ezol-earn2/?ref=PHONE</div><button class="btn-gold" onclick="copyLink()">📋 Copy Link</button><button class="btn-gold" style="background:#25D366;color:#fff;margin-top:8px" onclick="shareWA()">💬 Share WhatsApp</button></div></div>
 
-<div id="tab-wallet" class="tab"><div class="wallet-card"><small>Balance</small><h1 id="bal">0 UGX</h1><p id="walletPhone">+256</p><div class="actions" style="margin:12px 0 0 0"><button class="green" style="background:#fff;color:#0f3d2e" onclick="showPay(15000,'Recharge')">Recharge</button><button class="orange" style="background:#ff9f1a" onclick="showPay(15000,'Withdraw')">Withdraw</button></div></div></div>
+<div id="tab-wallet" class="tab"><div class="wallet-card"><small>Balance</small><h1 id="bal">0 UGX</h1><p id="walletPhone">+256</p><div class="actions" style="margin:12px 0 0 0"><button class="green" style="background:#fff;color:#0f3d2e" onclick="showPay(15000,'Recharge')">Recharge</button><button class="orange" style="background:#ff9f1a" onclick="showPay(15000,'Withdraw')">Withdraw</button></div></div>
+<div class="menu-list"><div class="menu-row" onclick="showPopup('Recharge Records: No records yet. Your 15,000 UGX deposits will show here.')"><b>💳 Recharge Records</b><span>›</span></div><div class="menu-row" onclick="showPopup('Withdraw Records: No withdrawals yet. Min 10,000 UGX.')"><b>💸 Withdraw Records</b><span>›</span></div></div>
+</div>
 
+<!-- FULL MY ACCOUNT V15 ITEMS + V16 -->
 <div id="tab-my" class="tab">
 <div class="my-card"><img src="logo.jpg"><div style="flex:1"><b id="myName">Guest</b><br><small id="myPhone2">07XX</small><br><small style="color:#0f8a3a;font-weight:700">● Verified | VIP 0</small></div><div style="text-align:right"><small>Balance</small><br><b id="myBal" style="color:#0f8a3a">0 UGX</b></div></div>
-<div style="background:rgba(255,255,255,0.95);margin:12px;border-radius:12px;padding:12px;z-index:1;position:relative">
+
+<div style="background:#fff;margin:12px;border-radius:12px;padding:12px;z-index:1;position:relative">
 <h4 id="payTitle">Pay To Activate</h4>
 <p style="background:#e8f8ee;border:1px dashed #2a7d5f;padding:10px;border-radius:10px;margin:8px 0;font-size:13px;text-align:center">Pay To: <b>0795143386</b><br>Names: <b>Ezra Twinamatsiko</b><br><span id="payAmountText">Amount: <b>15,000 UGX</b></span><br><span id="payVipText" style="color:#0f8a3a;font-weight:800"></span></p>
 <button class="btn-gold" id="payBtn" onclick="payNow()">🇺🇬 Recharge 15,000 UGX Now</button><p id="msg" style="color:green;font-weight:700;margin-top:8px"></p>
 </div>
+
 <div class="menu-list">
-<div class="menu-row" onclick="openCompany()"><div><b>🏢 Company Profile</b><br><small>About EZOL LTD</small></div><span>›</span></div>
-<div class="menu-row" onclick="showPopup('Rules:\n1. Min 15k\n2. Income 6am daily\n3. Min withdraw 10k\n4. 9am-6pm withdraw\n5. Invite bonus 5k')"><div><b>📜 Rules</b></div><span>›</span></div>
-<div class="menu-row" onclick="showPopup('Commission L1 20% L2 5% L3 2%')"><div><b>💰 My Commission</b></div><span>›</span></div>
-<div class="menu-row" onclick="showPopup('CEO: Ezra 0795143386')"><div><b>📞 Contact Us</b></div><span>›</span></div>
-</div>
-<div style="margin:12px"><button onclick="logout()" style="width:100%;background:#ef4444;color:#fff;border:none;padding:14px;border-radius:12px;font-weight:900">🚪 LOGOUT</button><p style="text-align:center;font-size:11px;color:#888;margin-top:10px">EZOL V16 - 20 VIPs | © 2026</p></div>
+<div class="menu-row" onclick="openCompany()"><div><b>🏢 Company Profile</b><br><small>About EZOL LTD, CEO Ezra, 12,847+ users</small></div><span>›</span></div>
+<div class="menu-row" onclick="showPopup('📜 Rules & Regulations:\n\n1. Minimum deposit 15,000 UGX\n2. Daily income credited 6am\n3. Withdraw min 10,000 UGX\n4. Withdraw time 9am-6pm daily\n5. Invite 3 friends get bonus 15,000 UGX\n6. Fake payments will be banned\n7. VIP income is fixed x30/45/60/90 days')"><div><b>📜 Rules & Regulations</b><br><small>How to earn, withdraw, VIP duration</small></div><span>›</span></div>
+<div class="menu-row" onclick="showPopup('💰 My Commission:\n\nLevel 1: 20% - Direct invite\nLevel 2: 5% - Second level\nLevel 3: 2% - Third level\n\nExample: Friend buys VIP1 (15,000) you get 3,000 UGX instantly!\n\nMy Team: 0 members yet')"><div><b>💰 My Commission</b><br><small>Invite earnings 20%/5%/2%</small></div><span>›</span></div>
+<div class="menu-row" onclick="showPopup('💳 Recharge Records:\n\nNo records yet.\n\nWhen you pay 15,000 UGX to 0795143386, record will show here with Transaction ID.')"><div><b>💳 Recharge Records</b><br><small>Your deposit history</small></div><span>›</span></div>
+<div class="menu-row" onclick="showPopup('💸 Withdraw Records:\n\nNo withdrawals yet.\n\nMinimum withdraw: 10,000 UGX\nTime: 9am-6pm\n\nYour withdraw history will show here.')"><div><b>💸 Withdraw Records</b><br><small>Your withdraw history</small></div><span>›</span></div>
+<div class="menu-row" onclick="showPopup('👥 My Team:\n\nTotal Invites: 0\nTeam Earnings: 0 UGX\n\nYour referral link:\nhttps://easyearn869-oss.github.io/Ezol-earn2/?ref=PHONE\n\nInvite friends and earn 20% commission!')"><div><b>👥 My Team / Invite List</b><br><small>Friends you invited</small></div><span>›</span></div>
+<div class="menu-row" onclick="showPopup('📞 Contact Us:\n\nCEO: Ezra Twinamatsiko\nWhatsApp: +256795143386\nMoMo: 0795143386\nEmail: ezol.earn2@gmail.com\nOffice: Kampala, Uganda\n\nResponse time: 10min-2hrs')"><div><b>📞 Contact Us</b><br><small>Customer service 24/7</small></div><span>›</span></div>
+<div class="menu-row" onclick="showPopup('🔒 Change Password:\n\nFeature coming in next update.\n\nContact admin on WhatsApp 0795143386 to reset password.')"><div><b>🔒 Change Password</b><br><small>Security & safety</small></div><span>›</span></div>
+<div class="menu-row" onclick="window.open('https://chat.whatsapp.com/CJl3YvYBHNR10VWAB2NUNx','_blank')"><div><b>👥 Join WhatsApp Group</b><br><small>Payment proofs & support</small></div><span>›</span></div>
+<div class="menu-row" onclick="showPopup('📲 About App:\n\nEZOL EARN2 LTD\nVersion: V17 Final - 20 VIPs\nBuild: 2026\n\nCEO: Ezra Twinamatsiko\nLocation: Kampala, Uganda\nUsers: 12,847+\nTotal Paid: 450M+ UGX\n\nTrusted since 2024')"><div><b>📱 About App - V17</b><br><small>Version info</small></div><span>›</span></div>
 </div>
 
-<div class="group-label">Join Group</div><div class="float-group" onclick="window.open('https://chat.whatsapp.com/CJl3YvYBHNR10VWAB2NUNx','_blank')"><img src="logo.jpg"></div>
-<div class="cs-label">Customer Service</div><div class="float-cs" onclick="window.open('https://wa.me/256795143386?text=Hello CEO Ezra','_blank')"><img src="logo.jpg"></div>
+<div style="margin:12px"><button onclick="logout()" style="width:100%;background:#ef4444;color:#fff;border:none;padding:14px;border-radius:12px;font-weight:900">🚪 LOGOUT</button><p style="text-align:center;font-size:11px;color:#888;margin-top:10px">EZOL V17 - 20 VIPs FULL MY PAGE | © 2026<br>Kampala Uganda</p></div>
+</div>
+
+<div class="float-group" onclick="window.open('https://chat.whatsapp.com/CJl3YvYBHNR10VWAB2NUNx','_blank')"><img src="logo.jpg"></div>
+<div class="float-cs" onclick="window.open('https://wa.me/256795143386?text=Hello CEO Ezra','_blank')"><img src="logo.jpg"></div>
 <div class="bottom"><div id="b-home" class="active" onclick="switchTab('home')">🏠<br>Home</div><div id="b-product" onclick="switchTab('product')">📦<br>Product</div><div id="b-share" onclick="switchTab('share')">🔗<br>Share</div><div id="b-wallet" onclick="switchTab('wallet')">💳<br>Wallet</div><div id="b-my" onclick="switchTab('my')">👤<br>My</div></div>
 
 <div id="popup" class="popup" onclick="this.style.display='none'"><div class="popup-box" onclick="event.stopPropagation()"><p id="popupText" style="white-space:pre-line;font-size:13px"></p><button class="btn-gold" style="margin-top:12px" onclick="document.getElementById('popup').style.display='none'">Close</button></div></div>
-<div id="companyPopup" class="popup" onclick="this.style.display='none'"><div class="popup-box" onclick="event.stopPropagation()"><img src="logo.jpg" style="width:100%;height:200px;object-fit:cover;border-radius:12px"><h2>EZOL EARN2 LTD - 20 VIPs</h2><p style="font-size:13px;white-space:pre-line">🏢 CEO: Ezra Twinamatsiko
+<div id="companyPopup" class="popup" onclick="this.style.display='none'"><div class="popup-box" onclick="event.stopPropagation()"><img src="logo.jpg" style="width:100%;height:200px;object-fit:cover;border-radius:12px"><h2>EZOL EARN2 LTD</h2><p style="font-size:13px;white-space:pre-line">🏢 CEO: Ezra Twinamatsiko
 📍 Kampala, Uganda
 👥 12,847+ Users
 💰 20 VIP Plans 15k-15M
-📅 Founded 2024
+💳 Paid 450M+ UGX
 
-Mission: Empower Uganda to earn daily. From 15k earn 585M!
+Mission: Empower Uganda to earn daily. Start 15k earn up to 585M!
 
-Join now!</p><button class="btn-gold" onclick="document.getElementById('companyPopup').style.display='none'">Close</button></div></div>
+Trusted since 2024.
+WhatsApp: 0795143386</p><button class="btn-gold" onclick="document.getElementById('companyPopup').style.display='none'">Close</button></div></div>
 
 <script>
 let currentAmount=15000;let currentVip="VIP 1";let currentUser=null;
 function showReg(){document.getElementById('regForm').style.display='block';document.getElementById('logForm').style.display='none';}
 function showLogin(){document.getElementById('regForm').style.display='none';document.getElementById('logForm').style.display='block';}
-function checkLogin(){
- let u=localStorage.getItem('ezol_current_user');
- if(u){
-  currentUser=JSON.parse(u);
-  document.getElementById('loginScreen').style.display='none';
-  document.getElementById('userNameDisplay').innerText=currentUser.name.split(' ')[0];
-  document.getElementById('userPhoneDisplay').innerText=currentUser.phone;
-  document.getElementById('helloName').innerText=currentUser.name.split(' ')[0];
-  document.getElementById('walletPhone').innerText=currentUser.phone;
-  document.getElementById('myName').innerText=currentUser.name;
-  document.getElementById('myPhone2').innerText=currentUser.phone;
-  document.getElementById('myLink').innerText='https://easyearn869-oss.github.io/Ezol-earn2/?ref='+currentUser.phone;
-  let bal=localStorage.getItem('ezol_bal_'+currentUser.phone)||'5000';
-  document.getElementById('bal').innerText=parseInt(bal).toLocaleString()+' UGX';
-  document.getElementById('myBal').innerText=parseInt(bal).toLocaleString()+' UGX';
- }
-}
-checkLogin();
-function register(){
- let name=document.getElementById('regName').value.trim();
- let phone=document.getElementById('regPhone').value.trim();
- let pass=document.getElementById('regPass').value.trim();
- if(name.length<3||phone.length<10||pass.length<4){document.getElementById('authMsg').innerText='❌ Fill all';return;}
- let users=JSON.parse(localStorage.getItem('ezol_users')||'[]');
- if(users.find(u=>u.phone===phone)){document.getElementById('authMsg').innerText='❌ Phone exists! Login';showLogin();return;}
- let newUser={name,phone,pass,joined:new Date().toLocaleString()};
- users.push(newUser);localStorage.setItem('ezol_users',JSON.stringify(users));localStorage.setItem('ezol_current_user',JSON.stringify(newUser));localStorage.setItem('ezol_bal_'+phone,'5000');
- alert('🎉 Welcome '+name+'! 5,000 UGX bonus!');location.reload();
-}
-function loginUser(){
- let phone=document.getElementById('logPhone').value.trim();
- let pass=document.getElementById('logPass').value.trim();
- let users=JSON.parse(localStorage.getItem('ezol_users')||'[]');
- let u=users.find(x=>x.phone===phone && x.pass===pass);
- if(!u){document.getElementById('authMsg').innerText='❌ Wrong phone/password';return;}
- localStorage.setItem('ezol_current_user',JSON.stringify(u));location.reload();
-}
+function checkLogin(){let u=localStorage.getItem('ezol_current_user');if(u){currentUser=JSON.parse(u);document.getElementById('loginScreen').style.display='none';document.getElementById('userNameDisplay').innerText=currentUser.name.split(' ')[0];document.getElementById('userPhoneDisplay').innerText=currentUser.phone;document.getElementById('helloName').innerText=currentUser.name.split(' ')[0];document.getElementById('walletPhone').innerText=currentUser.phone;document.getElementById('myName').innerText=currentUser.name;document.getElementById('myPhone2').innerText=currentUser.phone;document.getElementById('myLink').innerText='https://easyearn869-oss.github.io/Ezol-earn2/?ref='+currentUser.phone;let bal=localStorage.getItem('ezol_bal_'+currentUser.phone)||'5000';document.getElementById('bal').innerText=parseInt(bal).toLocaleString()+' UGX';document.getElementById('myBal').innerText=parseInt(bal).toLocaleString()+' UGX';}}checkLogin();
+function register(){let name=document.getElementById('regName').value.trim();let phone=document.getElementById('regPhone').value.trim();let pass=document.getElementById('regPass').value.trim();if(name.length<3||phone.length<10||pass.length<4){document.getElementById('authMsg').innerText='❌ Fill all';return;}let users=JSON.parse(localStorage.getItem('ezol_users')||'[]');if(users.find(u=>u.phone===phone)){document.getElementById('authMsg').innerText='❌ Phone exists! Login';showLogin();return;}let newUser={name,phone,pass,joined:new Date().toLocaleString()};users.push(newUser);localStorage.setItem('ezol_users',JSON.stringify(users));localStorage.setItem('ezol_current_user',JSON.stringify(newUser));localStorage.setItem('ezol_bal_'+phone,'5000');alert('🎉 Welcome '+name+'! 5,000 UGX bonus!');location.reload();}
+function loginUser(){let phone=document.getElementById('logPhone').value.trim();let pass=document.getElementById('logPass').value.trim();let users=JSON.parse(localStorage.getItem('ezol_users')||'[]');let u=users.find(x=>x.phone===phone && x.pass===pass);if(!u){document.getElementById('authMsg').innerText='❌ Wrong phone/password';return;}localStorage.setItem('ezol_current_user',JSON.stringify(u));location.reload();}
 function logout(){if(confirm('Logout?')){localStorage.removeItem('ezol_current_user');location.reload();}}
 function switchTab(t){document.querySelectorAll('.tab').forEach(e=>e.classList.remove('active'));document.getElementById('tab-'+t).classList.add('active');document.querySelectorAll('.bottom div').forEach(e=>e.classList.remove('active'));document.getElementById('b-'+t).classList.add('active');window.scrollTo(0,0);}
 let phones=["07****7303","0754***3852","0701***6237"];let acts=["withdraw 25,000 ✓","bought VIP 🔥","earned 5,000"];let list=document.getElementById('liveList');function addLive(){if(!list)return;let p=phones[Math.floor(Math.random()*phones.length)];let a=acts[Math.floor(Math.random()*acts.length)];let d=document.createElement('div');d.className='live-item';d.innerHTML=`<span>🟢 ${p} ${a}</span><span style="color:#999">${Math.floor(Math.random()*9+1)}m ago</span>`;list.prepend(d);if(list.children.length>7)list.lastChild.remove();}for(let i=0;i<6;i++)addLive();setInterval(addLive,2200);
