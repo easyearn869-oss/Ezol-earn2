@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>EZOL V17 FINAL</title><style>
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>EZOL V18 MIN RECHARGE</title><style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
 body{background:#eef5ee;padding-bottom:80px;min-height:100vh;position:relative}
 body::before{content:"";position:fixed;top:0;left:0;width:100%;height:100%;background:url('logo.jpg') center no-repeat;background-size:cover;opacity:0.12;z-index:-1}
@@ -17,11 +17,8 @@ body::after{content:"";position:fixed;top:0;left:0;width:100%;height:100%;backgr
 .my-card{background:#fff;margin:12px;border-radius:16px;padding:16px;display:flex;align-items:center;gap:12px;border:2px solid #0f3d2e;z-index:1;position:relative}
 .my-card img{width:64px;height:64px;border-radius:50%;border:3px solid #ffca2a;object-fit:cover}
 .menu-list{background:#fff;margin:8px 12px;border-radius:12px;overflow:hidden;z-index:1;position:relative}
-.menu-row{display:flex;justify-content:space-between;align-items:center;padding:14px;border-bottom:1px solid #eee;cursor:pointer}.menu-row:active{background:#f0f0f0}
-.menu-row b{font-size:13px}.menu-row small{color:#888;font-size:11px}
+.menu-row{display:flex;justify-content:space-between;align-items:center;padding:14px;border-bottom:1px solid #eee;cursor:pointer}
 .bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:8px 0;border-top:1px solid #ddd;z-index:999}.bottom div{text-align:center;font-size:11px;color:#777;cursor:pointer}
-.float-cs{position:fixed;right:12px;bottom:90px;z-index:9999;width:70px;height:70px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(0,0,0,.5);border:3px solid #25D366;overflow:hidden}.float-cs img{width:100%;height:100%;object-fit:cover}
-.float-group{position:fixed;right:12px;bottom:172px;z-index:9999;width:64px;height:64px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(0,0,0,.5);border:3px solid #0088cc;overflow:hidden}.float-group img{width:100%;height:100%;object-fit:cover}
 .popup{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6);z-index:100000;display:none;align-items:center;justify-content:center;padding:20px}.popup-box{background:#fff;border-radius:16px;padding:20px;max-width:380px;width:100%;max-height:80vh;overflow:auto}
 .big-logo{text-align:center;background:#fff;margin:12px;border-radius:16px;overflow:hidden;z-index:1;position:relative;box-shadow:0 4px 15px rgba(0,0,0,.2)}.logo-fill{width:100%;height:380px;object-fit:cover;display:block}.logo-overlay{padding:16px;background:linear-gradient(to top,rgba(255,255,255,0.96),rgba(255,255,255,0.88));margin-top:-70px;position:relative}
 .wag{background:linear-gradient(135deg,#1abc5aee,#0f8a5aee);margin:12px;border-radius:16px;padding:14px;color:#fff;z-index:1;position:relative}.wag-btns{display:flex;gap:8px;margin-top:8px}.wag-btns button{flex:1;padding:10px;border:none;border-radius:10px;font-weight:700}.btn-white{background:#fff;color:#0f6a44}.btn-black{background:#0d241c;color:#fff}
@@ -29,6 +26,9 @@ body::after{content:"";position:fixed;top:0;left:0;width:100%;height:100%;backgr
 .live{background:#fff;margin:12px;border-radius:16px;padding:12px;border:2px solid #1abc5a;z-index:1;position:relative}.live-item{display:flex;justify-content:space-between;font-size:13px;padding:7px 0;border-bottom:1px solid #eee}
 .download-card{background:linear-gradient(135deg,#0f3d2e,#1abc5a);margin:12px;border-radius:16px;padding:16px;color:#fff;z-index:1;position:relative;display:flex;align-items:center;gap:14px;border:2px solid #ffca2a}.download-card img{width:56px;height:56px;border-radius:12px;border:2px solid #fff}.download-btn{background:#fff;color:#0f3d2e;border:none;padding:10px 18px;border-radius:20px;font-weight:900}
 .refbox{background:#fff;margin:12px;border-radius:16px;padding:16px;text-align:center;z-index:1;position:relative}.reflink{background:#f0f0f0;padding:10px;border-radius:8px;font-size:12px;word-break:break-all;margin:10px 0;border:1px dashed #0f8a3a}
+.min-badge{background:#ff3b30;color:#fff;padding:3px 8px;border-radius:10px;font-size:10px;font-weight:900;margin-left:6px}
+.float-cs{position:fixed;right:12px;bottom:90px;z-index:9999;width:70px;height:70px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(0,0,0,.5);border:3px solid #25D366;overflow:hidden}.float-cs img{width:100%;height:100%;object-fit:cover}
+.float-group{position:fixed;right:12px;bottom:172px;z-index:9999;width:64px;height:64px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(0,0,0,.5);border:3px solid #0088cc;overflow:hidden}.float-group img{width:100%;height:100%;object-fit:cover}
 </style></head><body>
 
 <div id="loginScreen" class="login-screen"><div class="login-box"><img src="logo.jpg"><h2>EZOL EARN2</h2><p style="font-size:12px;color:#666">CEO: Ezra Twinamatsiko</p>
@@ -39,15 +39,15 @@ body::after{content:"";position:fixed;top:0;left:0;width:100%;height:100%;backgr
 <div class="header"><div style="display:flex;align-items:center;gap:10px"><div class="e">E</div><div><b id="userNameDisplay">EZOL</b><br><small id="userPhoneDisplay">WALLET</small></div></div><div style="color:#22a35d;font-size:12px;font-weight:700">● 5,248 online</div></div>
 
 <div id="tab-home" class="tab active">
-<div class="big-logo"><img class="logo-fill" src="logo.jpg"><div class="logo-overlay"><h2>EZOL EARN2</h2><p>CEO: Ezra | <span id="helloName">Kampala</span></p><p style="color:#0f8a3a;font-weight:800">12,847+ Users | 20 VIPs</p><button class="btn-gold" style="margin-top:10px" onclick="switchTab('product')">View 20 VIP Plans</button></div></div>
-<div class="download-card"><img src="logo.jpg"><div style="flex:1"><b>📲 Download & Earn 5,000 UGX</b></div><button class="download-btn" onclick="downloadApp()">⬇️ Download</button></div>
+<div class="big-logo"><img class="logo-fill" src="logo.jpg"><div class="logo-overlay"><h2>EZOL EARN2</h2><p>CEO: Ezra | <span id="helloName">Kampala</span></p><p style="color:#0f8a3a;font-weight:800">12,847+ Users | Min Recharge 15,000 UGX</p><button class="btn-gold" style="margin-top:10px" onclick="switchTab('product')">View 20 VIP Plans - Min 15K</button></div></div>
+<div class="download-card"><img src="logo.jpg"><div style="flex:1"><b>📲 Download & Earn 5,000 UGX</b><br><small>Min Recharge: 15,000 UGX | Min Withdraw: 10,000 UGX</small></div><button class="download-btn" onclick="downloadApp()">⬇️ Download</button></div>
 <div class="wag"><h3>👥 WhatsApp Group - 1,247 Members</h3><div class="wag-btns"><button class="btn-white" onclick="window.open('https://chat.whatsapp.com/CJl3YvYBHNR10VWAB2NUNx','_blank')">👥 Join Group</button><button class="btn-black" onclick="copyLink()">🔗 Copy Link</button></div></div>
-<div class="actions"><button class="green" onclick="showPay(15000,'Recharge')">◧ Recharge</button><button class="orange" onclick="showPay(15000,'Withdraw')">✈ Withdraw</button></div>
+<div class="actions"><button class="green" onclick="showPay(15000,'Recharge')">◧ Recharge Min 15K</button><button class="orange" onclick="showPay(15000,'Withdraw')">✈ Withdraw Min 10K</button></div>
 <div class="live"><h4>🔴 Live</h4><div id="liveList"></div></div>
 </div>
 
-<div id="tab-product" class="tab"><h3 style="padding:12px;background:#fff;margin:12px;border-radius:10px">💎 20 VIP Plans - Start 15,000 UGX</h3>
-<div class="vip"><img src="logo.jpg"><div><b>VIP 1 - Starter</b><br><small>15,000 UGX → 3,000/day ×30 = 90,000</small><br><button class="vip-btn" onclick="showPay(15000,'VIP 1')">Buy 15,000 UGX</button></div></div>
+<div id="tab-product" class="tab"><h3 style="padding:12px;background:#fff;margin:12px;border-radius:10px">💎 20 VIP Plans - Min Recharge 15,000 UGX</h3>
+<div class="vip"><img src="logo.jpg"><div><b>VIP 1 - Starter <span class="min-badge">MIN</span></b><br><small>15,000 UGX → 3,000/day ×30 = 90,000</small><br><button class="vip-btn" onclick="showPay(15000,'VIP 1')">Buy 15,000 UGX</button></div></div>
 <div class="vip"><img src="logo.jpg"><div><b>VIP 2 - Basic</b><br><small>20,000 UGX → 5,000/day ×30 = 150,000</small><br><button class="vip-btn" onclick="showPay(20000,'VIP 2')">Buy 20,000 UGX</button></div></div>
 <div class="vip"><img src="logo.jpg"><div><b>VIP 3 - Lite</b><br><small>35,000 UGX → 9,000/day ×30 = 270,000</small><br><button class="vip-btn" onclick="showPay(35000,'VIP 3')">Buy 35,000 UGX</button></div></div>
 <div class="vip"><img src="logo.jpg"><div><b>VIP 4 - Silver</b><br><small>50,000 UGX → 14,000/day ×30 = 420,000</small><br><button class="vip-btn" onclick="showPay(50000,'VIP 4')">Buy 50,000 UGX</button></div></div>
@@ -69,36 +69,42 @@ body::after{content:"";position:fixed;top:0;left:0;width:100%;height:100%;backgr
 <div class="vip" style="border-left-color:#ffd700;background:linear-gradient(90deg,#fff,#fff8e1)"><img src="logo.jpg"><div><b>VIP 20 - KING 👑</b><br><small>15,000,000 UGX → 6,500,000/day ×90 = 585M</small><br><button class="vip-btn" style="background:linear-gradient(#ffd700,#ff9f1a)" onclick="showPay(15000000,'VIP 20 KING')">Buy 15M 👑</button></div></div>
 </div>
 
-<div id="tab-share" class="tab"><div class="refbox"><h2>🔗 Invite & Earn 5,000 UGX</h2><div class="reflink" id="myLink">https://easyearn869-oss.github.io/Ezol-earn2/?ref=PHONE</div><button class="btn-gold" onclick="copyLink()">📋 Copy Link</button><button class="btn-gold" style="background:#25D366;color:#fff;margin-top:8px" onclick="shareWA()">💬 Share WhatsApp</button></div></div>
+<div id="tab-share" class="tab"><div class="refbox"><h2>🔗 Invite & Earn 5,000 UGX</h2><div class="reflink" id="myLink">https://easyearn869-oss.github.io/Ezol-earn2/?ref=PHONE</div><button class="btn-gold" onclick="copyLink()">📋 Copy Link</button><button class="btn-gold" style="background:#25D366;color:#fff;margin-top:8px" onclick="shareWA()">💬 Share WhatsApp</button><p style="font-size:11px;color:#666;margin-top:8px">Min Recharge to activate: 15,000 UGX</p></div></div>
 
-<div id="tab-wallet" class="tab"><div class="wallet-card"><small>Balance</small><h1 id="bal">0 UGX</h1><p id="walletPhone">+256</p><div class="actions" style="margin:12px 0 0 0"><button class="green" style="background:#fff;color:#0f3d2e" onclick="showPay(15000,'Recharge')">Recharge</button><button class="orange" style="background:#ff9f1a" onclick="showPay(15000,'Withdraw')">Withdraw</button></div></div>
-<div class="menu-list"><div class="menu-row" onclick="showPopup('Recharge Records: No records yet. Your 15,000 UGX deposits will show here.')"><b>💳 Recharge Records</b><span>›</span></div><div class="menu-row" onclick="showPopup('Withdraw Records: No withdrawals yet. Min 10,000 UGX.')"><b>💸 Withdraw Records</b><span>›</span></div></div>
+<div id="tab-wallet" class="tab"><div class="wallet-card"><small>Balance</small><h1 id="bal">0 UGX</h1><p id="walletPhone">+256</p><div class="actions" style="margin:12px 0 0 0"><button class="green" style="background:#fff;color:#0f3d2e" onclick="showPay(15000,'Recharge')">Recharge</button><button class="orange" style="background:#ff9f1a" onclick="showPay(15000,'Withdraw')">Withdraw</button></div><p style="font-size:11px;margin-top:8px;opacity:.9">⚠️ Min Recharge: 15,000 UGX | Min Withdraw: 10,000 UGX</p></div>
+<div class="menu-list"><div class="menu-row" onclick="showPopup('Recharge Records: No records yet. Min is 15,000 UGX.')"><b>💳 Recharge Records <span class="min-badge">MIN 15K</span></b><span>›</span></div><div class="menu-row" onclick="showPopup('Withdraw Records: Min withdraw 10,000 UGX.')"><b>💸 Withdraw Records</b><span>›</span></div></div>
+<div style="background:#fff;margin:12px;border-radius:12px;padding:12px;z-index:1;position:relative">
+<h4>💰 Custom Recharge <span class="min-badge">MIN 15,000 UGX</span></h4>
+<p style="font-size:11px;color:#666;margin:6px 0">Enter amount (Minimum 15,000 UGX):</p>
+<input id="customAmount" type="number" placeholder="15000" style="width:100%;padding:10px;border-radius:8px;border:1px solid #ddd">
+<button class="btn-gold" onclick="customRecharge()">Recharge Custom Amount</button>
+<p id="customMsg" style="font-size:12px;color:red;margin-top:6px"></p>
+</div>
 </div>
 
-<!-- FULL MY ACCOUNT V15 ITEMS + V16 -->
 <div id="tab-my" class="tab">
 <div class="my-card"><img src="logo.jpg"><div style="flex:1"><b id="myName">Guest</b><br><small id="myPhone2">07XX</small><br><small style="color:#0f8a3a;font-weight:700">● Verified | VIP 0</small></div><div style="text-align:right"><small>Balance</small><br><b id="myBal" style="color:#0f8a3a">0 UGX</b></div></div>
 
 <div style="background:#fff;margin:12px;border-radius:12px;padding:12px;z-index:1;position:relative">
-<h4 id="payTitle">Pay To Activate</h4>
-<p style="background:#e8f8ee;border:1px dashed #2a7d5f;padding:10px;border-radius:10px;margin:8px 0;font-size:13px;text-align:center">Pay To: <b>0795143386</b><br>Names: <b>Ezra Twinamatsiko</b><br><span id="payAmountText">Amount: <b>15,000 UGX</b></span><br><span id="payVipText" style="color:#0f8a3a;font-weight:800"></span></p>
+<h4 id="payTitle">Pay To Activate <span class="min-badge">MIN 15,000 UGX</span></h4>
+<p style="background:#e8f8ee;border:1px dashed #2a7d5f;padding:10px;border-radius:10px;margin:8px 0;font-size:13px;text-align:center">Pay To: <b>0795143386</b><br>Names: <b>Ezra Twinamatsiko</b><br><span id="payAmountText">Amount: <b>15,000 UGX</b></span><br><span id="payVipText" style="color:#0f8a3a;font-weight:800"></span><br><small style="color:#ff3b30;font-weight:700">⚠️ Minimum Recharge: 15,000 UGX</small></p>
 <button class="btn-gold" id="payBtn" onclick="payNow()">🇺🇬 Recharge 15,000 UGX Now</button><p id="msg" style="color:green;font-weight:700;margin-top:8px"></p>
 </div>
 
 <div class="menu-list">
-<div class="menu-row" onclick="openCompany()"><div><b>🏢 Company Profile</b><br><small>About EZOL LTD, CEO Ezra, 12,847+ users</small></div><span>›</span></div>
-<div class="menu-row" onclick="showPopup('📜 Rules & Regulations:\n\n1. Minimum deposit 15,000 UGX\n2. Daily income credited 6am\n3. Withdraw min 10,000 UGX\n4. Withdraw time 9am-6pm daily\n5. Invite 3 friends get bonus 15,000 UGX\n6. Fake payments will be banned\n7. VIP income is fixed x30/45/60/90 days')"><div><b>📜 Rules & Regulations</b><br><small>How to earn, withdraw, VIP duration</small></div><span>›</span></div>
-<div class="menu-row" onclick="showPopup('💰 My Commission:\n\nLevel 1: 20% - Direct invite\nLevel 2: 5% - Second level\nLevel 3: 2% - Third level\n\nExample: Friend buys VIP1 (15,000) you get 3,000 UGX instantly!\n\nMy Team: 0 members yet')"><div><b>💰 My Commission</b><br><small>Invite earnings 20%/5%/2%</small></div><span>›</span></div>
-<div class="menu-row" onclick="showPopup('💳 Recharge Records:\n\nNo records yet.\n\nWhen you pay 15,000 UGX to 0795143386, record will show here with Transaction ID.')"><div><b>💳 Recharge Records</b><br><small>Your deposit history</small></div><span>›</span></div>
-<div class="menu-row" onclick="showPopup('💸 Withdraw Records:\n\nNo withdrawals yet.\n\nMinimum withdraw: 10,000 UGX\nTime: 9am-6pm\n\nYour withdraw history will show here.')"><div><b>💸 Withdraw Records</b><br><small>Your withdraw history</small></div><span>›</span></div>
-<div class="menu-row" onclick="showPopup('👥 My Team:\n\nTotal Invites: 0\nTeam Earnings: 0 UGX\n\nYour referral link:\nhttps://easyearn869-oss.github.io/Ezol-earn2/?ref=PHONE\n\nInvite friends and earn 20% commission!')"><div><b>👥 My Team / Invite List</b><br><small>Friends you invited</small></div><span>›</span></div>
-<div class="menu-row" onclick="showPopup('📞 Contact Us:\n\nCEO: Ezra Twinamatsiko\nWhatsApp: +256795143386\nMoMo: 0795143386\nEmail: ezol.earn2@gmail.com\nOffice: Kampala, Uganda\n\nResponse time: 10min-2hrs')"><div><b>📞 Contact Us</b><br><small>Customer service 24/7</small></div><span>›</span></div>
-<div class="menu-row" onclick="showPopup('🔒 Change Password:\n\nFeature coming in next update.\n\nContact admin on WhatsApp 0795143386 to reset password.')"><div><b>🔒 Change Password</b><br><small>Security & safety</small></div><span>›</span></div>
-<div class="menu-row" onclick="window.open('https://chat.whatsapp.com/CJl3YvYBHNR10VWAB2NUNx','_blank')"><div><b>👥 Join WhatsApp Group</b><br><small>Payment proofs & support</small></div><span>›</span></div>
-<div class="menu-row" onclick="showPopup('📲 About App:\n\nEZOL EARN2 LTD\nVersion: V17 Final - 20 VIPs\nBuild: 2026\n\nCEO: Ezra Twinamatsiko\nLocation: Kampala, Uganda\nUsers: 12,847+\nTotal Paid: 450M+ UGX\n\nTrusted since 2024')"><div><b>📱 About App - V17</b><br><small>Version info</small></div><span>›</span></div>
+<div class="menu-row" onclick="openCompany()"><div><b>🏢 Company Profile</b><br><small>About EZOL LTD</small></div><span>›</span></div>
+<div class="menu-row" onclick="showPopup('📜 Rules:\n1. MIN RECHARGE 15,000 UGX\n2. MIN WITHDRAW 10,000 UGX\n3. Daily income 6am\n4. Withdraw 9am-6pm\n5. Invite bonus 5k')"><div><b>📜 Rules & Regulations</b><br><small>Min recharge 15K, withdraw 10K</small></div><span>›</span></div>
+<div class="menu-row" onclick="showPopup('💰 Commission L1 20% L2 5% L3 2%')"><div><b>💰 My Commission</b></div><span>›</span></div>
+<div class="menu-row" onclick="showPopup('💳 Recharge Records: Min 15,000 UGX')"><div><b>💳 Recharge Records</b><br><small>Min recharge 15,000 UGX</small></div><span>›</span></div>
+<div class="menu-row" onclick="showPopup('💸 Withdraw Records: Min 10,000 UGX')"><div><b>💸 Withdraw Records</b><br><small>Min withdraw 10,000 UGX</small></div><span>›</span></div>
+<div class="menu-row" onclick="showPopup('👥 My Team')"><div><b>👥 My Team</b><br><small>Friends you invited</small></div><span>›</span></div>
+<div class="menu-row" onclick="showPopup('📞 Contact: 0795143386 Ezra')"><div><b>📞 Contact Us</b></div><span>›</span></div>
+<div class="menu-row" onclick="showPopup('🔒 Change Password coming soon')"><div><b>🔒 Change Password</b></div><span>›</span></div>
+<div class="menu-row" onclick="window.open('https://chat.whatsapp.com/CJl3YvYBHNR10VWAB2NUNx','_blank')"><div><b>👥 Join WhatsApp Group</b></div><span>›</span></div>
+<div class="menu-row" onclick="showPopup('EZOL V18 - Min Recharge 15K | © 2026')"><div><b>📱 About App - V18</b><br><small>Min Recharge 15K added</small></div><span>›</span></div>
 </div>
 
-<div style="margin:12px"><button onclick="logout()" style="width:100%;background:#ef4444;color:#fff;border:none;padding:14px;border-radius:12px;font-weight:900">🚪 LOGOUT</button><p style="text-align:center;font-size:11px;color:#888;margin-top:10px">EZOL V17 - 20 VIPs FULL MY PAGE | © 2026<br>Kampala Uganda</p></div>
+<div style="margin:12px"><button onclick="logout()" style="width:100%;background:#ef4444;color:#fff;border:none;padding:14px;border-radius:12px;font-weight:900">🚪 LOGOUT</button><p style="text-align:center;font-size:11px;color:#888;margin-top:10px">EZOL V18 - 20 VIPs | MIN 15K | © 2026</p></div>
 </div>
 
 <div class="float-group" onclick="window.open('https://chat.whatsapp.com/CJl3YvYBHNR10VWAB2NUNx','_blank')"><img src="logo.jpg"></div>
@@ -107,17 +113,15 @@ body::after{content:"";position:fixed;top:0;left:0;width:100%;height:100%;backgr
 
 <div id="popup" class="popup" onclick="this.style.display='none'"><div class="popup-box" onclick="event.stopPropagation()"><p id="popupText" style="white-space:pre-line;font-size:13px"></p><button class="btn-gold" style="margin-top:12px" onclick="document.getElementById('popup').style.display='none'">Close</button></div></div>
 <div id="companyPopup" class="popup" onclick="this.style.display='none'"><div class="popup-box" onclick="event.stopPropagation()"><img src="logo.jpg" style="width:100%;height:200px;object-fit:cover;border-radius:12px"><h2>EZOL EARN2 LTD</h2><p style="font-size:13px;white-space:pre-line">🏢 CEO: Ezra Twinamatsiko
-📍 Kampala, Uganda
+📍 Kampala
 👥 12,847+ Users
-💰 20 VIP Plans 15k-15M
-💳 Paid 450M+ UGX
-
-Mission: Empower Uganda to earn daily. Start 15k earn up to 585M!
-
-Trusted since 2024.
-WhatsApp: 0795143386</p><button class="btn-gold" onclick="document.getElementById('companyPopup').style.display='none'">Close</button></div></div>
+💰 20 VIPs 15k-15M
+⚠️ Min Recharge: 15,000 UGX
+⚠️ Min Withdraw: 10,000 UGX
+💳 MoMo: 0795143386</p><button class="btn-gold" onclick="document.getElementById('companyPopup').style.display='none'">Close</button></div></div>
 
 <script>
+const MIN_RECHARGE=15000;const MIN_WITHDRAW=10000;
 let currentAmount=15000;let currentVip="VIP 1";let currentUser=null;
 function showReg(){document.getElementById('regForm').style.display='block';document.getElementById('logForm').style.display='none';}
 function showLogin(){document.getElementById('regForm').style.display='none';document.getElementById('logForm').style.display='block';}
@@ -127,10 +131,11 @@ function loginUser(){let phone=document.getElementById('logPhone').value.trim();
 function logout(){if(confirm('Logout?')){localStorage.removeItem('ezol_current_user');location.reload();}}
 function switchTab(t){document.querySelectorAll('.tab').forEach(e=>e.classList.remove('active'));document.getElementById('tab-'+t).classList.add('active');document.querySelectorAll('.bottom div').forEach(e=>e.classList.remove('active'));document.getElementById('b-'+t).classList.add('active');window.scrollTo(0,0);}
 let phones=["07****7303","0754***3852","0701***6237"];let acts=["withdraw 25,000 ✓","bought VIP 🔥","earned 5,000"];let list=document.getElementById('liveList');function addLive(){if(!list)return;let p=phones[Math.floor(Math.random()*phones.length)];let a=acts[Math.floor(Math.random()*acts.length)];let d=document.createElement('div');d.className='live-item';d.innerHTML=`<span>🟢 ${p} ${a}</span><span style="color:#999">${Math.floor(Math.random()*9+1)}m ago</span>`;list.prepend(d);if(list.children.length>7)list.lastChild.remove();}for(let i=0;i<6;i++)addLive();setInterval(addLive,2200);
-function showPay(a,v){currentAmount=a;currentVip=v;document.getElementById('payAmountText').innerHTML="Amount: <b>"+a.toLocaleString()+" UGX</b>";document.getElementById('payVipText').innerHTML=v;document.getElementById('payBtn').innerText="🇺🇬 Recharge "+a.toLocaleString()+" UGX - "+v;document.getElementById('payTitle').innerText="Pay For "+v;switchTab('my');}
+function showPay(a,v){if(a<MIN_RECHARGE && v!=='Withdraw'){alert('⚠️ Minimum Recharge is '+MIN_RECHARGE.toLocaleString()+' UGX! Your amount '+a.toLocaleString()+' is too low.');return;}currentAmount=a;currentVip=v;document.getElementById('payAmountText').innerHTML="Amount: <b>"+a.toLocaleString()+" UGX</b>";document.getElementById('payVipText').innerHTML=v;document.getElementById('payBtn').innerText="🇺🇬 Recharge "+a.toLocaleString()+" UGX - "+v;document.getElementById('payTitle').innerText="Pay For "+v;switchTab('my');}
+function customRecharge(){let val=parseInt(document.getElementById('customAmount').value);if(isNaN(val)){document.getElementById('customMsg').innerText='❌ Enter amount';return;}if(val<MIN_RECHARGE){document.getElementById('customMsg').innerText='❌ Minimum Recharge is '+MIN_RECHARGE.toLocaleString()+' UGX! You entered '+val.toLocaleString()+' which is too low.';return;}document.getElementById('customMsg').innerText='';showPay(val,'Custom '+val.toLocaleString()+' UGX');}
 function copyLink(){navigator.clipboard.writeText(document.getElementById('myLink').innerText);alert('Copied!');}
-function shareWA(){window.open('https://wa.me/?text='+encodeURIComponent('Join EZOL 20 VIPs 👉 https://easyearn869-oss.github.io/Ezol-earn2/'));}
-function payNow(){let ussd=`*165*1*1*0795143386*${currentAmount}#`;document.getElementById('msg').innerText='Opening MoMo for '+currentAmount.toLocaleString()+' UGX...';window.location.href='tel:'+encodeURIComponent(ussd);}
+function shareWA(){window.open('https://wa.me/?text='+encodeURIComponent('Join EZOL 20 VIPs Min 15K 👉 https://easyearn869-oss.github.io/Ezol-earn2/'));}
+function payNow(){if(currentAmount<MIN_RECHARGE){alert('⚠️ MIN RECHARGE is '+MIN_RECHARGE.toLocaleString()+' UGX! You cannot recharge less than that.');return;}let ussd=`*165*1*1*0795143386*${currentAmount}#`;document.getElementById('msg').innerText='Opening MoMo for '+currentAmount.toLocaleString()+' UGX (Min 15K check passed ✓)...';window.location.href='tel:'+encodeURIComponent(ussd);}
 function downloadApp(){alert('Add to Home Screen: Tap 3 dots → Add to Home Screen');}
 function showPopup(t){document.getElementById('popupText').innerText=t;document.getElementById('popup').style.display='flex';}
 function openCompany(){document.getElementById('companyPopup').style.display='flex';}
