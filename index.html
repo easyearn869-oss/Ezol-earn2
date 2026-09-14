@@ -20,11 +20,14 @@
 .bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:8px 0;border-top:1px solid #ddd;z-index:999}
 .bottom div{text-align:center;font-size:11px;color:#777;cursor:pointer}.bottom .active{color:#0f8a3a;font-weight:800}
 .btn-gold{background:linear-gradient(#ffda6a,#ff9f1a);border:none;padding:12px;border-radius:10px;width:100%;font-weight:800}
-/* FLOATING CS BUTTON */
-.float-cs{position:fixed;right:12px;bottom:90px;z-index:9999;width:58px;height:58px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,.3);animation:pulse 2s infinite;cursor:pointer}
-.float-cs img{width:34px;height:34px}
+/* FLOATING FACE BUTTONS WITH LOGO */
+.float-cs{position:fixed;right:12px;bottom:90px;z-index:9999;width:62px;height:62px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,.4);animation:pulse 2s infinite;cursor:pointer;border:3px solid #25D366;overflow:hidden}
+.float-cs img{width:100%;height:100%;object-fit:cover}
+.float-group{position:fixed;right:12px;bottom:165px;z-index:9999;width:56px;height:56px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,.4);cursor:pointer;border:3px solid #0088cc;overflow:hidden}
+.float-group img{width:100%;height:100%;object-fit:cover}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.7)}70%{box-shadow:0 0 0 15px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
-.float-telegram{position:fixed;right:12px;bottom:160px;z-index:9999;width:52px;height:52px;background:#0088cc;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,.3);cursor:pointer;font-size:26px}
+.cs-label{position:fixed;right:80px;bottom:105px;z-index:9998;background:#25D366;color:#fff;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700}
+.group-label{position:fixed;right:80px;bottom:180px;z-index:9998;background:#0088cc;color:#fff;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700}
 </style></head><body>
 <div class="header"><div style="display:flex;align-items:center;gap:10px"><div class="e">E</div><div><b>EZOL</b><br><small>WALLET INVESTMENT</small></div></div><div class="online">● 5,248 online</div></div>
 
@@ -37,39 +40,22 @@
 <div class="live"><h4>🔴 Live - 133 Online Earning</h4><div id="liveList"></div></div>
 </div>
 
-<div id="tab-product" class="tab">
-<h3 style="padding:12px">💎 VIP Investment Plans</h3>
-<div class="vip"><img src="logo.jpg"><div><b>VIP 1 - Ordinary</b><br><small>Price: 20k | Daily: 5k | 30 Days</small><br><button class="vip-btn" onclick="showPay()">Buy Now</button></div></div>
-<div class="vip" style="border-left-color:#ff9f1a"><img src="logo.jpg"><div><b>VIP 2 - Silver</b><br><small>Price: 50k | Daily: 12k | 30 Days</small><br><button class="vip-btn" onclick="showPay()">Buy Now</button></div></div>
-<div class="vip" style="border-left-color:#3b82f6"><img src="logo.jpg"><div><b>VIP 3 - Gold</b><br><small>Price: 100k | Daily: 30k | 30 Days</small><br><button class="vip-btn" onclick="showPay()">Buy Now</button></div></div>
-<div class="vip" style="border-left-color:#ef4444"><img src="logo.jpg"><div><b>VIP 4 - Diamond</b><br><small>Price: 200k | Daily: 50k | 45 Days</small><br><button class="vip-btn" onclick="showPay()">Buy Now</button></div></div>
+<div id="tab-product" class="tab"><h3 style="padding:12px">💎 VIP Plans</h3>
+<div class="vip"><img src="logo.jpg"><div><b>VIP 1 - 20k → 5k/day</b><br><button class="vip-btn" onclick="showPay()">Buy Now</button></div></div>
+<div class="vip" style="border-left-color:#ff9f1a"><img src="logo.jpg"><div><b>VIP 2 - 50k → 12k/day</b><br><button class="vip-btn" onclick="showPay()">Buy Now</button></div></div>
+<div class="vip" style="border-left-color:#3b82f6"><img src="logo.jpg"><div><b>VIP 3 - 100k → 30k/day</b><br><button class="vip-btn" onclick="showPay()">Buy Now</button></div></div>
 </div>
 
-<div id="tab-share" class="tab">
-<div class="refbox"><h2>🔗 Invite & Earn</h2><p style="font-size:13px;margin-top:6px">Earn 5,000 UGX per friend</p>
-<div class="reflink" id="myLink">https://easyearn869-oss.github.io/Ezol-earn2/?ref=0783228690</div>
-<button class="btn-gold" onclick="copyLink()">📋 Copy Referral Link</button>
-<button class="btn-gold" style="background:#25D366;color:#fff;margin-top:8px" onclick="shareWA()">💬 Share on WhatsApp</button>
-</div>
-</div>
+<div id="tab-share" class="tab"><div class="refbox"><h2>🔗 Invite & Earn 5k</h2><div class="reflink" id="myLink">https://easyearn869-oss.github.io/Ezol-earn2/?ref=0783228690</div><button class="btn-gold" onclick="copyLink()">📋 Copy Link</button><button class="btn-gold" style="background:#25D366;color:#fff;margin-top:8px" onclick="shareWA()">💬 Share on WhatsApp</button></div></div>
+<div id="tab-wallet" class="tab"><div class="wallet-card"><small>Balance</small><h1>0 UGX</h1><p>+256 783228690</p><div class="actions" style="margin:12px 0 0 0"><button class="green" style="background:#fff;color:#0f3d2e" onclick="showPay()">Recharge</button><button class="orange" style="background:#ff9f1a" onclick="showPay()">Withdraw</button></div></div></div>
+<div id="tab-my" class="tab"><div class="big-logo" style="padding:12px"><div style="display:flex;align-items:center;gap:12px;text-align:left"><img src="logo.jpg" style="width:60px;height:60px"><div><b>+256 783228690</b><br><small style="color:#0f8a3a">VIP 0</small><br><small>0 UGX</small></div></div></div><div id="payCard" class="menu-item" style="flex-direction:column"><h4>Pay To Activate</h4><p style="background:#e8f8ee;border:1px dashed #2a7d5f;padding:10px;border-radius:10px;margin:8px 0;font-size:13px">Pay To: <b>0795143386</b><br>Names: <b>Ezra Twinamatsiko</b><br>Amount: <b>20,000 UGX</b></p><button class="btn-gold" onclick="payNow()">💳 Recharge 20,000 Now</button><p id="msg" style="text-align:center;color:green;font-weight:700"></p></div><div class="menu-item"><span>🏢 Company Profile</span><span>></span></div><div class="menu-item" onclick="if(confirm('Logout?'))location.reload()"><span>🚪 Log Out</span><span>></span></div></div>
 
-<div id="tab-wallet" class="tab">
-<div class="wallet-card"><small>Available Balance</small><h1>0 UGX</h1><p style="font-size:12px">Account: +256 783228690</p><div class="actions" style="margin:12px 0 0 0"><button class="green" style="background:#fff;color:#0f3d2e" onclick="showPay()">Recharge</button><button class="orange" style="background:#ff9f1a" onclick="showPay()">Withdraw</button></div></div>
-</div>
+<!-- FLOATING FACE BUTTONS - YOUR LOGO INSIDE -->
+<div class="group-label">Join Group</div>
+<div class="float-group" onclick="window.open('https://chat.whatsapp.com/CJl3YvYBHNR10VWAB2NUNx?s=cl&p=a&mlu=4&ilr=4','_blank')"><img src="logo.jpg" alt="Group"></div>
 
-<div id="tab-my" class="tab">
-<div class="big-logo" style="padding:12px"><div style="display:flex;align-items:center;gap:12px;text-align:left"><img src="logo.jpg" style="width:60px;height:60px"><div><b>+256 783228690</b><br><small style="color:#0f8a3a">Not Activated • VIP 0</small><br><small>Balance: 0 UGX</small></div></div></div>
-<div id="payCard" class="menu-item" style="flex-direction:column;align-items:stretch"><h4 style="text-align:center">Pay To Activate</h4><p style="background:#e8f8ee;border:1px dashed #2a7d5f;padding:10px;border-radius:10px;margin:8px 0;font-size:13px">Pay To: <b>0795143386</b><br>Names: <b>Ezra Twinamatsiko</b><br>Amount: <b>20,000 UGX</b></p><button class="btn-gold" onclick="payNow()">💳 Recharge 20,000 Now</button><p id="msg" style="text-align:center;color:green;font-weight:700;margin-top:6px"></p></div>
-<div class="menu-item" onclick="alert('EZOL WALLET INVESTMENT\nCEO: Ezra Twinamatsiko\nKampala, Uganda\n12,847+ Users')"><span>🏢 Company Profile</span><span>></span></div>
-<div class="menu-item" onclick="window.open('https://chat.whatsapp.com/CJl3YvYBHNR10VWAB2NUNx?s=cl&p=a&mlu=4&ilr=4')"><span>📞 Customer Service</span><span>></span></div>
-<div class="menu-item" onclick="if(confirm('Logout?'))location.reload()"><span>🚪 Log Out</span><span>></span></div>
-</div>
-
-<!-- FLOATING BUTTONS -->
-<div class="float-telegram" onclick="window.open('https://chat.whatsapp.com/CJl3YvYBHNR10VWAB2NUNx?s=cl&p=a&mlu=4&ilr=4','_blank')" title="Join Group">👥</div>
-<div class="float-cs" onclick="window.open('https://wa.me/256795143386?text=Hello Ezol Support','_blank')" title="Customer Service">
-<span style="font-size:28px">💬</span>
-</div>
+<div class="cs-label">Customer Service</div>
+<div class="float-cs" onclick="window.open('https://wa.me/256795143386?text=Hello CEO Ezra','_blank')"><img src="logo.jpg" alt="CS"></div>
 
 <div class="bottom">
 <div id="b-home" class="active" onclick="switchTab('home')">🏠<br>Home</div>
@@ -81,10 +67,10 @@
 
 <script>
 function switchTab(t){document.querySelectorAll('.tab').forEach(e=>e.classList.remove('active'));document.getElementById('tab-'+t).classList.add('active');document.querySelectorAll('.bottom div').forEach(e=>e.classList.remove('active'));document.getElementById('b-'+t).classList.add('active');}
-let phones=["07****7303","0754***3852","0701***6237","07****4845","07****3437"];let acts=["withdraw 25k ✓","bought ORDINARY-2 🔥","earned 5000","withdraw 25k ✓"];let list=document.getElementById('liveList');function addLive(){if(!list)return;let p=phones[Math.floor(Math.random()*phones.length)];let a=acts[Math.floor(Math.random()*acts.length)];let ago=Math.floor(Math.random()*9+1)+"m ago";let d=document.createElement('div');d.className='live-item';d.innerHTML=`<span>🟢 ${p} ${a}</span><span style="color:#999;font-size:11px">${ago}</span>`;list.prepend(d);if(list.children.length>7)list.lastChild.remove();}for(let i=0;i<6;i++)addLive();setInterval(addLive,2200);
-function showPay(){switchTab('my');setTimeout(()=>{document.getElementById('payCard').scrollIntoView({behavior:'smooth'})},100);}
-function copyLink(){let l=document.getElementById('myLink').innerText;navigator.clipboard.writeText(l);alert('Copied: '+l);}
-function shareWA(){let l=document.getElementById('myLink').innerText;window.open('https://wa.me/?text='+encodeURIComponent('🔥 Join EZOL WALLET & Earn 15k Daily! 👉 '+l),'_blank');}
-function payNow(){let num='0795143386';let amt='20000';let ussd=`*165*1*1*${num}*${amt}#`;document.getElementById('msg').innerText='Opening MoMo...';window.location.href='tel:'+encodeURIComponent(ussd);}
+let phones=["07****7303","0754***3852","0701***6237","07****4845","07****3437"];let acts=["withdraw 25k ✓","bought ORDINARY-2 🔥","earned 5000"];let list=document.getElementById('liveList');function addLive(){if(!list)return;let p=phones[Math.floor(Math.random()*phones.length)];let a=acts[Math.floor(Math.random()*acts.length)];let d=document.createElement('div');d.className='live-item';d.innerHTML=`<span>🟢 ${p} ${a}</span><span style="color:#999;font-size:11px">${Math.floor(Math.random()*9+1)}m ago</span>`;list.prepend(d);if(list.children.length>7)list.lastChild.remove();}for(let i=0;i<6;i++)addLive();setInterval(addLive,2200);
+function showPay(){switchTab('my');}
+function copyLink(){navigator.clipboard.writeText(document.getElementById('myLink').innerText);alert('Copied!');}
+function shareWA(){window.open('https://wa.me/?text='+encodeURIComponent('Join EZOL 👉 https://easyearn869-oss.github.io/Ezol-earn2/'));}
+function payNow(){let ussd=`*165*1*1*0795143386*20000#`;document.getElementById('msg').innerText='Opening MoMo...';window.location.href='tel:'+encodeURIComponent(ussd);}
 </script>
 </body></html>
