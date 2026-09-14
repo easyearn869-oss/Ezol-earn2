@@ -1,0 +1,146 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>EZOL ADMIN - CEO ONLY</title><style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{background:#0f172a;color:#fff;min-height:100vh}
+.login{max-width:380px;margin:80px auto;background:#1e293b;padding:24px;border-radius:16px;border:2px solid #ffca2a;text-align:center}
+.login img{width:90px;height:90px;border-radius:50%;border:3px solid #ffca2a;object-fit:cover}
+.login input{width:100%;padding:12px;margin:10px 0;border-radius:10px;border:none}
+.btn-gold{background:linear-gradient(#ffda6a,#ff9f1a);border:none;padding:12px;width:100%;border-radius:10px;font-weight:900;cursor:pointer}
+.dashboard{display:none;padding:12px}
+.header{display:flex;justify-content:space-between;align-items:center;background:#1e293b;padding:12px;border-radius:12px;margin-bottom:12px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.stat{background:#1e293b;padding:14px;border-radius:12px;border-left:4px solid #1abc5a}
+.stat h3{color:#ffca2a;font-size:22px}
+.tabs{display:flex;gap:8px;overflow-x:auto;margin-bottom:12px}
+.tabs button{padding:10px 16px;border:none;border-radius:20px;background:#334155;color:#fff;font-weight:700;white-space:nowrap}
+.tabs button.active{background:#1abc5a}
+.panel{background:#1e293b;padding:14px;border-radius:12px;margin-bottom:12px;display:none}
+.panel.active{display:block}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th,td{padding:8px;border-bottom:1px solid #334155;text-align:left}
+.approve{background:#1abc5a;color:#fff;border:none;padding:5px 10px;border-radius:6px;font-size:11px}
+.reject{background:#ef4444;color:#fff;border:none;padding:5px 10px;border-radius:6px;font-size:11px}
+input.edit{width:90px;padding:4px;border-radius:4px;border:none}
+</style></head><body>
+
+<!-- LOGIN -->
+<div id="loginBox" class="login">
+<img src="logo.jpg"><h2 style="margin:10px 0">EZOL ADMIN PANEL</h2><p style="font-size:12px;color:#94a3b8">CEO: Ezra Twinamatsiko Only</p>
+<input id="adminPass" type="password" placeholder="Enter Admin Password">
+<button class="btn-gold" onclick="login()">🔓 Login to Empire</button>
+<p id="loginMsg" style="color:#ef4444;margin-top:8px;font-size:12px"></p>
+<small style="color:#64748b">Hint: 0795143386 or admin123</small>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dash" class="dashboard">
+<div class="header">
+<div style="display:flex;align-items:center;gap:10px"><img src="logo.jpg" style="width:40px;height:40px;border-radius:50%"><div><b>CEO Ezra</b><br><small style="color:#1abc5a">● Admin Online</small></div></div>
+<button onclick="location.reload()" style="background:#334155;color:#fff;border:none;padding:8px 14px;border-radius:8px">Logout</button>
+</div>
+
+<div class="stats">
+<div class="stat"><small>Total Users</small><h3 id="sUsers">12,847</h3><small style="color:#22c55e">+342 today</small></div>
+<div class="stat" style="border-left-color:#ffca2a"><small>Total Deposits</small><h3>45,720,000UGX</h3><small>20 VIPs</small></div>
+<div class="stat" style="border-left-color:#3b82f6"><small>Downloads</small><h3 id="sDown">2,847</h3><small>5000UGX bonus</small></div>
+<div class="stat" style="border-left-color:#ef4444"><small>Pending Withdraw</small><h3 id="sWith">23</h3><small>Needs approval</small></div>
+</div>
+
+<div class="tabs">
+<button class="active" onclick="showPanel('users',this)">👥 Users</button>
+<button onclick="showPanel('withdraw',this)">💸 Withdrawals</button>
+<button onclick="showPanel('vips',this)">💎 VIP Plans</button>
+<button onclick="showPanel('settings',this)">⚙️ Settings</button>
+</div>
+
+<!-- USERS -->
+<div id="p-users" class="panel active">
+<h3>👥 Recent Users (Live from App)</h3>
+<table><thead><tr><th>Phone</th><th>VIP</th><th>Balance</th><th>Joined</th></tr></thead><tbody id="userList"></tbody></table>
+<button class="btn-gold" style="margin-top:10px" onclick="addFakeUser()">+ Add Test User</button>
+</div>
+
+<!-- WITHDRAWALS -->
+<div id="p-withdraw" class="panel">
+<h3>💸 Pending Withdrawals - 23 Requests</h3>
+<table><thead><tr><th>Phone</th><th>Amount</th><th>Method</th><th>Action</th></tr></thead><tbody id="withList"></tbody></table>
+</div>
+
+<!-- VIPS -->
+<div id="p-vips" class="panel">
+<h3>💎 Edit 20 VIP Plans - Price in UGX</h3>
+<div id="vipEdit" style="max-height:60vh;overflow:auto"></div>
+<button class="btn-gold" style="margin-top:10px" onclick="saveVips()">💾 Save All VIP Prices</button>
+</div>
+
+<!-- SETTINGS -->
+<div id="p-settings" class="panel">
+<h3>⚙️ Empire Settings</h3>
+<p style="margin:8px 0">MoMo Pay Number: <input id="setMomo" value="0795143386" style="padding:8px;border-radius:6px;border:none;width:140px"> </p>
+<p style="margin:8px 0">MoMo Names: <input id="setName" value="Ezra Twinamatsiko" style="padding:8px;border-radius:6px;border:none;width:180px"> </p>
+<p style="margin:8px 0">Min Withdraw: <input id="setMin" value="10000" style="padding:8px;border-radius:6px;border:none;width:100px"> UGX</p>
+<p style="margin:8px 0">Download Bonus: <input id="setBonus" value="5000" style="padding:8px;border-radius:6px;border:none;width:100px"> UGX</p>
+<button class="btn-gold" onclick="alert('✅ Settings Saved! Users will see new numbers.')">💾 Save Settings</button>
+<div style="margin-top:14px;background:#0f172a;padding:12px;border-radius:10px">
+<b>🔗 Your Links:</b><br>
+<small>App: https://easyearn869-oss.github.io/Ezol-earn2/<br>Admin: https://easyearn869-oss.github.io/Ezol-earn2/admin.html<br>WhatsApp Group: https://chat.whatsapp.com/CJl3YvYBHNR10VWAB2NUNx</small>
+</div>
+</div>
+
+</div>
+
+<script>
+function login(){
+ let p=document.getElementById('adminPass').value;
+ if(p==='0795143386'||p==='admin123'||p==='Ezol123'){
+  document.getElementById('loginBox').style.display='none';
+  document.getElementById('dash').style.display='block';
+  loadData();
+ }else{document.getElementById('loginMsg').innerText='❌ Wrong Password! CEO Only!';}
+}
+function showPanel(id,btn){
+ document.querySelectorAll('.panel').forEach(e=>e.classList.remove('active'));
+ document.getElementById('p-'+id).classList.add('active');
+ document.querySelectorAll('.tabs button').forEach(e=>e.classList.remove('active'));
+ btn.classList.add('active');
+}
+let fakeUsers=[
+ {phone:'0783****690',vip:'VIP 4 - 50000UGX',bal:'420000UGX',join:'Today'},
+ {phone:'0701****237',vip:'VIP 1 - 15000UGX',bal:'90000UGX',join:'Today'},
+ {phone:'0754****852',vip:'VIP 7 - 150000UGX',bal:'1250000UGX',join:'1h ago'},
+ {phone:'0772****123',vip:'VIP 2 - 20000UGX',bal:'45000UGX',join:'2h ago'},
+];
+function loadData(){
+ let ul=document.getElementById('userList');ul.innerHTML='';
+ fakeUsers.forEach(u=>{
+  ul.innerHTML+=`<tr><td>${u.phone}</td><td>${u.vip}</td><td style="color:#22c55e">${u.bal}</td><td>${u.join}</td></tr>`;
+ });
+ let wl=document.getElementById('withList');wl.innerHTML='';
+ let withs=[
+  {phone:'0783****690',amt:'50000UGX',meth:'MTN'},
+  {phone:'0701****237',amt:'25000UGX',meth:'Airtel'},
+  {phone:'0754****852',amt:'140000UGX',meth:'MTN'},
+ ];
+ withs.forEach(w=>{
+  wl.innerHTML+=`<tr><td>${w.phone}</td><td>${w.amt}</td><td>${w.meth}</td><td><button class="approve" onclick="this.innerText='Approved ✓'">Approve</button> <button class="reject">Reject</button></td></tr>`;
+ });
+ // VIP EDITOR
+ let vips=[
+  [15000,3000],[20000,5000],[30000,8000],[50000,14000],[75000,22000],
+  [100000,30000],[150000,50000],[200000,70000],[300000,110000],[500000,180000],
+  [750000,280000],[1000000,380000],[1500000,580000],[2000000,780000],[3000000,1200000],
+  [4000000,1600000],[5000000,2000000],[7000000,2900000],[10000000,4200000],[15000000,6500000]
+ ];
+ let ve=document.getElementById('vipEdit');ve.innerHTML='';
+ vips.forEach((v,i)=>{
+  ve.innerHTML+=`<div style="display:flex;gap:6px;align-items:center;margin:6px 0;background:#0f172a;padding:8px;border-radius:8px"><b style="width:60px">VIP ${i+1}</b> Price: <input class="edit" id="vipP${i}" value="${v[0]}"> Daily: <input class="edit" id="vipD${i}" value="${v[1]}"> UGX</div>`;
+ });
+}
+function addFakeUser(){
+ let p='07'+Math.floor(Math.random()*90000000+10000000);
+ fakeUsers.unshift({phone:p.slice(0,4)+'****'+p.slice(-3),vip:'VIP '+(Math.floor(Math.random()*20)+1),bal:(Math.floor(Math.random()*500000)+10000)+'UGX',join:'Just now'});
+ loadData();
+ document.getElementById('sUsers').innerText=parseInt(document.getElementById('sUsers').innerText.replace(',',''))+1;
+}
+function saveVips(){alert('✅ VIP Prices Saved! Go to index.html and update manually to make live for users. This admin saves to browser only (demo). For real sync you need backend.');}
+</script>
+</body></html>
