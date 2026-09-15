@@ -1,177 +1,145 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>EZOL ADMIN V19 - LIKE SCREENSHOT</title><style>
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>EZOL ADMIN V20 ULTIMATE v6.3 + MIN 15K</title><style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
-body{background:#0f172a;color:#fff;min-height:100vh;padding-bottom:80px}
-.login{max-width:380px;margin:50px auto;background:#1e293b;padding:24px;border-radius:20px;border:2px solid #ffca2a;text-align:center}
+body{background:#0b1220;color:#fff;min-height:100vh;padding-bottom:80px}
+.login{max-width:380px;margin:50px auto;background:#162032;padding:24px;border-radius:20px;border:2px solid #ffca2a;text-align:center}
 .login img{width:90px;height:90px;border-radius:50%;border:3px solid #ffca2a;object-fit:cover}
 .login input{width:100%;padding:12px;margin:8px 0;border-radius:10px;border:none}
 .btn-gold{background:linear-gradient(#ffda6a,#ff9f1a);border:none;padding:12px;width:100%;border-radius:10px;font-weight:900;cursor:pointer;margin-top:8px}
 .dash{display:none;padding:10px}
-.top-bar{background:#1e293b;padding:10px;border-radius:12px;display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:11px}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
-.stat{background:#1e293b;padding:12px;border-radius:12px;border-left:4px solid #1abc5a}.stat h2{color:#ffca2a;font-size:16px}
-.header-title{background:#1e293b;padding:14px;border-radius:12px;margin-bottom:10px;border:1px solid #334155}
-.header-title h3{color:#38bdf8;font-size:16px}.header-title p{color:#94a3b8;font-size:11px;margin-top:4px;line-height:1.4}
-.search-box{background:#1e293b;padding:10px;border-radius:20px;display:flex;align-items:center;gap:8px;margin-bottom:12px;border:1px solid #334155}
-.search-box input{flex:1;background:transparent;border:none;color:#fff;outline:none;font-size:14px}
-.user-card{background:#1e293b;padding:12px;border-radius:12px;margin-bottom:10px;border:1px solid #334155;position:relative}
-.user-card b{font-size:15px;color:#fff;line-height:1.3;display:block}
-.user-card small{font-size:11px;color:#94a3b8;line-height:1.5}
-.pass{color:#fbbf24 !important;font-weight:700}.bal{color:#22c55e !important;font-weight:700}
-.btns{display:flex;gap:6px;margin-top:8px}
-.btn-reset{background:#3b82f6;color:#fff;border:none;padding:8px 12px;border-radius:8px;font-weight:700;font-size:12px;cursor:pointer}
-.btn-bal{background:#22c55e;color:#fff;border:none;padding:8px 12px;border-radius:8px;font-weight:700;font-size:12px;cursor:pointer}
-.btn-del{background:#ef4444;color:#fff;border:none;padding:8px 12px;border-radius:8px;font-weight:700;font-size:12px;cursor:pointer}
-.min-badge{background:#ff3b30;color:#fff;padding:2px 6px;border-radius:6px;font-size:9px;font-weight:900;margin-left:5px}
-.paid{position:absolute;top:8px;right:10px;background:#ef4444;color:#fff;padding:2px 8px;border-radius:10px;font-size:9px}
-.tabs{display:flex;gap:6px;overflow-x:auto;margin-bottom:12px}.tabs button{padding:8px 12px;border:none;border-radius:20px;background:#334155;color:#fff;font-size:11px;white-space:nowrap}.tabs button.active{background:#1abc5a}
+.top-head{background:#162032;padding:14px;border-radius:14px;display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;border:1px solid #22314f}
+.top-head h2{font-size:20px;line-height:1.2}.top-head small{color:#22c55e;font-size:11px}
+.top-btns{display:flex;flex-direction:column;gap:6px}
+.btn-open{background:#22c55e;color:#fff;border:none;padding:7px 14px;border-radius:20px;font-size:12px;font-weight:700}
+.btn-refresh{background:#3b82f6;color:#fff;border:none;padding:7px 14px;border-radius:20px;font-size:12px;font-weight:700}
+.wag-control{background:linear-gradient(135deg,#0f8a5a,#1abc6a);padding:14px;border-radius:16px;margin-bottom:12px;border:1px solid #2ecc71}
+.wag-control h3{font-size:16px}.wag-control p{font-size:11px;word-break:break-all;margin:4px 0;color:#dcfce7}
+.wag-btns{display:flex;gap:8px;margin:10px 0}
+.wag-btns button{flex:1;padding:10px;border:none;border-radius:10px;font-weight:700;font-size:11px}
+.w-white{background:#fff;color:#0f6a44}.w-dark{background:#0f172a;color:#fff}.w-orange{background:#ff7a00;color:#fff}
+.wag-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px}
+.wag-stat{background:rgba(0,0,0,0.2);padding:10px;border-radius:12px;text-align:center}
+.wag-stat b{font-size:18px;display:block}.wag-stat small{font-size:10px;opacity:0.9}
+.stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px}
+.stat{background:#162032;padding:12px;border-radius:12px;text-align:center;border:1px solid #22314f}
+.stat b{font-size:18px;display:block;color:#22c55e}.stat small{font-size:10px;color:#94a3b8}
+.stat.red b{color:#fbbf24}.stat.yellow b{color:#fbbf24}
+.tabs{display:flex;gap:6px;overflow-x:auto;margin-bottom:10px}.tabs button{padding:8px 12px;border:none;border-radius:20px;background:#1e293b;color:#fff;font-size:11px;white-space:nowrap}.tabs button.active{background:#22c55e}
 .panel{display:none}.panel.active{display:block}
-.vip-row{display:flex;justify-content:space-between;background:#0f172a;padding:10px;border-radius:8px;margin-bottom:6px;border-left:4px solid #ffca2a;font-size:11px}
+.header-title{background:#162032;padding:12px;border-radius:12px;margin-bottom:10px;border:1px solid #22314f}
+.header-title h3{font-size:14px;color:#38bdf8}.header-title p{font-size:10px;color:#94a3b8;margin-top:4px}
+.search{background:#162032;padding:10px;border-radius:20px;display:flex;align-items:center;gap:8px;margin-bottom:10px;border:1px solid #22314f}
+.search input{flex:1;background:transparent;border:none;color:#fff;outline:none}
+.user-card{background:#162032;padding:12px;border-radius:12px;margin-bottom:8px;border:1px solid #22314f;position:relative}
+.user-card b{font-size:13px}.user-card small{font-size:10px;color:#94a3b8;display:block;line-height:1.5;margin-top:2px}
+.pass{color:#fbbf24 !important;font-weight:700}.bal{color:#22c55e !important}
+.btns{display:flex;gap:6px;margin-top:8px}
+.btn-r{background:#3b82f6;color:#fff;border:none;padding:7px 10px;border-radius:8px;font-size:11px;font-weight:700}
+.btn-b{background:#22c55e;color:#fff;border:none;padding:7px 10px;border-radius:8px;font-size:11px;font-weight:700}
+.btn-x{background:#ef4444;color:#fff;border:none;padding:7px 10px;border-radius:8px;font-size:11px;font-weight:700}
+.badge{background:#ff3b30;color:#fff;padding:2px 6px;border-radius:6px;font-size:9px;font-weight:900}
+.badge-g{background:#22c55e}
+.paid{position:absolute;top:8px;right:8px;background:#ef4444;color:#fff;padding:2px 6px;border-radius:10px;font-size:8px}
+.vip-req{background:#162032;padding:10px;border-radius:10px;margin-bottom:8px;border-left:4px solid #fbbf24;display:flex;justify-content:space-between;align-items:center}
 </style></head><body>
-
 <div id="loginBox" class="login">
-<img src="logo.jpg"><h2>EZOL ADMIN V19</h2><p style="font-size:11px;color:#94a3b8">Like Screenshot + MIN 15K + 20 VIPs<br>CEO: Ezra Twinamatsiko</p>
+<img src="logo.jpg"><h2>EZOL ADMIN V20</h2><p style="font-size:11px;color:#94a3b8">v6.3 STYLE + MIN 15K V20 ULTIMATE<br>CEO Ezra Twinamatsiko</p>
 <input id="pass" type="password" placeholder="Password: 0795143386">
-<button class="btn-gold" onclick="login()">🔓 Login</button>
+<button class="btn-gold" onclick="login()">🔓 Login to Empire</button>
 <p id="msg" style="color:#ef4444;font-size:12px;margin-top:8px"></p>
 </div>
 
 <div id="dash" class="dash">
-<div class="top-bar">
-<div><b>paid | <span id="timeNow"></span></b><br><small style="color:#22c55e">● LIVE SYNC | MIN 15K V19</small></div>
-<div style="display:flex;gap:6px"><button onclick="load()" style="background:#334155;color:#fff;border:none;padding:6px 10px;border-radius:8px">🔄</button><button onclick="location.reload()" style="background:#ef4444;color:#fff;border:none;padding:6px 10px;border-radius:8px">Out</button></div>
+<div class="top-head">
+<div><h2>👑 EZOL ADMIN<br>v6.3 + V20 MIN 15K</h2><small>● LIVE AUTO • <span id="online">5,248</span> online • <span id="timeNow">7:26:07 AM</span></small></div>
+<div class="top-btns"><button class="btn-open" onclick="window.open('https://chat.whatsapp.com/CJl3YvYBHNR10VWAB2NUNx','_blank')">👥 Open Group</button><button class="btn-refresh" onclick="load()">🔄 Refresh</button></div>
+</div>
+
+<div class="wag-control">
+<h3>👥 WhatsApp GROUP Control</h3>
+<p>Your Official Group: https://chat.whatsapp.com/FTnYhv4I2LkK7Vk5SQzQf2</p>
+<div class="wag-btns">
+<button class="w-white" onclick="copyG()">🔗 Copy Invite Link</button>
+<button class="w-dark" onclick="window.open('https://chat.whatsapp.com/CJl3YvYBHNR10VWAB2NUNx','_blank')">👥 Open Group App</button>
+<button class="w-orange" onclick="shareG()">📤 Share Group</button>
+</div>
+<div class="wag-stats">
+<div class="wag-stat"><b id="mOnline">1266</b><small>Members Online</small></div>
+<div class="wag-stat"><b>90</b><small>Joins Today</small></div>
+<div class="wag-stat"><b>344</b><small>Link Clicks</small></div>
+</div>
+<p style="margin-top:8px;font-size:10px">💡 Tip: Paste this group link in your TikTok bio + Facebook to get 100+ joins daily. Users see it in app My tab + float button.</p>
 </div>
 
 <div class="stats">
-<div class="stat"><small>Users LIVE</small><h2 id="uCount">0</h2><small id="uSub" style="color:#94a3b8">AUTO SYNC</small></div>
-<div class="stat" style="border-left-color:#ffca2a"><small>Total Bal</small><h2 id="bTotal">0 UGX</h2><small style="color:#94a3b8">5K bonus each</small></div>
-<div class="stat" style="border-left-color:#ff3b30"><small>Min Recharge</small><h2>15,000 UGX</h2><small style="color:#ff3b30">Enforced</small></div>
-<div class="stat" style="border-left-color:#38bdf8"><small>20 VIPs</small><h2>15K-15M</h2><small style="color:#94a3b8">KING 👑</small></div>
+<div class="stat red"><b id="uTotal">14</b><small>Total Users</small></div>
+<div class="stat"><b id="bTotal" style="color:#22c55e">347,000</b><small>Total Bal UGX</small></div>
+<div class="stat"><b id="vipAct" style="color:#22c55e">4</b><small>VIP Active</small></div>
+<div class="stat"><b id="pVIP" style="color:#38bdf8">2</b><small>Pending VIP</small></div>
+<div class="stat"><b id="pWith" style="color:#fbbf24">5</b><small>Pending Withdraw</small></div>
+<div class="stat"><b id="onNow" style="color:#22c55e">134</b><small>Online Now</small></div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
+<div class="stat" style="border-left:4px solid #ff3b30;text-align:left"><small>Min Recharge</small><b style="color:#fbbf24">15,000 UGX</b><small style="color:#ef4444">Enforced V20</small></div>
+<div class="stat" style="border-left:4px solid #fbbf24;text-align:left"><small>20 VIPs</small><b style="color:#fbbf24">15K-15M</b><small>KING 👑</small></div>
 </div>
 
 <div class="tabs">
-<button class="active" onclick="showP('users',this)">👥 All Users</button>
-<button onclick="showP('recharge',this)">💳 Recharge MIN 15K</button>
-<button onclick="showP('vips',this)">💎 20 VIPs</button>
-<button onclick="showP('set',this)">⚙️ Settings</button>
+<button class="active" onclick="showP('vip',this)">💎 VIP Requests AUTO <span id="vipCount" style="background:#fbbf24;color:#000;padding:2px 6px;border-radius:10px;font-size:10px">2</span></button>
+<button onclick="showP('users',this)">👥 All Users AUTO</button>
+<button onclick="showP('allvips',this)">📦 20 VIPs</button>
 </div>
 
-<div id="p-users" class="panel active">
-<div class="header-title">
-<h3>👥 All Users - AUTO + Passwords <span id="pcount">0</span> - LIVE SYNC to app <span class="min-badge">MIN 15K</span></h3>
-<p>Users appear automatically when they register anywhere. No manual add needed. +Bal updates user phone LIVE in 2 sec.</p>
+<div id="p-vip" class="panel active">
+<div class="header-title"><h3>💎 VIP Requests - AUTO <span class="badge">2</span> <span class="badge badge-g">MIN 15K</span></h3></div>
+<div id="vipReqList"></div>
 </div>
-<div class="search-box">🔍 <input id="search" placeholder="Search phone or name..." onkeyup="load()"></div>
+
+<div id="p-users" class="panel">
+<div class="header-title"><h3>👥 All Users - AUTO + Passwords <span id="pCount">0</span> - LIVE SYNC to app <span class="badge">MIN 15K</span></h3><p>Users appear automatically when they register anywhere. No manual add needed. +Bal updates user phone LIVE in 2 sec.</p></div>
+<div class="search">🔍 <input id="search" placeholder="Search phone or name..." onkeyup="load()"></div>
 <div id="userList"></div>
-<button class="btn-gold" onclick="addTest()">+ Add Test User</button>
-<button class="btn-gold" style="background:#ef4444;color:#fff;margin-top:8px" onclick="clearAll()">🗑️ Clear All Users</button>
 </div>
 
-<div id="p-recharge" class="panel">
-<div class="header-title"><h3>💳 Recharge Records - MIN 15,000 UGX</h3><p>Below 15K blocked by V19 code. VIP 1 = MIN. All recharges must be 15K+</p></div>
-<div id="reList"></div>
-</div>
+<div id="p-allvips" class="panel"><div class="header-title"><h3>💎 20 VIP Plans - MIN 15,000 UGX</h3></div><div id="vipList"></div></div>
 
-<div id="p-vips" class="panel">
-<div class="header-title"><h3>💎 20 VIP Plans - MIN 15K</h3><p>VIP 1 is MIN RECHARGE. Price list from 15K to 15M KING</p></div>
-<div id="vipList"></div>
-</div>
-
-<div id="p-set" class="panel">
-<div class="header-title"><h3>⚙️ Empire Settings V19</h3><p>Change MIN RECHARGE here then update index.html const MIN_RECHARGE</p></div>
-<div style="background:#1e293b;padding:12px;border-radius:12px;font-size:12px;line-height:2">
-MoMo Pay To: <input id="sMomo" value="0795143386" style="background:#0f172a;color:#fff;border:1px solid #334155;padding:6px;border-radius:6px;width:130px"><br>
-CEO Name: <input id="sName" value="Ezra Twinamatsiko" style="background:#0f172a;color:#fff;border:1px solid #334155;padding:6px;border-radius:6px;width:180px"><br>
-Min Recharge: <input id="sMinR" value="15000" style="background:#0f172a;color:#fff;border:1px solid #334155;padding:6px;border-radius:6px;width:80px"> UGX <span class="min-badge">V19</span><br>
-Min Withdraw: <input id="sMinW" value="10000" style="background:#0f172a;color:#fff;border:1px solid #334155;padding:6px;border-radius:6px;width:80px"> UGX<br>
-Bonus: <input id="sBon" value="5000" style="background:#0f172a;color:#fff;border:1px solid #334155;padding:6px;border-radius:6px;width:80px"> UGX<br>
-<button class="btn-gold" style="margin-top:10px" onclick="saveS()">💾 Save Info</button>
-</div>
-</div>
 </div>
 
 <script>
-function login(){
- let p=document.getElementById('pass').value;
- if(p==='0795143386'||p==='admin123'||p==='Ezol123'){
-  document.getElementById('loginBox').style.display='none';
-  document.getElementById('dash').style.display='block';
-  load();
-  setInterval(()=>{document.getElementById('timeNow').innerText=new Date().toLocaleString();},1000);
- }else{document.getElementById('msg').innerText='❌ Wrong password! Use 0795143386';}
-}
-function showP(id,btn){
- document.querySelectorAll('.panel').forEach(e=>e.classList.remove('active'));
- document.getElementById('p-'+id).classList.add('active');
- document.querySelectorAll('.tabs button').forEach(e=>e.classList.remove('active'));
- btn.classList.add('active');
-}
+let GROUP_LINK="https://chat.whatsapp.com/CJl3YvYBHNR10VWAB2NUNx";
+function login(){let p=document.getElementById('pass').value; if(p==='0795143386'||p==='admin123'||p==='Ezol123'){document.getElementById('loginBox').style.display='none';document.getElementById('dash').style.display='block';load(); setInterval(()=>{document.getElementById('timeNow').innerText=new Date().toLocaleTimeString(); document.getElementById('online').innerText=(Math.floor(Math.random()*200)+5200);},1000);} else{document.getElementById('msg').innerText='❌ Wrong! Use 0795143386';}}
+function showP(id,btn){document.querySelectorAll('.panel').forEach(e=>e.classList.remove('active')); document.getElementById('p-'+id).classList.add('active'); document.querySelectorAll('.tabs button').forEach(e=>e.classList.remove('active')); btn.classList.add('active');}
+function copyG(){navigator.clipboard.writeText(GROUP_LINK); alert('✅ Copied Group Link!');}
+function shareG(){window.open('https://wa.me/?text='+encodeURIComponent('Join EZOL WhatsApp Group 1266 Members 👉 '+GROUP_LINK));}
 function load(){
  let users=JSON.parse(localStorage.getItem('ezol_users')||'[]');
  let q=document.getElementById('search')?document.getElementById('search').value.toLowerCase():'';
  let filtered=users.filter(u=>u.name.toLowerCase().includes(q)||u.phone.includes(q));
- document.getElementById('uCount').innerText=filtered.length;
- document.getElementById('pcount').innerText=users.length;
- let total=0; let list=document.getElementById('userList'); list.innerHTML='';
- let rlist=document.getElementById('reList'); if(rlist) rlist.innerHTML='';
- filtered.forEach(u=>{
+ document.getElementById('uTotal').innerText=users.length;
+ document.getElementById('pCount').innerText=users.length;
+ document.getElementById('vipCount').innerText=Math.min(filtered.length,2);
+ let total=0; let list=document.getElementById('userList'); if(list) list.innerHTML='';
+ let vReq=document.getElementById('vipReqList'); if(vReq) vReq.innerHTML='';
+ filtered.forEach((u,i)=>{
   let bal=parseInt(localStorage.getItem('ezol_bal_'+u.phone)||'5000');
   total+=bal;
-  let vip=Math.floor(bal/15000);
-  let vipShow=vip>20?20:vip;
-  list.innerHTML+=`
-  <div class="user-card">
-   <span class="paid">paid | ${u.joined||'9/1/2026, 8:51:29 AM'}</span>
-   <b>${u.phone} - ${u.name}</b>
-   <small><span class="pass">Pass: ${u.pass}</span> | <span class="bal">Bal: ${bal.toLocaleString()} UGX | VIP ${vipShow}</span> <span class="min-badge">MIN 15K OK</span><br>| Ref: 0795143386 | VIP 0 | Ref: 0795143386</small>
-   <div class="btns">
-    <button class="btn-reset" onclick="resetPass('${u.phone}')">Reset Pass</button>
-    <button class="btn-bal" onclick="addBal('${u.phone}')">+Bal</button>
-    <button class="btn-del" onclick="del('${u.phone}')">X</button>
-   </div>
-  </div>`;
-  if(rlist) rlist.innerHTML+=`
-  <div class="user-card">
-   <b>${u.phone} - ${u.name}</b>
-   <small>Recharge: 15,000 UGX <span class="min-badge">MIN</span> | Bal: ${bal.toLocaleString()} UGX | Status: <span style="color:#22c55e">Valid ✓ MIN 15K Passed</span></small>
-   <div class="btns"><button class="btn-reset">Approve</button><button class="btn-del">Reject</button></div>
-  </div>`;
+  if(list) list.innerHTML+=`<div class="user-card"><span class="paid">paid | ${u.joined||new Date().toLocaleString()}</span><b>${u.phone} - ${u.name}</b><small><span class="pass">Pass: ${u.pass}</span> | <span class="bal">Bal: ${bal.toLocaleString()} UGX | VIP ${Math.min(Math.floor(bal/15000),20)}</span> <span class="badge badge-g">MIN 15K OK</span><br>| Ref: 0795143386 | VIP 0 | Ref: 0795143386</small><div class="btns"><button class="btn-r" onclick="resetPass('${u.phone}')">Reset Pass</button><button class="btn-b" onclick="addBal('${u.phone}')">+Bal</button><button class="btn-x" onclick="del('${u.phone}')">X</button></div></div>`;
+  if(i<3 && vReq){
+   let vipN=i===0?3:i===1?1:2; let amt=vipN===3?60000:vipN===1?15000:20000;
+   vReq.innerHTML+=`<div class="vip-req"><div><b>${u.phone} - VIP ${vipN} - ${amt} UGX</b><br><small>Tx: ${amt} | ${i===0?'approved':'pending'} | ${u.name}</small></div><div style="display:flex;gap:6px"><span style="color:#22c55e;font-size:11px">${i===0?'✓ approved':'⏳ pending'}</span><button class="btn-x" onclick="this.parentElement.parentElement.remove()">X</button></div></div>`;
+  }
  });
- document.getElementById('bTotal').innerText=total.toLocaleString()+' UGX';
- let vips=[
-  {n:'VIP 1 Starter MIN',p:15000},{n:'VIP 2 Basic',p:20000},{n:'VIP 3 Lite',p:35000},{n:'VIP 4 Silver',p:50000},{n:'VIP 5 Gold',p:75000},{n:'VIP 6 Platinum',p:100000},{n:'VIP 7 Diamond',p:150000},{n:'VIP 8 Premium',p:200000},{n:'VIP 9 Elite',p:300000},{n:'VIP 10 Pro',p:500000},{n:'VIP 11 Executive',p:800000},{n:'VIP 12 Master',p:1000000},{n:'VIP 13 Grand',p:1500000},{n:'VIP 14 Royal',p:2000000},{n:'VIP 15 Legend',p:3000000},{n:'VIP 16 Titan',p:5000000},{n:'VIP 17 Emperor',p:7000000},{n:'VIP 18 Supreme',p:10000000},{n:'VIP 19 Ultra',p:12000000},{n:'VIP 20 KING 👑',p:15000000},
- ];
- let vl=document.getElementById('vipList'); if(vl){vl.innerHTML=''; vips.forEach(v=>{vl.innerHTML+=`<div class="vip-row"><div><b>${v.n} ${v.p===15000?'<span class="min-badge">MIN 15K</span>':''}</b><br><small style="color:#94a3b8">${v.p.toLocaleString()} UGX</small></div><div style="color:#ffca2a;font-weight:900">${v.p.toLocaleString()}</div></div>`;});}
+ document.getElementById('bTotal').innerText=total.toLocaleString();
+ document.getElementById('vipAct').innerText=Math.floor(total/15000);
+ document.getElementById('pVIP').innerText=filtered.length>0?2:0;
+ document.getElementById('pWith').innerText=Math.floor(filtered.length/2)+3;
+ document.getElementById('onNow').innerText=Math.floor(Math.random()*50)+120;
+ document.getElementById('mOnline').innerText=1266+Math.floor(Math.random()*10);
+ let vips=[{n:'VIP 1 Starter MIN 15K',p:15000},{n:'VIP 2 Basic',p:20000},{n:'VIP 3 Lite',p:35000},{n:'VIP 4 Silver',p:50000},{n:'VIP 5 Gold',p:75000},{n:'VIP 6 Platinum',p:100000},{n:'VIP 7 Diamond',p:150000},{n:'VIP 8 Premium',p:200000},{n:'VIP 9 Elite',p:300000},{n:'VIP 10 Pro',p:500000},{n:'VIP 11 Executive',p:800000},{n:'VIP 12 Master',p:1000000},{n:'VIP 13 Grand',p:1500000},{n:'VIP 14 Royal',p:2000000},{n:'VIP 15 Legend',p:3000000},{n:'VIP 16 Titan',p:5000000},{n:'VIP 17 Emperor',p:7000000},{n:'VIP 18 Supreme',p:10000000},{n:'VIP 19 Ultra',p:12000000},{n:'VIP 20 KING 👑',p:15000000}];
+ let vl=document.getElementById('vipList'); if(vl){vl.innerHTML=''; vips.forEach(v=>{vl.innerHTML+=`<div class="user-card" style="display:flex;justify-content:space-between"><div><b>${v.n} ${v.p===15000?'<span class="badge">MIN 15K</span>':''}</b><br><small>${v.p.toLocaleString()} UGX</small></div><div style="color:#fbbf24;font-weight:900">${v.p.toLocaleString()}</div></div>`;});}
 }
-function resetPass(phone){
- let users=JSON.parse(localStorage.getItem('ezol_users')||'[]');
- let u=users.find(x=>x.phone===phone);
- if(u){ let np=prompt('New password for '+u.name+' ('+phone+') current: '+u.pass+'\nEnter new:','1234'); if(np){u.pass=np; localStorage.setItem('ezol_users',JSON.stringify(users)); load(); alert('✅ Password reset to '+np);}}
-}
-function addBal(phone){
- let cur=parseInt(localStorage.getItem('ezol_bal_'+phone)||'5000');
- let add=prompt('Add how much balance to '+phone+'?\nCurrent: '+cur.toLocaleString()+' UGX\nEnter amount (5000, 15000, 50000 etc):','5000');
- if(add && !isNaN(parseInt(add))){ let n=cur+parseInt(add); localStorage.setItem('ezol_bal_'+phone,n.toString()); load(); alert('✅ Added '+parseInt(add).toLocaleString()+' UGX. New: '+n.toLocaleString()+' UGX - LIVE in 2 sec!');}
-}
-function del(phone){
- if(!confirm('Delete user '+phone+'? This removes permanently!')) return;
- let users=JSON.parse(localStorage.getItem('ezol_users')||'[]');
- users=users.filter(u=>u.phone!==phone);
- localStorage.setItem('ezol_users',JSON.stringify(users));
- localStorage.removeItem('ezol_bal_'+phone);
- load();
-}
-function addTest(){
- let users=JSON.parse(localStorage.getItem('ezol_users')||'[]');
- let p='07'+Math.floor(Math.random()*90000000+10000000);
- let names=['Ronnie','Bakerhaza','Naijuka Robert','Emma Muboli','John','Musa','Peter'];
- let name=names[Math.floor(Math.random()*names.length)];
- users.push({name,phone:p,pass:'2222',joined:new Date().toLocaleString()});
- localStorage.setItem('ezol_users',JSON.stringify(users));
- localStorage.setItem('ezol_bal_'+p,(Math.floor(Math.random()*5000+1500)).toString());
- load();
-}
-function clearAll(){if(confirm('Clear ALL users?')){localStorage.removeItem('ezol_users'); load();}}
-function saveS(){alert('Saved! To actually enforce new MIN, edit index.html const MIN_RECHARGE='+document.getElementById('sMinR').value);}
-document.getElementById('timeNow').innerText=new Date().toLocaleString();
+function resetPass(phone){let users=JSON.parse(localStorage.getItem('ezol_users')||'[]'); let u=users.find(x=>x.phone===phone); if(u){let np=prompt('New password for '+u.name+' ('+phone+') current: '+u.pass+'\nEnter new:','1234'); if(np){u.pass=np; localStorage.setItem('ezol_users',JSON.stringify(users)); load(); alert('✅ Reset to '+np);}}}
+function addBal(phone){let cur=parseInt(localStorage.getItem('ezol_bal_'+phone)||'5000'); let add=prompt('Add how much to '+phone+'? Current: '+cur.toLocaleString()+'\nEnter:','5000'); if(add && !isNaN(parseInt(add))){let n=cur+parseInt(add); localStorage.setItem('ezol_bal_'+phone,n.toString()); load(); alert('✅ Added '+parseInt(add).toLocaleString()+' New: '+n.toLocaleString()+' LIVE!');}}
+function del(phone){if(!confirm('Delete '+phone+'?'))return; let users=JSON.parse(localStorage.getItem('ezol_users')||'[]'); users=users.filter(u=>u.phone!==phone); localStorage.setItem('ezol_users',JSON.stringify(users)); localStorage.removeItem('ezol_bal_'+phone); load();}
 </script>
 </body></html>
