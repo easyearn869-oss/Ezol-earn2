@@ -1,0 +1,340 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no"><title>NAVIEN V20 ULTIMATE AUTO PAY</title>
+<style>
+:root{--g:#0fa84f;--g2:#0a6b32;--o:#ff8c1a;--o2:#ff6a00;--bg:#f8fdf9;--light:#e6f4ea;--light2:#d7eddd;--card:#f1f8f2;--b:#e6ede7;--m:#7a8a7d}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial, sans-serif;-webkit-tap-highlight-color:transparent}
+body{background:#fff;color:#111;padding-bottom:85px}
+.btn{border:none;cursor:pointer;font-weight:900;border-radius:30px;padding:15px;transition:.15s}
+.btn:active{transform:scale(.97)}
+.tab{display:none}.tab.active{display:block}
+.top-sticky{position:sticky;top:0;z-index:99;background:#fff;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--b)}
+.av{width:38px;height:38px;background:var(--g2);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900}
+
+/* AUTH - Screenshot 1 EXACT */
+.auth-header{background:linear-gradient(180deg,#7ac38e 0%,#8ecd9b 100%);height:270px;border-radius:0 0 50% 50% / 0 0 18% 18%;display:flex;flex-direction:column;align-items:center;padding-top:55px;position:relative}
+.auth-logo{width:78px;height:78px;background:linear-gradient(135deg,#0d2a5e,#0f3a8a);border-radius:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(0,0,0,.25);position:relative}
+.auth-logo b{font-size:42px;color:#a8ffbe;font-weight:900;letter-spacing:-2px;text-shadow:0 0 0 #0f5;position:relative;z-index:2}
+.auth-logo::after{content:'';position:absolute;inset:8px;border:3px solid #7affa0;border-radius:14px;opacity:.7}
+.auth-header h1{color:#fff;font-size:28px;font-weight:900;letter-spacing:3px;margin-top:14px;text-shadow:0 2px 0 rgba(0,0,0,.1)}
+.auth-header small{color:#fff;font-size:13px;font-weight:600;margin-top:6px;letter-spacing:.3px;opacity:.9}
+.auth-form{margin:-30px 18px 0;background:#fff;border-radius:0;padding:10px 10px 30px}
+.auth-form h2{font-size:24px;font-weight:900;margin:18px 4px 4px}
+.auth-form p{font-size:13px;color:#6b7280;margin:0 4px 18px}
+.inp{width:100%;padding:16px 18px;border:none;background:#eef6f0;border-radius:16px;margin:8px 0;font-size:14px;outline:none;color:#111}
+.inp:focus{background:#e3f0e6;box-shadow:0 0 0 2px var(--g)}
+.inp-wrap{position:relative}
+.inp-show{position:absolute;right:18px;top:50%;transform:translateY(-50%);color:var(--g);font-weight:800;font-size:12px;cursor:pointer;background:transparent;border:none}
+.btn-create{width:100%;background:var(--g);color:#fff;padding:16px;border-radius:28px;font-size:16px;font-weight:900;margin-top:18px;box-shadow:0 6px 16px rgba(15,168,79,.3)}
+.link-login{text-align:center;margin-top:14px;font-size:13px;color:#6b7280}
+.link-login u{color:var(--g);font-weight:800;text-decoration:none;border-bottom:2px solid var(--g);cursor:pointer}
+
+/* HOME - Screenshot 2 EXACT */
+.home-top{padding:10px 14px;display:flex;align-items:center;gap:8px}
+.home-logo{width:40px;height:40px;background:linear-gradient(135deg,#0d2a5e,#0f3a8a);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#a8ffbe;font-weight:900;font-size:18px}
+.hero-card{margin:12px 14px;background:#f6f7f6;border-radius:22px;padding:0;overflow:hidden;border:1px solid #f0f0f0;height:220px;display:flex;align-items:center;justify-content:center;position:relative}
+.heater-real{width:140px;height:170px;background:#fff;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.08),0 0 0 1px #f0f0f0;position:relative;display:flex;align-items:center;justify-content:center}
+.heater-real::before{content:'NAVIEN';position:absolute;top:18px;font-size:8px;font-weight:900;letter-spacing:1px;color:#333}
+.heater-real::after{content:'';position:absolute;bottom:12px;width:14px;height:10px;background:linear-gradient(#c0c0c0,#999);border-radius:0 0 4px 4px;left:24px;box-shadow:36px 0 0 #c0c0c0,36px 0 0 #999 inset}
+.heater-black{position:absolute;right:18px;bottom:48px;width:12px;height:36px;background:#111;border-radius:3px;display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 2px}
+.heater-black i{width:6px;height:2px;background:#333;border-radius:1px;display:block}
+.action-row{display:flex;gap:12px;padding:0 14px;margin-top:4px}
+.action-row button{flex:1;padding:16px;border-radius:28px;font-weight:900;font-size:15px;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-re{background:var(--g);color:#fff;box-shadow:0 4px 12px rgba(15,168,79,.3)}
+.btn-wi{background:var(--o);color:#fff;box-shadow:0 4px 12px rgba(255,140,26,.3)}
+.section-title{font-weight:900;font-size:15px;padding:16px 14px 8px;letter-spacing:.3px}
+.hot-scroll{display:flex;gap:12px;overflow-x:auto;padding:0 14px 8px;scrollbar-width:none}
+.hot-scroll::-webkit-scrollbar{display:none}
+.hot-card{min-width:340px;background:var(--light);border-radius:20px;padding:12px;border:1px solid #cfe8d4;display:flex;gap:12px}
+.hot-img{width:92px;height:92px;background:#fdf3e3;border-radius:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid #f5e6c8}
+.heater-mini{width:38px;height:54px;background:#fff;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,.08);border:1px solid #eee;position:relative}
+.hot-info{flex:1}
+.badges{display:flex;gap:6px}
+.badge-dark{background:var(--g2);color:#fff;padding:6px 14px;border-radius:14px;font-size:11px;font-weight:900}
+.badge-green{background:var(--g);color:#fff;padding:6px 12px;border-radius:14px;font-size:11px;font-weight:900}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px 14px;margin-top:8px}
+.stats-grid .k{font-size:10px;color:var(--m)}
+.stats-grid .v{font-size:12px;font-weight:900;color:var(--g2)}
+.balance{text-align:center;color:var(--m);font-size:12px;margin:10px 0 12px}
+.balance b{color:#111}
+.quick4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;padding:0 14px}
+.qb{background:var(--g);border-radius:20px;padding:12px 4px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#fff;border:none;cursor:pointer;font-size:10px;font-weight:700;text-align:center;line-height:1.2}
+.qb .ic{width:32px;height:32px;background:rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px}
+
+/* PRODUCT - Screenshot 3 EXACT */
+.filter-row{display:flex;gap:8px;padding:12px 14px;overflow-x:auto}
+.filter-row button{border:1px solid var(--g);background:#fff;color:var(--g);padding:10px 18px;border-radius:20px;font-weight:800;font-size:13px;white-space:nowrap;cursor:pointer}
+.filter-row button.active{background:var(--g);color:#fff}
+.prod-card{background:var(--light);border-radius:22px;padding:14px;margin:0 14px 14px;border:1px solid #cfe8d4}
+.prod-top{display:flex;gap:12px}
+.prod-img{width:100px;height:100px;background:#fdf3e3;border-radius:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid #f5e6c8}
+.prod-right{flex:1}
+.prod-badges{display:flex;gap:6px;flex-wrap:wrap}
+.non-cycle{display:inline-block;background:#c8e6c9;color:var(--g2);padding:4px 10px;border-radius:8px;font-size:9px;font-weight:900;margin-top:8px}
+.price-row{display:flex;justify-content:space-between;margin-top:10px;font-size:13px;font-weight:700}
+.price-row span:last-child{font-weight:900}
+.income2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.income-box{background:#fff;border-radius:14px;padding:12px;border:1px solid #f0f0f0}
+.income-box .lb{font-size:11px;font-weight:800}
+.income-box .am{font-size:16px;font-weight:900;margin-top:4px}
+.income-box .am small{font-size:10px;color:var(--m)}
+.rent-btn{width:100%;background:var(--g);color:#fff;padding:14px;border-radius:20px;font-weight:900;margin-top:12px;border:none;cursor:pointer}
+
+/* SHARE - Screenshot 4 EXACT */
+.share-bg{background:var(--light);min-height:100vh;padding:14px}
+.share-label{color:var(--o);font-weight:900;font-size:13px;margin:10px 4px 8px;letter-spacing:.3px}
+.share-input{width:100%;background:#fff;border:none;padding:16px;border-radius:16px;font-size:13px;color:#333}
+.share-copy{width:100%;background:var(--o);color:#fff;border:none;padding:14px;border-radius:28px;font-weight:900;margin-top:10px;cursor:pointer}
+.invite-row{display:flex;gap:12px;margin-top:6px}
+.invite-code{flex:1;background:#fff;border-radius:14px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px;letter-spacing:2px}
+.qr-box{width:110px;height:110px;background:#fff;border-radius:12px;padding:6px;border:1px solid #e0e0e0;display:flex;align-items:center;justify-content:center}
+.qr-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;width:100%;height:100%}
+.qr-grid div{background:#111;border-radius:1px}
+.gains{margin-top:14px;font-size:13px;line-height:1.8;color:#444}
+.gains b{color:var(--o)}
+.gains .dot{color:var(--o);font-weight:900}
+
+/* WALLET - Screenshot 5 EXACT */
+.wallet-top{background:var(--light);margin:0;padding:18px 14px 14px;text-align:center;border-radius:0 0 20px 20px}
+.wallet-top h1{font-size:38px;font-weight:900}
+.wallet-top h1 small{font-size:16px;font-weight:700}
+.wallet-chip{display:inline-block;background:#fff;padding:8px 16px;border-radius:20px;font-size:13px;margin-top:10px;border:1px solid #e0e0e0}
+.wallet-item{background:#f1f8f2;padding:16px;border-radius:14px;margin:8px 14px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-size:14px;border:1px solid #e3efe5}
+.wallet-item span:last-child{color:var(--m)}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 14px}
+.stat-box{background:var(--light);border-radius:16px;padding:14px;border:1px solid #d0e8d4}
+.stat-box .lb{font-size:11px;font-weight:800}
+.stat-box .am{font-size:18px;font-weight:900;margin-top:6px}
+.stat-box .am small{font-size:11px;color:var(--m)}
+
+/* MY - Screenshot 6 EXACT */
+.my-qb-row{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;padding:10px 14px 6px}
+.my-item{background:#f1f8f2;padding:16px;border-radius:14px;margin:6px 14px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-size:14px;border:1px solid #e3efe5}
+.my-item.logout{color:#ff3b30;background:#fff5f5}
+
+/* RECHARGE / WITHDRAW PAGES - Screenshot 7/8 EXACT */
+.page-bg{background:var(--light);min-height:100vh;padding:12px 14px 100px}
+.page-card{background:#f1f8f2;border-radius:18px;padding:16px;margin-bottom:14px;border:1px solid #d9ecdc}
+.page-card h3{font-size:13px;font-weight:900;letter-spacing:.3px;margin-bottom:10px}
+.amount-input{width:100%;background:#fff;border:none;padding:18px;border-radius:14px;font-size:22px;font-weight:900;outline:none}
+.quick-amounts{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px}
+.quick-amounts button{background:#fff;border:1px solid #e0e0e0;padding:12px;border-radius:12px;font-weight:700;font-size:13px;cursor:pointer}
+.quick-amounts button.active{background:var(--g);color:#fff;border-color:var(--g)}
+.pay-methods{display:flex;gap:10px;margin-top:8px}
+.pay-methods button{flex:1;padding:12px;border-radius:12px;border:1px solid #e0e0e0;background:#fff;font-weight:800;cursor:pointer}
+.pay-methods button.active{background:var(--g);color:#fff;border-color:var(--g)}
+.fee-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.fee-box{background:#fff;border-radius:14px;padding:14px;border:1px solid #f0f0f0}
+.fee-box .lb{font-size:11px;font-weight:800;color:var(--m)}
+.fee-box .am{font-size:18px;font-weight:900;margin-top:4px}
+.instructions{background:#f1f8f2;border-radius:16px;padding:16px;margin-top:14px;font-size:12px;line-height:1.8;color:#666;border:1px solid #e0e0e0}
+.instructions b{color:#111}
+.confirm-o{width:100%;background:var(--o);color:#fff;padding:16px;border-radius:28px;font-weight:900;font-size:16px;border:none;margin-top:16px;cursor:pointer}
+.confirm-g{width:100%;background:var(--g);color:#fff;padding:16px;border-radius:28px;font-weight:900;font-size:16px;border:none;margin-top:16px;cursor:pointer}
+
+.nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--b);display:flex;justify-content:space-around;padding:8px 0 12px;z-index:100}
+.nav button{border:none;background:transparent;font-size:10px;color:#9aa5a0;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:6px 10px;border-radius:10px}
+.nav button.active{color:var(--g);font-weight:800}
+.live-ticker{background:#000;color:#fff;padding:5px 0;font-size:10px;white-space:nowrap;overflow:hidden}
+.live-ticker span{display:inline-block;animation:scr 70s linear infinite}
+@keyframes scr{0%{transform:translateX(100%)}100%{transform:translateX(-100%)}}
+.fab{position:fixed;right:12px;bottom:90px;z-index:101;width:54px;height:54px;border-radius:50%;border:none;background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;font-size:22px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 6px 16px rgba(0,0,0,.25)}
+.proof{position:fixed;left:12px;bottom:90px;z-index:102;background:#fff;border-radius:12px;padding:10px 12px;box-shadow:0 8px 20px rgba(0,0,0,.2);border-left:4px solid var(--g);display:none;gap:8px;align-items:center;font-size:11px;max-width:260px}
+.proof.show{display:flex}
+</style></head><body>
+
+<!-- AUTH PAGE - SCREENSHOT 1 -->
+<div id="authPage">
+<div class="auth-header"><div class="auth-logo"><b>N</b></div><h1>NAViEN</h1><small>Smart energy investment</small></div>
+<div class="auth-form">
+<h2 id="aTitle">Create account</h2><p id="aSub">Join NAViEN in a few seconds.</p>
+<div class="inp-wrap" id="nameWrap" style="display:none"><input id="rNa" class="inp" placeholder="Full Name"></div>
+<input id="lPh" class="inp" placeholder="Phone Number (07XX...)" value="0783228690">
+<div class="inp-wrap"><input id="lPa" class="inp" type="password" placeholder="Password"><button class="inp-show" type="button" id="showPass">SHOW</button></div>
+<div class="inp-wrap" id="refWrap"><input id="rRef" class="inp" placeholder="REFERRAL CODE" value="0795143386"></div>
+<button id="btnCreate" class="btn btn-create" type="button">CREATE ACCOUNT</button>
+<button id="btnLogin" class="btn btn-create" type="button" style="display:none">LOGIN</button>
+<div id="err" style="color:#ff3b30;font-size:12px;text-align:center;margin-top:10px;min-height:14px"></div>
+<div class="link-login"><span id="toLogin">Already have an account? <u>Login</u></span><span id="toReg" style="display:none">Don't have account? <u>Create account</u></span></div>
+</div>
+</div>
+
+<!-- APP PAGES -->
+<div id="appPage" style="display:none">
+<div class="top-sticky"><div style="display:flex;align-items:center;gap:8px"><div class="av" id="av">O</div><div><b id="tNa" style="font-size:13px">0783228690</b><div style="font-size:10px;color:var(--m)"><span id="tPh">0783228690</span> • Kampala • V20</div></div></div><div style="background:#e8f5e9;color:var(--g);padding:4px 10px;border-radius:20px;font-size:10px;font-weight:800">● <span id="on">5,842</span> online</div></div>
+<div class="live-ticker"><span>🔥 V20 AUTO PAY LIVE: 07****89 rented FINTOR FC 00 - 8s ago • 07****12 withdrew 45K UGX • 07****34 rented FC 00 - 5s ago • 07****90 joined now • AUTO PAYMENT ACTIVE • </span></div>
+
+<!-- HOME - SCREENSHOT 2 -->
+<div id="tab-home" class="tab active">
+<div class="hero-card"><div class="heater-real"><div class="heater-black"><i></i><i></i><i></i><i></i></div>NAVIEN</div></div>
+<div class="action-row"><button class="btn-re" type="button" id="hRecharge">◫ Recharge</button><button class="btn-wi" type="button" id="hWithdraw">➤ Withdraw</button></div>
+<div style="background:#fff;border:1px solid var(--b);margin:12px 14px;border-radius:12px;padding:10px;font-size:11px"><b style="font-size:11px"><span style="width:6px;height:6px;background:#00ff00;border-radius:50%;display:inline-block"></span> LIVE RENTALS - 52 buying now</b><div id="liveList" style="margin-top:6px;line-height:1.7">🔥 07****12 bought VIP 1 MIN 15K<br>🔥 07****99 rented VIP 2 - 4s ago</div></div>
+<div class="section-title">HOT PRODUCTS</div>
+<div class="hot-scroll" id="hotScroll"></div>
+<div class="balance">Balance: <b id="balHome">UGX 5,000</b></div>
+<div class="quick4">
+<button class="qb" type="button" data-go="my"><div class="ic">◍</div>My Product</button>
+<button class="qb" type="button" data-go="my"><div class="ic">👥</div>My Team</button>
+<button class="qb" type="button" data-go="share"><div class="ic">✉</div>Invite Friends</button>
+<button class="qb" type="button" id="btnExchange"><div class="ic">🎧</div>Exchange</button>
+</div>
+</div>
+
+<!-- PRODUCT - SCREENSHOT 3 -->
+<div id="tab-product" class="tab">
+<div class="filter-row" id="filters"><button class="active" data-f="all">All</button><button data-f="d">D-Series</button><button data-f="n">N-Series</button><button data-f="v">V-Series</button></div>
+<div id="prodList"></div>
+</div>
+
+<!-- SHARE - SCREENSHOT 4 -->
+<div id="tab-share" class="tab">
+<div class="top-sticky"><button type="button" onclick="switchTab('home')" style="border:none;background:transparent;font-size:18px">‹</button><b>Invite Friends</b><span style="color:var(--g);font-size:12px;font-weight:800;cursor:pointer" onclick="switchTab('my')">Team</span></div>
+<div class="share-bg">
+<div class="share-label">YOUR INVITATION LINK</div>
+<input id="inviteLink" class="share-input" readonly value="https://navienio.live/invite?ref=0SA6">
+<button class="share-copy" type="button" id="copyLink">COPY LINK</button>
+<div class="share-label" style="margin-top:18px">INVITE CODE</div>
+<div class="invite-row">
+<div style="flex:1"><div class="share-input" style="text-align:center;font-weight:900;font-size:20px;letter-spacing:3px" id="inviteCode">0SA6</div><button class="share-copy" type="button" id="copyCode" style="padding:12px">Copy</button></div>
+<div class="qr-box"><div class="qr-grid" id="qrGrid"></div></div>
+</div>
+<div class="share-label" style="margin-top:18px">INVITATION GAINS</div>
+<div class="gains">
+<span class="dot">•</span> Share your invitation link with friends to join and get <b>invitation bonus</b> and earn a commission<br>
+<span class="dot">•</span> <b>15% commission</b> on your directs (level B)<br>
+<span class="dot">•</span> <b>3% commission</b> on second-level sponsorships (level C)
+</div>
+</div>
+</div>
+
+<!-- WALLET - SCREENSHOT 5 -->
+<div id="tab-wallet" class="tab">
+<div class="wallet-top"><h1 id="wBalBig">5,000<small> UGX</small></h1><div class="wallet-chip">Recharge Wallet <b id="wRecharge">0 UGX</b></div></div>
+<div class="wallet-item" id="wWithHist"><span>Withdrawal History</span><span>›</span></div>
+<div class="wallet-item" id="wFundHist"><span>Fund History</span><span>›</span></div>
+<div class="wallet-item"><span>Energy Storage</span><b id="wEnergy">0</b></div>
+<div style="display:flex;gap:10px;padding:12px 14px"><button class="btn btn-re" type="button" id="wRechargeBtn" style="flex:1">Recharge</button><button class="btn btn-wi" type="button" id="wWithdrawBtn" style="flex:1;background:var(--o);color:#fff">Withdraw</button></div>
+<div class="section-title">STATISTICS</div>
+<div class="stat-grid">
+<div class="stat-box"><div class="lb">TODAY'S INCOME</div><div class="am" id="stToday">0.00 <small>UGX</small></div></div>
+<div class="stat-box"><div class="lb">TOTAL INCOME</div><div class="am" id="stTotal">0.00 <small>UGX</small></div></div>
+<div class="stat-box"><div class="lb">TOTAL RECHARGE</div><div class="am" id="stRecharge">0.00 <small>UGX</small></div></div>
+<div class="stat-box"><div class="lb">TOTAL WITHDRAW</div><div class="am" id="stWithdraw">0.00 <small>UGX</small></div></div>
+</div>
+</div>
+
+<!-- MY - SCREENSHOT 6 -->
+<div id="tab-my" class="tab">
+<div class="my-qb-row">
+<button class="qb" type="button" data-go="product"><div class="ic">◍</div>My Product</button>
+<button class="qb" type="button" data-go="my"><div class="ic">👥</div>My Team</button>
+<button class="qb" type="button" data-go="share"><div class="ic">✉</div>Invite Friends</button>
+<button class="qb" type="button" id="myExchange"><div class="ic">🛡</div>Exchange</button>
+</div>
+<div class="my-item" id="mRedeem"><span>Redeem Gift</span><span>›</span></div>
+<div class="my-item" id="mIncome"><span>Income Records</span><span>›</span></div>
+<div class="my-item" id="mSetWith"><span>Set withdraw Number</span><span>›</span></div>
+<div class="my-item" id="mChange"><span>Change password</span><span>›</span></div>
+<div class="my-item" id="mAbout"><span>About Us</span><span>›</span></div>
+<div class="my-item" id="mDownload"><span>Download App</span><span>›</span></div>
+<div class="my-item logout" id="mLogout"><span style="color:#ff3b30">Logout</span><span style="color:#ff3b30">›</span></div>
+<div style="background:#fff;border:1px solid var(--b);margin:12px 14px;border-radius:12px;padding:12px;font-size:11px"><b>📜 Transaction History V20 AUTO</b><div id="txList" style="margin-top:8px;color:var(--m)">No transactions yet - Recharge MIN 15K AUTO PAY</div></div>
+</div>
+
+<!-- RECHARGE PAGE - SCREENSHOT 8 -->
+<div id="tab-recharge" class="tab">
+<div class="top-sticky"><button type="button" onclick="switchTab('wallet')" style="border:none;background:transparent;font-size:18px">‹</button><b>Recharge</b><span style="color:var(--g);font-size:12px;font-weight:800">Records</span></div>
+<div class="page-bg">
+<div class="page-card"><h3>PLEASE ENTER AMOUNT</h3><input id="reAmount" class="amount-input" type="number" value="0"><h3 style="margin-top:16px">SELECT THE AMOUNT</h3><div class="quick-amounts" id="quickAmounts"><button data-a="50000">50000</button><button data-a="85000">85000</button><button data-a="100000">100000</button><button data-a="300000">300000</button><button data-a="800000">800000</button><button data-a="2000000">2000000</button></div></div>
+<div class="page-card"><h3>PAYMENT METHODS</h3><div class="pay-methods" id="payMethods"><button class="active" data-m="mtn">MTN MoMo</button><button data-m="airtel">Airtel Money</button></div><h3 style="margin-top:14px">PHONE NUMBER</h3><input id="rePhone" class="share-input" placeholder="07XXXXXXXXXX" style="margin-top:6px"><div style="font-size:11px;color:var(--m);margin-top:12px"><b>RECHARGE INSTRUCTIONS:</b><br>1. AUTO PAYMENT - Instant credit in V20!<br>2. MIN 15,000 UGX - Lower rejected<br>3. Select amount or enter custom<br>4. MTN MoMo & Airtel Money supported<br>5. Balance updates automatically</div><button class="confirm-g" type="button" id="confirmRecharge">Confirm</button></div>
+</div>
+</div>
+
+<!-- WITHDRAW PAGE - SCREENSHOT 7 -->
+<div id="tab-withdraw" class="tab">
+<div class="top-sticky"><button type="button" onclick="switchTab('wallet')" style="border:none;background:transparent;font-size:18px">‹</button><b>Withdrawal</b><span style="color:var(--g);font-size:12px;font-weight:800">Records</span></div>
+<div class="page-bg">
+<div class="page-card"><h3>PLEASE ENTER AMOUNT</h3><input id="withAmount" class="amount-input" type="number" value="5000"><div class="fee-grid"><div class="fee-box"><div class="lb">FEE (15%)</div><div class="am" id="feeAmt">750 <small>UGX</small></div></div><div class="fee-box"><div class="lb">YOU RECEIVE</div><div class="am" id="receiveAmt">4,250 <small>UGX</small></div></div></div></div>
+<div style="padding:0 2px"><h3 style="font-size:13px;font-weight:900;padding:8px 4px">WITHDRAWAL INSTRUCTIONS</h3><div class="instructions">1. Withdrawal hours: 9:00 – 18:00 daily.<br>2. No limits.<br>3. Minimum withdrawal is <b style="color:#ff3b30">5,000</b> UGX.<br>4. A withdrawal tax of 15% applies to every request.<br>5. Withdraws reflects within 5hrs to 24hrs.</div><button class="confirm-o" type="button" id="confirmWithdraw">Confirm</button></div>
+</div>
+</div>
+
+<div class="fab" id="fabBtn" type="button">🎧</div>
+<div class="proof" id="proof"><div style="width:30px;height:30px;background:#e8f5e9;border-radius:50%;display:flex;align-items:center;justify-content:center">💰</div><div><b id="pName">07****99</b> <span id="pAct">rented VIP 2 - 4s ago</span><br><small>2s ago • V20 AUTO LIVE</small></div></div>
+
+<div class="nav">
+<button class="active" id="nav-home" data-tab="home" type="button">🏠<br>Home</button>
+<button id="nav-product" data-tab="product" type="button">◍<br>Product</button>
+<button id="nav-share" data-tab="share" type="button">↗<br>Share</button>
+<button id="nav-wallet" data-tab="wallet" type="button">👛<br>Wallet</button>
+<button id="nav-my" data-tab="my" type="button">👤<br>My</button>
+</div>
+</div>
+
+<script>
+let cur=null; const KEY_B='nav_bal_v20', KEY_U='nav_users_v20', KEY_C='nav_current_v20', KEY_R='nav_req_v20', KEY_W='nav_wit_v20', MIN_R=15000, MIN_W=5000, FEE=0.15;
+const products=[
+{id:1,n:'FINTOR FC 00',price:15000,day:3000,total:120000,cycle:'40 Days',roi:'800%',cat:'d',non:'NON-CYCLE',img:1},
+{id:2,n:'FINTOR ORD',price:20000,day:2000,total:60000,cycle:'30 Days',roi:'300%',cat:'d',non:'NON-CYCLE',img:2},
+{id:3,n:'FINTOR FC 02',price:35000,day:9000,total:270000,cycle:'30 Days',roi:'800%',cat:'n',non:'NON-CYCLE',img:1},
+{id:4,n:'FINTOR FC 03',price:50000,day:14000,total:420000,cycle:'30 Days',roi:'850%',cat:'n',non:'NON-CYCLE',img:1},
+{id:5,n:'VIP 5 Gold',price:75000,day:22000,total:660000,cycle:'30 Days',roi:'900%',cat:'v',non:'CYCLE',img:1},
+{id:6,n:'VIP 6 Platinum',price:100000,day:32000,total:960000,cycle:'30 Days',roi:'950%',cat:'v',non:'CYCLE',img:2},
+{id:7,n:'VIP 7 Diamond',price:150000,day:50000,total:1500000,cycle:'30 Days',roi:'1000%',cat:'v',non:'CYCLE',img:1},
+{id:20,n:'KING 15M 👑',price:15000000,day:6500000,total:585000000,cycle:'90 Days',roi:'2000%',cat:'v',non:'CYCLE',img:2}
+];
+const $=id=>document.getElementById(id);
+function getUsers(){try{return JSON.parse(localStorage.getItem(KEY_U)||'[]')}catch{return[]}}
+function saveUser(u){let us=getUsers();let i=us.findIndex(x=>x.phone===u.phone);if(i>=0)us[i]=u;else us.push(u);localStorage.setItem(KEY_U,JSON.stringify(us))}
+function genCode(ph){return (ph.slice(-4).toUpperCase()+'A6').replace(/[^A-Z0-9]/g,'').slice(0,4) || '0SA6'}
+function genLink(code){return 'https://navienio.live/invite?ref='+code}
+function heaterHTML(t){if(t===2) return `<div style="display:flex;gap:6px"><div style="width:32px;height:44px;background:#fff;border-radius:6px;border:1px solid #e5e5e5;box-shadow:0 2px 6px rgba(0,0,0,.08)"></div><div style="width:32px;height:44px;background:#fff;border-radius:6px;border:1px solid #e5e5e5;box-shadow:0 2px 6px rgba(0,0,0,.08)"></div></div>`; return `<div style="width:38px;height:52px;background:#fff;border-radius:6px;border:1px solid #e5e5e5;box-shadow:0 2px 8px rgba(0,0,0,.08)"></div>`}
+function showReg(){ $('aTitle').innerText='Create account';$('aSub').innerText='Join NAViEN in a few seconds.';$('nameWrap').style.display='block';$('refWrap').style.display='block';$('btnCreate').style.display='block';$('btnLogin').style.display='none';$('toLogin').style.display='block';$('toReg').style.display='none';$('err').innerText=''}
+function showLogin(){ $('aTitle').innerText='Welcome back';$('aSub').innerText='Login to NAViEN V20';$('nameWrap').style.display='none';$('refWrap').style.display='none';$('btnCreate').style.display='none';$('btnLogin').style.display='block';$('toLogin').style.display='none';$('toReg').style.display='block';$('err').innerText=''}
+function showApp(){ $('authPage').style.display='none';$('appPage').style.display='block';let bal=parseInt(localStorage.getItem(KEY_B+cur.phone)||'5000');let code=cur.code||genCode(cur.phone);cur.code=code;saveUser(cur);let f=(cur.name||cur.phone||'O')[0].toUpperCase();$('av').innerText=f;$('tNa').innerText=cur.phone;$('tPh').innerText=cur.phone;$('balHome').innerText='UGX '+bal.toLocaleString();$('wBalBig').innerHTML=bal.toLocaleString()+'<small> UGX</small>';$('wEnergy').innerText=Math.floor(bal/15000);$('inviteCode').innerText=code;$('inviteLink').value=genLink(code);$('rePhone').value=cur.phone;updateStats();renderHome();renderProducts('all');updateTx();genQR();startLive()}
+function renderHome(){let c=$('hotScroll');c.innerHTML='';products.slice(0,3).forEach(p=>{c.innerHTML+=`<div class="hot-card"><div class="hot-img">${heaterHTML(p.img)}</div><div class="hot-info"><div class="badges"><span class="badge-dark">${p.n}</span><span class="badge-green">${p.roi}</span></div><div class="stats-grid"><div><div class="k">Total Income</div><div class="v">${p.total.toLocaleString()} UGX</div></div><div><div class="k">Day Income</div><div class="v">${p.day.toLocaleString()} UGX</div></div><div><div class="k">Cycles</div><div class="v">${p.cycle.split(' ')[0]}</div></div><div><div class="k">Price</div><div class="v">${p.price.toLocaleString()} UGX</div></div></div></div></div>`})}
+function renderProducts(f){let el=$('prodList');el.innerHTML='';let list=products;if(f!=='all') list=products.filter(x=>x.cat===f);list.forEach(p=>{el.innerHTML+=`<div class="prod-card"><div class="prod-top"><div class="prod-img">${heaterHTML(p.img)}</div><div class="prod-right"><div class="prod-badges"><span class="badge-dark">${p.n}</span><span class="badge-green">${p.roi}</span></div><div class="non-cycle">${p.non}</div><div class="price-row"><span>PRICE</span><span>${p.price.toLocaleString()}.00<small style="font-size:9px;color:#666"> UGX</small></span></div><div class="price-row"><span>CYCLES</span><span>${p.cycle}</span></div></div></div><div class="income2"><div class="income-box"><div class="lb">DAY INCOME</div><div class="am">${p.day.toLocaleString()}.00 <small>UGX</small></div></div><div class="income-box"><div class="lb">TOTAL INCOME</div><div class="am">${p.total.toLocaleString()}.00 <small>UGX</small></div></div></div><button class="rent-btn" type="button" data-buy="${p.id}">Rent Now</button></div>`}); el.querySelectorAll('[data-buy]').forEach(b=>b.addEventListener('click',()=>buyVIP(parseInt(b.dataset.buy))))}
+function updateStats(){let bal=parseInt(localStorage.getItem(KEY_B+cur.phone)||'0');let reqs=JSON.parse(localStorage.getItem(KEY_R)||'[]').filter(r=>r.phone===cur.phone);let withs=JSON.parse(localStorage.getItem(KEY_W)||'[]').filter(r=>r.phone===cur.phone);let totalRe=reqs.reduce((s,r)=>s+r.amt,0);let totalWi=withs.reduce((s,w)=>s+w.amt,0);let owned=Math.floor(bal/15000);let daily=owned>0?products[Math.min(owned-1,products.length-1)].day:0;let totalInc=owned*daily*2;$('stRecharge').innerHTML=totalRe.toLocaleString()+'.00 <small>UGX</small>';$('stWithdraw').innerHTML=totalWi.toLocaleString()+'.00 <small>UGX</small>';$('stToday').innerHTML=daily.toLocaleString()+'.00 <small>UGX</small>';$('stTotal').innerHTML=totalInc.toLocaleString()+'.00 <small>UGX</small>';$('wRecharge').innerText=totalRe.toLocaleString()+' UGX'}
+function updateTx(){let reqs=JSON.parse(localStorage.getItem(KEY_R)||'[]').filter(r=>r.phone===cur.phone).reverse();let withs=JSON.parse(localStorage.getItem(KEY_W)||'[]').filter(r=>r.phone===cur.phone).reverse();let html='';if(reqs.length===0&&withs.length===0) html='No transactions yet - Recharge MIN 15K AUTO PAY'; else{reqs.slice(0,5).forEach(r=>{html+=`<div style="background:#fff;border:1px solid #e5e7eb;padding:8px;border-radius:8px;margin-bottom:6px;display:flex;justify-content:space-between"><div><b>💳 ${r.amt.toLocaleString()} UGX AUTO</b><br><small>${r.method} • ${r.time}</small></div><span style="color:#00a651;font-weight:800">PAID</span></div>`});withs.slice(0,5).forEach(w=>{html+=`<div style="background:#fff;border:1px solid #e5e7eb;padding:8px;border-radius:8px;margin-bottom:6px;display:flex;justify-content:space-between"><div><b>💸 ${w.amt.toLocaleString()} UGX</b><br><small>To ${w.phone} • ${w.time}</small></div><span style="color:#ff9900;font-weight:800">${w.status}</span></div>`})} $('txList').innerHTML=html}
+function genQR(){let g=$('qrGrid');g.innerHTML='';for(let i=0;i<49;i++){let d=document.createElement('div');if(Math.random()>0.4) d.style.background='#111'; else d.style.background='#fff'; g.appendChild(d)}}
+window.switchTab=function(t){document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));let el=$('tab-'+t);if(el) el.classList.add('active');document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));let nb=$('nav-'+t);if(nb) nb.classList.add('active'); if(t==='share') $('nav-share').classList.add('active'); if(t==='recharge'||t==='withdraw') {document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active')); if(t==='recharge') $('nav-wallet').classList.add('active'); else $('nav-wallet').classList.add('active')} window.scrollTo(0,0)}
+window.buyVIP=function(id){let p=products.find(x=>x.id===id);let bal=parseInt(localStorage.getItem(KEY_B+cur.phone)||'0');if(bal<p.price){alert('❌ Need '+p.price.toLocaleString()+' UGX, have '+bal.toLocaleString()+'\n\nPlease Recharge - AUTO PAY V20!');switchTab('recharge');return}localStorage.setItem(KEY_B+cur.phone,(bal-p.price).toString());updateStats();showApp();alert('✅ '+p.n+' Rented!\n\n'+p.price.toLocaleString()+' UGX → '+p.day.toLocaleString()+' UGX/day\nAUTO PAYMENT ACTIVE - Income starts tomorrow!')}
+function doAuthCreate(){let n=$('rNa').value.trim(),ph=$('lPh').value.trim(),pa=$('lPa').value.trim(),ref=$('rRef').value.trim();if(!n){$('err').innerText='❌ Full Name required';return}if(!ph||ph.length<10){$('err').innerText='❌ Phone 07XXXXXXXX';return}if(pa.length<4){$('err').innerText='❌ Password min 4';return}let us=getUsers();if(us.find(u=>u.phone===ph)){$('err').innerText='❌ Phone exists - Login!';showLogin();return}let code=genCode(ph);let u={name:n,phone:ph,pass:pa,ref:ref||'0795143386',code:code,joined:new Date().toLocaleString()};saveUser(u);localStorage.setItem(KEY_B+ph,'5000');localStorage.setItem(KEY_C,JSON.stringify(u));cur=u;showApp()}
+function doAuthLogin(){let ph=$('lPh').value.trim(),pa=$('lPa').value.trim();if(!ph||!pa){$('err').innerText='❌ Enter Phone + Password';return}let us=getUsers();let u=us.find(x=>x.phone===ph&&x.pass===pa);if(!u){if(pa.length>=4){let code=genCode(ph);u={name:ph,phone:ph,pass:pa,code:code,joined:new Date().toLocaleString()};saveUser(u);localStorage.setItem(KEY_B+ph,'5000')}else{$('err').innerText='❌ Wrong password';return}}localStorage.setItem(KEY_C,JSON.stringify(u));cur=u;showApp()}
+function doRechargeAuto(){let amt=parseInt($('reAmount').value)||0;let phone=$('rePhone').value.trim();let method=document.querySelector('#payMethods .active')?.dataset.m||'mtn';if(amt<MIN_R){alert('❌ MIN 15,000 UGX! You entered '+amt.toLocaleString());return}if(phone.length<10){alert('❌ Enter MoMo number 07XXXXXXXX');return}let bal=parseInt(localStorage.getItem(KEY_B+cur.phone)||'0');let newBal=bal+amt;localStorage.setItem(KEY_B+cur.phone,newBal.toString());let reqs=JSON.parse(localStorage.getItem(KEY_R)||'[]');reqs.push({phone:cur.phone,amt:amt,method:method.toUpperCase()+' MoMo AUTO',time:new Date().toLocaleString()});localStorage.setItem(KEY_R,JSON.stringify(reqs));switchTab('wallet');showApp();alert('✅ AUTO PAYMENT SUCCESS!\n\n'+amt.toLocaleString()+' UGX credited instantly!\nMethod: '+method.toUpperCase()+' MoMo\nPhone: '+phone+'\nNew Balance: '+newBal.toLocaleString()+' UGX\n\nV20 AUTO PAY - No TxID needed!')}
+function doWithdrawAuto(){let amt=parseInt($('withAmount').value)||0;let bal=parseInt(localStorage.getItem(KEY_B+cur.phone)||'0');if(amt<MIN_W){alert('MIN 5,000 UGX!');return}if(amt>bal){alert('Insufficient! Have '+bal.toLocaleString());return}let fee=Math.floor(amt*FEE);let receive=amt-fee;if(!confirm(`Withdraw ${amt.toLocaleString()} UGX?\nFee 15%: ${fee.toLocaleString()} UGX\nYou Receive: ${receive.toLocaleString()} UGX\nTo: ${cur.phone}\n\nConfirm?`)) return;localStorage.setItem(KEY_B+cur.phone,(bal-amt).toString());let withs=JSON.parse(localStorage.getItem(KEY_W)||'[]');withs.push({phone:cur.phone,amt:amt,fee:fee,receive:receive,status:'pending',time:new Date().toLocaleString()});localStorage.setItem(KEY_W,JSON.stringify(withs));switchTab('wallet');showApp();alert('✅ Withdrawal Requested!\n\nAmount: '+amt.toLocaleString()+' UGX\nFee: '+fee.toLocaleString()+' UGX\nYou Get: '+receive.toLocaleString()+' UGX\nTo: '+cur.phone+'\n\n9:00-18:00 daily, 5hrs-24hrs payout')}
+function startLive(){let names=['07****89','07****99','07****34','07****12','07****90'];let acts=['rented FINTOR FC 00','rented FC 00','withdrew 45K UGX','bought VIP 1 MIN 15K AUTO','earned 3K/day'];let live=$('liveList');if(live){let html='';for(let i=0;i<2;i++) html+=`🔥 ${names[Math.floor(Math.random()*names.length)]} ${acts[Math.floor(Math.random()*acts.length)]} - ${Math.floor(Math.random()*20)+2}s ago<br>`;live.innerHTML=html}setInterval(()=>{let n=names[Math.floor(Math.random()*names.length)];let a=acts[Math.floor(Math.random()*acts.length)];$('pName').innerText=n;$('pAct').innerText=a;let p=$('proof');p.classList.add('show');setTimeout(()=>p.classList.remove('show'),3500)},3500)}
+document.addEventListener('DOMContentLoaded',()=>{
+$('btnCreate').addEventListener('click',doAuthCreate);
+$('btnLogin').addEventListener('click',doAuthLogin);
+$('toLogin').addEventListener('click',showLogin);
+$('toReg').addEventListener('click',showReg);
+$('showPass').addEventListener('click',()=>{let i=$('lPa');i.type=i.type==='password'?'text':'password';$('showPass').innerText=i.type==='password'?'SHOW':'HIDE'});
+$('hRecharge').addEventListener('click',()=>switchTab('recharge'));
+$('hWithdraw').addEventListener('click',()=>switchTab('withdraw'));
+$('wRechargeBtn').addEventListener('click',()=>switchTab('recharge'));
+$('wWithdrawBtn').addEventListener('click',()=>switchTab('withdraw'));
+$('copyLink').addEventListener('click',()=>{navigator.clipboard.writeText($('inviteLink').value);alert('✅ Link Copied: '+$('inviteLink').value)});
+$('copyCode').addEventListener('click',()=>{navigator.clipboard.writeText($('inviteCode').innerText);alert('✅ Code Copied: '+$('inviteCode').innerText)});
+$('confirmRecharge').addEventListener('click',doRechargeAuto);
+$('confirmWithdraw').addEventListener('click',doWithdrawAuto);
+$('withAmount').addEventListener('input',()=>{let a=parseInt($('withAmount').value)||0;let fee=Math.floor(a*FEE);$('feeAmt').innerHTML=fee.toLocaleString()+' <small>UGX</small>';$('receiveAmt').innerHTML=(a-fee).toLocaleString()+' <small>UGX</small>'});
+$('reAmount').addEventListener('input',()=>{document.querySelectorAll('#quickAmounts button').forEach(b=>b.classList.remove('active'))});
+document.querySelectorAll('#quickAmounts button').forEach(b=>{b.addEventListener('click',()=>{document.querySelectorAll('#quickAmounts button').forEach(x=>x.classList.remove('active'));b.classList.add('active');$('reAmount').value=b.dataset.a})});
+document.querySelectorAll('#payMethods button').forEach(b=>{b.addEventListener('click',()=>{document.querySelectorAll('#payMethods button').forEach(x=>x.classList.remove('active'));b.classList.add('active')})});
+document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>switchTab(b.dataset.tab)));
+document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>switchTab(b.dataset.go)));
+$('btnExchange').addEventListener('click',()=>window.open('https://wa.me/256795143386?text=Support V20','_blank'));
+$('myExchange').addEventListener('click',()=>window.open('https://wa.me/256795143386?text=Support V20','_blank'));
+$('fabBtn').addEventListener('click',()=>window.open('https://wa.me/256795143386?text=Support V20 NAVIEN AUTO PAY','_blank'));
+$('mRedeem').addEventListener('click',()=>alert('🎁 Redeem Gift V20\nEnter gift code from admin'));
+$('mIncome').addEventListener('click',()=>switchTab('wallet'));
+$('mSetWith').addEventListener('click',()=>{let n=prompt('Set withdraw number',cur.phone);if(n&&n.length>=10){cur.phone=n;$('rePhone').value=n;saveUser(cur);localStorage.setItem(KEY_C,JSON.stringify(cur));showApp();alert('✅ Withdraw number set: '+n)}});
+$('mChange').addEventListener('click',()=>{let np=prompt('New password min 4');if(np&&np.length>=4){cur.pass=np;saveUser(cur);localStorage.setItem(KEY_C,JSON.stringify(cur));alert('✅ Password changed')}});
+$('mAbout').addEventListener('click',()=>alert('🏢 NAViEN Smart Energy Investment\n\nCEO: Derick Ezra\nLocation: Nakawa Business Park, Kampala\nUsers: 12,847+ Trusted\n\nV20 AUTO PAYMENT - Instant credit!\nMTN MoMo & Airtel Money supported\nMin Recharge 15K, Min Withdraw 5K, Fee 15%'));
+$('mDownload').addEventListener('click',()=>alert('📲 Download NAViEN App\n\nAdd to home screen:\nChrome → Menu → Add to Home Screen\n\nV20 PWA Ready!'));
+$('mLogout').addEventListener('click',()=>{if(confirm('Logout? Balance safe!')){localStorage.removeItem(KEY_C);location.reload()}});
+$('wWithHist').addEventListener('click',()=>{let w=JSON.parse(localStorage.getItem(KEY_W)||'[]').filter(r=>r.phone===cur.phone);alert(w.length?'Withdrawal History:\n'+w.map(x=>`${x.time} - ${x.amt} UGX - ${x.status}`).join('\n'):'No withdrawals')});
+$('wFundHist').addEventListener('click',()=>{let r=JSON.parse(localStorage.getItem(KEY_R)||'[]').filter(r=>r.phone===cur.phone);alert(r.length?'Fund History:\n'+r.map(x=>`${x.time} - ${x.amt} UGX AUTO - PAID`).join('\n'):'No recharges')});
+document.querySelectorAll('#filters button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#filters button').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderProducts(b.dataset.f)}));
+let s=localStorage.getItem(KEY_C);if(s){try{cur=JSON.parse(s);showApp()}catch{}}setInterval(()=>{let el=$('on');if(el) el.innerText=(5800+Math.floor(Math.random()*400)).toString()},2500);
+});
+</script></body></html>
