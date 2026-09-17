@@ -1,244 +1,90 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no"><title>EZOL EARN2 V19 NAVIEN</title>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no"><title>EZOL EARN2 V19.1 NAVIEN FIXED</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial;-webkit-tap-highlight-color:transparent}
-body{background:#f5f7f6;padding-bottom:85px;color:#111}
-:root{--g:#00a651;--g2:#0a5c36;--o:#ff9900;--light:#e8f5e9;--b:#e5e7eb;--m:#6b7280}
-.top-pink{height:28px;background:#ff4d8d}
-/* AUTH LIKE NAVIEN */
-.auth-top{background:#8bc39e;border-radius:0 0 50% 50% / 0 0 25% 25%;padding:30px 20px 60px;text-align:center;color:#fff;position:relative}
-.auth-top.logo{width:70px;height:70px;background:#1a365d;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:36px;font-weight:900;margin:0 auto;color:#a8f0c6;border:3px solid #1a365d}
-.auth-top h1{margin-top:12px;font-size:22px;letter-spacing:2px;font-weight:900}
-.auth-top p{font-size:13px;opacity:.9;margin-top:4px}
-.auth-box{padding:20px;margin-top:-20px}
-.auth-box h2{font-size:22px;font-weight:900}.auth-box small{color:var(--m)}
-.auth-input{width:100%;padding:15px 18px;border-radius:24px;border:none;background:#eef4ef;margin-top:14px;font-size:14px;outline:none}
-.auth-btn{width:100%;padding:15px;background:var(--g);color:#fff;border:none;border-radius:24px;font-weight:900;margin-top:18px;cursor:pointer;font-size:15px}
-.auth-link{text-align:center;margin-top:14px;font-size:13px}.auth-link b{color:var(--g);cursor:pointer}
-/* NAV */
-.nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #eee;display:flex;justify-content:space-around;padding:8px 0 10px;z-index:100}
-.nav button{border:none;background:transparent;display:flex;flex-direction:column;align-items:center;font-size:11px;color:var(--m);gap:3px;cursor:pointer;min-width:60px}
+body{background:#f5f7f5;color:#111;padding-bottom:90px}
+:root{--g:#00a651;--g2:#0a5c36;--y:#ff9900;--bg:#e8f5e9;--b:#e5e7eb;--m:#6b7280}
+.top-green{background:#8bc8a8;height:220px;border-radius:0 0 50% 50% / 0 0 25% 25%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center}
+.top-green b{font-size:26px;letter-spacing:2px}.top-green small{font-size:12px;opacity:.9;margin-top:4px}
+.auth-wrap{padding:20px;margin-top:-20px}
+.auth-box h2{font-size:24px;font-weight:900}.auth-box p{font-size:13px;color:var(--m);margin-top:4px}
+.inp{width:100%;padding:15px 18px;margin:10px 0;border-radius:14px;border:none;background:#eef2f0;font-size:14px;outline:none}
+.btn-main{width:100%;padding:15px;border:none;border-radius:28px;background:var(--g);color:#fff;font-weight:900;font-size:15px;margin-top:12px;cursor:pointer;box-shadow:0 6px 18px rgba(0,166,81,.3)}
+.btn-white{width:100%;padding:13px;border:1.5px solid var(--b);border-radius:28px;background:#fff;font-weight:800;margin-top:10px;cursor:pointer}
+.link{color:var(--g);font-weight:800;text-decoration:underline;cursor:pointer}
+.top-bar{background:#fff;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+.av{width:40px;height:40px;background:linear-gradient(135deg,#0f5132,#0a7a4c);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900}
+.card{background:#fff;margin:14px;border-radius:18px;padding:14px;border:1px solid var(--b)}
+.vip-card{background:var(--bg);border-radius:18px;padding:14px;margin-bottom:12px;display:flex;flex-direction:column;border:1px solid #d1e7dd}
+.vip-top{display:flex;gap:12px;align-items:center}
+.vip-img{width:90px;height:70px;background:#fff;border-radius:12px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.vip-img img{width:100%;height:100%;object-fit:cover}
+.badge{background:var(--g);color:#fff;padding:4px 12px;border-radius:8px;font-size:12px;font-weight:800}
+.badge-y{background:#000;color:#ffcc33;padding:3px 10px;border-radius:20px;font-size:10px;font-weight:900;border:1px solid #ffcc33}
+.rent{width:100%;background:var(--g);color:#fff;border:none;padding:12px;border-radius:24px;font-weight:800;margin-top:10px;cursor:pointer}
+.nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--b);display:flex;justify-content:space-around;padding:8px 0 12px;z-index:100}
+.nav button{border:none;background:transparent;display:flex;flex-direction:column;align-items:center;font-size:11px;color:var(--m);gap:2px;cursor:pointer;min-width:60px;padding:6px;border-radius:12px}
 .nav button.active{color:var(--g);font-weight:800}
-.nav button span.icon{font-size:18px}
-/* TABS */
 .tab{display:none}.tab.active{display:block}
-.live-ticker{background:#000;color:#fff;padding:7px 0;overflow:hidden;white-space:nowrap;font-size:11px;position:sticky;top:0;z-index:99}
-.live-ticker span{display:inline-block;animation:scroll 70s linear infinite}
+.fab{position:fixed;right:14px;bottom:90px;width:56px;height:56px;border-radius:50%;background:#00a651;color:#fff;border:none;font-size:24px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,.3);cursor:pointer;z-index:101}
+.live-ticker{background:#000;color:#fff;padding:7px 0;overflow:hidden;white-space:nowrap;font-size:11px;position:sticky;top:48px;z-index:98}
+.live-ticker span{display:inline-block;animation:scroll 60s linear infinite}
 @keyframes scroll{0%{transform:translateX(100%)}100%{transform:translateX(-100%)}}
-/* HOME LIKE NAVIEN */
-.home-banner{background:#fff;margin:12px;border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.06)}
-.home-banner img{width:100%;height:180px;object-fit:cover}
-.home-actions{margin:12px;display:flex;gap:12px}
-.home-actions button{flex:1;padding:14px;border-radius:24px;border:none;font-weight:900;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px}
-.btn-recharge{background:var(--g);color:#fff}
-.btn-withdraw{background:var(--o);color:#fff}
-.hot-head{margin:18px 14px 10px;display:flex;justify-content:space-between;align-items:center}
-.hot-head b{font-size:16px}
-.hot-scroll{display:flex;gap:12px;overflow-x:auto;padding:0 14px 10px;scrollbar-width:none}
-.hot-scroll::-webkit-scrollbar{display:none}
-.hot-card{min-width:280px;background:var(--light);border-radius:16px;padding:12px;flex-shrink:0;position:relative;border:1px solid #d1e7dd}
-.hot-img{width:80px;height:80px;background:#fff;border-radius:12px;float:left;margin-right:10px;overflow:hidden;display:flex;align-items:center;justify-content:center}
-.hot-img img{width:100%;height:100%;object-fit:cover}
-.badge{display:inline-block;background:var(--g);color:#fff;padding:4px 10px;border-radius:16px;font-size:11px;font-weight:800;margin-right:6px}
-.badge-o{background:var(--g);margin-left:auto}
-.small-tag{background:#d1f0d5;color:var(--g);padding:2px 8px;border-radius:12px;font-size:9px;font-weight:800;display:inline-block;margin-top:6px}
-.hot-stats{margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:8px;clear:both}
-.hot-stat{background:#fff;border-radius:12px;padding:8px;text-align:center}
-.hot-stat small{font-size:9px;color:var(--m);display:block}.hot-stat b{font-size:13px;color:var(--g)}
-.rent-btn{width:100%;background:var(--g);color:#fff;border:none;padding:12px;border-radius:24px;font-weight:900;margin-top:10px;cursor:pointer}
-/* PRODUCT LIKE NAVIEN */
-.filter{margin:12px;display:flex;gap:8px;overflow-x:auto}
-.filter button{padding:8px 18px;border-radius:20px;border:1.5px solid var(--b);background:#fff;font-size:13px;font-weight:700;white-space:nowrap;cursor:pointer}
-.filter button.active{background:var(--g);color:#fff;border-color:var(--g)}
-.prod-list{margin:0 12px}
-.prod-card{background:var(--light);border-radius:18px;padding:14px;margin-bottom:14px;display:flex;flex-wrap:wrap;gap:10px;position:relative;border:1px solid #d1e7dd}
-.prod-left{width:88px;height:88px;background:#fff;border-radius:14px;overflow:hidden;flex-shrink:0}
-.prod-left img{width:100%;height:100%;object-fit:cover}
-.prod-right{flex:1;min-width:150px}
-.prod-title{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
-.prod-price{display:flex;justify-content:space-between;margin-top:8px;font-size:13px}
-.prod-price b{font-size:13px}
-.prod-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;width:100%}
-.prod-grid div{background:#fff;border-radius:12px;padding:8px;text-align:center}
-.prod-grid small{font-size:9px;color:var(--m);display:block}.prod-grid b{font-size:13px}
-/* FAB */
-.fab{position:fixed;right:14px;bottom:90px;width:54px;height:54px;background:var(--g);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px;box-shadow:0 6px 18px rgba(0,0,0,.25);z-index:101;cursor:pointer;animation:pulse 2s infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(0,166,81,.5)}70%{box-shadow:0 0 0 12px rgba(0,166,81,0)}100%{box-shadow:0 0 0 0 rgba(0,166,81,0)}}
-/* LIVE PROOFS */
-.live-popup{position:fixed;left:12px;bottom:92px;background:#fff;border-radius:12px;padding:10px 12px;box-shadow:0 8px 24px rgba(0,0,0,.2);border-left:4px solid var(--g);display:none;align-items:center;gap:8px;z-index:102;max-width:280px;animation:slide.4s}
-@keyframes slide{from{transform:translateX(-100%);opacity:0}to{transform:translateX(0);opacity:1}}
-.live-popup.show{display:flex}
-.live-card-navien{background:#fff;margin:12px;border-radius:14px;padding:12px;border:1px solid var(--b);display:flex;justify-content:space-between;align-items:center}
 .live-dot{width:8px;height:8px;background:#00ff00;border-radius:50%;display:inline-block;animation:blink 1s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-/* WALLET LIKE NAVIEN */
-.wallet-top{background:var(--light);margin:12px;border-radius:16px;padding:18px;text-align:center}
-.wallet-top h1{font-size:32px;font-weight:900}
-.wallet-top small{background:#fff;padding:6px 12px;border-radius:20px;font-size:12px;margin-top:8px;display:inline-block}
-.wallet-item{background:#eef4ef;margin:10px 12px;padding:16px;border-radius:14px;display:flex;justify-content:space-between;align-items:center;cursor:pointer}
-.wallet-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px}
-.wallet-stat{background:var(--light);border-radius:14px;padding:14px}
-.wallet-stat small{font-size:11px;color:var(--m);display:block;font-weight:700}.wallet-stat b{font-size:18px;display:block;margin-top:4px}
-/* SHARE LIKE NAVIEN */
-.share-top{background:var(--light);margin:12px;border-radius:16px;padding:16px}
-.share-input{width:100%;padding:14px;border-radius:12px;border:none;background:#fff;margin-top:10px;font-size:13px}
-.share-orange{background:var(--o);color:#fff;border:none;width:100%;padding:14px;border-radius:24px;font-weight:900;margin-top:12px;cursor:pointer}
-.qr-box{display:flex;gap:12px;margin-top:14px;align-items:center}
-.qr{width:90px;height:90px;background:#fff;border-radius:12px;border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:10px;box-shadow:0 2px 8px rgba(0,0,0,.1)}
-/* MY LIKE NAVIEN */
-.my-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;margin:14px}
-.my-grid div{background:var(--g);color:#fff;border-radius:16px;padding:14px;text-align:center;cursor:pointer}
-.my-grid div span{font-size:22px;display:block}
-.my-grid div small{font-size:11px;display:block;margin-top:4px}
-.my-list{margin:12px}
-.my-list-item{background:#eef4ef;padding:16px;border-radius:14px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;cursor:pointer}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;padding:16px;z-index:200}
-.modal.show{display:flex}.modal-box{background:#fff;padding:20px;border-radius:18px;max-width:400px;width:100%;max-height:90vh;overflow-y:auto}
-.modal-box input{width:100%;padding:12px;margin:7px 0;border-radius:10px;border:1px solid var(--b)}
-.btn-gold{background:linear-gradient(180deg,#ffcc33,#ff9900);border:none;padding:12px;width:100%;border-radius:12px;font-weight:900;margin-top:10px;cursor:pointer}
-.btn-white{background:#fff;border:1px solid var(--b);padding:11px;width:100%;border-radius:12px;margin-top:8px;cursor:pointer}
+.proof{position:fixed;left:12px;bottom:90px;background:#fff;border-radius:12px;padding:10px 12px;box-shadow:0 8px 20px rgba(0,0,0,.2);border-left:4px solid #00a651;display:none;align-items:center;gap:8px;z-index:102;max-width:260px;font-size:11px}
+.proof.show{display:flex}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;padding:16px;z-index:200}
+.modal.show{display:flex}.modal-box{background:#fff;padding:18px;border-radius:18px;max-width:380px;width:100%}
+.modal-box input{width:100%;padding:12px;margin:6px 0;border-radius:10px;border:1px solid var(--b)}
+.my-item{background:#fff;border:1px solid var(--b);border-radius:12px;padding:13px;margin-bottom:8px;display:flex;justify-content:space-between;cursor:pointer}
+.hot{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px}
+.hot::-webkit-scrollbar{display:none}
 </style></head><body>
-<div class="top-pink"></div>
 
-<!-- AUTH - LIKE NAVIEN CREATE ACCOUNT -->
+<!-- AUTH -->
 <div id="authPage">
-<div class="auth-top"><div class="logo">N</div><h1>EZOL EARN2</h1><p>Smart energy investment • V19 NAVIEN CLONE</p></div>
-<div class="auth-box"><h2>Create account</h2><small>Join EZOL in a few seconds. V19 NAVIEN STYLE</small>
-<div id="loginForm"><input id="lPh" class="auth-input" placeholder="Phone Number (07XX...)"><input id="lPa" type="password" class="auth-input" placeholder="Password"><button class="auth-btn" type="button" onclick="login()">LOGIN</button><div class="auth-link">Don't have account? <b onclick="showR()">Create account</b></div></div>
-<div id="regForm" style="display:none"><input id="rNa" class="auth-input" placeholder="Full Name"><input id="rPh" class="auth-input" placeholder="Phone Number (07XX...)"><input id="rPa" type="password" class="auth-input" placeholder="Password"><input id="rRef" class="auth-input" value="0795143386" placeholder="REFERRAL CODE"><button class="auth-btn" type="button" onclick="reg()">CREATE ACCOUNT + 5K BONUS</button><div class="auth-link">Already have account? <b onclick="showL()">Login</b></div></div>
-<p id="err" style="color:#ff3b30;font-size:12px;margin-top:10px;font-weight:700"></p>
+<div class="top-green"><div style="width:60px;height:60px;background:linear-gradient(135deg,#0a3d6b,#0f8a4d);border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:900">N</div><b>EZOL EARN2</b><small>Smart energy investment • V19.1 NAVIEN CLONE</small></div>
+<div class="auth-wrap">
+<div class="auth-box">
+<h2 id="authTitle">Create account</h2><p id="authSub">Join EZOL in a few seconds. V19 NAVIEN STYLE</p>
+<div id="loginForm" style="display:none">
+<input id="lPh" class="inp" placeholder="Phone Number (07XX...)" value="0783228690">
+<input id="lPa" class="inp" type="password" placeholder="Password" value="12345">
+<button class="btn-main" type="button" onclick="doLogin()">LOGIN</button>
+<p style="text-align:center;margin-top:12px;font-size:13px">Don't have account? <span class="link" onclick="showReg()">Create account</span></p>
+</div>
+<div id="regForm">
+<input id="rNa" class="inp" placeholder="Full Name *Required">
+<input id="rPh" class="inp" placeholder="Phone Number (07XX...) *Required">
+<input id="rPa" class="inp" type="password" placeholder="Password *Min 4">
+<input id="rRef" class="inp" placeholder="REFERRAL CODE" value="0795143386">
+<button class="btn-main" type="button" onclick="doReg()">CREATE ACCOUNT</button>
+<p style="text-align:center;margin-top:12px;font-size:13px">Already have account? <span class="link" onclick="showLogin()">Login</span></p>
+</div>
+<p id="err" style="color:red;font-size:12px;font-weight:700;margin-top:8px;text-align:center"></p>
+</div>
 </div>
 </div>
 
 <!-- APP -->
 <div id="appPage" style="display:none">
-<div class="live-ticker"><span id="ticker">🔥 V19 LIVE: 07****89 rented FINTOR FC 00 15K • 07****12 withdrew 45K UGX • 07****11 earned 3K today • 07****45 rented FINTOR ORD 20K • 07****22 bought KING 15M • 07****67 withdrew 120K • 07****90 just joined EZOL V19 • </span></div>
+<div class="top-bar"><div style="display:flex;align-items:center;gap:10px"><div class="av" id="av">U</div><div><b id="tNa">User</b><br><small id="tPh" style="color:var(--m);font-size:11px">Kampala • Online</small></div></div><div style="background:#e8f5e9;color:#00a651;padding:5px 12px;border-radius:20px;font-size:11px;font-weight:800;border:1px solid #c8e6c9">● <span id="on">5,421</span> online</div></div>
+<div class="live-ticker"><span id="ticker">🔥 LIVE V19.1: 07****89 rented FINTOR FC 00 • 07****12 withdrew 45K UGX • 07****11 earned 3K daily • 07****22 bought KING 15M • 07****90 joined now • </span></div>
 
-<!-- HOME TAB - LIKE NAVIEN HOME -->
+<!-- HOME -->
 <div id="tab-home" class="tab active">
-<div class="home-banner"><img src="logo.jpg" onerror="this.src='https://images.unsplash.com/photo-1581092921461-7d65ca45393a?w=600'"></div>
-<div class="live-card-navien"><div><b style="font-size:13px"><span class="live-dot"></span> LIVE RENTING NOW - V19 FOMO</b><br><small style="color:#00a651;font-size:11px" id="liveCount">52 people renting right now!</small></div><small style="background:#e8f5e9;color:#00a651;padding:4px 8px;border-radius:12px;font-weight:800">● LIVE</small></div>
-<div class="home-actions"><button class="btn-recharge" type="button" onclick="openR()">◫ Recharge</button><button class="btn-withdraw" type="button" onclick="openW()">➤ Withdraw</button></div>
-<div class="hot-head"><b>HOT PRODUCTS</b><small style="color:#00a651" id="hotBal">Balance: UGX 5,000</small></div>
-<div class="hot-scroll" id="hotScroll"></div>
-<div class="home-actions"><div style="background:#e8f5e9;border-radius:16px;padding:12px;flex:1;display:flex;justify-content:space-between"><div><b style="font-size:11px">TODAY'S INCOME</b><br><b>0.00 UGX</b></div><div style="text-align:right"><b style="font-size:11px">TOTAL INCOME</b><br><b id="homeTotal">0.00 UGX</b></div></div></div>
-<div class="my-grid">
-<div onclick="switchTab('product')"><span>◉</span><small>My Product</small></div>
-<div onclick="switchTab('share')"><span>👥</span><small>My Team</small></div>
-<div onclick="switchTab('share')"><span>✉</span><small>Invite Friends</small></div>
-<div onclick="openInfo('support')"><span>⇆</span><small>Exchange</small></div>
-</div>
+<div class="card" style="padding:0;overflow:hidden"><img src="logo.jpg" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600'" style="width:100%;height:160px;object-fit:cover"><div style="padding:12px;display:flex;justify-content:space-between"><button class="btn-main" style="width:48%;margin:0" type="button" onclick="openR()">💳 Recharge</button><button style="width:48%;background:#ff9900;color:#fff;border:none;padding:12px;border-radius:24px;font-weight:800;cursor:pointer" type="button" onclick="openW()">✈️ Withdraw</button></div></div>
+<div style="padding:0 14px"><b>HOT PRODUCTS</b> <span class="live-dot"></span> <small style="color:#00a651">LIVE • 47 buying</small></div>
+<div class="card"><div class="hot" id="hotList"></div><div id="liveHome" style="font-size:11px;color:#6b7280;line-height:1.6;margin-top:8px"></div></div>
+<div class="card"><div style="display:flex;gap:10px"><div style="flex:1;background:#00a651;color:#fff;border-radius:14px;padding:12px;text-align:center;cursor:pointer" onclick="switchTab('product')"><div style="font-size:20px">📦</div><small>My Product</small></div><div style="flex:1;background:#00a651;color:#fff;border-radius:14px;padding:12px;text-align:center;cursor:pointer" onclick="switchTab('share')"><div style="font-size:20px">👥</div><small>My Team</small></div><div style="flex:1;background:#00a651;color:#fff;border-radius:14px;padding:12px;text-align:center;cursor:pointer" onclick="switchTab('share')"><div style="font-size:20px">✉️</div><small>Invite Friends</small></div><div style="flex:1;background:#00a651;color:#fff;border-radius:14px;padding:12px;text-align:center;cursor:pointer" onclick="openInfo('support')"><div style="font-size:20px">🎧</div><small>Exchange</small></div></div></div>
 </div>
 
-<!-- PRODUCT TAB - LIKE NAVIEN PRODUCT -->
+<!-- PRODUCT -->
 <div id="tab-product" class="tab">
-<div class="filter"><button class="active" onclick="filterVIP('all',this)">All</button><button onclick="filterVIP('D',this)">D-Series</button><button onclick="filterVIP('N',this)">N-Series</button><button onclick="filterVIP('V',this)">V-Series</button><button onclick="filterVIP('KING',this)">KING</button></div>
-<div class="live-card-navien" style="background:linear-gradient(135deg,#fffbeb,#fff9c4);border-color:#ffcc00"><b style="font-size:12px">🔥 52 People renting FINTOR now! <span class="live-dot"></span></b><div id="prodLive" style="font-size:11px;margin-top:6px"></div></div>
-<div class="prod-list" id="vList"></div>
+<div style="padding:10px 14px;display:flex;gap:8px"><button class="badge" type="button" style="border:none">All</button><button type="button" style="border:1px solid #e5e7eb;background:#fff;padding:6px 14px;border-radius:20px;font-size:12px">D-Series</button><button type="button" style="border:1px solid #e5e7eb;background:#fff;padding:6px 14px;border-radius:20px;font-size:12px">N-Series</button><button type="button" style="border:1px solid #e5e7eb;background:#fff;padding:6px 14px;border-radius:20px;font-size:12px">V-Series</button></div>
+<div class="card"><div style="background:linear-gradient(135deg,#fffbeb,#fff9c4);border:1px solid #ffcc00;border-radius:12px;padding:10px;font-size:12px"><b>🔥 52 People renting VIPs in V19.1 now! <span class="live-dot"></span></b><div id="prodLive" style="font-size:11px;margin-top:4px"></div></div><div id="vList" style="margin-top:10px"></div></div>
 </div>
 
-<!-- SHARE TAB - LIKE NAVIEN INVITE FRIENDS -->
+<!-- SHARE -->
 <div id="tab-share" class="tab">
-<div class="share-top"><b style="color:#ff9900;font-size:13px">YOUR INVITATION LINK</b><input id="refLink" class="share-input" readonly value="https://easyearn869-oss.github.io/Ezo/?ref=0783228690"><button class="share-orange" type="button" onclick="copyRef()">COPY LINK</button>
-<div style="margin-top:18px"><b style="color:#ff9900;font-size:13px">INVITE CODE</b><div class="qr-box"><input id="refCode" class="share-input" style="flex:1" readonly value="0SA6"><div class="qr">QR CODE<br><span style="font-size:30px">▦</span></div></div><button class="share-orange" type="button" onclick="copyCode()">Copy</button></div>
-<div style="margin-top:18px"><b style="color:#ff9900;font-size:13px">INVITATION GAINS</b><p style="font-size:13px;line-height:1.8;margin-top:8px;color:#444">• Share your invitation link with friends to join and get <b style="color:#ff9900">invitation bonus</b> and earn a commission<br>• <b style="color:#ff9900">15% commission</b> on your directs (level B) - e.g. 15K → 2,250 UGX<br>• <b style="color:#ff9900">3% commission</b> on second-level sponsorships (level C)<br>• Daily 1% team income forever</p></div>
-</div>
-</div>
-
-<!-- WALLET TAB - LIKE NAVIEN WALLET -->
-<div id="tab-wallet" class="tab">
-<div class="wallet-top"><h1 id="wBal">5,000 <small style="font-size:14px">UGX</small></h1><small>Recharge Wallet <b id="wRecharge">0 UGX</b></small></div>
-<div class="wallet-item" onclick="switchTab('product')"><span>Withdrawal History</span><span>›</span></div>
-<div class="wallet-item" onclick="openInfo('account')"><span>Fund History</span><span>›</span></div>
-<div class="wallet-item"><span>Energy Storage</span><b>0</b></div>
-<div class="home-actions"><button class="btn-recharge" type="button" onclick="openR()">Recharge</button><button class="btn-withdraw" type="button" onclick="openW()">Withdraw</button></div>
-<div style="margin:14px"><b style="font-size:13px">STATISTICS</b></div>
-<div class="wallet-stats"><div class="wallet-stat"><small>TODAY'S INCOME</small><b id="todayInc">0.00 UGX</b></div><div class="wallet-stat"><small>TOTAL INCOME</small><b id="totalInc">0.00 UGX</b></div><div class="wallet-stat"><small>TOTAL RECHARGE</small><b id="totalRech">0.00 UGX</b></div><div class="wallet-stat"><small>TOTAL WITHDRAW</small><b id="totalWith">0.00 UGX</b></div></div>
-<div class="wallet-item"><span>Balance</span><b id="wBal2">5,000 UGX</b></div>
-<div style="margin:12px;background:#fff;border-radius:14px;padding:12px;border:1px solid #e5e7eb"><h4 style="font-size:12px">📜 Transaction History</h4><div id="txList" style="font-size:11px;color:#6b7280;margin-top:8px">No transactions - Recharge MIN 15K!</div></div>
-</div>
-
-<!-- MY TAB - LIKE NAVIEN MY -->
-<div id="tab-my" class="tab">
-<div class="my-grid"><div onclick="switchTab('product')"><span>◉</span><small>My Product</small></div><div onclick="switchTab('share')"><span>👥</span><small>My Team</small></div><div onclick="switchTab('share')"><span>✉</span><small>Invite Friends</small></div><div onclick="openInfo('support')"><span>⇆</span><small>Exchange</small></div></div>
-<div class="my-list">
-<div class="my-list-item" onclick="openInfo('gift')"><span>Redeem Gift</span><span>›</span></div>
-<div class="my-list-item" onclick="openInfo('income')"><span>Income Records</span><span>›</span></div>
-<div class="my-list-item" onclick="openW()"><span>Set withdraw Number</span><span>›</span></div>
-<div class="my-list-item" onclick="openChangePass()"><span>Change password</span><span>›</span></div>
-<div class="my-list-item" onclick="openInfo('company')"><span>About Us - CEO Derick Ezra + Kampala Location</span><span>›</span></div>
-<div class="my-list-item" onclick="shareApp()"><span>Download App</span><span>›</span></div>
-<div class="my-list-item" onclick="logout()" style="background:#fff5f5"><span style="color:#ff3b30;font-weight:800">Logout - <span id="myName">User</span> • <span id="myPhone">07...</span></span><span>›</span></div>
-</div>
-<div style="margin:12px;background:#fff;border-radius:14px;padding:14px;border:1px solid #e5e7eb;text-align:center"><div style="width:60px;height:60px;background:linear-gradient(135deg,#0f5132,#0a7a4c);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:900;margin:0 auto" id="myAv">U</div><b id="myFull" style="display:block;margin-top:8px">User Name</b><small style="color:#6b7280">Kampala, Uganda • V19 NAVIEN</small><br><b id="myBal" style="color:#00a651">5,000 UGX</b> • <span id="myVip2">VIP 0</span></div>
-</div>
-
-<div class="fab" onclick="window.open('https://wa.me/256795143386?text=Hello Support V19 NAVIEN','_blank')">🎧</div>
-<div id="proofPopup" class="live-popup"><div style="width:36px;height:36px;background:#e8f5e9;border-radius:50%;display:flex;align-items:center;justify-content:center">💰</div><div style="font-size:11px"><b id="proofName">07****89</b> <span id="proofAction">rented FINTOR FC 00 15K</span><br><small style="color:#6b7280">3s ago • LIVE V19</small></div></div>
-
-<div class="nav">
-<button class="active" id="nav-home" type="button" onclick="switchTab('home')"><span class="icon">⌂</span>Home</button>
-<button id="nav-product" type="button" onclick="switchTab('product')"><span class="icon">◉</span>Product</button>
-<button id="nav-share" type="button" onclick="switchTab('share')"><span class="icon">■</span>Share</button>
-<button id="nav-wallet" type="button" onclick="switchTab('wallet')"><span class="icon">▭</span>Wallet</button>
-<button id="nav-my" type="button" onclick="switchTab('my')"><span class="icon">☺</span>My</button>
-</div>
-</div>
-
-<!-- MODALS - NAVIEN STYLE -->
-<div id="mR" class="modal"><div class="modal-box"><h3>Recharge - V19 NAVIEN</h3><p style="font-size:12px;color:#6b7280;margin-top:8px">PLEASE ENTER AMOUNT</p><input id="rAmt" type="number" value="15000" style="background:#eef4ef;border:none;padding:14px;border-radius:12px;font-weight:800"><p style="font-size:12px;font-weight:800;margin-top:12px">SELECT THE AMOUNT</p><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:8px"><button class="btn-white" type="button" onclick="document.getElementById('rAmt').value=50000">50000</button><button class="btn-white" type="button" onclick="document.getElementById('rAmt').value=85000">85000</button><button class="btn-white" type="button" onclick="document.getElementById('rAmt').value=100000">100000</button><button class="btn-white" type="button" onclick="document.getElementById('rAmt').value=300000">300000</button><button class="btn-white" type="button" onclick="document.getElementById('rAmt').value=800000">800000</button><button class="btn-white" type="button" onclick="document.getElementById('rAmt').value=2000000">2000000</button></div><p style="font-size:12px;font-weight:800;margin-top:12px">PAYMENT METHODS</p><div style="display:flex;gap:8px;margin-top:8px"><button class="btn-gold" style="background:#00a651;color:#fff;flex:1">MTN MoMo</button><button class="btn-white" style="flex:1">Airtel Money</button></div><input id="rTx" placeholder="MoMo TxID - Enter after payment to 0795143386" style="margin-top:12px"><button class="auth-btn" type="button" onclick="doR()">Confirm - V19</button><button class="btn-white" type="button" onclick="closeM()">Cancel</button></div></div>
-<div id="mW" class="modal"><div class="modal-box"><h3>Withdrawal - V19 NAVIEN</h3><p style="font-size:12px;color:#6b7280;margin-top:8px">PLEASE ENTER AMOUNT</p><input id="wAmt" type="number" value="5000" style="background:#eef4ef;border:none;padding:14px;border-radius:12px;font-weight:800"><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px"><div style="background:#eef4ef;padding:12px;border-radius:12px"><small style="font-size:10px">FEE (15%)</small><br><b id="wFee">750 UGX</b></div><div style="background:#eef4ef;padding:12px;border-radius:12px"><small style="font-size:10px">YOU RECEIVE</small><br><b id="wReceive">4,250 UGX</b></div></div><div style="margin-top:12px"><b style="font-size:12px">WITHDRAWAL INSTRUCTIONS</b><div style="background:#eef4ef;padding:12px;border-radius:12px;margin-top:8px;font-size:12px;line-height:1.6;color:#6b7280">1. Withdrawal hours: 9:00 - 18:00 daily.<br>2. No limits.<br>3. Minimum withdrawal is <b style="color:#ff3b30">5,000 UGX</b> (V19 MIN 10K).<br>4. A withdrawal tax of 15% applies.<br>5. Withdraws reflects within 5hrs to 24hrs.</div></div><button class="auth-btn" style="background:#ff9900" type="button" onclick="doW()">Confirm</button><button class="btn-white" type="button" onclick="closeM()">Cancel</button></div></div>
-<div id="mInfo" class="modal"><div class="modal-box"><h3 id="mTitle">Info V19</h3><div id="mBody" style="font-size:12px;line-height:1.7;color:#374151;margin-top:10px"></div><button class="btn-white" type="button" onclick="closeM()" style="margin-top:12px">Close V19</button></div></div>
-<div id="mPass" class="modal"><div class="modal-box"><h3>Change password - V19</h3><input id="oldP" type="password" placeholder="Old Password"><input id="newP" type="password" placeholder="New Password"><input id="newP2" type="password" placeholder="Confirm"><button class="btn-gold" type="button" onclick="changePass()">UPDATE V19</button><button class="btn-white" type="button" onclick="closeM()">Cancel</button></div></div>
-
-<script>
-let cur=null; const MIN_R=15000, MIN_W=5000, KEY_U='ezol_users_v19', KEY_C='ezol_current_v19', KEY_B='ezol_bal_', KEY_R='ezol_req_v19', KEY_W='ezol_wit_v19';
-const vips=[
-{id:1,n:'FINTOR FC 00',code:'FINTOR FC 00',p:15000,day:3000,total:120000,cycles:40,roi:'800%',cat:'D',min:true},
-{id:2,n:'FINTOR ORD',code:'FINTOR ORD',p:20000,day:2000,total:60000,cycles:30,roi:'300%',cat:'D'},
-{id:3,n:'FINTOR N-10',code:'FINTOR N-10',p:35000,day:3500,total:105000,cycles:30,roi:'300%',cat:'N'},
-{id:4,n:'FINTOR V-20',code:'FINTOR V-20',p:50000,day:5500,total:220000,cycles:40,roi:'440%',cat:'V'},
-{id:5,n:'FINTOR D-50',code:'FINTOR D-50',p:75000,day:9000,total:360000,cycles:40,roi:'480%',cat:'D'},
-{id:6,n:'FINTOR N-100',code:'FINTOR N-100',p:100000,day:13000,total:520000,cycles:40,roi:'520%',cat:'N'},
-{id:7,n:'FINTOR V-150',code:'FINTOR V-150',p:150000,day:21000,total:840000,cycles:40,roi:'560%',cat:'V'},
-{id:8,n:'FINTOR D-200',code:'FINTOR D-200',p:200000,day:30000,total:1200000,cycles:40,roi:'600%',cat:'D'},
-{id:9,n:'FINTOR N-300',code:'FINTOR N-300',p:300000,day:48000,total:1920000,cycles:40,roi:'640%',cat:'N'},
-{id:10,n:'FINTOR V-500',code:'FINTOR V-500',p:500000,day:85000,total:3400000,cycles:40,roi:'680%',cat:'V'},
-{id:11,n:'FINTOR D-800',code:'FINTOR D-800',p:800000,day:140000,total:5600000,cycles:40,roi:'700%',cat:'D'},
-{id:12,n:'FINTOR N-1000',code:'FINTOR N-1000',p:1000000,day:180000,total:7200000,cycles:40,roi:'720%',cat:'N'},
-{id:13,n:'FINTOR V-1500',code:'FINTOR V-1500',p:1500000,day:280000,total:11200000,cycles:40,roi:'746%',cat:'V'},
-{id:14,n:'FINTOR D-2000',code:'FINTOR D-2000',p:2000000,day:400000,total:16000000,cycles:40,roi:'800%',cat:'D'},
-{id:15,n:'FINTOR N-3000',code:'FINTOR N-3000',p:3000000,day:620000,total:24800000,cycles:40,roi:'826%',cat:'N'},
-{id:16,n:'FINTOR V-5000',code:'FINTOR V-5000',p:5000000,day:1100000,total:44000000,cycles:40,roi:'880%',cat:'V'},
-{id:17,n:'FINTOR D-7000',code:'FINTOR D-7000',p:7000000,day:1600000,total:64000000,cycles:40,roi:'914%',cat:'D'},
-{id:18,n:'FINTOR N-10000',code:'FINTOR N-10000',p:10000000,day:2400000,total:96000000,cycles:40,roi:'960%',cat:'N'},
-{id:19,n:'FINTOR V-12000',code:'FINTOR V-12000',p:12000000,day:3000000,total:120000000,cycles:40,roi:'1000%',cat:'V'},
-{id:20,n:'FINTOR KING 👑 15M',code:'FINTOR KING 15M',p:15000000,day:6500000,total:585000000,cycles:90,roi:'3900%',cat:'KING',king:true}
-];
-window.showR=function(){document.getElementById('loginForm').style.display='none';document.getElementById('regForm').style.display='block';}
-window.showL=function(){document.getElementById('regForm').style.display='none';document.getElementById('loginForm').style.display='block';}
-window.switchTab=function(tab){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById('tab-'+tab).classList.add('active');document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));document.getElementById('nav-'+tab).classList.add('active');if(tab==='product')renderVIP('all');if(tab==='home')renderHot();if(tab==='wallet')updateWallet();if(tab==='my')updateMy();window.scrollTo(0,0);}
-function getUsers(){let all=[];['ezol_users_v19','ezol_users_v18','ezol_users_v10000','ezol_users_v1004'].forEach(k=>{try{let u=JSON.parse(localStorage.getItem(k)||'[]');all=all.concat(u);}catch(e){}});let map={};all.forEach(u=>{if(u.phone) map[u.phone]=u;});return Object.values(map);}
-function saveUser(u){let us=JSON.parse(localStorage.getItem(KEY_U)||'[]');let idx=us.findIndex(x=>x.phone===u.phone);if(idx>=0) us[idx]=u; else us.push(u); localStorage.setItem(KEY_U,JSON.stringify(us));}
-window.login=function(){let ph=document.getElementById('lPh').value.trim(),pa=document.getElementById('lPa').value.trim();if(!ph||!pa){document.getElementById('err').innerText='❌ Enter Phone + Password';return;}let u=getUsers().find(x=>x.phone===ph&&x.pass===pa);if(!u){document.getElementById('err').innerText='❌ Wrong! Register';return;}localStorage.setItem(KEY_C,JSON.stringify(u));cur=u;showApp();}
-window.reg=function(){let n=document.getElementById('rNa').value.trim(),ph=document.getElementById('rPh').value.trim(),pa=document.getElementById('rPa').value.trim(),ref=document.getElementById('rRef').value.trim()||'0795143386';if(!n||!ph||!pa){document.getElementById('err').innerText='❌ Name Phone Pass required';return;}if(getUsers().find(u=>u.phone===ph)){document.getElementById('err').innerText='❌ Phone exists!';return;}let u={name:n,phone:ph,pass:pa,ref:ref,invite:ref,joined:new Date().toLocaleString(),location:'Kampala, Uganda'};saveUser(u);localStorage.setItem(KEY_B+ph,'5000');localStorage.setItem(KEY_C,JSON.stringify(u));cur=u;showApp();}
-function showApp(){document.getElementById('authPage').style.display='none';document.getElementById('appPage').style.display='block';let bal=parseInt(localStorage.getItem(KEY_B+cur.phone)||'5000');document.getElementById('hotBal').innerText='Balance: UGX '+bal.toLocaleString();document.getElementById('wBal').innerHTML=bal.toLocaleString()+' <small style="font-size:14px">UGX</small>';document.getElementById('wBal2').innerText=bal.toLocaleString()+' UGX';document.getElementById('wRecharge').innerText=bal.toLocaleString()+' UGX';document.getElementById('myName').innerText=cur.name;document.getElementById('myPhone').innerText=cur.phone;document.getElementById('myFull').innerText=cur.name;document.getElementById('myAv').innerText=(cur.name||'U')[0].toUpperCase();document.getElementById('myBal').innerText=bal.toLocaleString()+' UGX';document.getElementById('myVip2').innerText='VIP '+Math.min(Math.floor(bal/MIN_R),20);document.getElementById('refLink').value='https://easyearn869-oss.github.io/Ezo/?ref='+cur.phone;document.getElementById('refCode').value=cur.phone.slice(-4).toUpperCase()||'0SA6';renderHot();renderVIP('all');updateWallet();startLiveProofs();}
-function renderHot(){let el=document.getElementById('hotScroll');if(!el)return;el.innerHTML='';vips.slice(0,6).forEach(v=>{el.innerHTML+=`<div class="hot-card"><div class="hot-img"><img src="logo.jpg" onerror="this.src='https://via.placeholder.com/80'"></div><div><div class="prod-title"><span class="badge">${v.code}</span><span class="badge badge-o">${v.roi}</span></div><small class="small-tag">NON-CYCLE</small><div style="margin-top:6px;font-size:11px"><div style="display:flex;justify-content:space-between"><span>Total Income</span><b style="color:#00a651">${v.total.toLocaleString()} UGX</b></div><div style="display:flex;justify-content:space-between"><span>Day Income</span><b style="color:#00a651">${v.day.toLocaleString()} UGX</b></div><div style="display:flex;justify-content:space-between"><span>Cycles</span><b style="color:#00a651">${v.cycles}</b></div><div style="display:flex;justify-content:space-between"><span>Price</span><b style="color:#00a651">${v.p.toLocaleString()} UGX</b></div></div></div><button class="rent-btn" type="button" onclick="buyVIP(${v.id})">Rent Now - ${v.p.toLocaleString()} UGX</button></div>`;});}
-window.filterVIP=function(cat,btn){document.querySelectorAll('.filter button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderVIP(cat);}
-function renderVIP(filter='all'){let bal=cur?parseInt(localStorage.getItem(KEY_B+cur.phone)||'0'):0;let my=Math.min(Math.floor(bal/MIN_R),20);let el=document.getElementById('vList');if(!el)return;el.innerHTML='';let list=vips;if(filter!=='all') list=vips.filter(v=>v.cat===filter);list.forEach(v=>{let own=v.id<=my;el.innerHTML+=`<div class="prod-card ${v.king?'king':''}"><div class="prod-left"><img src="logo.jpg" onerror="this.src='https://via.placeholder.com/88'"></div><div class="prod-right"><div class="prod-title"><span class="badge">${v.code}</span><span class="badge badge-o">${v.roi}</span></div><small class="small-tag">NON-CYCLE</small><div class="prod-price"><span>PRICE</span><b>${v.p.toLocaleString()}.00 UGX</b></div><div class="prod-price"><span>CYCLES</span><b>${v.cycles} Days</b></div></div><div class="prod-grid"><div><small>DAY INCOME</small><b>${v.day.toLocaleString()}.00 UGX</b></div><div><small>TOTAL INCOME</small><b>${v.total.toLocaleString()}.00 UGX</b></div></div><button class="rent-btn" type="button" onclick="buyVIP(${v.id})" style="background:${own?'#e5e7eb':'#00a651'};color:${own?'#00a651':'#fff'}">${own?'OWNED ✅ - Daily '+v.day.toLocaleString()+' UGX':'Rent Now'}</button>${v.min?'<small style="position:absolute;top:8px;right:8px;background:#ff3b30;color:#fff;padding:2px 6px;border-radius:6px;font-size:9px">MIN 15K</small>':''}</div>`;});}
-function updateWallet(){let bal=cur?parseInt(localStorage.getItem(KEY_B+cur.phone)||'0'):0;document.getElementById('todayInc').innerText=(bal>MIN_R?(vips[Math.min(Math.floor(bal/MIN_R),20)-1]?.day||0).toLocaleString():'0.00')+' UGX';document.getElementById('totalInc').innerText=(bal*6).toLocaleString()+' UGX';document.getElementById('totalRech').innerText=bal.toLocaleString()+' UGX';document.getElementById('totalWith').innerText='0.00 UGX';let reqs=JSON.parse(localStorage.getItem(KEY_R)||'[]').filter(r=>r.phone===cur.phone).reverse();let withs=JSON.parse(localStorage.getItem(KEY_W)||'[]').filter(r=>r.phone===cur.phone).reverse();let html='';if(reqs.length===0&&withs.length===0)html='No transactions - Recharge MIN 15K!';else{reqs.forEach(r=>{html+=`<div style="background:#fff;border:1px solid #e5e7eb;padding:10px;border-radius:10px;margin-bottom:8px;display:flex;justify-content:space-between"><div><b>💳 ${r.amt.toLocaleString()} UGX</b><br><small>Tx:${r.tx} • ${r.time}</small></div><span style="color:#00a651;font-weight:800">${r.status.toUpperCase()}</span></div>`;});withs.forEach(w=>{html+=`<div style="background:#fff;border:1px solid #e5e7eb;padding:10px;border-radius:10px;margin-bottom:8px;display:flex;justify-content:space-between"><div><b>💸 ${w.amt.toLocaleString()} UGX</b><br><small>To ${w.momo} • ${w.time}</small></div><span style="color:#ff9900;font-weight:800">${w.status.toUpperCase()}</span></div>`;});}document.getElementById('txList').innerHTML=html;}
-function updateMy(){let bal=cur?parseInt(localStorage.getItem(KEY_B+cur.phone)||'0'):0;document.getElementById('myBal').innerText=bal.toLocaleString()+' UGX';}
-window.buyVIP=function(id){let v=vips.find(x=>x.id===id);let bal=parseInt(localStorage.getItem(KEY_B+cur.phone)||'0');if(bal<v.p){alert('❌ Need '+v.p.toLocaleString()+' UGX\nYou have '+bal.toLocaleString()+' UGX\n\nRecharge MIN 15K V19 NAVIEN!\n\nFOMO: 52 people renting this now!');openR();return;}alert('✅ Rented '+v.code+'!\n\nPrice: '+v.p.toLocaleString()+' UGX\nDay Income: '+v.day.toLocaleString()+' UGX\nTotal: '+v.total.toLocaleString()+' UGX\nCycles: '+v.cycles+' Days\nROI: '+v.roi+'\n\nDaily income LIVE at midnight V19!');}
-window.openR=function(){document.getElementById('mR').classList.add('show');}
-window.openW=function(){document.getElementById('mW').classList.add('show');}
-window.closeM=function(){document.querySelectorAll('.modal').forEach(m=>m.classList.remove('show'));}
-window.doR=function(){let a=parseInt(document.getElementById('rAmt').value),t=document.getElementById('rTx').value.trim();if(!a||a<MIN_R){alert('MIN 15K Required V19 NAVIEN!');return;}if(!t){alert('Enter TxID after MoMo to 0795143386');return;}let allReqs=JSON.parse(localStorage.getItem(KEY_R)||'[]');if(allReqs.find(r=>r.tx===t)){alert('TxID already used!');return;}let curBal=parseInt(localStorage.getItem(KEY_B+cur.phone)||'0');localStorage.setItem(KEY_B+cur.phone,(curBal+a).toString());allReqs.push({phone:cur.phone,name:cur.name,amt:a,tx:t,status:'pending',time:new Date().toLocaleString()});localStorage.setItem(KEY_R,JSON.stringify(allReqs));closeM();showApp();alert('✅ Recharge '+a.toLocaleString()+' UGX Submitted V19!\nTxID: '+t+'\nNew Balance: '+(curBal+a).toLocaleString()+' UGX');}
-window.doW=function(){let a=parseInt(document.getElementById('wAmt').value);let bal=parseInt(localStorage.getItem(KEY_B+cur.phone)||'0');if(!a||a<MIN_W){alert('MIN 5,000 UGX!');return;}if(a>bal){alert('Insufficient! Have '+bal.toLocaleString());return;}localStorage.setItem(KEY_B+cur.phone,(bal-a).toString());let withs=JSON.parse(localStorage.getItem(KEY_W)||'[]');withs.push({phone:cur.phone,name:cur.name,momo:cur.phone,amt:a,bal:bal-a,status:'pending',time:new Date().toLocaleString()});localStorage.setItem(KEY_W,JSON.stringify(withs));closeM();showApp();alert('✅ Withdraw '+a.toLocaleString()+' UGX Submitted!\nFee 15%: '+(a*0.15).toLocaleString()+'\nYou Receive: '+(a*0.85).toLocaleString()+'\nTo: '+cur.phone);}
-window.copyRef=function(){let txt=document.getElementById('refLink').value;navigator.clipboard.writeText(txt);alert('✅ Invitation Link Copied V19!\n\n'+txt+'\n\nShare & Earn 15% commission!');}
-window.copyCode=function(){let txt=document.getElementById('refCode').value;navigator.clipboard.writeText(txt);alert('✅ Invite Code Copied: '+txt);}
-window.shareApp=function(){let txt='🚀 Join EZOL EARN2 V19 NAVIEN CLONE\n✅ 12,847+ Trusted Users\n💰 FINTOR FC 00: 15K → 3K/day x40=120K 800%\n👑 20 Products 15K-15M KING\n💸 Withdraw Min 5K\n🔗 15% + 3% Commission\n\n👉 https://easyearn869-oss.github.io/Ezo/?ref='+(cur?cur.phone:'0795143386');window.open('https://wa.me/?text='+encodeURIComponent(txt),'_blank');}
-window.openInfo=function(type){
-  const infos={
-    account:`<b>My Account V19</b><br>Name: ${cur.name}<br>Phone: ${cur.phone}<br>Balance: ${localStorage.getItem(KEY_B+cur.phone)} UGX<br>VIP: ${Math.floor(parseInt(localStorage.getItem(KEY_B+cur.phone)||'0')/MIN_R)}<br>Joined: ${cur.joined}<br>Location: Kampala, Uganda<br>Link: https://easyearn869-oss.github.io/Ezo/?ref=${cur.phone}`,
-    company:`<b>🏢 About Us - EZOL EARN2 V19 NAVIEN CLONE</b><br><br>Company: EZOL EARN2 Investment Ltd<br>CEO: Derick Ezra - Founder & Visionary Entrepreneur<br>Founded: 2024<br>Location: 📍 Nakawa Business Park, Kampala-Jinja Road, Kampala, Uganda<br>Branches: Kampala, Mbarara, Gulu, Mbale, Arua<br>Registration: URSB Certified - License #EZOL2024/V19/UG<br>Users: 12,847+<br>Products: 20 FINTOR Plans 15K-15M<br>Daily: 2K-6.5M<br>MoMo: 0795143386<br>Group: 1,272 Members<br><br>Mission: Empower 1M Ugandans - Smart energy investment<br>Vision: #1 Platform East Africa - Like Navien<br>CEO Message: "V19 NAVIEN CLONE is here! Together we grow! - CEO Derick Ezra, Kampala"`,
-    support:`<b>🎧 Customer Support V19</b><br>CEO Derick Ezra<br>Location: Kampala Nakawa<br>Phone: 0795143386<br>Group: https://chat.whatsapp.com/CJl3YvYBHNR10VWAB2NUNx<br>V19 NAVIEN 24/7`,
-    gift:`<b>Redeem Gift V19</b><br>Enter gift code from
+<div class="card" style="background:var(--bg)"><b style="color:#ff9900">YOUR INVITATION LINK</b><div style="background:#fff;padding:12px;border-radius:12px;margin:10px 0;word-break:break-all;font-size:12px" id="refLink">https://easyearn869-oss.github.io/Ezo/?ref=0783228690</div><button class="btn-main" style="background:#ff9900" type="button" onclick="copyRef()">COPY LINK</button><div style="margin-top:16px"><b style="color:#ff9900">INVITE CODE</b><div style="display:flex;gap:10px;margin-top:8px"><div style="flex:1;background:#fff;padding:14px;border-radius:12px;text-align:center;font-weight:900" id="refCode">0783228690</div><div style="width:90px;height:90px;background:#fff;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:10px;border:1
