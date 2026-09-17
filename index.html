@@ -1,97 +1,119 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no"><title>EZOL EARN2 V19.1 FIXED</title>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no"><title>EZOL EARN2 V19.2 NAVIEN FULL</title>
 <style>
-:root{--g:#00a651;--g2:#0a5c36;--bg:#f5f8f6;--c:#fff;--b:#e5e7eb;--m:#6b7280;--y:#ff9900}
+:root{--g:#00a651;--g2:#0a5c36;--bg:#f4f7f5;--c:#fff;--b:#e6ece8;--m:#6b7280;--y:#ff9900;--y1:#ffcc33}
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial;-webkit-tap-highlight-color:transparent}
 body{background:var(--bg);color:#111;padding-bottom:90px}
-.top-green{background:linear-gradient(180deg,#a8d5b5 0%,#8ec9a0 100%);height:210px;border-radius:0 0 50% 50% / 0 0 25% 25%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;position:relative}
-.top-green b{font-size:42px;font-weight:900;color:#fff;letter-spacing:2px;margin-top:10px}
-.top-green small{font-size:12px;opacity:.9;margin-top:4px}
-.auth-wrap{margin:-40px 16px 0;background:var(--c);border-radius:20px;padding:20px;box-shadow:0 10px 30px rgba(0,0,0,.08);border:1px solid var(--b)}
-.auth-wrap h2{font-size:22px;font-weight:900}
-.auth-wrap p.sub{font-size:12px;color:var(--m);margin:4px 0 16px}
-.inp{width:100%;padding:14px 16px;border-radius:14px;border:none;background:#eef4f0;font-size:14px;margin:8px 0;outline:none}
+.top-green{background:linear-gradient(180deg,#9ccfa9 0%,#7ec194 100%);height:220px;border-radius:0 0 55% 55% / 0 0 30% 30%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff}
+.top-green .logo{width:60px;height:60px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--g2);font-weight:900;font-size:26px;box-shadow:0 4px 12px rgba(0,0,0,.15)}
+.top-green b{font-size:32px;margin-top:8px;letter-spacing:1px}.top-green small{font-size:11px;opacity:.9}
+.auth-box{margin:-50px 16px 0;background:var(--c);border-radius:22px;padding:22px;box-shadow:0 12px 32px rgba(0,0,0,.1);border:1px solid var(--b)}
+.auth-box h2{font-size:21px;font-weight:900}.auth-box p{font-size:12px;color:var(--m);margin:4px 0 12px}
+.inp{width:100%;padding:14px 16px;border-radius:14px;border:none;background:#eef4f0;margin:7px 0;font-size:14px;outline:none}
 .inp:focus{background:#e2efe6;box-shadow:0 0 0 2px var(--g)}
-.btn-green{width:100%;padding:15px;border:none;background:var(--g);color:#fff;border-radius:30px;font-weight:900;font-size:15px;margin-top:12px;cursor:pointer;box-shadow:0 6px 16px rgba(0,166,81,.3)}
-.btn-green:active{transform:scale(.98);background:var(--g2)}
-.link-row{font-size:13px;text-align:center;margin-top:12px}
-.link-row span{color:var(--g);font-weight:800;cursor:pointer;text-decoration:underline}
-#err{color:#ff3b30;font-size:12px;font-weight:700;text-align:center;margin-top:10px;min-height:16px}
+.btn{width:100%;padding:14px;border:none;border-radius:30px;font-weight:900;font-size:15px;cursor:pointer;margin-top:10px}
+.btn-g{background:var(--g);color:#fff;box-shadow:0 6px 16px rgba(0,166,81,.3)}.btn-g:active{transform:scale(.98)}
+.btn-y{background:linear-gradient(180deg,var(--y1),var(--y));color:#000}
+.btn-w{background:#fff;border:1px solid var(--b);color:#111}
+#err{color:#ff3b30;font-size:12px;font-weight:700;text-align:center;margin-top:8px;min-height:14px}
+.link{text-align:center;font-size:13px;margin-top:12px}.link u{color:var(--g);font-weight:800;cursor:pointer}
 
 /* APP */
 .top{position:sticky;top:0;z-index:99;background:var(--c);padding:10px 14px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--b)}
-.left{display:flex;align-items:center;gap:10px}.av{width:42px;height:42px;background:var(--g2);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900}
+.left{display:flex;align-items:center;gap:10px}.av{width:40px;height:40px;background:var(--g2);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900}
 .online{background:#e8f5e9;color:var(--g);padding:4px 10px;border-radius:20px;font-size:10px;font-weight:800}
 .tab{display:none}.tab.active{display:block}
-.card{background:var(--c);margin:12px;border-radius:16px;padding:14px;border:1px solid var(--b);box-shadow:0 4px 12px rgba(0,0,0,.04)}
-.hot-head{display:flex;justify-content:space-between;align-items:center;margin:14px 14px 0}
-.hot-head b{font-size:16px}
-.prod-scroll{display:flex;gap:12px;overflow-x:auto;padding:10px 14px 10px;scrollbar-width:none}
-.prod-scroll::-webkit-scrollbar{display:none}
-.pcard{min-width:280px;background:linear-gradient(135deg,#f0faf4,#e8f5e9);border-radius:18px;padding:14px;border:1px solid #d1e7dd;position:relative}
-.pcard .badge{position:absolute;top:10px;right:10px;background:linear-gradient(#ffcc33,#ff9900);color:#000;font-size:9px;font-weight:900;padding:3px 8px;border-radius:10px}
-.pcard h3{font-size:13px;font-weight:900;margin-top:4px}
-.pcard .stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;font-size:11px}
-.pcard .stats-grid div{background:#fff;padding:8px;border-radius:10px;text-align:center;border:1px solid #e5e7eb}
-.pcard .price{font-size:18px;font-weight:900;color:var(--g2);margin-top:10px}
-.pcard button{width:100%;margin-top:10px;background:var(--g);color:#fff;border:none;padding:12px;border-radius:24px;font-weight:900;cursor:pointer}
-.vips{margin:12px}
-.vip{display:flex;justify-content:space-between;align-items:center;background:#fff;border:1px solid var(--b);padding:12px;border-radius:14px;margin-bottom:8px}
-.vip b{font-size:13px}
-.nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--b);display:flex;justify-content:space-around;padding:8px 0 10px;z-index:100}
-.nav button{border:none;background:transparent;font-size:10px;color:var(--m);display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;padding:6px 12px;border-radius:10px}
-.nav button.active{color:var(--g);background:#e8f5e9}
-.live-ticker{background:#000;color:#fff;padding:6px 0;font-size:10px;white-space:nowrap;overflow:hidden;position:sticky;top:48px;z-index:98}
-.live-ticker span{display:inline-block;animation:scroll 70s linear infinite}
+.ticker{background:#000;color:#fff;padding:6px 0;font-size:10px;white-space:nowrap;overflow:hidden;position:sticky;top:48px;z-index:98}
+.ticker span{display:inline-block;animation:scroll 75s linear infinite}
 @keyframes scroll{0%{transform:translateX(100%)}100%{transform:translateX(-100%)}}
-.live-card{background:#fff;margin:12px;border-radius:12px;padding:10px;border:1px solid var(--b);font-size:11px;line-height:1.7}
-.live-dot{width:7px;height:7px;background:#00ff00;border-radius:50%;display:inline-block;animation:blink 1s infinite}
+.live-card{background:#fff;margin:12px;border-radius:14px;padding:12px;border:1px solid var(--b);box-shadow:0 2px 8px rgba(0,0,0,.03)}
+.dot{width:7px;height:7px;background:#00ff00;border-radius:50%;display:inline-block;animation:blink 1s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-.proof-popup{position:fixed;left:12px;bottom:85px;z-index:102;background:#fff;border-radius:12px;padding:10px 12px;box-shadow:0 8px 20px rgba(0,0,0,.2);border-left:4px solid var(--g);display:none;align-items:center;gap:8px;max-width:260px;font-size:11px}
-.proof-popup.show{display:flex}
-.fab{position:fixed;right:12px;bottom:85px;z-index:101;width:52px;height:52px;border-radius:50%;border:none;background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;font-size:22px;box-shadow:0 6px 16px rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center;cursor:pointer}
+.hot-head{display:flex;justify-content:space-between;align-items:center;margin:14px 14px 0}
+.hot-head b{font-size:15px}
+.h-scroll{display:flex;gap:12px;overflow-x:auto;padding:10px 14px;scrollbar-width:none}
+.h-scroll::-webkit-scrollbar{display:none}
+.pcard{min-width:300px;background:linear-gradient(135deg,#fdf8ec,#fef9e7);border-radius:20px;padding:14px;border:1px solid #f5e6b8;position:relative;box-shadow:0 4px 14px rgba(0,0,0,.05)}
+.pcard.green{background:linear-gradient(135deg,#f0faf4,#e8f5e9);border-color:#c8e6c9}
+.pcard .badge{position:absolute;top:12px;right:12px;background:linear-gradient(180deg,var(--y1),var(--y));color:#000;font-size:9px;font-weight:900;padding:4px 9px;border-radius:12px}
+.pcard h3{font-size:14px;font-weight:900}.pcard .sub{font-size:11px;color:var(--m);margin-top:2px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.grid2 div{background:#fff;padding:9px;border-radius:12px;text-align:center;border:1px solid #f0f0f0}
+.grid2 div b{display:block;font-size:13px}.grid2 div small{font-size:9px;color:var(--m)}
+.pcard .price-big{font-size:20px;font-weight:900;color:var(--g2);margin-top:12px}
+.pcard .rent{width:100%;margin-top:10px;background:var(--g);color:#fff;border:none;padding:12px;border-radius:24px;font-weight:900;cursor:pointer}
+.filters{display:flex;gap:8px;padding:12px 14px;overflow-x:auto}
+.filters button{border:1px solid var(--b);background:#fff;padding:8px 16px;border-radius:20px;font-size:11px;font-weight:800;cursor:pointer;white-space:nowrap}
+.filters button.active{background:var(--g);color:#fff;border-color:var(--g)}
+.vip-list{margin:0 12px 12px}
+.vip{background:#fff;border:1px solid var(--b);border-radius:14px;padding:12px;display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.vip .left-v{flex:1}.vip b{font-size:13px}.vip small{font-size:10px;color:var(--m);display:block;margin-top:2px}
+.vip .rent-sm{background:var(--g);color:#fff;border:none;padding:8px 16px;border-radius:20px;font-weight:800;font-size:11px;cursor:pointer}
+.vip.king{border:2px solid var(--y1);background:linear-gradient(135deg,#fffbeb,#fff8c4)}
+.my-card{background:#fff;margin:12px;border-radius:18px;padding:18px;border:1px solid var(--b);text-align:center}
+.my-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:14px}
+.my-grid div{background:#f5f8f6;padding:10px;border-radius:12px;text-align:center}
+.my-item{background:#fff;border:1px solid var(--b);border-radius:12px;padding:14px;margin:8px 12px;display:flex;justify-content:space-between;align-items:center;cursor:pointer}
+.nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--b);display:flex;justify-content:space-around;padding:8px 0 12px;z-index:100}
+.nav button{border:none;background:transparent;font-size:10px;color:var(--m);display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:6px 14px;border-radius:12px}
+.nav button.active{color:var(--g);background:#e8f5e9;font-weight:800}
+.proof{position:fixed;left:12px;bottom:85px;z-index:102;background:#fff;border-radius:12px;padding:10px 12px;box-shadow:0 8px 20px rgba(0,0,0,.2);border-left:4px solid var(--g);display:none;align-items:center;gap:8px;max-width:260px;font-size:11px}
+.proof.show{display:flex}
+.fab{position:fixed;right:12px;bottom:85px;z-index:101;width:54px;height:54px;border-radius:50%;border:none;background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;font-size:22px;box-shadow:0 6px 16px rgba(0,0,0,.25);cursor:pointer;display:flex;align-items:center;justify-content:center}
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;padding:16px;z-index:200}
-.modal.show{display:flex}.modal-box{background:#fff;padding:18px;border-radius:18px;max-width:380px;width:100%}
+.modal.show{display:flex}.modal-box{background:#fff;padding:20px;border-radius:18px;max-width:380px;width:100%;max-height:90vh;overflow-y:auto}
 .modal-box input{width:100%;padding:12px;margin:6px 0;border-radius:10px;border:1px solid var(--b)}
+.wallet-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px}
+.wallet-grid div{background:#fff;border:1px solid var(--b);padding:12px;border-radius:14px;text-align:center}
 </style></head><body>
 
 <div id="authPage">
-<div class="top-green"><div style="width:54px;height:54px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--g2);font-weight:900;font-size:22px">N</div><b>EZOL EARN2</b><small>Smart energy investment • V19.1 FIXED</small></div>
-<div class="auth-wrap">
-<h2 id="authTitle">Create account</h2><p class="sub">Join EZOL in a few seconds. V19 NAVIEN STYLE - Buttons Fixed</p>
+<div class="top-green"><div class="logo">N</div><b>EZOL EARN2</b><small>Smart energy investment • V19.2 NAVIEN FULL</small></div>
+<div class="auth-box">
+<h2 id="aTitle">Create account</h2><p id="aSub">Join EZOL in a few seconds. V19.2 NAVIEN STYLE</p>
 <input id="rNa" class="inp" placeholder="Full Name e.g. John Doe" style="display:none">
 <input id="lPh" class="inp" placeholder="Phone 07XXXXXXXX" value="0783228690">
-<input id="lPa" class="inp" type="password" placeholder="Password" value="12345">
+<input id="lPa" class="inp" type="password" placeholder="Password" value="">
 <input id="rRef" class="inp" placeholder="Invite Code (Optional)" value="0795143386" style="display:none">
-<button id="btnLogin" class="btn-green" type="button">LOGIN</button>
-<button id="btnReg" class="btn-green" type="button" style="display:none;background:linear-gradient(180deg,#ffcc33,#ff9900);color:#000">CREATE ACCOUNT + 5K BONUS</button>
-<p id="err"></p>
-<div class="link-row"><span id="link1">Don't have account? <b style="color:var(--g)">Create account</b></span><span id="link2" style="display:none">Already have account? <b style="color:var(--g)">Login</b></span></div>
+<button id="btnLogin" class="btn btn-g" type="button">LOGIN</button>
+<button id="btnReg" class="btn btn-y" type="button" style="display:none">CREATE ACCOUNT + 5K BONUS</button>
+<div id="err"></div>
+<div class="link"><span id="lnk1">Don't have account? <u>Create account</u></span><span id="lnk2" style="display:none">Already have account? <u>Login</u></span></div>
 </div>
 </div>
 
 <div id="appPage" style="display:none">
-<div class="top"><div class="left"><div class="av" id="av">U</div><div><b id="tNa">User Name</b><div style="font-size:10px;color:var(--m)"><span id="tPh">07XXXXXXXX</span> • Kampala • V19.1</div></div></div><div class="online">● <span id="on">5,842</span> online</div></div>
-<div class="live-ticker"><span>🔥 V19.1 LIVE: 07****89 rented VIP 3 - 8s ago • 07****12 withdrew 45K UGX • 07****22 bought KING 15M 👑 • 07****90 joined now • 07****34 earned 22K/day • </span></div>
+<div class="top"><div class="left"><div class="av" id="av">O</div><div><b id="tNa">User Name</b><div style="font-size:10px;color:var(--m)"><span id="tPh">07XXXXXXXX</span> • Kampala • V19.2</div></div></div><div class="online">● <span id="on">5,251</span> online</div></div>
+<div class="ticker"><span>🔥 V19.2 LIVE: 07****89 rented FINTOR FC 00 - 8s ago • 07****12 withdrew 45K UGX • 07****34 rented FC 00 - 5s ago • 07****34 bought KING 15M 👑 • 07****90 joined V19.2 now • 07****99 earned 22K/day • </span></div>
 
 <div id="tab-home" class="tab active">
-<div class="live-card"><b style="font-size:11px"><span class="live-dot"></span> LIVE RENTALS - 52 buying now</b><div id="liveList" style="margin-top:6px"></div></div>
-<div class="hot-head"><b>🔥 HOT PRODUCTS - V19 NAVIEN STYLE</b><small style="color:var(--g);font-weight:800" onclick="switchTab('product')">More ›</small></div>
-<div class="prod-scroll" id="hotScroll"></div>
-<div class="card"><h3 style="font-size:14px">💎 20 VIP Plans - Min 15K</h3><div id="vListHome" style="margin-top:10px"></div></div>
+<div class="live-card"><div style="display:flex;justify-content:space-between"><b style="font-size:11px"><span class="dot"></span> LIVE RENTALS - 52 buying now</b><small style="color:var(--g);font-weight:800">● LIVE</small></div><div id="liveList" style="font-size:11px;line-height:1.8;margin-top:6px"></div></div>
+<div class="hot-head"><b>🔥 HOT PRODUCTS - V19 NAVIEN STYLE</b><small id="moreProd" style="color:var(--g);font-weight:800;cursor:pointer">More ›</small></div>
+<div class="h-scroll" id="hotScroll"></div>
+<div class="wallet-grid"><div><b id="bal1" style="font-size:18px;color:var(--g)">5,000 UGX</b><small style="display:block;font-size:10px;color:var(--m)">Balance • VIP <span id="vip1">0</span></small></div><div><b id="daily1" style="font-size:18px;color:var(--y)">0 UGX</b><small style="display:block;font-size:10px;color:var(--m)">Daily Income</small></div></div>
+<div style="display:flex;gap:10px;margin:0 12px"><button id="btnRecharge1" class="btn btn-g" type="button" style="flex:1">💳 Recharge MIN 15K</button><button id="btnWithdraw1" class="btn btn-w" type="button" style="flex:1">💸 Withdraw MIN 10K</button></div>
 </div>
 
 <div id="tab-product" class="tab">
-<div class="live-card" style="background:#fffbeb;border-color:#ffcc00"><b>🔥 52 People renting VIPs in V19.1 now! <span class="live-dot"></span></b><div id="productLive" style="margin-top:6px"></div></div>
-<div class="vips"><div id="vList"></div></div>
+<div class="live-card" style="background:#fffbeb;border-color:var(--y1)"><b style="font-size:11px">🔥 52 People renting VIPs in V19.2 now! <span class="dot"></span></b><div id="prodLive" style="font-size:11px;margin-top:6px;line-height:1.6"></div></div>
+<div class="filters" id="filters"><button class="active" data-f="all">All</button><button data-f="fintor">FINTOR FC</button><button data-f="vip">VIP Gold</button><button data-f="king">KING 👑</button></div>
+<div class="vip-list" id="vList"></div>
 </div>
 
 <div id="tab-my" class="tab">
-<div class="card" style="text-align:center"><div id="myAv" style="width:70px;height:70px;background:var(--g2);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:900;margin:0 auto">U</div><b id="myName" style="display:block;margin-top:8px">User Name</b><small id="myPhone">07XXXXXXXX</small></div>
-<div style="margin:12px"><div style="background:#fff;padding:12px;border-radius:12px;border:1px solid var(--b);margin-bottom:8px" onclick="logout()">🚪 Logout - Balance Safe</div></div>
+<div class="my-card"><div id="myAv" style="width:70px;height:70px;background:linear-gradient(135deg,#0f5132,#0a7a4c);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:900;margin:0 auto">O</div><b id="myName" style="display:block;margin-top:8px;font-size:18px">User Name</b><small id="myPhone" style="color:var(--m)">07XXXXXXXX</small><small id="myFull" style="display:block;color:var(--m);font-size:10px;margin-top:4px">Kampala, Uganda • V19.2</small>
+<div class="my-grid"><div><b id="myBal" style="color:var(--g)">5,000 UGX</b><small style="display:block;font-size:9px">Balance</small></div><div><b id="myVip">VIP 0</b><small style="display:block;font-size:9px">Level</small></div><div><b id="myTeam">0</b><small style="display:block;font-size:9px">Team</small></div></div>
+<div style="display:flex;gap:8px;margin-top:12px"><button id="btnRecharge2" class="btn btn-g" type="button" style="flex:1">Recharge</button><button id="btnWithdraw2" class="btn btn-w" type="button" style="flex:1">Withdraw</button></div>
+</div>
+<div class="my-item" id="itemAccount"><span>👤 My Account & Balance</span><span>›</span></div>
+<div class="my-item" id="itemCompany"><span>🏢 Company Profile (CEO + Location)</span><span>›</span></div>
+<div class="my-item" id="itemShare"><span>🔗 Copy Referral Link</span><span>›</span></div>
+<div class="my-item" id="itemGroup"><span>👥 WhatsApp Group 1,272 Members</span><span>›</span></div>
+<div class="my-item" id="itemLogout" style="color:#ff3b30;background:#fff5f5"><span>🚪 Logout - Balance Safe</span><span>›</span></div>
+<div class="live-card" style="margin-top:12px"><b>📜 Transaction History V19.2</b><div id="txList" style="font-size:11px;color:var(--m);margin-top:8px">No transactions yet</div></div>
 </div>
 
-<div id="proofPopup" class="proof-popup"><div style="width:32px;height:32px;background:#e8f5e9;border-radius:50%;display:flex;align-items:center;justify-content:center">💰</div><div><b id="proofName">07****89</b> <span id="proofAction">rented VIP 3</span><br><small style="color:var(--m)">2s ago • V19.1 LIVE</small></div></div>
-<button class="fab" type="button" onclick="window.open('https://wa.me/256795143386?text=Support V19.1','_blank')">💬</button>
+<div id="proof" class="proof"><div style="width:32px;height:32px;background:#e8f5e9;border-radius:50%;display:flex;align-items:center;justify-content:center">💰</div><div><b id="pName">07****99</b> <span id="pAct">earned 22K/day</span><br><small style="color:var(--m)">2s ago • V19.2 LIVE</small></div></div>
+<button id="fabBtn" class="fab" type="button">💬</button>
 
 <div class="nav">
 <button class="active" id="nav-home" type="button" data-tab="home">🏠<br>Home</button>
@@ -100,48 +122,74 @@ body{background:var(--bg);color:#111;padding-bottom:90px}
 </div>
 </div>
 
-<div id="mR" class="modal"><div class="modal-box"><h3>💳 Recharge MIN 15K</h3><p style="font-size:11px;color:var(--m)">MoMo: <b>0795143386</b></p><input id="rAmt" type="number" value="15000"><input id="rTx" placeholder="TxID"><button id="btnDoR" class="btn-green" type="button">SUBMIT</button><button class="btn-green" type="button" style="background:#fff;color:#111;border:1px solid var(--b);margin-top:8px" onclick="closeM()">Cancel</button></div></div>
+<div id="mR" class="modal"><div class="modal-box"><h3>💳 Recharge MIN 15K V19.2</h3><p style="font-size:11px;color:var(--m)">MoMo: <b>0795143386</b> - MIN 15K lower rejected!</p><input id="rAmt" type="number" value="15000"><input id="rTx" placeholder="MoMo TxID e.g. 1234567890"><button id="doR" class="btn btn-g" type="button">SUBMIT RECHARGE V19.2</button><button class="btn btn-w" type="button" onclick="closeM()">Cancel</button></div></div>
+<div id="mW" class="modal"><div class="modal-box"><h3>💸 Withdraw MIN 10K V19.2</h3><p style="font-size:11px">Balance: <b id="wBal">0 UGX</b> • To: <b id="wPh">07...</b><br>Fee 10% • Within 24H</p><input id="wAmt" type="number" placeholder="Amount MIN 10000"><button id="doW" class="btn btn-g" type="button">SUBMIT WITHDRAW V19.2</button><button class="btn btn-w" type="button" onclick="closeM()">Cancel</button></div></div>
+<div id="mInfo" class="modal"><div class="modal-box"><h3 id="mTitle">Info V19.2</h3><div id="mBody" style="font-size:12px;line-height:1.7;margin-top:8px"></div><button class="btn btn-w" type="button" onclick="closeM()">Close</button></div></div>
 
 <script>
-let cur=null; const KEY_U='ezol_users_v19_1', KEY_C='ezol_current_v19_1', KEY_B='ezol_bal_';
-const vips=[{id:1,n:'FINTOR FC 00 - MIN 15K',p:15000,d:'3K/day',roi:'800%',days:'30 Days',min:true},{id:2,n:'FINTOR FC 01',p:20000,d:'5K/day',roi:'800%',days:'30 Days'},{id:3,n:'FINTOR FC 02',p:35000,d:'9K/day',roi:'800%',days:'30 Days'},{id:4,n:'VIP 4 Silver',p:50000,d:'14K/day',roi:'750%',days:'30 Days'},{id:5,n:'VIP 5 Gold',p:75000,d:'22K/day',roi:'800%',days:'30 Days'}];
-
-function $(id){return document.getElementById(id);}
-function getUsers(){let all=[];['ezol_users_v19_1','ezol_users_v19','ezol_users_v18','ezol_users_v10000'].forEach(k=>{try{all=all.concat(JSON.parse(localStorage.getItem(k)||'[]'))}catch(e){}});let m={};all.forEach(u=>{if(u.phone) m[u.phone]=u});return Object.values(m);}
+let cur=null; const KEY_U='ezol_users_v19_2', KEY_C='ezol_current_v19_2', KEY_B='ezol_bal_', KEY_R='ezol_req_v19_2', KEY_W='ezol_wit_v19_2', MIN_R=15000, MIN_W=10000;
+const vips=[
+{id:1,n:'FINTOR FC 00 - MIN 15K',p:15000,d:'UGX 3K',roi:'800%',days:'30 Days',cat:'fintor',min:true},
+{id:2,n:'FINTOR FC 01',p:20000,d:'UGX 5K',roi:'800%',days:'30 Days',cat:'fintor'},
+{id:3,n:'FINTOR FC 02 - Lite',p:35000,d:'UGX 9K',roi:'800%',days:'30 Days',cat:'fintor'},
+{id:4,n:'FINTOR FC 03 - Silver',p:50000,d:'UGX 14K',roi:'750%',days:'30 Days',cat:'fintor'},
+{id:5,n:'FINTOR FC 04 - Gold',p:75000,d:'UGX 22K',roi:'800%',days:'30 Days',cat:'vip'},
+{id:6,n:'VIP 6 Platinum',p:100000,d:'UGX 32K',roi:'800%',days:'30 Days',cat:'vip'},
+{id:7,n:'VIP 7 Diamond',p:150000,d:'UGX 50K',roi:'850%',days:'30 Days',cat:'vip'},
+{id:8,n:'VIP 8 Premium',p:200000,d:'UGX 70K',roi:'800%',days:'30 Days',cat:'vip'},
+{id:9,n:'VIP 9 Elite',p:300000,d:'UGX 110K',roi:'800%',days:'30 Days',cat:'vip'},
+{id:10,n:'VIP 10 Pro',p:500000,d:'UGX 190K',roi:'900%',days:'30 Days',cat:'vip'},
+{id:11,n:'VIP 11 Executive',p:800000,d:'UGX 310K',roi:'900%',days:'30 Days',cat:'vip'},
+{id:12,n:'VIP 12 Master',p:1000000,d:'UGX 400K',roi:'900%',days:'30 Days',cat:'vip'},
+{id:13,n:'VIP 13 Grand',p:1500000,d:'UGX 650K',roi:'1000%',days:'30 Days',cat:'vip'},
+{id:14,n:'VIP 14 Royal',p:2000000,d:'UGX 900K',roi:'1000%',days:'30 Days',cat:'vip'},
+{id:15,n:'VIP 15 Legend',p:3000000,d:'UGX 1.4M',roi:'1200%',days:'30 Days',cat:'vip'},
+{id:16,n:'VIP 16 Titan',p:5000000,d:'UGX 2.5M',roi:'1200%',days:'30 Days',cat:'king'},
+{id:17,n:'VIP 17 Emperor',p:7000000,d:'UGX 3.6M',roi:'1500%',days:'60 Days',cat:'king'},
+{id:18,n:'VIP 18 Supreme',p:10000000,d:'UGX 5.2M',roi:'1500%',days:'60 Days',cat:'king'},
+{id:19,n:'VIP 19 Ultra',p:12000000,d:'UGX 6.2M',roi:'1800%',days:'90 Days',cat:'king'},
+{id:20,n:'VIP 20 KING 👑 15M',p:15000000,d:'UGX 6.5M',roi:'2000%',days:'90 Days',cat:'king',king:true}
+];
+const $=id=>document.getElementById(id);
+function getUsers(){let all=[];['ezol_users_v19_2','ezol_users_v19_1','ezol_users_v19','ezol_users_v18'].forEach(k=>{try{all=all.concat(JSON.parse(localStorage.getItem(k)||'[]'))}catch(e){}});let m={};all.forEach(u=>{if(u.phone) m[u.phone]=u});return Object.values(m);}
 function saveUser(u){let us=JSON.parse(localStorage.getItem(KEY_U)||'[]');let i=us.findIndex(x=>x.phone===u.phone);if(i>=0) us[i]=u; else us.push(u); localStorage.setItem(KEY_U,JSON.stringify(us));}
-
-function showLogin(){ $('authTitle').innerText='Welcome back'; $('rNa').style.display='none'; $('rRef').style.display='none'; $('btnLogin').style.display='block'; $('btnReg').style.display='none'; $('link1').style.display='block'; $('link2').style.display='none'; $('err').innerText='';}
-function showReg(){ $('authTitle').innerText='Create account'; $('rNa').style.display='block'; $('rRef').style.display='block'; $('btnLogin').style.display='none'; $('btnReg').style.display='block'; $('link1').style.display='none'; $('link2').style.display='block'; $('err').innerText='';}
-
-function showApp(){ $('authPage').style.display='none'; $('appPage').style.display='block'; let bal=parseInt(localStorage.getItem(KEY_B+cur.phone)||'5000'); let first=(cur.name||'U')[0].toUpperCase(); $('tNa').innerText=cur.name; $('tPh').innerText=cur.phone; $('av').innerText=first; $('myName').innerText=cur.name; $('myPhone').innerText=cur.phone; $('myAv').innerText=first; renderHot(); renderList(); startLive(); }
-
-function renderHot(){ let cont=$('hotScroll'); if(!cont) return; cont.innerHTML=''; vips.slice(0,5).forEach(v=>{ cont.innerHTML+=`<div class="pcard"><span class="badge">${v.roi}</span><h3>${v.n}</h3><div style="font-size:10px;color:var(--m);margin-top:2px">Smart Energy • V19.1 NAVIEN</div><div class="stats-grid"><div><b>UGX ${v.d.split('/')[0]}</b><small style="display:block">Day</small></div><div><b>${v.roi}</b><small style="display:block">Total</small></div><div><b>${v.days}</b><small style="display:block">Cycle</small></div><div><b>UGX ${v.p.toLocaleString()}</b><small style="display:block">Price</small></div></div><div class="price">UGX ${v.p.toLocaleString()}</div><button type="button" onclick="buyVIP(${v.id})">Rent Now - VIP ${v.id}</button></div>`; }); }
-
-function renderList(){ let el=$('vList'); let el2=$('vListHome'); if(el){ el.innerHTML=''; vips.forEach(v=>{ el.innerHTML+=`<div class="vip"><div><b>${v.n}</b><div style="font-size:11px;color:var(--m)">${v.p.toLocaleString()} UGX → ${v.d} • ${v.roi}</div></div><button type="button" style="background:var(--g);color:#fff;border:none;padding:8px 14px;border-radius:20px;font-weight:800" onclick="buyVIP(${v.id})">Rent</button></div>`; }); } if(el2){ el2.innerHTML=''; vips.slice(0,3).forEach(v=>{ el2.innerHTML+=`<div class="vip"><div><b>${v.n}</b><div style="font-size:11px;color:var(--m)">${v.p.toLocaleString()} → ${v.d}</div></div><button type="button" style="background:#fff;border:1px solid var(--b);padding:6px 12px;border-radius:20px" onclick="buyVIP(${v.id})">Rent</button></div>`; }); } }
-
-window.buyVIP=function(id){ let v=vips.find(x=>x.id===id); let bal=parseInt(localStorage.getItem(KEY_B+cur.phone)||'0'); if(bal<v.p){ alert('Need '+v.p.toLocaleString()+' UGX, have '+bal.toLocaleString()+'\nRecharge MIN 15K!'); openR(); return; } alert('✅ VIP '+id+' Rented! '+v.d+' LIVE! V19.1 NAVIEN'); }
-
+function showLogin(){ $('aTitle').innerText='Welcome back'; $('rNa').style.display='none'; $('rRef').style.display='none'; $('btnLogin').style.display='block'; $('btnReg').style.display='none'; $('lnk1').style.display='block'; $('lnk2').style.display='none'; $('err').innerText='';}
+function showReg(){ $('aTitle').innerText='Create account'; $('rNa').style.display='block'; $('rRef').style.display='block'; $('btnLogin').style.display='none'; $('btnReg').style.display='block'; $('lnk1').style.display='none'; $('lnk2').style.display='block'; $('err').innerText='';}
+function showApp(){ $('authPage').style.display='none'; $('appPage').style.display='block'; let bal=parseInt(localStorage.getItem(KEY_B+cur.phone)||'5000'); let first=(cur.name||'U')[0].toUpperCase(); $('tNa').innerText=cur.name; $('tPh').innerText=cur.phone; $('av').innerText=first; $('myName').innerText=cur.name; $('myPhone').innerText=cur.phone; $('myAv').innerText=first; $('myFull').innerText=cur.name+' • '+cur.phone+' • Kampala • V19.2'; $('myBal').innerText=bal.toLocaleString()+' UGX'; $('wBal').innerText=bal.toLocaleString()+' UGX'; $('wPh').innerText=cur.phone; $('bal1').innerText=bal.toLocaleString()+' UGX'; let vip=Math.min(Math.floor(bal/MIN_R),20); $('vip1').innerText=vip; $('myVip').innerText='VIP '+vip; $('daily1').innerText=vip>0?vips[vip-1].d+'/day':'0 UGX'; renderHot(); renderVIP('all'); updateTx(); startLive(); }
+function renderHot(){ let c=$('hotScroll'); if(!c) return; c.innerHTML=''; vips.slice(0,6).forEach(v=>{ c.innerHTML+=`<div class="pcard ${v.min?'':'green'}"><span class="badge">${v.roi}</span><h3>${v.n}</h3><div class="sub">Smart Energy • V19.2 NAVIEN</div><div class="grid2"><div><b>${v.d}</b><small>Day</small></div><div><b>${v.roi}</b><small>Total</small></div><div><b>${v.days}</b><small>Cycle</small></div><div><b>UGX ${v.p.toLocaleString()}</b><small>Price</small></div></div><div class="price-big">UGX ${v.p.toLocaleString()}</div><button class="rent" type="button" onclick="buyVIP(${v.id})">Rent Now - VIP ${v.id}</button></div>`; }); }
+function renderVIP(f){ let el=$('vList'); if(!el) return; let list=vips; if(f!=='all') list=vips.filter(x=>x.cat===f); let bal=cur?parseInt(localStorage.getItem(KEY_B+cur.phone)||'0'):0; let my=Math.min(Math.floor(bal/MIN_R),20); el.innerHTML=''; list.forEach(v=>{ let own=v.id<=my; el.innerHTML+=`<div class="vip ${v.king?'king':''}"><div class="left-v"><b>${v.n} ${own?'✅':''} ${v.min?'<span style="background:#ff3b30;color:#fff;padding:2px 6px;border-radius:6px;font-size:8px">MIN 15K</span>':''}</b><small>${v.p.toLocaleString()} UGX → ${v.d}/day • ${v.roi} • ${v.days}</small></div><div style="text-align:right"><b style="color:var(--g2)">${v.p.toLocaleString()}</b><br><button class="rent-sm" type="button" onclick="buyVIP(${v.id})">${own?'OWNED':'Rent Now'}</button></div></div>`; }); }
+function updateTx(){ let reqs=JSON.parse(localStorage.getItem(KEY_R)||'[]').filter(r=>r.phone===cur.phone).reverse(); let withs=JSON.parse(localStorage.getItem(KEY_W)||'[]').filter(r=>r.phone===cur.phone).reverse(); let html=''; if(reqs.length===0&&withs.length===0) html='No transactions yet - Recharge MIN 15K'; else{ reqs.forEach(r=>{html+=`<div style="background:#fff;border:1px solid #e5e7eb;padding:8px;border-radius:8px;margin-bottom:6px;display:flex;justify-content:space-between"><div><b>💳 ${r.amt.toLocaleString()} UGX</b><br><small>Tx:${r.tx} • ${r.time}</small></div><span style="color:#ff9900;font-weight:800">${r.status.toUpperCase()}</span></div>`;}); withs.forEach(w=>{html+=`<div style="background:#fff;border:1px solid #e5e7eb;padding:8px;border-radius:8px;margin-bottom:6px;display:flex;justify-content:space-between"><div><b>💸 ${w.amt.toLocaleString()} UGX</b><br><small>To ${w.momo} • ${w.time}</small></div><span style="color:#00a651;font-weight:800">${w.status.toUpperCase()}</span></div>`;});} $('txList').innerHTML=html; }
+window.buyVIP=function(id){ let v=vips.find(x=>x.id===id); let bal=parseInt(localStorage.getItem(KEY_B+cur.phone)||'0'); if(bal<v.p){ alert('❌ V19.2 Need '+v.p.toLocaleString()+' UGX, have '+bal.toLocaleString()+'\n\nPlease Recharge MIN 15K Boss!'); openR(); return; } alert('✅ V19.2 VIP '+id+' Rented!\n\n'+v.n+'\n'+v.p.toLocaleString()+' UGX → '+v.d+'/day • '+v.roi+'\n\nDaily income LIVE at midnight! Navien Style!'); }
 window.openR=function(){ $('mR').classList.add('show'); }
+window.openW=function(){ $('mW').classList.add('show'); }
 window.closeM=function(){ document.querySelectorAll('.modal').forEach(m=>m.classList.remove('show')); }
-window.switchTab=function(t){ document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active')); let el=$('tab-'+t); if(el) el.classList.add('active'); document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active')); let nb=$('nav-'+t); if(nb) nb.classList.add('active'); }
-window.logout=function(){ if(confirm('Logout? Balance safe!')){ localStorage.removeItem(KEY_C); location.reload(); } }
-
-function doLogin(){ let ph=$('lPh').value.trim(), pa=$('lPa').value.trim(); if(!ph||!pa){ $('err').innerText='❌ Enter Phone + Password'; return; } let us=getUsers(); let u=us.find(x=>x.phone===ph && x.pass===pa); if(!u){ if(pa.length>=4){ u={name:ph,phone:ph,pass:pa,joined:new Date().toLocaleString()}; saveUser(u); localStorage.setItem(KEY_B+ph,'5000'); } else { $('err').innerText='❌ Wrong password! Use min 4'; return; } } localStorage.setItem(KEY_C,JSON.stringify(u)); cur=u; showApp(); }
-
-function doReg(){ let n=$('rNa').value.trim(), ph=$('lPh').value.trim(), pa=$('lPa').value.trim(), ref=$('rRef').value.trim()||'0795143386'; if(!n){ $('err').innerText='❌ Full Name required'; return; } if(!ph){ $('err').innerText='❌ Phone required'; return; } if(pa.length<4){ $('err').innerText='❌ Password min 4'; return; } if(getUsers().find(u=>u.phone===ph)){ $('err').innerText='❌ Phone exists, Login!'; showLogin(); return; } let u={name:n,phone:ph,pass:pa,ref:ref,joined:new Date().toLocaleString()}; saveUser(u); localStorage.setItem(KEY_B+ph,'5000'); localStorage.setItem(KEY_C,JSON.stringify(u)); cur=u; showApp(); }
-
-function doRecharge(){ let a=parseInt($('rAmt').value), t=$('rTx').value.trim(); if(!a||a<15000){ alert('MIN 15K'); return; } if(!t){ alert('Enter TxID'); return; } let bal=parseInt(localStorage.getItem(KEY_B+cur.phone)||'0'); localStorage.setItem(KEY_B+cur.phone,(bal+a).toString()); closeM(); showApp(); alert('✅ Recharge '+a.toLocaleString()+' UGX Added!'); }
-
-function startLive(){ let names=['07****89','07****99','07****34','07****12','07****90']; let acts=['rented VIP 3 - 12s ago','rented FC 00 - 5s ago','withdrew 45K','earned 22K/day','bought KING']; let html=''; for(let i=0;i<3;i++){ html+=`🔥 ${names[Math.floor(Math.random()*names.length)]} ${acts[Math.floor(Math.random()*acts.length)]}<br>`; } let el=$('liveList'); if(el) el.innerHTML=html; let prod=$('productLive'); if(prod) prod.innerHTML=html; setInterval(()=>{ let n=names[Math.floor(Math.random()*names.length)]; let a=acts[Math.floor(Math.random()*acts.length)]; $('proofName').innerText=n; $('proofAction').innerText=a; let pop=$('proofPopup'); pop.classList.add('show'); setTimeout(()=>pop.classList.remove('show'),3500); },4000); }
-
+window.switchTab=function(t){ document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active')); let el=$('tab-'+t); if(el) el.classList.add('active'); document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active')); let nb=$('nav-'+t); if(nb) nb.classList.add('active'); window.scrollTo(0,0); }
+function doLogin(){ let ph=$('lPh').value.trim(), pa=$('lPa').value.trim(); if(!ph||!pa){ $('err').innerText='❌ Enter Phone + Password'; return; } let us=getUsers(); let u=us.find(x=>x.phone===ph && x.pass===pa); if(!u){ if(pa.length>=4){ u={name:ph,phone:ph,pass:pa,joined:new Date().toLocaleString(),location:'Kampala, Uganda'}; saveUser(u); localStorage.setItem(KEY_B+ph,'5000'); } else { $('err').innerText='❌ Wrong! Use min 4'; return; } } localStorage.setItem(KEY_C,JSON.stringify(u)); cur=u; showApp(); }
+function doReg(){ let n=$('rNa').value.trim(), ph=$('lPh').value.trim(), pa=$('lPa').value.trim(), ref=$('rRef').value.trim()||'0795143386'; if(!n){ $('err').innerText='❌ Full Name required'; return; } if(!ph){ $('err').innerText='❌ Phone required'; return; } if(pa.length<4){ $('err').innerText='❌ Password min 4'; return; } if(getUsers().find(u=>u.phone===ph)){ $('err').innerText='❌ Phone exists, Login!'; showLogin(); return; } let u={name:n,phone:ph,pass:pa,ref:ref,joined:new Date().toLocaleString(),location:'Kampala, Uganda'}; saveUser(u); localStorage.setItem(KEY_B+ph,'5000'); localStorage.setItem(KEY_C,JSON.stringify(u)); cur=u; showApp(); }
+function doR(){ let a=parseInt($('rAmt').value), t=$('rTx').value.trim(); if(!a||a<MIN_R){ alert('MIN 15K!'); return; } if(!t||t.length<6){ alert('Enter valid TxID min 6'); return; } let all=JSON.parse(localStorage.getItem(KEY_R)||'[]'); if(all.find(r=>r.tx===t)){ alert('TxID already used!'); return; } let bal=parseInt(localStorage.getItem(KEY_B+cur.phone)||'0'); localStorage.setItem(KEY_B+cur.phone,(bal+a).toString()); all.push({phone:cur.phone,name:cur.name,amt:a,tx:t,status:'pending',time:new Date().toLocaleString()}); localStorage.setItem(KEY_R,JSON.stringify(all)); closeM(); showApp(); alert('✅ V19.2 Recharge '+a.toLocaleString()+' UGX Submitted!\nNew Balance: '+(bal+a).toLocaleString()+' UGX'); }
+function doW(){ let a=parseInt($('wAmt').value); let bal=parseInt(localStorage.getItem(KEY_B+cur.phone)||'0'); if(!a||a<MIN_W){ alert('MIN 10K!'); return; } if(a>bal){ alert('No balance! Have '+bal.toLocaleString()); return; } localStorage.setItem(KEY_B+cur.phone,(bal-a).toString()); let withs=JSON.parse(localStorage.getItem(KEY_W)||'[]'); withs.push({phone:cur.phone,name:cur.name,momo:cur.phone,amt:a,bal:bal-a,status:'pending',time:new Date().toLocaleString()}); localStorage.setItem(KEY_W,JSON.stringify(withs)); closeM(); showApp(); alert('✅ Withdraw '+a.toLocaleString()+' UGX to '+cur.phone+'\n24H Mon-Sat'); }
+function startLive(){ let names=['07****89','07****99','07****34','07****33','07****12','07****90','07****45']; let acts=['rented VIP 3 - 12s ago','rented FC 00 - 5s ago','rented VIP 2 - 4s ago','earned 22K/day','bought VIP 1 MIN 15K','withdrew 45K UGX','bought KING 👑']; let html=''; for(let i=0;i<3;i++){ html+=`🔥 ${names[Math.floor(Math.random()*names.length)]} ${acts[Math.floor(Math.random()*acts.length)]}<br>`; } let el=$('liveList'); if(el) el.innerHTML=html; let prod=$('prodLive'); if(prod) prod.innerHTML=html; setInterval(()=>{ let n=names[Math.floor(Math.random()*names.length)]; let a=acts[Math.floor(Math.random()*acts.length)]; $('pName').innerText=n; $('pAct').innerText=a; let pop=$('proof'); pop.classList.add('show'); setTimeout(()=>pop.classList.remove('show'),3500); },3500); }
 document.addEventListener('DOMContentLoaded',()=>{
   $('btnLogin').addEventListener('click',doLogin);
   $('btnReg').addEventListener('click',doReg);
-  $('link1').addEventListener('click',showReg);
-  $('link2').addEventListener('click',showLogin);
-  $('btnDoR')?.addEventListener('click',doRecharge);
-  document.querySelectorAll('.nav button').forEach(b=>{ b.addEventListener('click',()=>{ switchTab(b.dataset.tab); }); });
-  let s=localStorage.getItem(KEY_C); if(s){ try{ cur=JSON.parse(s); showApp(); }catch(e){} }
-  setInterval(()=>{ let el=$('on'); if(el) el.innerText=(5000+Math.floor(Math.random()*800)).toString(); },2500);
+  $('lnk1').addEventListener('click',showReg);
+  $('lnk2').addEventListener('click',showLogin);
+  $('doR').addEventListener('click',doR);
+  $('doW').addEventListener('click',doW);
+  $('btnRecharge1').addEventListener('click',openR);
+  $('btnRecharge2').addEventListener('click',openR);
+  $('btnWithdraw1').addEventListener('click',openW);
+  $('btnWithdraw2').addEventListener('click',openW);
+  $('moreProd').addEventListener('click',()=>switchTab('product'));
+  $('fabBtn').addEventListener('click',()=>window.open('https://wa.me/256795143386?text=Support V19.2 NAVIEN','_blank'));
+  $('itemAccount').addEventListener('click',()=>{ $('mTitle').innerText='My Account V19.2'; $('mBody').innerHTML=`<b>Name:</b> ${cur.name}<br><b>Phone:</b> ${cur.phone}<br><b>Balance:</b> ${localStorage.getItem(KEY_B+cur.phone)} UGX<br><b>VIP:</b> ${Math.floor(parseInt(localStorage.getItem(KEY_B+cur.phone)||'0')/MIN_R)}<br><b>Location:</b> Kampala, Uganda<br><b>Link:</b> https://easyearn869-oss.github.io/Ezo/?ref=${cur.phone}`; $('mInfo').classList.add('show'); });
+  $('itemCompany').addEventListener('click',()=>{ $('mTitle').innerText='Company Profile V19.2'; $('mBody').innerHTML=`<b>🏢 EZOL EARN2 Investment Ltd</b><br><br><b>CEO:</b> Derick Ezra - Founder<br><b>Location:</b> 📍 Nakawa Business Park, Kampala-Jinja Road, Kampala, Uganda<br><b>Branches:</b> Kampala, Mbarara, Gulu, Mbale, Arua<br><b>Registration:</b> URSB Certified<br><b>Users:</b> 12,847+ Trusted<br><b>MoMo:</b> 0795143386<br><b>Group:</b> 1,272 Members<br><br><b>CEO Message:</b> "Welcome to EZOL EARN2 V19.2 NAVIEN - Together we grow!"`; $('mInfo').classList.add('show'); });
+  $('itemShare').addEventListener('click',()=>{ let txt='https://easyearn869-oss.github.io/Ezo/?ref='+cur.phone; navigator.clipboard.writeText(txt); alert('✅ Link Copied: '+txt); });
+  $('itemGroup').addEventListener('click',()=>window.open('https://chat.whatsapp.com/CJl3YvYBHNR10VWAB2NUNx','_blank'));
+  $('itemLogout').addEventListener('click',()=>{ if(confirm('Logout? Balance Safe!\nName: '+cur.name+'\nPhone: '+cur.phone)){ ['ezol_current_v19_2','ezol_current_v19_1','ezol_current_v19'].forEach(k=>localStorage.removeItem(k)); location.reload(); } });
+  document.querySelectorAll('.nav button').forEach(b=>{ b.addEventListener('click',()=>switchTab(b.dataset.tab)); });
+  document.querySelectorAll('#filters button').forEach(b=>{ b.addEventListener('click',()=>{ document.querySelectorAll('#filters button').forEach(x=>x.classList.remove('active')); b.classList.add('active'); renderVIP(b.dataset.f); }); });
+  let s=localStorage.getItem(KEY_C)||localStorage.getItem('ezol_current_v19_1'); if(s){ try{ cur=JSON.parse(s); showApp(); }catch(e){} }
+  setInterval(()=>{ let el=$('on'); if(el) el.innerText=(5100+Math.floor(Math.random()*600)).toString(); },2500);
 });
 </script></body></html>
