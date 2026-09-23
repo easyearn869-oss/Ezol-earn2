@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ezol Energy</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:system-ui;background:#f0f5f0;padding-bottom:75px}
+.top{background:#a8d5b5;padding:30px 20px 60px;text-align:center;border-radius:0 0 50% 50% / 0 0 30% 30%}
+.logo{width:60px;height:60px;background:linear-gradient(135deg,#0a4d2a,#0e9d4f);border-radius:18px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:28px;margin:0 auto}
+h1{color:#fff;margin:10px 0 2px} .sub{color:#e8f5e9;font-size:13px}
+.card{background:#fff;border-radius:16px;padding:16px;margin:16px;box-shadow:0 4px 15px rgba(0,0,0,.05)}
+input{width:100%;padding:14px;border-radius:12px;border:0;background:#f5f5f5;margin:8px 0;font-size:15px}
+.btn{width:100%;padding:14px;border:0;border-radius:30px;font-weight:800;background:#0e9d4f;color:#fff;font-size:16px;cursor:pointer;margin-top:8px}
+.btn2{display:flex;gap:10px}.btn2 button{flex:1}
+.tabs{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:8px 0;border-top:1px solid #eee}
+.tabs div{text-align:center;font-size:11px;color:#888;cursor:pointer}.tabs .active{color:#0e9d4f;font-weight:700}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 16px}
+.pcard{background:#fff;border-radius:14px;padding:10px;text-align:center}
+.pcard b{color:#0e9d4f} .badge{background:#e8f5e9;color:#0e9d4f;padding:3px 8px;border-radius:10px;font-size:10px}
+.momo{background:#ffcc00;border-radius:12px;padding:12px;margin-top:10px}
+.wa{background:#25D366;color:#fff} .wa2{background:#128C7E;color:#fff} .group{background:#0a4d2a;color:#fff}
+</style>
+</head>
+<body>
+
+<div id="loginPage">
+  <div class="top"><div class="logo">E</div><h1>EZOL ENERGY</h1><div class="sub">Smart energy store • Real products</div></div>
+  <div class="card" style="margin-top:-30px">
+    <h2 style="margin:0">Create account</h2><small style="color:#888">Join Ezol in seconds</small>
+    <input id="rName" placeholder="Full Name e.g. Ezra">
+    <input id="rPhone" placeholder="Phone e.g. 0795143386" type="tel">
+    <input id="rPass" placeholder="Password" type="password">
+    <button class="btn" onclick="register()">CREATE ACCOUNT</button>
+    <div class="btn2">
+      <button class="btn wa2" onclick="customerService()">🎧 Customer Service</button>
+      <button class="btn group" onclick="joinGroup()">👥 Join Group</button>
+    </div>
+  </div>
+</div>
+
+<div id="app" style="display:none">
+  <div class="top" style="padding:15px"><div style="display:flex;align-items:center;justify-content:space-between">
+    <div style="display:flex;align-items:center;gap:10px"><div class="logo" style="width:40px;height:40px;font-size:20px">E</div><div style="text-align:left;color:#fff"><b>EZOL ENERGY</b><br><small>Welcome <span id="uName"></span></small></div></div>
+    <div style="display:flex;gap:6px"><button onclick="customerService()" style="border:0;border-radius:20px;padding:6px 10px;background:#fff;color:#0a4d2a;font-weight:700;font-size:11px">🎧 Service</button><button onclick="joinGroup()" style="border:0;border-radius:20px;padding:6px 10px;background:#0a4d2a;color:#fff;font-weight:700;font-size:11px">👥 Group</button></div>
+  </div></div>
+
+  <div id="pageHome">
+    <div class="card"><b>🏷️ Daily Check-In</b><br><small>Get 1000 UGX OFF coupon</small><br><button class="btn" style="background:#0a4d2a" onclick="checkIn()">Check-In +1000 Coupon</button><div id="checkMsg" style="font-size:12px;color:#0e9d4f;margin-top:6px"></div>
+      <div class="btn2"><button class="btn wa2" onclick="customerService()">Customer Service</button><button class="btn group" onclick="joinGroup()">Join WhatsApp Group</button></div>
+    </div>
+    <div class="card">Your Wallet: <b id="balance">UGX 5,000</b><br><small>500 UGX welcome coupon included</small></div>
+  </div>
+
+  <div id="pageProduct" style="display:none"><h3 style="padding:0 16px">20 Models</h3><div class="grid" id="productGrid"></div></div>
+
+  <div id="pageShare" style="display:none">
+    <div class="card"><b>Share & Earn Discount</b>
+      <div style="background:#f5f5f5;padding:10px;border-radius:10px;margin:10px 0;word-break:break-all" id="refLink"></div>
+      <button class="btn" onclick="copyLink()">Copy Link</button>
+      <button class="btn wa" onclick="shareWA()">Share on WhatsApp</button>
+      <button class="btn group" onclick="joinGroup()">👥 Join Group to get customers</button>
+    </div>
+  </div>
+
+  <div id="pageMy" style="display:none">
+    <div class="card">Balance: <b id="balance2">UGX 5,000</b>
+      <div class="momo"><b>Pay with MTN / Airtel</b><br><small id="merchantInfo"></small><input id="momoPhone" placeholder="Your MoMo number"><button class="btn" style="background:#000" onclick="payMoMo()">Pay Now</button><button class="btn wa" onclick="orderWA()">Order on WhatsApp</button><div id="payStatus" style="font-size:11px;margin-top:6px"></div></div>
+      <button class="btn wa2" onclick="customerService()">🎧 Contact Customer Service</button>
+      <button class="btn group" onclick="joinGroup()">👥 Join Official WhatsApp Group</button>
+    </div>
+    <div class="card"><div onclick="alert('Ezol Energy Ltd - Kampala. WhatsApp: '+WHATSAPP_NUMBER)">📄 Company Profile</div><hr><div onclick="alert('Rules: Real products only. No income promise. Refund 7 days.')">📜 Rules</div><hr><div onclick="logout()" style="color:red">🚪 Logout</div></div>
+  </div>
+
+  <div class="tabs"><div id="tHome" class="active" onclick="nav('Home')">⌂<br>Home</div><div id="tProduct" onclick="nav('Product')">◍<br>Product</div><div id="tShare" onclick="nav('Share')">↗<br>Share</div><div id="tMy" onclick="nav('My')">👤<br>My</div></div>
+</div>
+
+<script>
+const WHATSAPP_NUMBER = "256795143386";
+const GROUP_LINK = "https://chat.whatsapp.com/CJl3YvYBHNR10VWAB2NUNx";
+const MTN_MERCHANT_CODE = "123456";
+const AIRTEL_MERCHANT_CODE = "654321";
+
+document.getElementById('merchantInfo').innerHTML = `MTN: <b>${MTN_MERCHANT_CODE}</b> | Airtel: <b>${AIRTEL_MERCHANT_CODE}</b>`;
+
+let user = JSON.parse(localStorage.getItem('ezol_user')||'null');
+let balance = parseInt(localStorage.getItem('ezol_bal')||'5000');
+
+function register(){
+  const name=document.getElementById('rName').value; const phone=document.getElementById('rPhone').value; const pass=document.getElementById('rPass').value;
+  if(!name||phone.length<10||!pass) return alert('Fill all fields');
+  localStorage.setItem('ezol_user', JSON.stringify({name,phone})); localStorage.setItem('ezol_bal','5000'); location.reload();
+}
+if(user){
+  document.getElementById('loginPage').style.display='none'; document.getElementById('app').style.display='block';
+  document.getElementById('uName').innerText=user.name; document.getElementById('balance').innerText='UGX '+balance; document.getElementById('balance2').innerText='UGX '+balance;
+  document.getElementById('refLink').innerText=location.href+'?ref='+user.phone;
+}
+function nav(p){ ['Home','Product','Share','My'].forEach(x=>{document.getElementById('page'+x).style.display='none'; document.getElementById('t'+x).classList.remove('active')}); document.getElementById('page'+p).style.display='block'; document.getElementById('t'+p).classList.add('active'); }
+function checkIn(){ document.getElementById('checkMsg').innerText='✅ 1000 UGX OFF coupon added!'; }
+function logout(){ localStorage.clear(); location.reload(); }
+function copyLink(){ navigator.clipboard.writeText(document.getElementById('refLink').innerText); alert('Copied!'); }
+function shareWA(){ window.open(`https://wa.me/?text=Check Ezol Energy: ${document.getElementById('refLink').innerText}`); }
+function customerService(){ window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=Hello Ezol Customer Service, I need help. Name: ${user?user.name:''}`); }
+function joinGroup(){ window.open(GROUP_LINK); }
+function orderWA(){ window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=Hello Ezol, I want to order. My number: ${user?user.phone:''}`); }
+function payMoMo(){ const ph=document.getElementById('momoPhone').value; if(ph.length<10) return alert('Enter MoMo'); document.getElementById('payStatus').innerHTML=`Dial *165*3*${MTN_MERCHANT_CODE}# to pay, then send screenshot to customer service`; }
+
+const grid=document.getElementById('productGrid');
+for(let i=1;i<=20;i++){ let price=15000+(i-1)*5000; grid.innerHTML+=`<div class="pcard"><div class="badge">MODEL ${i}</div><br><img src="https://cdn-icons-png.flaticon.com/512/2933/2933606.png" style="width:60px"><br><b>FINTOR FC ${i.toString().padStart(2,'0')}</b><br><small>Rent: ${price} UGX/mo</small><br><button class="btn" style="padding:8px;margin-top:6px;font-size:12px" onclick="nav('My')">Rent Now</button></div>`; }
+</script>
+</body>
+</html>
