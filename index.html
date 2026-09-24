@@ -1,557 +1,138 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Ezol Energy Investment V21 - Smart energy investment</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ezol Energy V21 - Product Details</title>
 <style>
-:root{--g:#0fa84f;--g2:#0a6b32;--o:#ff8c1a;--light:#e6f4ea;--b:#e6ede7;--mtn:#ffcc00;--airtel:#ff0000}
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
-body{background:#f5f7f5;padding-bottom:85px}
+*{box-sizing:border-box}body{margin:0;font-family:Arial;background:#f5f7fb;padding-bottom:90px}
+.top{background:linear-gradient(#a8d5a2,#6fbf73);border-radius:0 0 40px 40px;padding:30px 20px 50px;text-align:center}
+.logo{width:70px;height:70px;background:#0a3a5c;border-radius:18px;margin:auto;display:flex;align-items:center;justify-content:center;color:#7dff6b;font-size:36px;font-weight:bold}
+.card{background:#fff;border-radius:16px;padding:15px;margin:15px;box-shadow:0 2px 8px rgba(0,0,0,0.08)}
+input{width:100%;padding:14px;border-radius:12px;border:0;background:#eef2e9;margin:8px 0}
+.btn-green{width:100%;background:#0fa958;color:#fff;border:0;padding:14px;border-radius:24px;font-weight:bold}
+.products{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px}
+.p{background:#fff;border-radius:12px;padding:8px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,0.1)}
+.p img{width:100%;height:80px;background:#e8f5e9;border-radius:8px}
+.price{color:#0fa958;font-weight:bold}
 .tab{display:none}.tab.active{display:block}
-.top{position:sticky;top:0;z-index:99;background:#fff;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--b)}
-.av{width:40px;height:40px;background:var(--g2);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900}
-.auth-bg{background:linear-gradient(180deg,#0fa84f,#0a6b32);height:300px;border-radius:0 0 40px 40px;display:flex;flex-direction:column;align-items:center;padding-top:50px}
-.auth-logo{width:80px;height:80px;background:#fff;border-radius:20px;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(0,0,0,.2)}
-.auth-logo b{font-size:36px;color:var(--g);font-weight:900}
-.auth-bg h1{color:#fff;font-size:22px;font-weight:900;margin-top:14px}
-.auth-bg small{color:#fff;font-size:11px;margin-top:4px}
-.auth-form{margin:-40px 16px 0;background:#fff;border-radius:24px;padding:20px;box-shadow:0 10px 30px rgba(0,0,0,.1)}
-.inp{width:100%;padding:16px 18px;border:none;background:#eef6f0;border-radius:14px;margin:8px 0;font-size:14px;outline:none;display:block}
-.btn{width:100%;padding:16px;border-radius:28px;border:none;font-weight:900;font-size:15px;cursor:pointer}
-.btn-green{background:var(--g);color:#fff;margin-top:12px}
-.btn-orange{background:var(--o);color:#fff}
-.badge-card{margin:12px 14px;background:linear-gradient(135deg,#0fa84f,#0a6b32);border-radius:20px;padding:16px;color:#fff;display:flex;justify-content:space-between;align-items:center}
-.badge{width:70px;height:70px;background:#ffcc00;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;border:3px solid #fff}
+.fab{position:fixed;right:14px;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:1000;color:#fff;text-decoration:none;font-size:11px;box-shadow:0 4px 8px rgba(0,0,0,0.3)}
+.fab-group{bottom:150px;background:#25D366}.fab-cs{bottom:80px;background:#ff8c00}
+.nav{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:8px 0;border-top:1px solid #ddd;z-index:999}
+.nav div{text-align:center;font-size:12px;color:#666;cursor:pointer}.nav.active{color:#0fa958;font-weight:bold}
+/* DETAIL MODAL */
+#detail{position:fixed;top:0;left:0;right:0;bottom:0;background:#fff;z-index:2000;display:none;overflow:auto;padding-bottom:90px}
+#detail.active{display:block}
+.detail-img{width:100%;height:220px;background:#e8f5e9;display:flex;align-items:center;justify-content:center;font-size:50px}
+.detail-body{padding:15px}
+.badge{background:#e8f5e9;color:#0fa958;padding:4px 8px;border-radius:6px;font-size:12px}
+</style>
+</head>
+<body>
 
-/* LIVE PROOFS MOVING UPWARDS - V21 */
-.live-vertical{margin:12px 14px;background:#000;border-radius:12px;height:120px;overflow:hidden;position:relative;border:1px solid #222}
-.live-vertical-title{background:#0fa84f;color:#fff;padding:6px 12px;font-size:11px;font-weight:900;display:flex;justify-content:space-between}
-.live-vertical-content{position:absolute;top:100%;left:0;right:0;animation:moveUp 30s linear infinite}
-@keyframes moveUp{0%{transform:translateY(0)}100%{transform:translateY(-100%)}}
-.live-item{padding:8px 12px;border-bottom:1px solid #222;font-size:11px;color:#0fa84f;display:flex;justify-content:space-between}
-.live-item b{color:#fff}
+<div class="top">
+<div class="logo">N</div>
+<h2 style="color:#fff;margin:10px 0 5px">Ezol Energy V21</h2>
+<p style="color:#fff;margin:0">Smart Energy Products</p>
+</div>
 
-.checkin-card{margin:12px 14px;background:#fff;border-radius:18px;padding:16px;border:2px solid var(--g);display:flex;justify-content:space-between;align-items:center}
-.balance-card{margin:12px 14px;background:linear-gradient(135deg,#0fa84f,#0a6b32);border-radius:20px;padding:18px;color:#fff;text-align:center}
-.prod-card{background:#fff;border-radius:18px;padding:14px;margin:10px 14px;border:1px solid #e6ede7;box-shadow:0 2px 10px rgba(0,0,0,.05)}
-.rent-btn{width:100%;background:var(--g);color:#fff;padding:12px;border-radius:20px;font-weight:900;margin-top:10px;border:none;cursor:pointer}
-.cs-row{display:flex;gap:10px;padding:12px 14px}
-.cs-btn{flex:1;padding:14px;border-radius:20px;font-weight:900;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;font-size:13px}
-.cs-customer{background:linear-gradient(135deg,#25D366,#128C7E);color:#fff}
-.cs-group{background:linear-gradient(135deg,#0fa84f,#0a6b32);color:#fff;border:2px solid #ffcc00}
-.share-bg{background:var(--light);min-height:100vh;padding:14px}
-.share-input{width:100%;background:#fff;border:none;padding:16px;border-radius:14px;font-size:12px;word-break:break-all}
-.share-copy{width:100%;background:var(--o);color:#fff;border:none;padding:14px;border-radius:28px;font-weight:900;margin-top:10px;cursor:pointer}
-.wallet-item,.my-item{background:#fff;padding:16px;border-radius:14px;margin:8px 14px;display:flex;justify-content:space-between;align-items:center;font-size:13px;border:1px solid #e6ede7;cursor:pointer}
-.page-bg{background:var(--light);min-height:100vh;padding:12px 14px 100px}
-.page-card{background:#fff;border-radius:18px;padding:16px;margin-bottom:12px;border:1px solid #e6ede7}
-.amount-input{width:100%;background:#eef6f0;border:none;padding:18px;border-radius:14px;font-size:22px;font-weight:900;outline:none}
-.quick-amounts{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px}
-.quick-amounts button{background:#fff;border:1px solid #e0e0e0;padding:12px;border-radius:12px;font-weight:700;cursor:pointer}
-.quick-amounts button.active{background:var(--g);color:#fff;border-color:var(--g)}
-.pay-methods{display:flex;gap:10px;margin-top:8px}
-.pay-methods button{flex:1;padding:14px;border-radius:12px;border:2px solid #e0e0e0;background:#fff;font-weight:900;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px}
-.pay-methods button.active{border-color:var(--g);background:#e6f4ea;color:var(--g)}
-.ussd-box{background:#000;color:#0fa84f;border-radius:12px;padding:12px;margin-top:12px;font-family:monospace;font-size:14px;text-align:center;border:2px solid var(--g)}
-.ussd-box b{color:#ffcc00;font-size:18px}
-.mtn-modal{position:fixed;inset:0;background:rgba(0,0,0,.75);display:none;align-items:center;justify-content:center;padding:16px;z-index:400}
-.mtn-box{background:#fff;max-width:360px;width:100%;overflow:hidden;border-top:6px solid var(--mtn);border-radius:4px}
-.mtn-header{padding:10px 14px;display:flex;align-items:center;gap:8px;font-weight:900}
-.mtn-header.mtn{background:var(--mtn);color:#000}
-.mtn-header.airtel{background:var(--airtel);color:#fff}
-.mtn-body{padding:16px 14px;font-size:13px;line-height:1.5}
-.mtn-input{width:100%;padding:12px;border:1px solid #000;margin-top:10px;font-size:14px}
-.mtn-footer{display:flex;justify-content:space-between;padding:10px 14px;background:#f5f5f5;border-top:1px solid #ddd}
-.mtn-footer button{border:none;background:transparent;font-weight:900;padding:6px 12px;cursor:pointer}
-.nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--b);display:flex;justify-content:space-around;padding:8px 0 12px;z-index:100}
-.nav button{border:none;background:transparent;font-size:10px;color:#9aa5a0;display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 10px;cursor:pointer}
-.nav button.active{color:var(--g);font-weight:800}
-.fab-cs{position:fixed;right:12px;bottom:90px;z-index:101;width:56px;height:56px;border-radius:50%;border:none;background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;font-size:24px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,.3);cursor:pointer}
-.fab-group{position:fixed;right:12px;bottom:152px;z-index:101;width:56px;height:56px;border-radius:50%;border:none;background:linear-gradient(135deg,#0fa84f,#0a6b32);color:#fff;font-size:20px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,.3);cursor:pointer;border:2px solid #ffcc00}
-@keyframes spin{to{transform:rotate(360deg)}}
-</style></head><body>
+<div id="home" class="tab active">
+<div class="card"><h3>Home</h3><p>Real solar products with warranty. Tap Product to see all 20.</p></div>
+<div class="products" id="featured"></div>
+</div>
 
-<div id="authPage">
-<div class="auth-bg"><div class="auth-logo"><b>E</b></div><h1>Ezol Energy Investment</h1><small>Smart energy investment • V21</small><small style="margin-top:8px;background:#fff3cd;color:#000;padding:4px 12px;border-radius:20px;font-weight:900">500 UGX BONUS AFTER REGISTRATION</small></div>
-<div class="auth-form">
-<h2>Create Account - V21</h2><p style="font-size:11px;color:#7a8a7d;margin:4px 0 12px">Ezol Energy Investment V21 - Smart energy</p>
-<input id="rName" class="inp" placeholder="Full Names">
-<input id="lPh" class="inp" placeholder="Phone Number 07XX XXX XXX" value="0783228690">
-<input id="lPa" class="inp" type="password" placeholder="Password (min 4 characters)">
-<input id="rRef" class="inp" placeholder="Referral Code (Optional)" value="0795143386">
-<button class="btn btn-green" type="button" onclick="handleCreate()">CREATE ACCOUNT - GET 500 UGX BONUS - V21</button>
-<button id="btnLogin" class="btn btn-green" type="button" style="display:none;background:#0a6b32" onclick="handleLogin()">LOGIN - V21</button>
-<div id="err" style="color:#ff3b30;font-size:12px;text-align:center;margin-top:10px;min-height:14px"></div>
-<div style="text-align:center;margin-top:14px;font-size:13px;color:#6b7280"><span id="toLogin">Already have account? <u onclick="showLogin()" style="color:var(--g);font-weight:800;cursor:pointer">Login</u></span><span id="toReg" style="display:none">No account? <u onclick="showReg()" style="color:var(--g);font-weight:800;cursor:pointer">Create Account</u></span></div>
+<div id="product" class="tab">
+<div class="card"><h3>20 Products - Tap for Details</h3></div>
+<div class="products" id="allProducts"></div>
+</div>
+
+<div id="share" class="tab">
+<div class="card" style="text-align:center">
+<h3>Share & Earn</h3>
+<p id="link" style="background:#eee;padding:10px;border-radius:10px">https://ezolenergy.com/?ref=0SA6</p>
+<button style="background:#25D366;color:#fff;padding:10px 14px;border:0;border-radius:8px" onclick="navigator.clipboard.writeText(document.getElementById('link').innerText);alert('Copied')">Copy & Share</button>
+<p style="font-size:12px;color:#666">5% commission on real product sales only.</p>
 </div>
 </div>
 
-<div id="appPage" style="display:none">
-<div class="top"><div style="display:flex;align-items:center;gap:8px"><div class="av">E</div><div><b id="tNa">Ezol Energy V21</b><div style="font-size:10px;color:#7a8a7d"><span id="tPh">0783228690</span> • V21 Smart Energy</div></div></div></div>
-
-<div id="tab-home" class="tab active">
-<div class="badge-card">
-<div><div style="font-size:11px;opacity:.9">COMPANY BADGE - V21</div><div style="font-size:18px;font-weight:900;margin-top:4px">Ezol Energy Investment V21</div><div style="font-size:11px;margin-top:4px">Licensed • Verified • Smart energy investment</div><div style="margin-top:8px;background:#fff;color:var(--g);display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:900">OFFICIAL PARTNER V21</div></div>
-<div class="badge">⚡</div>
+<div id="my" class="tab">
+<div class="card"><h3>My Account</h3><input placeholder="Full Names"><input placeholder="Phone"><input placeholder="Password" type="password"><button class="btn-green">CREATE ACCOUNT</button></div>
+<div class="card"><h4>My Orders</h4><p>Balance: UGX 0 (for real purchases)</p></div>
 </div>
 
-<!-- LIVE PROOFS MOVING UPWARDS - V21 -->
-<div class="live-vertical">
-<div class="live-vertical-title"><span>🔥 LIVE PROOFS - INVESTMENTS & WITHDRAWALS</span><span style="background:#fff;color:var(--g);padding:2px 8px;border-radius:10px;font-size:9px">LIVE UP ↑</span></div>
-<div style="height:90px;overflow:hidden;position:relative">
-<div class="live-vertical-content" id="liveUp">
-<div class="live-item"><span>0783***890 invested <b>15,000 UGX</b> VIP1 → <b>3,000/day</b></span><span style="color:#00ff00">✓</span></div>
-<div class="live-item"><span>0775***123 withdrew <b>25,000 UGX</b> MTN SUCCESS</span><span style="color:#00ff00">✓</span></div>
-<div class="live-item"><span>0751***456 invested <b>50,000 UGX</b> VIP4 → <b>13,000/day</b></span><span style="color:#00ff00">✓</span></div>
-<div class="live-item"><span>0789***234 daily check-in <b>1,000 UGX</b> bonus</span><span style="color:#ffcc00">+1K</span></div>
-<div class="live-item"><span>0701***789 invested <b>100,000 UGX</b> VIP6 → <b>30,000/day</b></span><span style="color:#00ff00">✓</span></div>
-<div class="live-item"><span>0762***345 withdrew <b>100,000 UGX</b> Airtel SUCCESS</span><span style="color:#00ff00">✓</span></div>
-<div class="live-item"><span>0783***111 invested <b>15,000 UGX</b> VIP1 → <b>3,000/day</b></span><span style="color:#00ff00">✓</span></div>
-<div class="live-item"><span>0755***222 withdrew <b>250,000 UGX</b> MTN SUCCESS</span><span style="color:#00ff00">✓</span></div>
-<div class="live-item"><span>0778***333 invested <b>500,000 UGX</b> VIP11 → <b>175,000/day</b></span><span style="color:#00ff00">✓</span></div>
-<div class="live-item"><span>0783***890 invested <b>15,000 UGX</b> VIP1 → <b>3,000/day</b></span><span style="color:#00ff00">✓</span></div>
-<div class="live-item"><span>0775***123 withdrew <b>25,000 UGX</b> MTN SUCCESS</span><span style="color:#00ff00">✓</span></div>
-<div class="live-item"><span>0751***456 invested <b>50,000 UGX</b> VIP4 → <b>13,000/day</b></span><span style="color:#00ff00">✓</span></div>
+<!-- PRODUCT DETAIL PAGE -->
+<div id="detail">
+<div class="detail-img" id="d-img">☀️</div>
+<div class="detail-body">
+<span class="badge">In Stock • Warranty 1 Year</span>
+<h2 id="d-name"></h2>
+<h3 class="price" id="d-price"></h3>
+<p id="d-desc"></p>
+<div class="card" style="margin:15px 0">
+<h4>Specifications:</h4>
+<p id="d-specs"></p>
 </div>
+<button class="btn-green" onclick="alert('Order placed! Our team will call you on MTN/Airtel.')">Buy Now - Cash on Delivery</button>
+<button class="btn-green" style="background:#fff;color:#0fa958;border:1px solid #0fa958;margin-top:8px" onclick="closeDetail()">Back to Products</button>
 </div>
 </div>
 
-<div class="checkin-card">
-<div><b style="font-size:14px">📅 Daily Check-In V21</b><div style="font-size:11px;color:#7a8a7d;margin-top:2px">Get <b style="color:var(--g)">1,000 UGX</b> every day - V21</div><div style="font-size:10px;color:#7a8a7d" id="checkinStatus">Not checked today</div></div>
-<button class="btn btn-green" style="width:auto;padding:10px 18px;font-size:12px" onclick="dailyCheckin()">Check-In +1,000 UGX V21</button>
-</div>
-
-<div class="balance-card">
-<div style="font-size:11px;opacity:.9">WALLET BALANCE - V21 Ezol Energy Investment</div><h1 style="font-size:32px;margin:6px 0" id="balHome">UGX 500</h1><div style="font-size:11px;opacity:.9">Merchant 0795143386 • V21</div>
-<div style="display:flex;gap:10px;margin-top:14px"><button style="flex:1;background:#fff;color:var(--g);border:none;padding:12px;border-radius:20px;font-weight:900;cursor:pointer" onclick="switchTab('recharge')">◫ Recharge 15K MIN</button><button style="flex:1;background:#ff8c1a;color:#fff;border:none;padding:12px;border-radius:20px;font-weight:900;cursor:pointer" onclick="switchTab('withdraw')">➤ Withdraw 25K MIN</button></div>
-</div>
-
-<!-- CUSTOMER SERVICE & GROUP BUTTONS - V21 -->
-<div class="cs-row">
-<button class="cs-btn cs-customer" onclick="openCustomerService()">💬 Customer Service<br>0795143386</button>
-<button class="cs-btn cs-group" onclick="openGroup()">👥 Join Group<br>WhatsApp Group</button>
-</div>
-
-<div style="padding:12px 14px 6px;font-weight:900;display:flex;justify-content:space-between"><span>🔥 Hot Products - V21 Ezol Energy</span><span style="color:var(--g);font-size:11px" onclick="switchTab('product')">View All ›</span></div>
-<div id="hotScroll" style="display:flex;gap:10px;overflow-x:auto;padding:0 14px 10px"></div>
-</div>
-
-<div id="tab-product" class="tab"><div class="top"><b>20 VIP Products - V21 Ezol Energy Investment</b></div><div id="prodList"></div></div>
-
-<div id="tab-share" class="tab"><div class="top"><button onclick="switchTab('home')" style="border:none;background:transparent;font-size:18px">‹</button><b>Invite - Share & Earn - V21</b></div>
-<div class="share-bg">
-<div style="background:#fff;border-radius:18px;padding:16px;margin-bottom:12px">
-<div style="color:var(--o);font-weight:900;font-size:12px">YOUR INVITATION LINK - V21</div>
-<input id="inviteLink" class="share-input" readonly style="margin-top:8px">
-<button class="share-copy" onclick="copyLink()">📋 COPY LINK - V21</button>
-<div style="margin-top:16px;color:var(--o);font-weight:900;font-size:12px">YOUR INVITE CODE - V21</div>
-<div style="display:flex;gap:10px;margin-top:8px"><div style="flex:1;background:#eef6f0;padding:16px;border-radius:14px;text-align:center;font-weight:900;font-size:20px;letter-spacing:3px" id="inviteCode">0SA6</div><button style="background:var(--g);color:#fff;border:none;padding:0 18px;border-radius:14px;font-weight:900;cursor:pointer" onclick="copyCode()">Copy</button></div>
-<div class="cs-row" style="padding:12px 0 0 0">
-<button class="cs-btn cs-customer" onclick="openCustomerService()" style="padding:12px;font-size:12px">💬 Customer Service 0795143386</button>
-<button class="cs-btn cs-group" onclick="openGroup()" style="padding:12px;font-size:12px">👥 Join WhatsApp Group</button>
-</div>
-</div>
-</div>
-</div>
-
-<div id="tab-my" class="tab">
-<div class="balance-card" style="border-radius:0 0 24px 24px;margin:0">
-<div style="width:60px;height:60px;background:#fff;border-radius:50%;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:28px">👤</div>
-<div style="margin-top:10px;font-weight:900" id="myName">Ezol Energy V21 User</div>
-<div style="font-size:11px;opacity:.9" id="myPhone">0783228690</div>
-<h2 style="margin-top:12px" id="myBalance">500 UGX</h2>
-<div style="font-size:11px;opacity:.9">Balance • V21 Ezol Energy Investment</div>
-<div class="cs-row" style="margin-top:12px">
-<button class="cs-btn cs-customer" onclick="openCustomerService()" style="background:#fff;color:#128C7E;padding:10px;font-size:11px">💬 Customer Service</button>
-<button class="cs-btn cs-group" onclick="openGroup()" style="background:#fff;color:var(--g);padding:10px;font-size:11px">👥 Group</button>
-</div>
-</div>
-
-<div class="my-item" onclick="switchTab('wallet')"><span>💰 My Wallet - Balance - V21</span><b id="myBal">500 UGX</b></div>
-<div class="my-item" onclick="openCustomerService()" style="background:#e6f9ee;border:1px solid #25D366"><span>💬 Customer Service - 0795143386 - V21</span><span>›</span></div>
-<div class="my-item" onclick="openGroup()" style="background:#fff3cd;border:1px solid #ffcc00"><span>👥 Join WhatsApp Group - V21</span><span>›</span></div>
-<div class="my-item" onclick="showCompanyProfile()"><span>🏢 Company Profile - V21</span><span>›</span></div>
-<div class="my-item" onclick="showRules()"><span>📜 Rules & Regulations - V21</span><span>›</span></div>
-<div class="my-item" onclick="setPinPrompt()"><span>🔐 Set MoMo PIN (5-digit) - V21</span><span>›</span></div>
-<div class="my-item" onclick="showFundHistory()"><span>📜 Transaction History - V21</span><span>›</span></div>
-<div class="my-item" onclick="handleLogout()" style="color:#ff3b30;background:#fff5f5;border-color:#ffcccc"><span style="color:#ff3b30">🚪 Logout - V21</span><span>›</span></div>
-
-<div style="background:#fff;border:1px solid #e6ede7;margin:12px 14px;border-radius:12px;padding:12px;font-size:11px">
-<b>📜 Recent Transactions - V21 - Merchant 0795143386</b>
-<div id="txList" style="margin-top:8px;color:#7a8a7d">No transactions yet - V21 Recharge 15,000 UGX to start earning!</div>
-</div>
-</div>
-
-<div id="tab-wallet" class="tab">
-<div class="balance-card"><h1 id="wBalBig">500<small> UGX</small></h1><div style="margin-top:8px;font-size:11px">V21 Ezol Energy Investment</div>
-<div class="cs-row" style="padding:10px 0 0 0">
-<button class="cs-btn cs-customer" onclick="openCustomerService()" style="background:#fff;color:#128C7E;padding:8px;font-size:11px">💬 CS 0795143386</button>
-<button class="cs-btn cs-group" onclick="openGroup()" style="background:#fff;color:var(--g);padding:8px;font-size:11px">👥 Group</button>
-</div>
-</div>
-<div class="wallet-item" onclick="showFundHistory()"><span>Fund History - V21 - 0795143386</span><span>›</span></div>
-<div class="wallet-item"><span>Energy Storage - V21</span><b id="wEnergy">0</b></div>
-<div class="wallet-item"><span>Total Earnings - V21</span><b id="wTotal" style="color:var(--g)">0 UGX</b></div>
-<div style="display:flex;gap:10px;padding:12px 14px"><button style="flex:1" class="btn btn-green" onclick="switchTab('recharge')">Recharge 15K MIN - V21</button><button style="flex:1" class="btn btn-orange" onclick="switchTab('withdraw')">Withdraw 25K MIN - V21</button></div>
-</div>
-
-<div id="tab-recharge" class="tab">
-<div class="top"><button onclick="switchTab('wallet')" style="border:none;background:transparent;font-size:18px">‹</button><b>Recharge - MTN & Airtel USSD - V21</b></div>
-<div class="page-bg">
-<div class="page-card"><h3 style="font-size:13px">ENTER AMOUNT - MIN 15,000 UGX - V21</h3>
-<input id="reAmount" class="amount-input" type="number" value="15000" oninput="updateUSSD()">
-<div style="font-size:11px;color:#ff3b30;margin-top:6px">⚠️ Minimum recharge: 15,000 UGX - V21</div>
-<div class="quick-amounts"><button class="active" onclick="setAmount(15000,this)">15,000</button><button onclick="setAmount(50000,this)">50,000</button><button onclick="setAmount(100000,this)">100,000</button><button onclick="setAmount(300000,this)">300,000</button><button onclick="setAmount(500000,this)">500,000</button><button onclick="setAmount(1000000,this)">1,000,000</button></div>
-</div>
-
-<div class="page-card">
-<h3 style="font-size:13px">SELECT PAYMENT METHOD - V21</h3>
-<div class="pay-methods">
-<button id="payMtn" class="active" onclick="setPayMethod('mtn')">
-<div style="width:36px;height:36px;background:var(--mtn);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900">M</div>
-<b>MTN MoMo</b><small>USSD *165*</small>
-</button>
-<button id="payAirtel" onclick="setPayMethod('airtel')">
-<div style="width:36px;height:36px;background:var(--airtel);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900">A</div>
-<b>Airtel Money</b><small>USSD *185*</small>
-</button>
-</div>
-
-<h3 style="font-size:13px;margin-top:14px">YOUR PHONE - V21</h3>
-<input id="rePhone" class="share-input" placeholder="07XXXXXXXXXX" style="margin-top:6px" oninput="updateUSSD()">
-
-<!-- AUTOMATIC USSD CODE LIKE *165*..............# - V21 -->
-<div style="font-size:12px;font-weight:900;margin-top:14px;color:var(--g)">🔴 AUTOMATIC PAYMENT CODE - DIAL TO PAY - V21</div>
-<div class="ussd-box" id="ussdBox">
-<div style="font-size:11px;color:#fff">MTN MoMo USSD CODE - V21</div>
-<b id="ussdCode">*165*1*1*0795143386*15000#</b>
-<div style="font-size:10px;color:#7a8a7d;margin-top:6px">Dial this code → Enter PIN → Money goes FROM your number TO 0795143386 automatically</div>
-</div>
-
-<div style="display:flex;gap:8px;margin-top:10px">
-<button class="btn btn-green" style="flex:1;padding:12px;font-size:12px;margin-top:0" onclick="dialUSSD()">📞 DIAL *165* NOW - V21</button>
-<button class="btn btn-orange" style="flex:1;padding:12px;font-size:12px;margin-top:0" onclick="copyUSSD()">📋 COPY USSD CODE</button>
-</div>
-
-<div style="font-size:11px;color:#7a8a7d;margin-top:12px;background:#fff3cd;padding:10px;border-radius:8px;border:1px solid #ffcc00">
-<b>🔴 HOW USSD AUTO PAYMENT WORKS - V21:</b><br>
-<span id="howMtn"><b>MTN:</b> Dial <b>*165*1*1*0795143386*AMOUNT#</b><br>1. Dial code above<br>2. Press CALL<br>3. Enter MoMo PIN<br>4. Money auto deducted FROM your number TO 0795143386<br>5. You get SMS with TxID<br>6. Enter TxID below to confirm</span>
-<span id="howAirtel" style="display:none"><b>Airtel:</b> Dial <b>*185*1*1*0795143386*AMOUNT#</b><br>1. Dial code above<br>2. Press CALL<br>3. Enter Airtel PIN<br>4. Money auto deducted FROM your number TO 0795143386<br>5. You get SMS with TxID<br>6. Enter TxID below to confirm</span>
-<br><br>
-<b>Merchant: 0795143386 - V21</b><br>
-Need help? Customer Service 0795143386 or Group: https://chat.whatsapp.com/CJl3YvYBHNR10VWAB2NUNx
-</div>
-
-<input id="txIdInput" class="share-input" placeholder="Enter TxID from SMS after dialing *165* code - V21" style="margin-top:12px">
-
-<button class="btn btn-green" style="margin-top:12px" onclick="confirmTxId()">Confirm - I PAID VIA *165* CODE - V21</button>
-
-<div class="cs-row" style="padding:12px 0 0 0">
-<button class="cs-btn cs-customer" onclick="openCustomerService()">💬 Customer Service 0795143386</button>
-<button class="cs-btn cs-group" onclick="openGroup()">👥 Join Group</button>
-</div>
-</div>
-</div>
-</div>
-
-<div id="tab-withdraw" class="tab">
-<div class="top"><button onclick="switchTab('wallet')" style="border:none;background:transparent;font-size:18px">‹</button><b>Withdrawal - MIN 25,000 UGX - V21</b></div>
-<div class="page-bg">
-<div class="page-card"><h3 style="font-size:13px">ENTER AMOUNT - MIN 25,000 UGX - V21</h3>
-<input id="withAmount" class="amount-input" type="number" value="25000">
-<div style="font-size:11px;color:#ff3b30;margin-top:6px">⚠️ Minimum withdrawal: 25,000 UGX - 10% fee - V21</div>
-<h3 style="font-size:13px;margin-top:14px">WITHDRAW TO - YOUR NUMBER - V21</h3>
-<input id="withPhone" class="share-input" placeholder="07XXXXXXXXXX" style="margin-top:6px">
-<div style="font-size:11px;margin-top:10px;background:#e6f4ea;padding:10px;border-radius:8px">
-Fee: 10% • You receive: <b id="receiveAmt">22,500 UGX</b><br>
-Method: <b>MTN & Airtel Auto Payout - V21</b><br>
-Support: 0795143386 • Group: https://chat.whatsapp.com/CJl3YvYBHNR10VWAB2NUNx
-</div>
-</div>
-<button class="btn btn-orange" onclick="doWithdrawAuto()">Confirm Withdraw - V21</button>
-</div>
-</div>
-
-<button class="fab-group" onclick="openGroup()" title="Join WhatsApp Group V21">👥</button>
-<button class="fab-cs" onclick="openCustomerService()" title="Customer Service 0795143386 V21">💬</button>
+<a class="fab fab-group" href="https://wa.me/256783228690">GROUP</a>
+<a class="fab fab-cs" href="https://wa.me/256783228690">CS</a>
 
 <div class="nav">
-<button class="active" id="nav-home" onclick="switchTab('home')">🏠 Home</button>
-<button id="nav-product" onclick="switchTab('product')">⚡ Product</button>
-<button id="nav-share" onclick="switchTab('share')">↗ Share</button>
-<button id="nav-wallet" onclick="switchTab('wallet')">👛 Wallet</button>
-<button id="nav-my" onclick="switchTab('my')">👤 My</button>
-</div>
-</div>
-
-<div id="pinModal" style="position:fixed;inset:0;background:rgba(0,0,0,.65);display:none;align-items:center;justify-content:center;padding:18px;z-index:300">
-<div style="background:#fff;border-radius:20px;padding:22px;max-width:360px;width:100%;text-align:center">
-<h3 style="font-weight:900">Enter TxID - V21</h3><p style="font-size:12px;color:#6b7280;margin:8px 0 14px">After dialing <b id="pinUssd">*165*1*1*0795143386*15000#</b><br>Enter SMS TxID - V21<br><b>Merchant 0795143386</b></p>
-<input id="momoPin" type="text" placeholder="Enter TxID e.g. 1234567890" style="width:100%;padding:16px;text-align:center;font-size:14px;font-weight:900;border:2px solid #e5e7eb;border-radius:14px;outline:none">
-<div id="pinErr" style="color:#ff3b30;font-size:11px;margin-top:8px;min-height:16px"></div>
-<button style="width:100%;background:var(--g);color:#fff;padding:14px;border-radius:28px;font-weight:900;border:none;margin-top:12px;cursor:pointer" onclick="confirmPinPayment()">Confirm Payment - V21</button>
-<button onclick="closePin()" style="width:100%;background:#fff;border:1px solid #e5e7eb;padding:12px;border-radius:28px;font-weight:700;margin-top:8px;cursor:pointer">Cancel</button>
-</div>
+<div id="n-home" class="active" onclick="openTab('home')">🏠<br>Home</div>
+<div id="n-product" onclick="openTab('product')">📦<br>Product</div>
+<div id="n-share" onclick="openTab('share')">🔗<br>Share</div>
+<div id="n-my" onclick="openTab('my')">👤<br>My</div>
 </div>
 
 <script>
-const MERCHANT = '0795143386';
-const CS_LINK = 'https://wa.me/256795143386?text=Hello%20V21%20Ezol%20Energy%20Investment%20I%20need%20help';
-const GROUP_LINK = 'https://chat.whatsapp.com/CJl3YvYBHNR10VWAB2NUNx';
-const BASE_URL='https://easyearn869-oss.github.io/Ezo/';
-const KEY_B='ezol_energy_bal_v21', KEY_U='ezol_energy_users_v21', KEY_C='ezol_energy_current_v21', KEY_R='ezol_energy_req_v21', KEY_PIN='ezol_energy_pin_v21', KEY_CHECK='ezol_energy_check_v21', MIN_R=15000, MIN_W=25000, BONUS=500;
-
-const products=[
-{id:1,n:'VIP 1 - Energy Starter',price:15000,day:3000,total:120000,cycle:'40 Days',roi:'800%'},
-{id:2,n:'VIP 2 - Solar Mini',price:25000,day:5500,total:220000,cycle:'40 Days',roi:'880%'},
-{id:3,n:'VIP 3 - Battery Pack',price:35000,day:8500,total:340000,cycle:'40 Days',roi:'971%'},
-{id:4,n:'VIP 4 - Green Power',price:50000,day:13000,total:520000,cycle:'40 Days',roi:'1040%'},
-{id:5,n:'VIP 5 - Energy Gold',price:75000,day:22000,total:880000,cycle:'40 Days',roi:'1173%'},
-{id:6,n:'VIP 6 - Solar Pro',price:100000,day:30000,total:1200000,cycle:'40 Days',roi:'1200%'},
-{id:7,n:'VIP 7 - Power Max',price:150000,day:48000,total:1920000,cycle:'40 Days',roi:'1280%'},
-{id:8,n:'VIP 8 - Energy Plus',price:200000,day:65000,total:2600000,cycle:'40 Days',roi:'1300%'},
-{id:9,n:'VIP 9 - Solar Ultra',price:300000,day:100000,total:4000000,cycle:'40 Days',roi:'1333%'},
-{id:10,n:'VIP 10 - Mega Watt',price:400000,day:135000,total:5400000,cycle:'40 Days',roi:'1350%'},
-{id:11,n:'VIP 11 - Energy King',price:500000,day:175000,total:7000000,cycle:'40 Days',roi:'1400%'},
-{id:12,n:'VIP 12 - Solar Empire',price:600000,day:220000,total:8800000,cycle:'40 Days',roi:'1466%'},
-{id:13,n:'VIP 13 - Power House',price:750000,day:280000,total:11200000,cycle:'40 Days',roi:'1493%'},
-{id:14,n:'VIP 14 - Green Giant',price:900000,day:340000,total:13600000,cycle:'40 Days',roi:'1511%'},
-{id:15,n:'VIP 15 - Energy Titan',price:1000000,day:400000,total:16000000,cycle:'40 Days',roi:'1600%'},
-{id:16,n:'VIP 16 - Solar Supreme',price:1500000,day:620000,total:24800000,cycle:'40 Days',roi:'1653%'},
-{id:17,n:'VIP 17 - Power Legend',price:2000000,day:850000,total:34000000,cycle:'40 Days',roi:'1700%'},
-{id:18,n:'VIP 18 - Energy Master',price:3000000,day:1300000,total:52000000,cycle:'40 Days',roi:'1733%'},
-{id:19,n:'VIP 19 - Solar God',price:4000000,day:1800000,total:72000000,cycle:'40 Days',roi:'1800%'},
-{id:20,n:'VIP 20 - Ezol Infinity',price:5000000,day:2500000,total:100000000,cycle:'40 Days',roi:'2000%'},
+const items=[
+{n:"Solar Bulb 5W Kit",p:"15,000",d:"Bright LED bulb with small solar panel for home use.",s:"• 5W LED<br>• 3 hours backup<br>• USB charging<br>• Panel 3W"},
+{n:"Bulb 10W Solar",p:"25,000",d:"Powerful solar bulb for rooms and shops.",s:"• 10W<br>• 5 hours backup<br>• Waterproof"},
+{n:"Mini Home Kit",p:"45,000",d:"2 bulbs + radio charging system.",s:"• 2 bulbs<br>• FM radio<br>• Phone charging"},
+{n:"Home Lighting Kit",p:"85,000",d:"Complete home lighting 4 bulbs.",s:"• 4 bulbs<br>• Panel 15W<br>• Battery 6Ah"},
+{n:"Panel 20W Poly",p:"65,000",d:"Original polycrystalline solar panel.",s:"• 20W<br>• 12V<br>• 5 year warranty"},
+{n:"Panel 50W",p:"120,000",d:"Best for small home systems.",s:"• 50W<br>• High efficiency"},
+{n:"Panel 100W",p:"250,000",d:"Powerful for TV and lights.",s:"• 100W<br>• Monocrystalline"},
+{n:"Panel 200W",p:"480,000",d:"For full house systems.",s:"• 200W<br>• 24V compatible"},
+{n:"Battery 20Ah",p:"180,000",d:"Lead acid deep cycle battery.",s:"• 20Ah<br>• 12V<br>• 1 year warranty"},
+{n:"Battery 50Ah",p:"350,000",d:"Strong battery for inverters.",s:"• 50Ah<br>• Deep cycle"},
+{n:"Battery 100Ah",p:"650,000",d:"Heavy duty battery.",s:"• 100Ah<br>• Solar compatible"},
+{n:"Inverter 500W",p:"300,000",d:"Pure sine wave inverter.",s:"• 500W<br>• 12V to 220V"},
+{n:"Inverter 1000W",p:"550,000",d:"Run TV, lights, laptop.",s:"• 1000W<br>• Display screen"},
+{n:"Street Light 60W",p:"400,000",d:"Automatic solar street light.",s:"• 60W<br>• Auto on/off<br>• Pole included"},
+{n:"Street Light 100W",p:"650,000",d:"Super bright street light.",s:"• 100W<br>• 3 nights backup"},
+{n:"Pump Solar 0.5HP",p:"1,200,000",d:"Solar water pump for farms.",s:"• 0.5HP<br>• No electricity needed"},
+{n:"Full House 1kW",p:"1,200,000",d:"Complete 1kW home system installed.",s:"• Panel 200W + Battery 100Ah + Inverter"},
+{n:"Full House 2.5kW",p:"2,500,000",d:"Full house with fridge & TV.",s:"• Panels 500W + Battery 200Ah"},
+{n:"Full House 3.5kW",p:"3,500,000",d:"Big house system.",s:"• 3.5kW<br>• Installation free"},
+{n:"Farm System 5kW",p:"5,000,000",d:"Complete farm solar power.",s:"• 5kW<br>• For pumps, lights, house"}
 ];
 
-let cur=null, pendingRecharge=null, payMethod='mtn';
-function getUsers(){try{return JSON.parse(localStorage.getItem(KEY_U)||'[]')}catch{return[]}}
-function saveUser(u){let us=getUsers();let i=us.findIndex(x=>x.phone===u.phone);if(i>=0)us[i]=u;else us.push(u);localStorage.setItem(KEY_U,JSON.stringify(us))}
-function genCode(ph){return (ph.slice(-4).toUpperCase()+'A6').replace(/[^A-Z0-9]/g,'').slice(0,4) || '0SA6'}
-function openCustomerService(){window.open(CS_LINK,'_blank');}
-function openGroup(){window.open(GROUP_LINK,'_blank');}
-function showCompanyProfile(){alert('🏢 COMPANY PROFILE - V21 Ezol Energy Investment\n\nCEO: Twinamatsiko Ezra\nMerchant: 0795143386\nLocation: Kampala, Uganda\nFounded: 2024\n\nEzol Energy Investment V21 is a licensed energy investment platform offering daily returns on energy products. We invest in solar, battery storage, and green energy projects across Uganda.\n\nOfficial Contacts:\nMTN: 0795143386\nAirtel: 0795143386\nWhatsApp: 0795143386\nGroup: https://chat.whatsapp.com/CJl3YvYBHNR10VWAB2NUNx\n\nCEO: Twinamatsiko Ezra - V21');}
-function showRules(){alert('📜 RULES & REGULATIONS - V21 Ezol Energy Investment\n\n1. Recharge Limit: MIN 15,000 UGX\n2. Withdraw Limit: MIN 25,000 UGX\n3. Registration Bonus: 500 UGX\n4. Daily Check-in: 1,000 UGX\n5. Referral Bonus: L1 15%, L2 5%, L3 2%\n6. VIP 1: 15,000 UGX → 3,000 UGX/day for 40 days\n7. Withdrawal fee: 10%\n8. Withdrawal time: 24/7 instant MTN & Airtel\n9. One account per phone number\n10. Merchant: 0795143386 - V21\n11. Customer Service: 0795143386\n12. Group: https://chat.whatsapp.com/CJl3YvYBHNR10VWAB2NUNx\n\nViolation = Account blocked! - V21');}
+function render(id,count=20){
+ document.getElementById(id).innerHTML=items.slice(0,count).map((p,i)=>`
+ <div class="p" onclick="openDetail(${i})"><img><div>${p.n}</div><div class="price">UGX ${p.p}</div><button style="width:100%;background:#0fa958;color:#fff;border:0;padding:6px;border-radius:6px;margin-top:4px">View Details</button></div>`).join('');
+}
+render('allProducts',20); render('featured',4);
 
-function handleCreate(){
-  let name=document.getElementById('rName').value.trim();
-  let ph=document.getElementById('lPh').value.trim();
-  let pa=document.getElementById('lPa').value.trim();
-  let ref=document.getElementById('rRef').value.trim();
-  let err=document.getElementById('err');
-  if(!name||name.length<3){err.innerText='❌ Enter full names';return}
-  if(ph.length<10){err.innerText='❌ Enter phone 07XXXXXXXXXX';return}
-  if(pa.length<4){err.innerText='❌ Password min 4 characters';return}
-  let us=getUsers();
-  if(us.find(u=>u.phone===ph)){err.innerText='❌ Account exists - Click Login';return}
-  let code=genCode(ph);
-  let u={name:name,phone:ph,pass:pa,code:code,ref:ref};
-  saveUser(u);
-  localStorage.setItem(KEY_B+ph, BONUS.toString());
-  localStorage.setItem(KEY_C, JSON.stringify(u));
-  cur=u;
-  alert('🎉 Welcome to Ezol Energy Investment V21!\n\nYou got '+BONUS+' UGX BONUS!\n\nMerchant: 0795143386\nCustomer Service: 0795143386\nGroup: https://chat.whatsapp.com/CJl3YvYBHNR10VWAB2NUNx\n\nStart investing VIP 1: 15,000 UGX → 3,000 UGX/day - V21');
-  showApp();
+function openTab(t){
+ document.querySelectorAll('.tab').forEach(e=>e.classList.remove('active'));
+ document.getElementById(t).classList.add('active');
+ document.querySelectorAll('.nav div').forEach(e=>e.classList.remove('active'));
+ document.getElementById('n-'+t).classList.add('active');
 }
-function handleLogin(){
-  let ph=document.getElementById('lPh').value.trim();
-  let pa=document.getElementById('lPa').value.trim();
-  let err=document.getElementById('err');
-  if(!ph||!pa){err.innerText='❌ Enter phone + password';return}
-  let us=getUsers();
-  let u=us.find(x=>x.phone===ph&&x.pass===pa);
-  if(!u){
-    if(pa.length>=4 && ph.length>=10){
-      let code=genCode(ph);
-      let name=document.getElementById('rName').value.trim() || ph;
-      u={name:name,phone:ph,pass:pa,code:code};
-      saveUser(u);
-      localStorage.setItem(KEY_B+ph, BONUS.toString());
-    }else{err.innerText='❌ Wrong password';return}
-  }
-  localStorage.setItem(KEY_C, JSON.stringify(u));
-  cur=u;
-  showApp();
+function openDetail(i){
+ const it=items[i];
+ document.getElementById('d-name').innerText=(i+1)+'. '+it.n;
+ document.getElementById('d-price').innerText='UGX '+it.p;
+ document.getElementById('d-desc').innerText=it.d;
+ document.getElementById('d-specs').innerHTML=it.s;
+ document.getElementById('detail').classList.add('active');
+ window.scrollTo(0,0);
 }
-function showReg(){document.getElementById('aTitle').innerText='Create Account - V21';document.getElementById('rName').style.display='block';document.getElementById('rRef').style.display='block';document.getElementById('btnLogin').style.display='none';document.querySelector('.btn-green').style.display='block';document.getElementById('toLogin').style.display='block';document.getElementById('toReg').style.display='none';document.getElementById('err').innerText=''}
-function showLogin(){document.getElementById('aTitle').innerText='Welcome Back - V21';document.getElementById('rName').style.display='none';document.getElementById('rRef').style.display='none';document.getElementById('btnLogin').style.display='block';document.querySelector('.btn-green').style.display='none';document.getElementById('toLogin').style.display='none';document.getElementById('toReg').style.display='block';document.getElementById('err').innerText=''}
-function showApp(){
-  document.getElementById('authPage').style.display='none';
-  document.getElementById('appPage').style.display='block';
-  let bal=parseInt(localStorage.getItem(KEY_B+cur.phone)||BONUS.toString());
-  let code=cur.code||genCode(cur.phone);
-  cur.code=code; saveUser(cur);
-  document.getElementById('av').innerText=(cur.name||'E')[0].toUpperCase();
-  document.getElementById('tNa').innerText=(cur.name||'Ezol Energy')+' V21';
-  document.getElementById('tPh').innerText=cur.phone;
-  document.getElementById('myName').innerText=(cur.name||cur.phone)+' V21';
-  document.getElementById('myPhone').innerText=cur.phone;
-  document.getElementById('balHome').innerText='UGX '+bal.toLocaleString();
-  document.getElementById('myBalance').innerText=bal.toLocaleString()+' UGX';
-  document.getElementById('myBal').innerText=bal.toLocaleString()+' UGX';
-  document.getElementById('wBalBig').innerHTML=bal.toLocaleString()+'<small> UGX</small>';
-  document.getElementById('wEnergy').innerText=Math.floor(bal/15000);
-  document.getElementById('wTotal').innerText=bal.toLocaleString()+' UGX';
-  document.getElementById('inviteCode').innerText=code;
-  document.getElementById('inviteLink').value=BASE_URL+'?ref='+code;
-  document.getElementById('rePhone').value=cur.phone;
-  document.getElementById('withPhone').value=cur.phone;
-  renderHome(); renderProducts(); updateTx(); updateCheckin(); updateUSSD();
-}
-function renderHome(){
-  let c=document.getElementById('hotScroll'); c.innerHTML='';
-  products.slice(0,5).forEach(p=>{
-    c.innerHTML+=`<div class="prod-card" style="min-width:200px;margin:0"><div style="font-weight:900;font-size:12px">${p.n} V21</div><div style="font-size:11px;margin-top:4px">Price: ${p.price.toLocaleString()} UGX</div><div style="font-size:11px;color:var(--g);font-weight:800">Daily: ${p.day.toLocaleString()} UGX • ${p.roi}</div><button class="rent-btn" style="padding:10px;font-size:11px" onclick="buyVIP(${p.id})">Invest Now V21</button></div>`;
-  });
-}
-function renderProducts(){
-  let el=document.getElementById('prodList'); el.innerHTML='';
-  products.forEach(p=>{
-    el.innerHTML+=`<div class="prod-card">
-      <div style="display:flex;justify-content:space-between"><b style="font-size:13px">${p.n} - V21</b><span style="background:var(--o);color:#fff;padding:4px 10px;border-radius:12px;font-size:10px;font-weight:900">${p.roi}</span></div>
-      <div style="font-size:11px;color:#7a8a7d;margin-top:6px">Merchant 0795143386 • V21</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;font-size:11px">
-        <div>Price: <b>${p.price.toLocaleString()} UGX</b></div><div>Daily: <b style="color:var(--g)">${p.day.toLocaleString()} UGX</b></div>
-        <div>Cycle: ${p.cycle}</div><div>Total: ${p.total.toLocaleString()} UGX</div>
-      </div>
-      <button class="rent-btn" onclick="buyVIP(${p.id})">Rent Now - V21 Ezol Energy Investment</button>
-    </div>`;
-  });
-}
-function updateTx(){
-  let reqs=JSON.parse(localStorage.getItem(KEY_R)||'[]').filter(r=>r.phone===cur.phone).reverse();
-  let html='';
-  if(reqs.length===0) html=`<div style="background:#fff3cd;padding:10px;border-radius:8px;border:1px solid #ffcc00">No transactions<br>V21 Ezol Energy Investment<br>Merchant ${MERCHANT}<br>Recharge MIN 15,000 UGX - Withdraw MIN 25,000 UGX<br>FROM your number → TO ${MERCHANT}<br>CS: 0795143386 • Group: https://chat.whatsapp.com/CJl3YvYBHNR10VWAB2NUNx</div>`;
-  else{reqs.slice(0,10).forEach(r=>{
-    html+=`<div style="background:#fff;border:1px solid #e5e7eb;padding:10px;border-radius:10px;margin-bottom:8px"><div style="display:flex;justify-content:space-between"><b>💳 ${r.amt.toLocaleString()} UGX ${r.type||''}</b><span style="color:#00a651;font-weight:900;font-size:10px">${r.status}</span></div><small>From ${r.userPhone||cur.phone} → To ${MERCHANT} TxID ${r.txId} - ${r.method||''}</small></div>`;
-  })}
-  document.getElementById('txList').innerHTML=html;
-}
-function updateCheckin(){
-  let last=localStorage.getItem(KEY_CHECK+cur.phone);
-  let today=new Date().toDateString();
-  if(last===today){document.getElementById('checkinStatus').innerText='✅ Checked today V21 - Come tomorrow';}
-  else{document.getElementById('checkinStatus').innerText='Not checked today - Get 1,000 UGX now! V21';}
-}
-function dailyCheckin(){
-  let last=localStorage.getItem(KEY_CHECK+cur.phone);
-  let today=new Date().toDateString();
-  if(last===today){alert('✅ Already checked in today V21! Come back tomorrow - V21\n\nCS: 0795143386\nGroup: https://chat.whatsapp.com/CJl3YvYBHNR10VWAB2NUNx');return}
-  let bal=parseInt(localStorage.getItem(KEY_B+cur.phone)||'0');
-  localStorage.setItem(KEY_B+cur.phone,(bal+1000).toString());
-  localStorage.setItem(KEY_CHECK+cur.phone,today);
-  alert('🎉 Daily Check-In Success V21!\n\n+1,000 UGX added!\n\nV21 Ezol Energy Investment\nMerchant 0795143386\nCS: 0795143386');
-  showApp();
-}
-function switchTab(t){document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));let el=document.getElementById('tab-'+t);if(el) el.classList.add('active');document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));let nb=document.getElementById('nav-'+t);if(nb) nb.classList.add('active')}
-function buyVIP(id){
-  let p=products.find(x=>x.id===id);
-  let bal=parseInt(localStorage.getItem(KEY_B+cur.phone)||'0');
-  if(bal<p.price){alert('❌ Need '+p.price.toLocaleString()+' UGX\nHave: '+bal.toLocaleString()+' UGX\n\nRecharge MIN 15,000 UGX to '+MERCHANT+' V21\n\nUSSD CODE: *165*1*1*0795143386*'+p.price+'# for MTN or *185*1*1*0795143386*'+p.price+'# for Airtel\n\nNeed help? CS 0795143386\nGroup: https://chat.whatsapp.com/CJl3YvYBHNR10VWAB2NUNx');switchTab('recharge');return}
-  localStorage.setItem(KEY_B+cur.phone,(bal-p.price).toString());
-  let reqs=JSON.parse(localStorage.getItem(KEY_R)||'[]');
-  reqs.push({phone:cur.phone,amt:p.price,type:'VIP INVESTMENT V21',method:p.n,time:new Date().toLocaleString(),txId:'VIP'+Date.now(),status:'ACTIVE V21 - Earning '+p.day.toLocaleString()+' UGX/day',userPhone:cur.phone});
-  localStorage.setItem(KEY_R,JSON.stringify(reqs));
-  showApp();
-  alert('✅ Invested in '+p.n+' V21!\n\nPrice: '+p.price.toLocaleString()+' UGX\nDaily: '+p.day.toLocaleString()+' UGX\nTotal: '+p.total.toLocaleString()+' UGX\n\nV21 Ezol Energy Investment\nCS: 0795143386');
-}
-function closePin(){document.getElementById('pinModal').style.display='none';}
-function setAmount(a,btn){document.getElementById('reAmount').value=a;document.querySelectorAll('.quick-amounts button').forEach(x=>x.classList.remove('active'));if(btn) btn.classList.add('active');updateUSSD();}
-function copyLink(){navigator.clipboard.writeText(document.getElementById('inviteLink').value).then(()=>alert('✅ V21 LINK Copied:\n'+document.getElementById('inviteLink').value)) }
-function copyCode(){navigator.clipboard.writeText(document.getElementById('inviteCode').innerText).then(()=>alert('✅ V21 Code Copied: '+document.getElementById('inviteCode').innerText)) }
-function showFundHistory(){let r=JSON.parse(localStorage.getItem(KEY_R)||'[]').filter(r=>r.phone===cur.phone);alert(r.length?r.map(x=>`${x.time} - ${x.amt} UGX ${x.type||''} From:${x.userPhone||cur.phone} To:${MERCHANT} ${x.status}`).join('\n'):'No recharges - V21 Send MIN 15,000 UGX to '+MERCHANT+'\n\nV21\nCS: 0795143386\nGroup: https://chat.whatsapp.com/CJl3YvYBHNR10VWAB2NUNx')}
-function setPinPrompt(){let saved='';try{saved=JSON.parse(localStorage.getItem(KEY_PIN)||'{}')[cur.phone]||''}catch{};let newPin=prompt(saved?'Current PIN: '+saved+'\nEnter NEW 5-digit PIN - V21':'Set MoMo PIN 5 digits - V21');if(!newPin) return;if(!/^\d{5}$/.test(newPin)){alert('❌ Must be 5 digits!');return}let pins={};try{pins=JSON.parse(localStorage.getItem(KEY_PIN)||'{}')}catch{};pins[cur.phone]=newPin;localStorage.setItem(KEY_PIN,JSON.stringify(pins));alert('✅ PIN set to: '+newPin+'\n\nV21\nMerchant '+MERCHANT+'\nCS: 0795143386');}
-function handleLogout(){if(confirm('Logout from V21 Ezol Energy Investment?\n\nCS: 0795143386\nGroup: https://chat.whatsapp.com/CJl3YvYBHNR10VWAB2NUNx')){localStorage.removeItem(KEY_C);location.reload()}}
-
-// NEW USSD LOGIC - V21 - MOVING UPWARDS & AUTOMATIC *165* CODE
-function setPayMethod(m){
-  payMethod=m;
-  document.getElementById('payMtn').classList.toggle('active', m==='mtn');
-  document.getElementById('payAirtel').classList.toggle('active', m==='airtel');
-  document.getElementById('howMtn').style.display = m==='mtn'?'block':'none';
-  document.getElementById('howAirtel').style.display = m==='airtel'?'block':'none';
-  updateUSSD();
-}
-function updateUSSD(){
-  let amt=parseInt(document.getElementById('reAmount').value)||15000;
-  let mtnCode=`*165*1*1*${MERCHANT}*${amt}#`;
-  let airtelCode=`*185*1*1*${MERCHANT}*${amt}#`;
-  let code = payMethod==='mtn'?mtnCode:airtelCode;
-  document.getElementById('ussdCode').innerText=code;
-  document.getElementById('pinUssd').innerText=code;
-  let box=document.getElementById('ussdBox');
-  if(payMethod==='mtn'){box.style.borderColor='#ffcc00';box.innerHTML=`<div style="font-size:11px;color:#fff">MTN MoMo USSD CODE - V21 - AUTO PAYMENT</div><b id="ussdCode">${code}</b><div style="font-size:10px;color:#7a8a7d;margin-top:6px">Dial this code → Enter PIN → Money goes FROM your number TO ${MERCHANT} automatically - V21</div>`}
-  else{box.style.borderColor='#ff0000';box.innerHTML=`<div style="font-size:11px;color:#fff">AIRTEL Money USSD CODE - V21 - AUTO PAYMENT</div><b id="ussdCode" style="color:#ff0000">${code}</b><div style="font-size:10px;color:#7a8a7d;margin-top:6px">Dial this code → Enter PIN → Money goes FROM your number TO ${MERCHANT} automatically - V21</div>`}
-}
-function dialUSSD(){
-  let amt=parseInt(document.getElementById('reAmount').value)||15000;
-  if(amt<MIN_R){alert('❌ MIN 15,000 UGX - V21');return}
-  let code=payMethod==='mtn'?`*165*1*1*${MERCHANT}*${amt}%23`:`*185*1*1*${MERCHANT}*${amt}%23`;
-  let readable=payMethod==='mtn'?`*165*1*1*${MERCHANT}*${amt}#`:`*185*1*1*${MERCHANT}*${amt}#`;
-  if(confirm(`📞 V21 DIAL USSD CODE?\n\n${readable}\n\nThis will open phone dialer.\n\n1. Press CALL\n2. Enter PIN\n3. Money auto goes FROM your number TO ${MERCHANT}\n4. You get SMS TxID\n5. Enter TxID in next screen\n\nDial now?`)){
-    window.location.href='tel:'+code;
-  }
-}
-function copyUSSD(){
-  let amt=parseInt(document.getElementById('reAmount').value)||15000;
-  let code=payMethod==='mtn'?`*165*1*1*${MERCHANT}*${amt}#`:`*185*1*1*${MERCHANT}*${amt}#`;
-  navigator.clipboard.writeText(code).then(()=>alert('✅ V21 USSD CODE Copied:\n\n'+code+'\n\nDial it → Enter PIN → Money auto TO '+MERCHANT+'\n\nV21\nCS: 0795143386'));
-}
-function confirmTxId(){
-  let txId=document.getElementById('txIdInput').value.trim();
-  let amt=parseInt(document.getElementById('reAmount').value)||0;
-  let phone=document.getElementById('rePhone').value.trim();
-  if(amt<MIN_R){alert('❌ MIN 15,000 UGX - V21');return}
-  if(phone.length<10){alert('❌ Enter phone');return}
-  if(!txId||txId.length<4){alert('❌ Enter TxID from SMS after dialing *165* code\n\nAfter dialing '+document.getElementById('ussdCode').innerText+' you will receive SMS with TxID\nEnter that TxID here - V21');return}
-  pendingRecharge={amt:amt,phone:phone,method:payMethod,txId:txId};
-  document.getElementById('pinUssd').innerText=document.getElementById('ussdCode').innerText;
-  document.getElementById('momoPin').value=txId;
-  document.getElementById('pinModal').style.display='flex';
-}
-function confirmPinPayment(){
-  let txId=document.getElementById('momoPin').value.trim();
-  if(!txId||txId.length<4){document.getElementById('pinErr').innerText='❌ Enter TxID from SMS';return}
-  let reqs=JSON.parse(localStorage.getItem(KEY_R)||'[]');
-  reqs.push({phone:cur.phone,amt:pendingRecharge.amt,type:'RECHARGE V21 USSD',method:pendingRecharge.method.toUpperCase()+' USSD '+document.getElementById('ussdCode').innerText+' - V21',time:new Date().toLocaleString(),txId:txId,status:'PENDING VERIFICATION V21 - DIALED '+document.getElementById('ussdCode').innerText,userPhone:pendingRecharge.phone});
-  localStorage.setItem(KEY_R,JSON.stringify(reqs));
-  document.getElementById('pinModal').style.display='none';
-  document.getElementById('txIdInput').value='';
-  alert(`✅ V21 USSD PAYMENT SUBMITTED!\n\nFROM ${pendingRecharge.phone} (${pendingRecharge.method.toUpperCase()}) TO ${MERCHANT}\nAmount: ${pendingRecharge.amt} UGX\nTxID: ${txId}\nUSSD: ${document.getElementById('ussdCode').innerText}\n\nWait verification - Check MoMo ${MERCHANT}\n\nV21\nCS: 0795143386\nGroup: https://chat.whatsapp.com/CJl3YvYBHNR10VWAB2NUNx\n\nAdmin will verify TxID and credit wallet.`);
-  pendingRecharge=null;switchTab('wallet');showApp();
-}
-function doWithdrawAuto(){
-  let amt=parseInt(document.getElementById('withAmount').value)||0;
-  let phone=document.getElementById('withPhone').value.trim();
-  let bal=parseInt(localStorage.getItem(KEY_B+cur.phone)||'0');
-  if(amt<MIN_W){alert('❌ MIN withdrawal is 25,000 UGX!\n\nV21\n\nCS: 0795143386\nGroup: https://chat.whatsapp.com/CJl3YvYBHNR10VWAB2NUNx');return}
-  if(amt>bal){alert('❌ No enough balance!\nHave: '+bal.toLocaleString()+' UGX\nNeed: '+amt.toLocaleString()+' UGX\n\nV21\n\nCS: 0795143386');return}
-  if(phone.length<10){alert('❌ Enter phone number to receive money\n\nV21');return}
-  if(!confirm(`Withdraw ${amt.toLocaleString()} UGX to ${phone}?\n\nFee: 10%\nYou receive: ${Math.floor(amt*0.9).toLocaleString()} UGX\n\nV21 Ezol Energy Investment\nMerchant ${MERCHANT}?\n\nCS: 0795143386\nGroup: https://chat.whatsapp.com/CJl3YvYBHNR10VWAB2NUNx`)) return;
-  localStorage.setItem(KEY_B+cur.phone,(bal-amt).toString());
-  let reqs=JSON.parse(localStorage.getItem(KEY_R)||'[]');
-  reqs.push({phone:cur.phone,amt:amt,type:'WITHDRAW V21',method:'To '+phone,time:new Date().toLocaleString(),txId:'W'+Date.now(),status:'PENDING PAYOUT - V21',userPhone:phone});
-  localStorage.setItem(KEY_R,JSON.stringify(reqs));
-  switchTab('wallet');showApp();
-  alert('✅ Withdrawal requested V21!\n\n'+amt.toLocaleString()+' UGX → '+phone+'\nYou receive: '+Math.floor(amt*0.9).toLocaleString()+' UGX (10% fee)\n\nV21 Ezol Energy Investment\nWill be paid within 24 hours via MTN & Airtel!\n\nCS: 0795143386\nGroup: https://chat.whatsapp.com/CJl3YvYBHNR10VWAB2NUNx');
-}
-window.onload=function(){
-  let s=localStorage.getItem(KEY_C);
-  if(s){try{cur=JSON.parse(s);showApp()}catch{}}
-  document.getElementById('withAmount').addEventListener('input',function(){document.getElementById('receiveAmt').innerText=Math.floor((parseInt(this.value)||0)*0.9).toLocaleString()+' UGX'});
-  // Live proofs upward auto update
-  setInterval(()=>{
-    let live=document.getElementById('liveUp');
-    if(live && Math.random()>0.7){
-      let nums=['0783','0775','0751','0701','0762','0789'];
-      let acts=['invested','withdrew'];
-      let amounts=[15000,25000,50000,100000,500000];
-      let randNum=nums[Math.floor(Math.random()*nums.length)]+'***'+Math.floor(100+Math.random()*900);
-      let randAmt=amounts[Math.floor(Math.random()*amounts.length)];
-      let item=document.createElement('div');
-      item.className='live-item';
-      if(Math.random()>0.5){item.innerHTML=`<span>${randNum} invested <b>${randAmt.toLocaleString()} UGX</b> VIP${Math.floor(1+Math.random()*5)} → <b>${Math.floor(randAmt*0.2).toLocaleString()}/day</b></span><span style="color:#00ff00">✓</span>`}
-      else{item.innerHTML=`<span>${randNum} withdrew <b>${randAmt.toLocaleString()} UGX</b> ${Math.random()>0.5?'MTN':'Airtel'} SUCCESS</span><span style="color:#00ff00">✓</span>`}
-      live.prepend(item);
-      if(live.children.length>20) live.removeChild(live.lastChild);
-    }
-  },3000);
-}
-</script></body></html>
+function closeDetail(){document.getElementById('detail').classList.remove('active');}
+</script>
+</body>
+</html>
