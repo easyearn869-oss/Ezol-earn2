@@ -1,84 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ezol Energy V21 - Reseller</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EZOL ENERGY - Real Solar Shop Uganda</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial;background:#f5f7fb;padding-bottom:90px}
-.top{background:linear-gradient(#a8d5a2,#6fbf73);border-radius:0 0 40px 40px;padding:30px 20px 50px;text-align:center}
-.logo{width:70px;height:70px;background:#0a3a5c;border-radius:18px;margin:auto;display:flex;align-items:center;justify-content:center;color:#7dff6b;font-size:36px;font-weight:bold}
-.card{background:#fff;border-radius:16px;padding:15px;margin:15px;box-shadow:0 2px 8px rgba(0,0,0,0.08)}
-.btn-green{width:100%;background:#0fa958;color:#fff;border:0;padding:14px;border-radius:24px;font-weight:bold;margin-top:8px}
-.products{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px}
-.p{background:#fff;border-radius:12px;padding:8px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,0.1)}
-.price{color:#0fa958;font-weight:bold} .tab{display:none}.tab.active{display:block}
-.fab{position:fixed;right:14px;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:1000;color:#fff;text-decoration:none;font-size:11px;box-shadow:0 4px 8px rgba(0,0,0,0.3)}
-.fab-group{bottom:150px;background:#25D366}.fab-cs{bottom:80px;background:#ff8c00}
-.nav{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:8px 0;border-top:1px solid #ddd;z-index:999}
-.nav div{text-align:center;font-size:12px;color:#666;cursor:pointer}.active{color:#0fa958!important}
-#detail{position:fixed;top:0;left:0;right:0;bottom:0;background:#fff;z-index:2000;display:none;overflow:auto;padding-bottom:90px}
-#detail.active{display:block}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{background:#f5f7f5}
+.header{background:#0a8a2e;color:white;padding:15px;text-align:center;position:sticky;top:0;z-index:10}
+.header h1{font-size:20px}
+.header p{font-size:12px;opacity:0.9}
+.support-box{background:white;margin:12px;padding:12px;border-radius:12px;display:flex;justify-content:space-between;box-shadow:0 2px 8px rgba(0,0,0,0.08)}
+.support-box a{background:#25D366;color:white;padding:8px 14px;border-radius:20px;text-decoration:none;font-weight:bold}
+.tabs{display:flex;background:white;margin:0 12px;border-radius:12px;overflow:hidden}
+.tabs button{flex:1;padding:12px;border:none;background:white;font-weight:bold;cursor:pointer}
+.tabs button.active{background:#0a8a2e;color:white}
+.content{padding:12px}
+.product-card{background:white;border-radius:12px;padding:12px;margin-bottom:12px;display:flex;gap:12px;box-shadow:0 2px 6px rgba(0,0,0,0.06)}
+.product-card img{width:80px;height:80px;background:#e8f5e9;border-radius:8px;object-fit:cover}
+.price{color:#0a8a2e;font-weight:bold;font-size:16px}
+.btn{background:#0a8a2e;color:white;border:none;padding:8px 14px;border-radius:8px;margin-top:6px;cursor:pointer}
+.wallet{background:white;border-radius:12px;padding:16px;margin-bottom:12px}
+.floating{position:fixed;right:10px;bottom:80px;display:flex;flex-direction:column;gap:8px}
+.float-btn{background:#0a8a2e;color:white;padding:10px 12px;border-radius:20px;text-decoration:none;font-size:12px;text-align:center;box-shadow:0 4px 10px rgba(0,0,0,0.2)}
+.nav{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;border-top:1px solid #ddd}
+.nav button{flex:1;padding:12px 0;border:none;background:white;font-size:11px}
+.nav button.active{color:#0a8a2e;font-weight:bold}
 </style>
 </head>
 <body>
-<div class="top"><div class="logo">N</div><h2 style="color:#fff">Ezol Energy V21</h2><p style="color:#fff;margin:0">Reseller & Real Products</p></div>
-
-<div id="home" class="tab active">
-<div class="card"><h3>My Reseller Dashboard</h3><p>Total Sales: <b id="sales">UGX 0</b><br>Commission (5%): <b id="comm" style="color:#0fa958">UGX 0</b><br>Withdrawable: For real product sales only</p><button class="btn-green" onclick="openTab('product')">Start Selling</button></div>
-<div class="products" id="featured"></div>
+<div class="header">
+<h1>EZOL ENERGY</h1>
+<p>Real Solar Shop Uganda - Real Products, Real Warranty</p>
 </div>
 
-<div id="product" class="tab">
-<div class="card"><h3>20 Products - Earn on Real Sales</h3><p style="font-size:12px;color:#666">You buy wholesale, sell at retail. Profit is yours. Example: Buy 15,000 → Sell 20,000 = 5,000 profit + 5% bonus.</p></div>
-<div class="products" id="allProducts"></div>
+<div class="support-box">
+<div><b>Support:</b> 0795143386<br><small>For orders & delivery</small></div>
+<a href="https://wa.me/256795143386">WhatsApp</a>
 </div>
 
-<div id="share" class="tab">
-<div class="card" style="text-align:center"><h3>Share My Shop Link</h3><p id="link" style="background:#eee;padding:10px;border-radius:10px">https://ezolenergy.com/shop?ref=0SA6</p><button class="btn-green" onclick="navigator.clipboard.writeText(document.getElementById('link').innerText);alert('Shop link copied! Share on WhatsApp')">Copy Shop Link</button><p style="font-size:12px;color:#666;margin-top:10px">When friend buys a real bulb via your link, you get 5% commission automatically.</p></div>
-<div class="card"><h4>How Reseller Earning Works</h4><p style="font-size:13px">1. Customer clicks your link<br>2. Pays via MTN for REAL bulb<br>3. You deliver or we deliver<br>4. You get UGX commission → Withdraw</p></div>
+<div class="tabs">
+<button class="active" onclick="showTab('home')">Home</button>
+<button onclick="showTab('product')">Product</button>
+<button onclick="showTab('share')">Share</button>
+<button onclick="showTab('wallet')">Wallet</button>
+<button onclick="showTab('my')">My</button>
 </div>
 
-<div id="my" class="tab">
-<div class="card"><h3>My Account - V21</h3><p>Phone: 0795143386<br>Level: Reseller<br><br>Sales: <b id="sales2">0</b> | Commission: <b id="comm2">UGX 0</b></p><button class="btn-green">Withdraw Commission to MTN</button><button class="btn-green" style="background:#333">My Orders</button></div>
+<div id="home" class="content">
+<div class="wallet"><h3>☀️ Power Your Home With Real Solar</h3><p style="margin-top:6px;font-size:13px">No daily income tricks. Buy real stock, sell to real customers, keep real profit.</p></div>
+<div class="product-card"><div style="width:80px;height:80px;background:#c8e6c9;border-radius:8px;display:flex;align-items:center;justify-content:center">💡</div><div><b>Solar Bulb 5W Kit</b><br><span class="price">UGX 15,000</span><br><small>Warranty 1 Year + Cable + Panel</small><br><button class="btn" onclick="showTab('product')">View Details</button></div></div>
+<div class="product-card"><div style="width:80px;height:80px;background:#a5d6a7;border-radius:8px;display:flex;align-items:center;justify-content:center">🔋</div><div><b>Lithium Battery 10Ah</b><br><span class="price">UGX 65,000</span><br><small>For 2 bulbs whole night</small><br><button class="btn" onclick="showTab('product')">View Details</button></div></div>
 </div>
 
-<div id="detail"><div style="padding:15px"><h2 id="d-name"></h2><h3 id="d-price" class="price"></h3><p id="d-desc"></p><div class="card"><p id="d-profit" style="background:#e8f5e9;padding:10px;border-radius:8px"></p><p id="d-specs"></p></div><button class="btn-green" onclick="makeSale()">Record Real Sale - Earn Commission</button><button class="btn-green" style="background:#fff;color:#0fa958;border:1px solid #0fa958" onclick="closeDetail()">Back</button></div></div>
+<div id="product" class="content" style="display:none">
+<div id="plist"></div>
+</div>
 
-<a class="fab fab-group" href="https://wa.me/256783228690">GROUP</a><a class="fab fab-cs" href="https://wa.me/256783228690">CS</a>
+<div id="share" class="content" style="display:none">
+<div class="wallet"><h3>Share Real Shop & Earn Real 5%</h3><p style="font-size:13px;margin-top:8px">When someone buys a real bulb from your link, you get 5% commission. Real commission that you CAN withdraw.</p><br><input id="link" value="https://easyearn869-oss.github.io/Ezo/?ref=0795143386" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px"><br><br><button class="btn" onclick="navigator.clipboard.writeText(document.getElementById('link').value);alert('Link copied')">Copy Link</button></div>
+</div>
 
-<div class="nav"><div id="n-home" class="active" onclick="openTab('home')">🏠<br>Home</div><div id="n-product" onclick="openTab('product')">📦<br>Product</div><div id="n-share" onclick="openTab('share')">🔗<br>Share</div><div id="n-my" onclick="openTab('my')">👤<br>My</div></div>
+<div id="wallet" class="content" style="display:none">
+<div class="wallet"><h3>Wallet - Real Commission Only</h3><p>Balance: <b id="bal">UGX 0</b></p><small>From real product sales, not investment deposits</small><br><br><button class="btn">Withdraw Commission (Real Sales Only)</button><br><br><p style="font-size:12px;color:#666">History:<br>Order #1023 - Solar Bulb - Delivered - Commission UGX 750<br>Order #1024 - Battery - Delivered - Commission UGX 3,250</p></div>
+</div>
+
+<div id="my" class="content" style="display:none">
+<div class="wallet"><h3>My Account</h3><p>Phone: 0795143386 (Support)</p><br><button class="btn">My Orders</button> <button class="btn">Customer Support</button></div>
+</div>
+
+<div class="floating">
+<a class="float-btn" href="https://wa.me/256795143386?text=Hi%20Ezol%20Group">GROUP</a>
+<a class="float-btn" href="https://wa.me/256795143386">CS</a>
+</div>
+
+<div class="nav">
+<button class="active" onclick="showTab('home')">Home</button>
+<button onclick="showTab('product')">Product</button>
+<button onclick="showTab('share')">Share</button>
+<button onclick="showTab('wallet')">Wallet</button>
+<button onclick="showTab('my')">My</button>
+</div>
 
 <script>
-let totalSales=0; let comm=0;
-const items=[
-{n:"Solar Bulb 5W Kit",p:15000,sell:20000,d:"Entry bulb for homes",s:"Warranty 1 year"},
-{n:"Bulb 10W Solar",p:25000,sell:32000,d:"Brighter",s:"5hrs backup"},
-{n:"Mini Home Kit",p:45000,sell:60000,d:"2 bulbs + radio",s:"FM radio"},
-{n:"Home Lighting Kit",p:85000,sell:110000,d:"4 bulbs home",s:"Panel 15W"},
-{n:"Panel 20W Poly",p:65000,sell:85000,d:"20W panel",s:"5yr warranty"},
-{n:"Panel 50W",p:120000,sell:150000,d:"Small system",s:"Poly"},
-{n:"Panel 100W",p:250000,sell:300000,d:"TV + lights",s:"Mono"},
-{n:"Panel 200W",p:480000,sell:580000,d:"Full house",s:"24V"},
-{n:"Battery 20Ah",p:180000,sell:220000,d:"Deep cycle",s:"12V"},
-{n:"Battery 50Ah",p:350000,sell:420000,d:"Inverter battery",s:"Deep"},
-{n:"Battery 100Ah",p:650000,sell:750000,d:"Heavy duty",s:"100Ah"},
-{n:"Inverter 500W",p:300000,sell:370000,d:"500W pure",s:"12V-220V"},
-{n:"Inverter 1000W",p:550000,sell:650000,d:"1000W",s:"Display"},
-{n:"Street Light 60W",p:400000,sell:480000,d:"Auto light",s:"Auto on/off"},
-{n:"Street Light 100W",p:650000,sell:750000,d:"Super bright",s:"3 nights"},
-{n:"Pump Solar 0.5HP",p:1200000,sell:1450000,d:"Farm pump",s:"0.5HP"},
-{n:"Full House 1kW",p:1200000,sell:1500000,d:"1kW installed",s:"Complete"},
-{n:"Full House 2.5kW",p:2500000,sell:2900000,d:"Fridge+TV",s:"Full"},
-{n:"Full House 3.5kW",p:3500000,sell:4000000,d:"Big house",s:"Install free"},
-{n:"Farm System 5kW",p:5000000,sell:5800000,d:"Farm power",s:"5kW"}
+const products=[
+["Solar Bulb 5W Kit",15000,"Warranty 1 year, with panel + 3m cable"],
+["Solar Bulb 10W Kit",20000,"Bright for sitting room"],
+["Solar Panel 20W",45000,"Charge battery fast"],
+["Solar Panel 50W",95000,"For house system"],
+["Lithium Battery 10Ah",65000,"Run 2 bulbs all night"],
+["Lithium Battery 20Ah",110000,"Run 4 bulbs"],
+["Solar Torch Rechargeable",25000,"With phone charging"],
+["Solar Radio + Torch",35000,"FM + USB"],
+["Solar Home System 100W",280000,"3 bulbs + charging"],
+["Solar Security Light 50W",85000,"Auto on at night"],
+["Solar Street Light 100W",145000,"Pole light"],
+["Solar Inverter 300W",125000,"AC power"],
+["Charge Controller 10A",35000,"Protect battery"],
+["Solar Cable 10m",15000,"Extension"],
+["Bulb Holder + Switch",5000,"Accessory"],
+["Solar Fan 12V",95000,"Low power fan"],
+["Solar TV 19 inch",450000,"DC TV"],
+["Power Bank Solar 20000mAh",55000,"Phone charge"],
+["Solar Water Pump Kit",650000,"For garden"],
+["Installation Service",50000,"Kampala install"]
 ];
-function render(id,c=20){document.getElementById(id).innerHTML=items.slice(0,c).map((p,i)=>`<div class="p" onclick="openDetail(${i})"><div style="height:70px;background:#e8f5e9;border-radius:8px"></div><div style="font-size:13px">${p.n}</div><div class="price">UGX ${p.p.toLocaleString()}</div><div style="font-size:11px;color:#666">Sell: ${p.sell.toLocaleString()} = Profit ${(p.sell-p.p).toLocaleString()}</div><button style="width:100%;background:#0fa958;color:#fff;border:0;padding:6px;border-radius:6px;margin-top:4px">View & Sell</button></div>`).join('');}
-render('allProducts',20);render('featured',4);
-function openTab(t){document.querySelectorAll('.tab').forEach(e=>e.classList.remove('active'));document.getElementById(t).classList.add('active');document.querySelectorAll('.nav div').forEach(e=>e.classList.remove('active'));document.getElementById('n-'+t).classList.add('active');}
-let cur=0;
-function openDetail(i){cur=i;const it=items[i];document.getElementById('d-name').innerText=it.n;document.getElementById('d-price').innerText=`Buy: UGX ${it.p.toLocaleString()} | Sell: UGX ${it.sell.toLocaleString()}`;document.getElementById('d-desc').innerText=it.d;document.getElementById('d-specs').innerText=it.s;document.getElementById('d-profit').innerHTML=`Your REAL Profit if you sell: <b>UGX ${(it.sell-it.p).toLocaleString()}</b> + 5% bonus = <b>UGX ${Math.round(it.sell*0.05).toLocaleString()}</b>`;document.getElementById('detail').classList.add('active');}
-function closeDetail(){document.getElementById('detail').classList.remove('active');}
-function makeSale(){const it=items[cur];totalSales+=it.sell;comm+=Math.round(it.sell*0.05);document.getElementById('sales').innerText='UGX '+totalSales.toLocaleString();document.getElementById('comm').innerText='UGX '+comm.toLocaleString();document.getElementById('sales2').innerText=totalSales.toLocaleString();document.getElementById('comm2').innerText='UGX '+comm.toLocaleString();alert(`Real sale recorded! ${it.n} sold for UGX ${it.sell}. Commission UGX ${Math.round(it.sell*0.05)} added. Deliver the real product to customer.`);closeDetail();openTab('home');}
+let html="";
+products.forEach((p,i)=>{
+html+=`<div class="product-card"><div style="width:80px;height:80px;background:#e8f5e9;border-radius:8px;display:flex;align-items:center;justify-content:center">☀️</div><div style="flex:1"><b>${i+1}. ${p[0]}</b><br><span class="price">UGX ${p[1].toLocaleString()}</span><br><small>${p[2]}</small><br><div style="margin-top:6px"><span style="font-size:12px;background:#e8f5e9;padding:4px 8px;border-radius:6px">Buy ${p[1]} → Sell ${Math.round(p[1]*1.33)} → Profit ${Math.round(p[1]*0.33)}</span></div><button class="btn" onclick="alert('Order: ${p[0]} - Contact 0795143386 for delivery in Kampala')">Buy For Real Delivery</button></div></div>`;
+});
+document.getElementById('plist').innerHTML=html;
+
+function showTab(t){
+document.querySelectorAll('.content').forEach(c=>c.style.display='none');
+document.getElementById(t).style.display='block';
+document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
+document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));
+}
 </script>
 </body>
 </html>
