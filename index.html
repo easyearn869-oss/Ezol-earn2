@@ -5,6 +5,8 @@
 <title>Ezol Earn - Smart Energy</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 <style>
 body{max-width:430px;margin:0 auto;background:#fff;padding-bottom:85px;font-family:-apple-system,sans-serif}
 .light-green{background:#e8f5e9}.card-light{background:#f1f8f1;border-radius:22px}
@@ -18,12 +20,27 @@ body{max-width:430px;margin:0 auto;background:#fff;padding-bottom:85px;font-fami
 </style>
 </head>
 <body>
+<script>
+// 🔥 PASTE YOUR FIREBASE CONFIG HERE - REPLACE THESE
+const firebaseConfig = {
+  apiKey: "AIzaSyYOUR_API_KEY",
+  authDomain: "your-project.firebaseapp.com",
+  projectId: "your-project-id",
+  storageBucket: "your-project.appspot.com",
+  messagingSenderId: "123456789",
+  appId: "1:123456789:web:abcdef"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+const BONUS = 500;
+const ADMIN_MOMO = "256795143386";
+</script>
 
 <div id="authPage" class="p-6 min-h-screen bg-gradient-to-b from-green-700 to-green-400">
 <h1 class="text-white font-black text-2xl text-center mt-8">Ezol Earn<br><span class="text-sm font-normal">Smart Energy</span></h1>
 <div class="flex justify-center mt-6"><div class="w-20 h-20 bg-white rounded-full flex items-center justify-center text-3xl">☀️⚡</div></div>
 <div class="bg-white rounded-[24px] p-6 mt-6 shadow-xl">
-<h3 class="font-bold">Create Account</h3><p class="text-xs text-gray-500">Get UGX 500 bonus</p>
+<h3 class="font-bold">Create Account</h3><p class="text-xs text-gray-500">Get UGX 500 welcome bonus</p>
 <input id="regName" placeholder="Full Names" class="w-full bg-gray-100 rounded-xl p-4 mt-4 outline-none">
 <input id="regPhone" placeholder="Phone 0795143386" class="w-full bg-gray-100 rounded-xl p-4 mt-3 outline-none" type="tel">
 <input id="regPass" placeholder="Password" type="password" class="w-full bg-gray-100 rounded-xl p-4 mt-3 outline-none">
@@ -44,32 +61,29 @@ body{max-width:430px;margin:0 auto;background:#fff;padding-bottom:85px;font-fami
 
 <div id="mainApp" class="hidden">
 <div id="page-home" class="p-4">
-<div class="bg-gradient-to-r from-green-700 to-green-500 text-white rounded-[22px] p-5 flex justify-between"><div><p class="text-xs opacity-80">My Badge</p><p class="font-bold text-lg mt-1" id="badgeLevel">Starter Level 1</p><div class="w-32 bg-white/30 h-2 rounded-full mt-2"><div id="badgeBar" class="bg-yellow-400 h-2 rounded-full" style="width:10%"></div></div></div><div class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center text-2xl">🏅</div></div>
-<div class="mt-4"><p class="font-bold text-sm mb-2">● Live Proofs</p><div class="proof-box p-3"><div class="proof-track" id="proofTrack"></div></div></div>
-<div class="light-green rounded-[22px] p-4 mt-4 text-center"><button onclick="dailyClick()" id="dailyBtn" class="w-full bg-yellow-400 text-black rounded-full py-3 mt-3 font-bold text-sm">Claim UGX 1,000 Daily</button><p class="text-[10px] mt-2 text-gray-500" id="dailyStatus">Once per day</p></div>
-<div class="grid grid-cols-2 gap-3 mt-4"><a href="https://wa.me/256795143386" class="bg-green-600 text-white rounded-2xl p-4 text-center font-bold text-sm">Customer Service</a><a href="https://chat.whatsapp.com/GqjifLEgojv44HXGNmE2sH" class="bg-blue-600 text-white rounded-2xl p-4 text-center font-bold text-sm">Join Group</a></div>
+<div class="bg-gradient-to-r from-green-700 to-green-500 text-white rounded-[22px] p-5 flex justify-between"><div><p class="text-xs opacity-80">My Investment Badge</p><p class="font-bold text-lg mt-1" id="badgeLevel">Starter Level 1</p><div class="w-32 bg-white/30 h-2 rounded-full mt-2"><div id="badgeBar" class="bg-yellow-400 h-2 rounded-full" style="width:10%"></div></div></div><div class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center text-2xl">🏅</div></div>
+<div class="mt-4"><p class="font-bold text-sm mb-2">● Live Proofs - Scrolling Up</p><div class="proof-box p-3"><div class="proof-track" id="proofTrack"></div></div></div>
+<div class="light-green rounded-[22px] p-4 mt-4 text-center"><p class="font-bold text-sm">Daily Reward</p><button onclick="dailyClick()" id="dailyBtn" class="w-full bg-yellow-400 text-black rounded-full py-3 mt-3 font-bold text-sm">Claim UGX 1,000 Daily Click</button><p class="text-[10px] mt-2 text-gray-500" id="dailyStatus">Once per day</p></div>
+<div class="grid grid-cols-2 gap-3 mt-4"><a href="https://wa.me/256795143386" class="bg-green-600 text-white rounded-2xl p-4 text-center font-bold text-sm"><i class="fa-solid fa-headset text-xl block mb-1"></i>Customer Service</a><a href="https://chat.whatsapp.com/GqjifLEgojv44HXGNmE2sH" class="bg-blue-600 text-white rounded-2xl p-4 text-center font-bold text-sm"><i class="fa-solid fa-users text-xl block mb-1"></i>Join Group</a></div>
 <div class="grid grid-cols-2 gap-3 mt-4"><div class="stat-card p-3"><p class="text-[11px] font-bold">BALANCE</p><p class="font-bold mt-1" id="homeBalance">UGX 0</p></div><div class="stat-card p-3"><p class="text-[11px] font-bold">TODAY INCOME</p><p class="font-bold mt-1" id="homeToday">UGX 0</p></div></div>
 </div>
-
 <div id="page-product" class="p-4 hidden"><h3 class="font-bold text-lg">VIP Products From 15k</h3><p class="text-xs text-gray-500">Invest 15k = Earn 3k daily</p><div id="productList" class="space-y-3 mt-4"></div></div>
-<div id="page-share" class="p-4 hidden"><div class="bg-white border rounded-[24px] p-5 text-center"><h3 class="font-bold text-lg">Invite & Earn 15%</h3><div class="bg-gray-100 rounded-xl p-3 mt-4 text-xs break-all" id="refLink"></div><div class="flex justify-between bg-green-50 rounded-xl p-3 mt-3 text-sm"><span>Code</span><b id="refCode">EZOL</b></div><button onclick="copyRef()" class="w-full bg-black text-white rounded-full py-3 mt-3 font-bold">Copy Link</button></div></div>
-
+<div id="page-share" class="p-4 hidden"><div class="bg-white border rounded-[24px] p-5 text-center"><h3 class="font-bold text-lg">Invite & Earn 15%</h3><div class="bg-gray-100 rounded-xl p-3 mt-4 text-xs break-all" id="refLink"></div><div class="flex justify-between bg-green-50 rounded-xl p-3 mt-3 text-sm"><span>Code</span><b id="refCode">EZOL</b></div><button onclick="copyRef()" class="w-full bg-black text-white rounded-full py-3 mt-3 font-bold">Copy Link</button><div class="grid grid-cols-4 gap-2 mt-4"><button onclick="shareTo('whatsapp')" class="bg-green-600 text-white rounded-full py-3"><i class="fa-brands fa-whatsapp"></i></button><button onclick="shareTo('facebook')" class="bg-blue-600 text-white rounded-full py-3"><i class="fa-brands fa-facebook"></i></button><button onclick="shareTo('twitter')" class="bg-black text-white rounded-full py-3"><i class="fa-brands fa-x-twitter"></i></button><button onclick="shareTo('instagram')" class="bg-pink-600 text-white rounded-full py-3"><i class="fa-brands fa-instagram"></i></button></div></div></div>
 <div id="page-wallet" class="p-4 hidden">
 <div class="light-green rounded-[24px] p-6 text-center"><p class="text-4xl font-black"><span id="walBalance">500</span> <span class="text-lg">UGX</span></p><div class="bg-white rounded-full inline-flex px-5 py-2 mt-3 text-sm shadow-sm"><span class="text-gray-500">Recharge Wallet &nbsp;</span><b id="walRechargeSmall">0 UGX</b></div></div>
-<div class="space-y-3 mt-5"><button onclick="openModal('withdrawHistoryModal')" class="w-full card-light p-4 flex justify-between"><span>Withdrawal History</span><span id="pendingCount" class="bg-orange-100 text-orange-600 text-[10px] px-2 py-1 rounded-full hidden">0 Pending</span></button><button onclick="openModal('fundHistoryModal')" class="w-full card-light p-4 flex justify-between"><span>Fund History</span></button><div class="card-light p-4 flex justify-between"><span>Energy Storage</span><b id="energyCount">0</b></div></div>
-<div class="grid grid-cols-2 gap-4 mt-5"><button onclick="openRecharge()" class="btn-green py-4 font-bold">Recharge</button><button onclick="openWithdraw()" class="btn-orange py-4 font-bold">Withdraw</button></div>
+<div class="space-y-3 mt-5"><button onclick="openModal('withdrawHistoryModal')" class="w-full card-light p-4 flex justify-between"><span class="text-gray-600">Withdrawal History</span><span id="pendingCount" class="bg-orange-100 text-orange-600 text-[10px] px-2 py-1 rounded-full hidden">0 Pending</span></button><button onclick="openModal('fundHistoryModal')" class="w-full card-light p-4 flex justify-between"><span class="text-gray-600">Fund History</span></button><div class="card-light p-4 flex justify-between"><span class="text-gray-600">Energy Storage</span><b id="energyCount">0</b></div></div>
+<div class="grid grid-cols-2 gap-4 mt-5"><button onclick="openRecharge()" class="btn-green py-4 font-bold text-lg">Recharge</button><button onclick="openWithdraw()" class="btn-orange py-4 font-bold text-lg">Withdraw</button></div>
 <p class="font-bold mt-6 text-sm">STATISTICS</p><div class="grid grid-cols-2 gap-3 mt-3"><div class="stat-card p-4"><p class="text-xs font-bold">TODAY'S INCOME</p><p class="text-xl font-bold mt-2"><span id="todayIncome">0</span></p></div><div class="stat-card p-4"><p class="text-xs font-bold">TOTAL INCOME</p><p class="text-xl font-bold mt-2"><span id="totalIncome">0</span></p></div><div class="stat-card p-4"><p class="text-xs font-bold">TOTAL RECHARGE</p><p class="text-xl font-bold mt-2"><span id="totalRecharge">0</span></p></div><div class="stat-card p-4"><p class="text-xs font-bold">TOTAL WITHDRAW</p><p class="text-xl font-bold mt-2"><span id="totalWithdraw">0</span></p></div></div>
 </div>
-
-<div id="page-my" class="p-4 hidden"><div class="light-green rounded-[24px] p-5 flex gap-4 items-center"><div class="w-16 h-16 bg-white rounded-full flex items-center justify-center text-2xl">☀️⚡</div><div><p class="font-bold text-lg" id="myName">User</p><p class="text-sm" id="myPhone"></p><p class="text-xs mt-1">Balance: <b id="myBalance">UGX 0</b></p></div></div><div class="mt-4 space-y-3"><button onclick="openModal('companyModal')" class="w-full card-light p-4 flex justify-between"><span>Company Profile</span></button><button onclick="openModal('rulesModal')" class="w-full card-light p-4 flex justify-between"><span>Rules</span></button><button onclick="openModal('howtoModal')" class="w-full card-light p-4 flex justify-between"><span>How To Use</span></button><button onclick="logout()" class="w-full card-light p-4 text-left text-red-600 font-bold">Logout</button></div></div>
+<div id="page-my" class="p-4 hidden"><div class="light-green rounded-[24px] p-5 flex gap-4 items-center"><div class="w-16 h-16 bg-white rounded-full flex items-center justify-center text-2xl">☀️⚡</div><div><p class="font-bold text-lg" id="myName">User</p><p class="text-sm" id="myPhone"></p><p class="text-xs mt-1">Balance: <b id="myBalance">UGX 0</b></p></div></div><div class="mt-4 space-y-3"><button onclick="openModal('companyModal')" class="w-full card-light p-4 flex justify-between"><span><i class="fa-solid fa-building text-green-700 mr-2"></i>Company Profile</span></button><button onclick="openModal('rulesModal')" class="w-full card-light p-4 flex justify-between"><span><i class="fa-solid fa-file-shield text-blue-600 mr-2"></i>Rules & Regulations</span></button><button onclick="openModal('howtoModal')" class="w-full card-light p-4 flex justify-between"><span><i class="fa-solid fa-circle-question text-orange-500 mr-2"></i>How To Use App</span></button><button onclick="window.open('https://chat.whatsapp.com/GqjifLEgojv44HXGNmE2sH')" class="w-full card-light p-4 flex justify-between"><span><i class="fa-brands fa-whatsapp text-green-600 mr-2"></i>WhatsApp Group</span></button><button onclick="logout()" class="w-full card-light p-4 text-left text-red-600 font-bold">Logout</button></div></div>
 </div>
 
-<div id="companyModal" class="modal" onclick="closeModal('companyModal')"><div class="modal-box p-6" onclick="event.stopPropagation()"><h2 class="font-bold text-xl">Company</h2><p class="text-sm mt-4">Ezol Earn - Kampala 0795143386</p><button onclick="closeModal('companyModal')" class="mt-4 w-full bg-black text-white rounded-full py-3">Close</button></div></div>
-<div id="rulesModal" class="modal" onclick="closeModal('rulesModal')"><div class="modal-box p-6" onclick="event.stopPropagation()"><h2 class="font-bold text-xl">Rules</h2><p class="text-sm mt-4">Min Recharge 15k, Min Withdraw 20k Fee 10%</p><button onclick="closeModal('rulesModal')" class="mt-4 w-full bg-black text-white rounded-full py-3">Close</button></div></div>
-<div id="howtoModal" class="modal" onclick="closeModal('howtoModal')"><div class="modal-box p-6" onclick="event.stopPropagation()"><h2 class="font-bold text-xl">How To Use</h2><div class="text-sm mt-4"><p>1. Register 500 bonus</p><p>2. Recharge *165*1*1*0795143386*AMOUNT#</p><p>3. Buy Product</p><p>4. Daily Click</p><p>5. Invite 15%</p><p>6. Withdraw Pending</p></div><button onclick="closeModal('howtoModal')" class="mt-4 w-full bg-black text-white rounded-full py-3">Close</button></div></div>
-<div id="withdrawHistoryModal" class="modal" onclick="closeModal('withdrawHistoryModal')"><div class="modal-box p-6" onclick="event.stopPropagation()"><h2 class="font-bold text-xl">Withdrawal History</h2><div id="withdrawHistoryList" class="mt-4 space-y-3"></div><button onclick="closeModal('withdrawHistoryModal')" class="mt-4 w-full bg-black text-white rounded-full py-3">Close</button></div></div>
-<div id="fundHistoryModal" class="modal" onclick="closeModal('fundHistoryModal')"><div class="modal-box p-6" onclick="event.stopPropagation()"><h2 class="font-bold text-xl">Fund History</h2><div id="fundHistoryList" class="mt-4 space-y-3"></div><button onclick="closeModal('fundHistoryModal')" class="mt-4 w-full bg-black text-white rounded-full py-3">Close</button></div></div>
-<div id="rechargeModal" class="modal" onclick="closeModal('rechargeModal')"><div class="modal-box p-6" onclick="event.stopPropagation()"><h2 class="font-bold text-xl">Recharge</h2><div class="grid grid-cols-3 gap-2 mt-4"><button onclick="setRechargeAmt(15000)" class="bg-green-50 border rounded-xl py-3 text-sm font-bold">15k</button><button onclick="setRechargeAmt(50000)" class="bg-green-50 border rounded-xl py-3 text-sm font-bold">50k</button><button onclick="setRechargeAmt(100000)" class="bg-green-50 border rounded-xl py-3 text-sm font-bold">100k</button></div><input id="rechargeInput" type="number" placeholder="Amount e.g 15000" class="w-full bg-gray-100 rounded-xl p-4 mt-4 outline-none"><button onclick="confirmRecharge()" class="w-full bg-green-700 text-white rounded-full py-4 mt-4 font-bold">Recharge Now → Dialpad</button><p class="text-[10px] text-center mt-2">Full USSD with amount - no auto-add until admin confirms</p></div></div>
+<div id="companyModal" class="modal" onclick="closeModal('companyModal')"><div class="modal-box p-6" onclick="event.stopPropagation()"><div class="flex justify-between"><h2 class="font-bold text-xl">Company Profile</h2><button onclick="closeModal('companyModal')" class="w-8 h-8 bg-gray-100 rounded-full">✕</button></div><div class="text-center mt-6"><div class="w-24 h-24 bg-green-100 rounded-full mx-auto flex items-center justify-center text-4xl">☀️⚡</div><h3 class="font-black text-2xl mt-4">Ezol Earn</h3><p class="text-sm text-green-700 font-bold">Smart Energy - Kampala</p></div><div class="mt-6 text-sm space-y-3"><p>Ezol Earn builds solar mini-grids in rural Uganda.</p><p><b>Location:</b> Plot 14 Nakawa, Kampala<br><b>Phone:</b> 0795143386<br><b>License:</b> URSB 80034567</p></div></div></div>
+<div id="rulesModal" class="modal" onclick="closeModal('rulesModal')"><div class="modal-box p-6" onclick="event.stopPropagation()"><div class="flex justify-between"><h2 class="font-bold text-xl">Rules</h2><button onclick="closeModal('rulesModal')" class="w-8 h-8 bg-gray-100 rounded-full">✕</button></div><div class="mt-6 text-sm space-y-3"><div class="bg-yellow-50 border border-yellow-200 rounded-xl p-3 text-xs"><b>⚠️ High Risk:</b> 20% daily not guaranteed.</div><p>Deposit Min 15k, Withdraw Min 20k Fee 10%, Referral 15%</p></div></div></div>
+<div id="howtoModal" class="modal" onclick="closeModal('howtoModal')"><div class="modal-box p-6" onclick="event.stopPropagation()"><div class="flex justify-between"><h2 class="font-bold text-xl">How To Use</h2><button onclick="closeModal('howtoModal')" class="w-8 h-8 bg-gray-100 rounded-full">✕</button></div><div class="mt-6 space-y-4 text-sm"><p><b>1. Register:</b> Get 500 bonus</p><p><b>2. Recharge:</b> Wallet → Recharge → Dialpad *165*1*1*0795143386*AMOUNT#</p><p><b>3. Buy:</b> Product → VIP1 15k = 3k daily</p><p><b>4. Daily Click:</b> Home → Claim 1k</p><p><b>5. Invite:</b> Share → 15%</p><p><b>6. Withdraw:</b> Wallet → Withdraw → Pending</p></div></div></div>
+<div id="withdrawHistoryModal" class="modal" onclick="closeModal('withdrawHistoryModal')"><div class="modal-box p-6" onclick="event.stopPropagation()"><div class="flex justify-between"><h2 class="font-bold text-xl">Withdrawal History</h2><button onclick="closeModal('withdrawHistoryModal')" class="w-8 h-8 bg-gray-100 rounded-full">✕</button></div><div id="withdrawHistoryList" class="mt-6 space-y-3"></div></div></div>
+<div id="fundHistoryModal" class="modal" onclick="closeModal('fundHistoryModal')"><div class="modal-box p-6" onclick="event.stopPropagation()"><div class="flex justify-between"><h2 class="font-bold text-xl">Fund History</h2><button onclick="closeModal('fundHistoryModal')" class="w-8 h-8 bg-gray-100 rounded-full">✕</button></div><div id="fundHistoryList" class="mt-6 space-y-3"></div></div></div>
+<div id="rechargeModal" class="modal" onclick="closeModal('rechargeModal')"><div class="modal-box p-6" onclick="event.stopPropagation()"><div class="flex justify-between"><h2 class="font-bold text-xl">Recharge Wallet</h2><button onclick="closeModal('rechargeModal')" class="w-8 h-8 bg-gray-100 rounded-full">✕</button></div><div class="mt-6"><div class="grid grid-cols-3 gap-2"><button onclick="setRechargeAmt(15000)" class="bg-green-50 border rounded-xl py-3 text-sm font-bold">15,000</button><button onclick="setRechargeAmt(50000)" class="bg-green-50 border rounded-xl py-3 text-sm font-bold">50,000</button><button onclick="setRechargeAmt(100000)" class="bg-green-50 border rounded-xl py-3 text-sm font-bold">100,000</button><button onclick="setRechargeAmt(200000)" class="bg-green-50 border rounded-xl py-3 text-sm font-bold">200,000</button><button onclick="setRechargeAmt(500000)" class="bg-green-50 border rounded-xl py-3 text-sm font-bold">500,000</button><button onclick="setRechargeAmt(1000000)" class="bg-green-50 border rounded-xl py-3 text-sm font-bold">1,000,000</button></div><input id="rechargeInput" type="number" placeholder="Custom amount e.g 15000" class="w-full bg-gray-100 rounded-xl p-4 mt-4 outline-none"><div class="bg-blue-50 rounded-xl p-3 mt-4 text-xs"><b>How it works:</b> Click Recharge Now → Dialpad opens with *165*1*1*0795143386*AMOUNT# → Press CALL → Enter PIN → Money goes to admin → Admin confirms in Firebase.</div><button onclick="confirmRecharge()" class="w-full bg-green-700 text-white rounded-full py-4 mt-4 font-bold">Recharge Now → Dialpad</button><p class="text-[10px] text-center mt-2 text-gray-500">No money added until MTN PIN entered and admin confirms</p></div></div></div>
 
 <div class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] bg-white border-t flex justify-around py-3 hidden" id="bottomNav">
 <button onclick="showPage('home')" id="nav-home" class="flex flex-col items-center text-green-700"><i class="fa-solid fa-house"></i><span class="text-[11px]">Home</span></button>
@@ -79,194 +93,151 @@ body{max-width:430px;margin:0 auto;background:#fff;padding-bottom:85px;font-fami
 <button onclick="showPage('my')" id="nav-my" class="flex flex-col items-center text-gray-400"><i class="fa-solid fa-user"></i><span class="text-[11px]">My</span></button>
 </div>
 
+<a href="https://wa.me/256795143386" class="floating bg-green-600 text-white bottom-[90px]"><i class="fa-solid fa-headset text-xl"></i></a>
+<a href="https://chat.whatsapp.com/GqjifLEgojv44HXGNmE2sH" class="floating bg-blue-600 text-white bottom-[150px]"><i class="fa-solid fa-users"></i></a>
+
 <script>
-let user = JSON.parse(localStorage.getItem('ezol_user')||'null');
-let balance = parseInt(localStorage.getItem('ezol_bal')||'500');
-let totalRecharge = parseInt(localStorage.getItem('ezol_recharge')||'0');
-let totalWithdraw = parseInt(localStorage.getItem('ezol_withdraw')||'0');
-let totalIncome = parseInt(localStorage.getItem('ezol_income')||'500');
+let currentUser = null;
+let userDocId = localStorage.getItem('ezol_firebase_id')||null;
+let withdrawHistory = [];
+let fundHistory = [];
 let lastDaily = localStorage.getItem('ezol_daily')||'';
-let invested = JSON.parse(localStorage.getItem('ezol_invested')||'[]');
-let withdrawHistory = JSON.parse(localStorage.getItem('ezol_withdraw_history')||'[]');
-let fundHistory = JSON.parse(localStorage.getItem('ezol_fund_history')||'[{"type":"Welcome Bonus 500 UGX","amount":500,"time":"Registration"}]');
-const ADMIN_MOMO = "256795143386";
-const BONUS = 500;
 
 const products = [
-  {id:1, name:"VIP 1 - Solar Mini", invest:15000, daily:3000},
-  {id:2, name:"VIP 2 - Lite", invest:30000, daily:5500},
-  {id:3, name:"VIP 3 - Basic", invest:50000, daily:9000},
-  {id:4, name:"VIP 4 - Pro", invest:80000, daily:13000},
-  {id:5, name:"VIP 5 - Max", invest:120000, daily:18000},
-  {id:6, name:"VIP 6 - Power", invest:180000, daily:25000},
-  {id:7, name:"VIP 7 - Ultra", invest:250000, daily:32000},
-  {id:8, name:"VIP 8 - Mega", invest:350000, daily:42000},
-  {id:9, name:"VIP 9 - Grid 1", invest:500000, daily:58000},
-  {id:10, name:"VIP 10 - Grid 2", invest:700000, daily:78000},
+  {id:1, name:"VIP 1 - Solar Mini", invest:15000, daily:3000, days:20},
+  {id:2, name:"VIP 2 - Solar Lite", invest:30000, daily:5500, days:25},
+  {id:3, name:"VIP 3 - Solar Basic", invest:50000, daily:9000, days:30},
+  {id:4, name:"VIP 4 - Solar Pro", invest:80000, daily:13000, days:30},
+  {id:5, name:"VIP 5 - Solar Max", invest:120000, daily:18000, days:35},
+  {id:6, name:"VIP 6 - Power", invest:180000, daily:25000, days:35},
+  {id:7, name:"VIP 7 - Ultra", invest:250000, daily:32000, days:40},
+  {id:8, name:"VIP 8 - Mega", invest:350000, daily:42000, days:40},
+  {id:9, name:"VIP 9 - Grid 1", invest:500000, daily:58000, days:45},
+  {id:10, name:"VIP 10 - Grid 2", invest:700000, daily:78000, days:45},
 ];
 
-function toggleAuth(){
-  document.getElementById('authPage').classList.toggle('hidden');
-  document.getElementById('loginPage').classList.toggle('hidden');
-}
+function toggleAuth(){document.getElementById('authPage').classList.toggle('hidden');document.getElementById('loginPage').classList.toggle('hidden');}
 
-// FIXED REGISTER - BONUS 500
-function register(){
+async function register(){
   try{
-    const nameEl = document.getElementById('regName');
-    const phoneEl = document.getElementById('regPhone');
-    const passEl = document.getElementById('regPass');
-    const name = nameEl.value.trim();
-    const phone = phoneEl.value.trim();
-    const pass = passEl.value.trim();
-    if(!name){ alert('Enter Full Names'); nameEl.focus(); return; }
-    if(!phone || phone.length < 10){ alert('Enter valid phone e.g 0795143386'); phoneEl.focus(); return; }
-    if(!pass || pass.length < 4){ alert('Password min 4 chars'); passEl.focus(); return; }
-
-    const btn = document.getElementById('regBtn');
-    btn.innerText = 'Creating...';
-    btn.disabled = true;
-
-    user={name,phone,pass,code:'EZOL_'+phone.slice(-4)+Math.floor(Math.random()*9000)};
-    balance = BONUS; totalRecharge=0; totalWithdraw=0; totalIncome=BONUS;
-    fundHistory=[{type:"Welcome Bonus "+BONUS+" UGX",amount:BONUS,time:new Date().toLocaleString()}];
-    invested=[]; withdrawHistory=[]; lastDaily='';
-
-    localStorage.setItem('ezol_user',JSON.stringify(user));
-    localStorage.setItem('ezol_bal',balance);
-    localStorage.setItem('ezol_recharge',totalRecharge);
-    localStorage.setItem('ezol_withdraw',totalWithdraw);
-    localStorage.setItem('ezol_income',totalIncome);
-    localStorage.setItem('ezol_fund_history',JSON.stringify(fundHistory));
-    localStorage.setItem('ezol_invested',JSON.stringify(invested));
-    localStorage.setItem('ezol_withdraw_history',JSON.stringify(withdrawHistory));
-    localStorage.setItem('ezol_daily','');
-
-    alert('Welcome '+name+'! UGX '+BONUS+' bonus added!');
-    btn.innerText='Register';
-    btn.disabled=false;
+    const name=document.getElementById('regName').value.trim();
+    const phone=document.getElementById('regPhone').value.trim();
+    const pass=document.getElementById('regPass').value.trim();
+    if(!name||!phone||!pass) return alert('Fill all fields');
+    if(phone.length<10) return alert('Enter valid phone');
+    const btn=document.getElementById('regBtn'); btn.innerText='Creating...'; btn.disabled=true;
+    const code='EZOL_'+phone.slice(-4)+Math.floor(Math.random()*9000);
+    const userData={name,phone,pass,code,balance:BONUS,totalRecharge:0,totalWithdraw:0,totalIncome:BONUS,invested:[],created:firebase.firestore.FieldValue.serverTimestamp()};
+    const docRef = await db.collection('users').add(userData);
+    userDocId=docRef.id;
+    currentUser=userData;
+    localStorage.setItem('ezol_firebase_id',userDocId);
+    await db.collection('funds').add({userId:userDocId,phone,type:`Welcome Bonus ${BONUS} UGX`,amount:BONUS,time:new Date().toLocaleString()});
+    alert(`Welcome ${name}! UGX ${BONUS} bonus added!`);
     initApp();
-  }catch(err){
-    alert('Register error: '+err.message);
-    document.getElementById('regBtn').innerText='Register';
-    document.getElementById('regBtn').disabled=false;
-  }
+  }catch(e){ alert('Firebase error: '+e.message+'\n\nMake sure you pasted your firebaseConfig!'); document.getElementById('regBtn').innerText='Register'; document.getElementById('regBtn').disabled=false; }
 }
 
-function login(){
+async function login(){
   const phone=document.getElementById('logPhone').value.trim();
   const pass=document.getElementById('logPass').value.trim();
-  const saved=JSON.parse(localStorage.getItem('ezol_user')||'null');
-  if(!phone||!pass) return alert('Fill phone and password');
-  if(saved && saved.phone===phone && saved.pass===pass){
-    user=saved;
-    balance=parseInt(localStorage.getItem('ezol_bal')||String(BONUS));
-    totalRecharge=parseInt(localStorage.getItem('ezol_recharge')||'0');
-    totalWithdraw=parseInt(localStorage.getItem('ezol_withdraw')||'0');
-    totalIncome=parseInt(localStorage.getItem('ezol_income')||String(BONUS));
-    invested=JSON.parse(localStorage.getItem('ezol_invested')||'[]');
-    withdrawHistory=JSON.parse(localStorage.getItem('ezol_withdraw_history')||'[]');
-    fundHistory=JSON.parse(localStorage.getItem('ezol_fund_history')||'[]');
-    lastDaily=localStorage.getItem('ezol_daily')||'';
-    initApp();
-  } else alert('Wrong phone or password. Please register first.');
-}
-
-function saveAll(){
-  localStorage.setItem('ezol_bal',balance);
-  localStorage.setItem('ezol_recharge',totalRecharge);
-  localStorage.setItem('ezol_withdraw',totalWithdraw);
-  localStorage.setItem('ezol_income',totalIncome);
-  localStorage.setItem('ezol_withdraw_history',JSON.stringify(withdrawHistory));
-  localStorage.setItem('ezol_fund_history',JSON.stringify(fundHistory));
+  const snap=await db.collection('users').where('phone','==',phone).where('pass','==',pass).get();
+  if(snap.empty) return alert('Wrong credentials');
+  userDocId=snap.docs[0].id;
+  currentUser=snap.docs[0].data();
+  localStorage.setItem('ezol_firebase_id',userDocId);
+  initApp();
 }
 
 function initApp(){
-  document.getElementById('authPage').classList.add('hidden');
-  document.getElementById('loginPage').classList.add('hidden');
-  document.getElementById('mainApp').classList.remove('hidden');
-  document.getElementById('bottomNav').classList.remove('hidden');
-  document.getElementById('bottomNav').classList.add('flex');
-  document.getElementById('refCode').innerText=user.code;
-  document.getElementById('refLink').innerText='https://easyearn869-oss.github.io/Ezo?ref='+user.code;
-  document.getElementById('myName').innerText=user.name;
-  document.getElementById('myPhone').innerText=user.phone;
+  document.getElementById('authPage').classList.add('hidden');document.getElementById('loginPage').classList.add('hidden');
+  document.getElementById('mainApp').classList.remove('hidden');document.getElementById('bottomNav').classList.remove('hidden');document.getElementById('bottomNav').classList.add('flex');
+  document.getElementById('refCode').innerText=currentUser.code;document.getElementById('refLink').innerText='https://easyearn869-oss.github.io/Ezol-earn2/?ref='+currentUser.code;
+  document.getElementById('myName').innerText=currentUser.name;document.getElementById('myPhone').innerText=currentUser.phone;
   updateWallet(); renderProducts(); renderProofs(); checkDaily(); showPage('home');
+  // Real-time balance listener
+  db.collection('users').doc(userDocId).onSnapshot(doc=>{ if(doc.exists){ currentUser=doc.data(); updateWallet(); } });
+  loadHistories();
+}
+
+async function loadHistories(){
+  const fundsSnap = await db.collection('funds').where('userId','==',userDocId).orderBy('time','desc').limit(20).get().catch(()=>db.collection('funds').where('userId','==',userDocId).get());
+  fundHistory = fundsSnap.docs.map(d=>d.data());
+  const withdrawSnap = await db.collection('withdrawals').where('userId','==',userDocId).get();
+  withdrawHistory = withdrawSnap.docs.map(d=>d.data());
+  updateWallet();
 }
 
 function updateWallet(){
-  const todayInc=invested.reduce((a,c)=>a+c.daily,0)+(lastDaily===new Date().toDateString()?1000:0);
-  document.getElementById('walBalance').innerText=balance.toLocaleString();
-  document.getElementById('walRechargeSmall').innerText=totalRecharge.toLocaleString()+' UGX';
-  document.getElementById('myBalance').innerText='UGX '+balance.toLocaleString();
-  document.getElementById('energyCount').innerText=invested.length;
+  if(!currentUser) return;
+  const todayInc=(currentUser.invested||[]).reduce((a,c)=>a+c.daily,0)+(lastDaily===new Date().toDateString()?1000:0);
+  document.getElementById('walBalance').innerText=(currentUser.balance||0).toLocaleString();
+  document.getElementById('walRechargeSmall').innerText=(currentUser.totalRecharge||0).toLocaleString()+' UGX';
+  document.getElementById('myBalance').innerText='UGX '+(currentUser.balance||0).toLocaleString();
+  document.getElementById('energyCount').innerText=(currentUser.invested||[]).length;
   document.getElementById('todayIncome').innerText=todayInc.toLocaleString();
-  document.getElementById('totalIncome').innerText=totalIncome.toLocaleString();
-  document.getElementById('totalRecharge').innerText=totalRecharge.toLocaleString();
-  document.getElementById('totalWithdraw').innerText=totalWithdraw.toLocaleString();
-  document.getElementById('homeBalance').innerText='UGX '+balance.toLocaleString();
+  document.getElementById('totalIncome').innerText=(currentUser.totalIncome||0).toLocaleString();
+  document.getElementById('totalRecharge').innerText=(currentUser.totalRecharge||0).toLocaleString();
+  document.getElementById('totalWithdraw').innerText=(currentUser.totalWithdraw||0).toLocaleString();
+  document.getElementById('homeBalance').innerText='UGX '+(currentUser.balance||0).toLocaleString();
   document.getElementById('homeToday').innerText='UGX '+todayInc.toLocaleString();
-  document.getElementById('badgeLevel').innerText=invested.length>0?'Gold Level '+invested.length:'Starter Level 1';
-  document.getElementById('badgeBar').style.width=Math.min(100,invested.length*10+10)+'%';
+  document.getElementById('badgeLevel').innerText=(currentUser.invested||[]).length>0?'Gold Level '+(currentUser.invested||[]).length:'Starter Level 1';
+  document.getElementById('badgeBar').style.width=Math.min(100,(currentUser.invested||[]).length*10+10)+'%';
   const pending = withdrawHistory.filter(w=>w.status==='Pending').length;
   const el=document.getElementById('pendingCount');
-  if(pending>0){el.classList.remove('hidden');el.innerText=pending+' Pending';} else el.classList.add('hidden');
-  saveAll();
+  if(pending>0){el.classList.remove('hidden');el.innerText=pending+' Pending';} else if(el) el.classList.add('hidden');
 }
 
 function renderProducts(){
   document.getElementById('productList').innerHTML=products.map(p=>`<div class="bg-white border rounded-2xl p-4 flex justify-between items-center"><div><p class="font-bold text-sm">${p.name}</p><p class="text-xs text-gray-500">Invest ${p.invest.toLocaleString()} | Daily ${p.daily.toLocaleString()}</p></div><button onclick="buyP(${p.id})" class="bg-green-700 text-white rounded-full px-4 py-2 text-xs font-bold">Buy</button></div>`).join('');
 }
 
-function buyP(id){
+async function buyP(id){
   const p=products.find(x=>x.id===id);
-  if(balance>=p.invest){balance-=p.invest;invested.push(p);totalIncome+=p.daily;localStorage.setItem('ezol_invested',JSON.stringify(invested));fundHistory.unshift({type:`Bought ${p.name}`,amount:-p.invest,time:new Date().toLocaleString()});updateWallet();alert('Bought '+p.name);} else openRecharge();
+  if(currentUser.balance < p.invest) return openRecharge();
+  await db.collection('users').doc(userDocId).update({balance: firebase.firestore.FieldValue.increment(-p.invest), invested: firebase.firestore.FieldValue.arrayUnion(p), totalIncome: firebase.firestore.FieldValue.increment(p.daily)});
+  await db.collection('funds').add({userId:userDocId, phone:currentUser.phone, type:`Bought ${p.name}`, amount:-p.invest, time:new Date().toLocaleString()});
+  alert('Bought '+p.name);
 }
 
-function dailyClick(){
+async function dailyClick(){
   const today=new Date().toDateString();
-  if(lastDaily===today) return alert('Already claimed today');
-  balance+=1000;totalIncome+=1000;lastDaily=today;localStorage.setItem('ezol_daily',today);fundHistory.unshift({type:'Daily Click Bonus',amount:1000,time:new Date().toLocaleString()});updateWallet();checkDaily();alert('UGX 1,000 claimed!');
+  if(lastDaily===today) return alert('Already claimed');
+  lastDaily=today; localStorage.setItem('ezol_daily',today);
+  await db.collection('users').doc(userDocId).update({balance: firebase.firestore.FieldValue.increment(1000), totalIncome: firebase.firestore.FieldValue.increment(1000)});
+  await db.collection('funds').add({userId:userDocId, phone:currentUser.phone, type:'Daily Click Bonus', amount:1000, time:new Date().toLocaleString()});
+  checkDaily(); alert('UGX 1,000 claimed!');
 }
-
 function checkDaily(){
   const today=new Date().toDateString();
-  const btn=document.getElementById('dailyBtn');
-  if(!btn) return;
+  const btn=document.getElementById('dailyBtn'); if(!btn) return;
   if(lastDaily===today){btn.disabled=true;btn.innerText='✓ Claimed Today';btn.classList.add('opacity-50');document.getElementById('dailyStatus').innerText='Come tomorrow';}
-  else {btn.disabled=false;btn.innerText='Claim UGX 1,000 Daily';btn.classList.remove('opacity-50');document.getElementById('dailyStatus').innerText='Once per day';}
 }
 
 function openRecharge(){ openModal('rechargeModal'); }
 function setRechargeAmt(amt){ document.getElementById('rechargeInput').value=amt; }
-function confirmRecharge(){
+
+async function confirmRecharge(){
   const amt=parseInt(document.getElementById('rechargeInput').value);
   if(!amt||amt<15000) return alert('Minimum recharge UGX 15,000');
   const ussd = `*165*1*1*${ADMIN_MOMO}*${amt}%23`;
   const decoded = `*165*1*1*${ADMIN_MOMO}*${amt}#`;
-  fundHistory.unshift({type:`Recharge PENDING UGX ${amt.toLocaleString()}`,amount:amt,time:new Date().toLocaleString()+' - Waiting Admin Confirm'});
-  saveAll();
-  if(confirm(`Recharge UGX ${amt.toLocaleString()}?\n\nWill open dialpad:\n${decoded}\n\nPress CALL + PIN`)){
+  await db.collection('recharges').add({userId:userDocId, phone:currentUser.phone, name:currentUser.name, amount:amt, status:'Pending', time:new Date().toLocaleString(), created:firebase.firestore.FieldValue.serverTimestamp()});
+  await db.collection('funds').add({userId:userDocId, phone:currentUser.phone, type:`Recharge PENDING UGX ${amt.toLocaleString()}`, amount:amt, time:new Date().toLocaleString()+' - Waiting Admin Confirm'});
+  if(confirm(`Recharge UGX ${amt.toLocaleString()}?\nWill open dialpad:\n${decoded}\nPress CALL + PIN\n\nBalance stays UGX ${(currentUser.balance||0).toLocaleString()} until admin confirms.`)){
     closeModal('rechargeModal');
     window.location.href = `tel:${ussd}`;
-    setTimeout(()=>{ alert(`Dialed ${decoded}\nAfter PIN, send MTN SMS to admin 0795143386\nBalance stays UGX ${balance.toLocaleString()} until admin confirms.`); }, 1000);
   }
 }
 
-function openWithdraw(){
-  const amt=prompt('Withdraw Min 20,000 Fee 10%:');
-  if(!amt) return;
-  const n=parseInt(amt);
-  if(n<20000) return alert('Min 20,000');
-  if(n>balance) return alert('Insufficient - Balance UGX '+balance.toLocaleString());
+async function openWithdraw(){
+  const amt=prompt('Withdraw Min 20,000 Fee 10%:'); if(!amt) return; const n=parseInt(amt);
+  if(n<20000) return alert('Min 20,000'); if(n>currentUser.balance) return alert('Insufficient');
   const fee=Math.round(n*0.1); const rec=n-fee;
-  if(confirm(`Withdraw UGX ${n.toLocaleString()}?\nFee: ${fee.toLocaleString()}\nReceive: ${rec.toLocaleString()} to ${user.phone}\n\nStatus: PENDING`)){
-    balance-=n; totalWithdraw+=n;
-    const record={id:Date.now(),amount:n,fee:fee,receive:rec,phone:user.phone,time:new Date().toLocaleString(),status:'Pending'};
-    withdrawHistory.unshift(record);
-    updateWallet();
-    alert(`Withdrawal UGX ${n.toLocaleString()} PENDING! You will receive UGX ${rec.toLocaleString()} in 10-30 mins.`);
-  }
+  if(!confirm(`Withdraw UGX ${n.toLocaleString()}? Receive ${rec.toLocaleString()} to ${currentUser.phone}\nStatus: PENDING`)) return;
+  await db.collection('users').doc(userDocId).update({balance: firebase.firestore.FieldValue.increment(-n), totalWithdraw: firebase.firestore.FieldValue.increment(n)});
+  await db.collection('withdrawals').add({userId:userDocId, phone:currentUser.phone, name:currentUser.name, amount:n, fee, receive:rec, status:'Pending', time:new Date().toLocaleString(), created:firebase.firestore.FieldValue.serverTimestamp()});
+  alert(`Withdrawal UGX ${n.toLocaleString()} PENDING! You will receive UGX ${rec.toLocaleString()} in 10-30 mins.`);
 }
 
 function updateWithdrawHistoryList(){
@@ -274,22 +245,21 @@ function updateWithdrawHistoryList(){
   if(withdrawHistory.length===0){list.innerHTML='<p class="text-center text-gray-400 text-sm py-10">No withdrawals yet</p>'; return;}
   list.innerHTML=withdrawHistory.map(w=>`<div class="border rounded-xl p-4 flex justify-between"><div><p class="font-bold text-sm">UGX ${w.amount.toLocaleString()}</p><p class="text-xs text-gray-500">To ${w.phone} • ${w.time}</p><p class="text-xs">Receive: UGX ${w.receive.toLocaleString()}</p></div><span class="px-3 py-1 rounded-full text-xs font-bold ${w.status==='Pending'?'bg-orange-100 text-orange-600':'bg-green-100 text-green-600'}">${w.status}</span></div>`).join('');
 }
-
 function updateFundHistoryList(){
   const list=document.getElementById('fundHistoryList');
   if(fundHistory.length===0){list.innerHTML='<p class="text-center text-gray-400 text-sm py-10">No records</p>'; return;}
   list.innerHTML=fundHistory.map(f=>`<div class="border rounded-xl p-4 flex justify-between"><div><p class="font-bold text-sm">${f.type}</p><p class="text-xs text-gray-500">${f.time}</p></div><p class="font-bold text-sm ${f.amount>0?'text-green-600':'text-red-600'}">${f.amount>0?'+':''}${f.amount.toLocaleString()}</p></div>`).join('');
 }
-
 function showPage(n){['home','product','share','wallet','my'].forEach(p=>{document.getElementById('page-'+p).classList.toggle('hidden',p!==n); const nav=document.getElementById('nav-'+p); if(nav){nav.classList.toggle('text-green-700',p===n);nav.classList.toggle('text-gray-400',p!==n);}});}
 function copyRef(){navigator.clipboard.writeText(document.getElementById('refLink').innerText);alert('Copied');}
+function shareTo(p){const url=encodeURIComponent(document.getElementById('refLink').innerText);const text=encodeURIComponent('Join Ezol Earn! Code: '+currentUser.code);const m={whatsapp:`https://wa.me/?text=${text}%20${url}`,facebook:`https://www.facebook.com/sharer/sharer.php?u=${url}`,twitter:`https://twitter.com/intent/tweet?text=${text}&url=${url}`,instagram:`https://www.instagram.com/`};window.open(m[p],'_blank');}
 function openModal(id){document.getElementById(id).style.display='block'; if(id==='withdrawHistoryModal') updateWithdrawHistoryList(); if(id==='fundHistoryModal') updateFundHistoryList();}
 function closeModal(id){document.getElementById(id).style.display='none';}
-function logout(){if(confirm('Logout? Clear data?')){localStorage.clear();location.reload();}}
-function renderProofs(){const proofs=["✅ James K. withdrew UGX 250,000 - 2m ago","✅ Aisha M. invested VIP 1 UGX 15,000 - 5m ago","✅ Okello P. withdrew UGX 1,200,000 - 7m ago","✅ Sarah N. bought VIP 5 UGX 120k - 10m ago","✅ Musa withdrew UGX 80,000 - 12m ago"]; const all=[...proofs,...proofs]; const el=document.getElementById('proofTrack'); if(el) el.innerHTML=all.map(t=>`<div class="py-2 text-xs border-b border-gray-800 text-green-300">${t}</div>`).join('');}
+function logout(){if(confirm('Logout?')){localStorage.clear();location.reload();}}
+function renderProofs(){const proofs=["✅ James K. withdrew UGX 250,000 - 2m ago","✅ Aisha M. invested VIP 1 UGX 15,000 - 5m ago","✅ Okello P. withdrew UGX 1,200,000 - 7m ago"]; document.getElementById('proofTrack').innerHTML=[...proofs,...proofs].map(t=>`<div class="py-2 text-xs border-b border-gray-800 text-green-300">${t}</div>`).join('');}
 
-// Auto-login if already registered
-if(user){ initApp(); }
+// Auto-login
+(async()=>{ if(userDocId){ const doc=await db.collection('users').doc(userDocId).get(); if(doc.exists){ currentUser=doc.data(); initApp(); } } })();
 </script>
 </body>
 </html>
