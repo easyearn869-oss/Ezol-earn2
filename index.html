@@ -3,51 +3,46 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>InvestPro - iOS 27 Investment App</title>
+<title>InvestPro UG • iOS 27</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',-apple-system,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,sans-serif}
 body{background:#000;color:#fff;max-width:420px;margin:0 auto;padding:20px;min-height:100vh}
 .header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
-.header h1{font-size:22px;font-weight:800;letter-spacing:-0.5px}
+.header h1{font-size:22px;font-weight:800}
 .avatar{width:36px;height:36px;background:#fff;border-radius:50%}
 .card{background:#1c1c1e;border-radius:28px;padding:22px;border:1px solid rgba(255,255,255,0.08);margin-bottom:16px}
 .label{color:#8e8e93;font-size:13px}
-.value{font-size:36px;font-weight:800;margin-top:4px;letter-spacing:-1px}
-.gain{color:#30d158;font-size:14px;margin-top:6px;display:flex;gap:6px;align-items:center}
+.value{font-size:32px;font-weight:800;margin-top:4px;letter-spacing:-1px}
+.gain{color:#30d158;font-size:14px;margin-top:6px}
 .chart-wrap{height:120px;margin-top:18px}
 .actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px}
 .btn{border:none;border-radius:18px;padding:16px;font-weight:700;font-size:15px;cursor:pointer;display:flex;justify-content:center;gap:8px}
 .btn-white{background:#fff;color:#000}
 .btn-dark{background:#2c2c2e;color:#fff}
-.section-title{display:flex;justify-content:space-between;margin-bottom:12px}
 .stock{background:#1c1c1e;border-radius:20px;padding:16px;display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;border:1px solid rgba(255,255,255,0.06)}
 .stock-left{display:flex;gap:12px;align-items:center}
 .icon{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;background:#2c2c2e}
 .stock-name{font-weight:700;font-size:15px}
 .stock-sub{color:#8e8e93;font-size:12px;margin-top:2px}
 .stock-right{text-align:right}
-.price{font-weight:700}
+.price{font-weight:700;font-size:14px}
 .change{font-size:12px;margin-top:2px}
 .green{color:#30d158}.red{color:#ff453a}
 .buy-btn{margin-top:6px;background:#fff;color:#000;border:none;border-radius:20px;padding:4px 12px;font-size:11px;font-weight:800;cursor:pointer}
-.deposit-modal{position:fixed;inset:0;background:rgba(0,0,0,0.8);display:none;align-items:flex-end;z-index:99}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,0.8);display:none;align-items:flex-end;z-index:99}
 .modal-box{background:#1c1c1e;width:100%;border-radius:32px 32px 0 0;padding:24px}
 input{width:100%;background:#2c2c2e;border:none;border-radius:14px;padding:16px;color:#fff;margin:16px 0;font-size:16px}
 </style>
 </head>
 <body>
 
-<div class="header">
-  <h1>InvestPro • iOS 27</h1>
-  <div class="avatar"></div>
-</div>
+<div class="header"><h1>InvestPro UG • iOS 27</h1><div class="avatar"></div></div>
 
 <div class="card">
   <div class="label">Total Portfolio Value</div>
-  <div class="value" id="totalValue">$37,420.50</div>
-  <div class="gain">▲ +12.4% ($1,420) today</div>
+  <div class="value" id="totalValue">UGX 169,994,772</div>
+  <div class="gain">▲ +12.4% (UGX 5,254,000) today</div>
   <div class="chart-wrap"><canvas id="mainChart"></canvas></div>
 </div>
 
@@ -56,32 +51,34 @@ input{width:100%;background:#2c2c2e;border:none;border-radius:14px;padding:16px;
   <button class="btn btn-dark" onclick="openModal('Withdraw')">💵 Withdraw</button>
 </div>
 
-<div class="section-title">
-  <span style="font-weight:700">My Assets</span>
-  <span style="color:#8e8e93;font-size:13px" id="assetCount">5 assets</span>
-</div>
+<div style="display:flex;justify-content:space-between;margin-bottom:12px"><span style="font-weight:700">My Assets</span><span style="color:#8e8e93;font-size:13px">5 assets • UGX</span></div>
 
 <div id="stockList"></div>
 
-<div class="deposit-modal" id="modal" onclick="closeModal()">
+<div class="modal" id="modal" onclick="closeModal()">
   <div class="modal-box" onclick="event.stopPropagation()">
     <h3 id="modalTitle" style="font-weight:800;font-size:18px">Deposit</h3>
-    <input type="number" id="amountInput" placeholder="Enter amount">
+    <input type="number" id="amountInput" placeholder="Enter amount in UGX">
     <button class="btn btn-white" style="width:100%" onclick="confirmAction()">Confirm</button>
   </div>
 </div>
 
 <script>
-let balance = 15420.50;
+const RATE = 3700; // 1 USD = 3700 UGX
+let balance = 15420.50 * RATE;
 let stocks = [
-  {symbol:'AAPL', name:'Apple Inc', price:182.52, change:2.34, shares:10},
-  {symbol:'TSLA', name:'Tesla Inc', price:248.50, change:-1.2, shares:5},
-  {symbol:'BTC', name:'Bitcoin', price:43250, change:5.1, shares:0.5},
-  {symbol:'GOOGL', name:'Alphabet', price:142.30, change:0.8, shares:8},
-  {symbol:'ETH', name:'Ethereum', price:2250, change:3.2, shares:2},
+  {symbol:'AAPL', name:'Apple Inc', price:182.52*RATE, change:2.34, shares:10},
+  {symbol:'TSLA', name:'Tesla Inc', price:248.50*RATE, change:-1.2, shares:5},
+  {symbol:'BTC', name:'Bitcoin', price:43250*RATE, change:5.1, shares:0.5},
+  {symbol:'GOOGL', name:'Alphabet', price:142.30*RATE, change:0.8, shares:8},
+  {symbol:'MTN', name:'MTN Uganda', price:170*1, change:1.5, shares:1000},
 ];
 
-let currentAction = '';
+let currentAction='';
+
+function formatUGX(n){
+  return 'UGX ' + Math.round(n).toLocaleString('en-UG');
+}
 
 function renderStocks(){
   const list = document.getElementById('stockList');
@@ -97,20 +94,19 @@ function renderStocks(){
         <div><div class="stock-name">${s.symbol} <span style="color:#8e8e93;font-weight:400;font-size:12px">${s.shares} shares</span></div><div class="stock-sub">${s.name}</div></div>
       </div>
       <div class="stock-right">
-        <div class="price">$${s.price.toLocaleString()}</div>
+        <div class="price">${formatUGX(s.price)}</div>
         <div class="change ${s.change>0?'green':'red'}">${s.change>0?'+':''}${s.change}%</div>
         <button class="buy-btn" onclick="buyStock(${i})">BUY</button>
       </div>`;
     list.appendChild(div);
   });
-  document.getElementById('totalValue').innerText = '$' + total.toLocaleString(undefined,{minimumFractionDigits:2});
+  document.getElementById('totalValue').innerText = formatUGX(total);
 }
 
-// Chart
 const ctx = document.getElementById('mainChart').getContext('2d');
 new Chart(ctx, {
   type:'line',
-  data:{labels:['Mon','Tue','Wed','Thu','Fri','Sat','Sun'], datasets:[{data:[10000,10200,10150,10800,11200,11500,12200], borderColor:'#fff', backgroundColor:'rgba(255,255,255,0.08)', borderWidth:2.5, tension:0.4, fill:true, pointRadius:0}]},
+  data:{labels:['Mon','Tue','Wed','Thu','Fri','Sat','Sun'], datasets:[{data:[10000,10200,10150,10800,11200,11500,12400].map(v=>v*RATE), borderColor:'#fff', backgroundColor:'rgba(255,255,255,0.08)', borderWidth:2.5, tension:0.4, fill:true, pointRadius:0}]},
   options:{plugins:{legend:{display:false}}, scales:{x:{display:false}, y:{display:false}}, responsive:true, maintainAspectRatio:false}
 });
 
@@ -119,7 +115,7 @@ function buyStock(i){
     balance -= stocks[i].price;
     stocks[i].shares += 1;
     renderStocks();
-    alert('Bought 1 ' + stocks[i].symbol);
+    alert('Bought 1 ' + stocks[i].symbol + ' for ' + formatUGX(stocks[i].price));
   } else alert('Insufficient balance');
 }
 
@@ -135,14 +131,12 @@ function confirmAction(){
   document.getElementById('amountInput').value='';
 }
 
-// Live price simulation
 setInterval(()=>{
-  stocks = stocks.map(s=>({...s, price: +(s.price * (1 + (Math.random()-0.5)/100)).toFixed(2), change: +(Math.random()*4-2).toFixed(2)}));
+  stocks = stocks.map(s=>({...s, price: +(s.price * (1 + (Math.random()-0.5)/100)).toFixed(0), change: +(Math.random()*4-2).toFixed(2)}));
   renderStocks();
 },3000);
 
 renderStocks();
 </script>
-
 </body>
 </html>
