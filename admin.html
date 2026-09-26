@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Ezol Admin - Firebase</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+</head><body class="p-4 max-w-[1000px] mx-auto bg-gray-100">
+<script>
+const firebaseConfig = { apiKey: "YOUR_API_KEY", authDomain: "YOUR_PROJECT.firebaseapp.com", projectId: "YOUR_PROJECT_ID", storageBucket: "YOUR_PROJECT.appspot.com", messagingSenderId: "123456789", appId: "1:123456789:web:abcdef" };
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+</script>
+<div id="login" class="min-h-screen flex items-center justify-center"><div class="bg-white rounded-2xl p-8 w-full max-w-sm shadow-xl"><h1 class="font-black text-xl text-center">Ezol Admin</h1><input id="pass" type="password" placeholder="Password admin123" class="w-full bg-gray-100 rounded-xl p-4 mt-6"><button onclick="if(document.getElementById('pass').value==='admin123'){document.getElementById('login').classList.add('hidden');document.getElementById('app').classList.remove('hidden');loadAll()}else alert('Wrong')" class="w-full bg-black text-white rounded-full py-4 mt-4 font-bold">Login</button></div></div>
+<div id="app" class="hidden">
+<div class="bg-green-700 text-white rounded-2xl p-5 flex justify-between"><h1 class="font-bold">Firebase Admin Dashboard - Real-Time</h1><button onclick="location.reload()" class="bg-white/20 rounded-full px-4 py-2 text-sm">Refresh</button></div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4"><div class="bg-white rounded-xl p-4"><p class="text-xs text-gray-500">USERS</p><p class="font-bold text-xl" id="uCount">0</p></div><div class="bg-white rounded-xl p-4"><p class="text-xs text-gray-500">PENDING RECHARGE</p><p class="font-bold text-xl text-orange-600" id="rCount">0</p></div><div class="bg-white rounded-xl p-4"><p class="text-xs text-gray-500">PENDING WITHDRAW</p><p class="font-bold text-xl text-red-600" id="wCount">0</p></div><div class="bg-white rounded-xl p-4"><p class="text-xs text-gray-500">TOTAL RECHARGE</p><p class="font-bold text-xl" id="tRecharge">0</p></div></div>
+<div class="flex gap-2 mt-6 overflow-x-auto"><button onclick="showTab('recharge')" id="t-recharge" class="bg-black text-white rounded-full px-5 py-2 text-sm">Recharges</button><button onclick="showTab('withdraw')" id="t-withdraw" class="bg-white rounded-full px-5 py-2 text-sm">Withdraws</button><button onclick="showTab('users')" id="t-users" class="bg-white rounded-full px-5 py-2 text-sm">Users</button></div>
+<div id="c-recharge" class="mt-4 bg-white rounded-2xl p-5"><h3 class="font-bold">Pending Recharges - Approve after receiving MTN on 0795143386</h3><div id="rechargeList" class="mt-4 space-y-3"></div></div>
+<div id="c-withdraw" class="mt-4 bg-white rounded-2xl p-5 hidden"><h3 class="font-bold">Pending Withdrawals - Send via *165*1*1# then Complete</h3><div id="withdrawList" class="mt-4 space-y-3"></div></div>
+<div id="c-users" class="mt-4 bg-white rounded-2xl p-5 hidden"><h3 class="font-bold">All Users</h3><div id="usersList" class="mt-4 space-y-3"></div></div>
+</div>
+<script>
+function showTab(n){['recharge','withdraw','users'].forEach(t=>{document.getElementById('c-'+t).classList.toggle('hidden',t!==n);document.getElementById('t-'+t).classList.toggle('bg-black',t===n);document.getElementById('t-'+t).classList.toggle('text-white',t===n);document.getElementById('t-'+t).classList.toggle('bg-white',t!==n);});}
+
+async function loadAll(){
+  // Real-time listeners
+  db.collection('recharges').where('status','==','Pending').onSnapshot(snap=>{
+    document.getElementById('rCount').innerText=snap.size;
+    document.getElementById('rechargeList').innerHTML=snap.docs.map(d=>{
+      const data=d.data(); return `<div class="border rounded-xl p-4 flex justify-between items-center"><div><p class="font-bold">${data.name} - ${data.phone}</p><p class="text-xs text-gray-500">${data.time}</p><p class="text-sm font-bold text-green-600">UGX ${data.amount.toLocaleString()}</p></div><div class="flex gap-2"><button onclick="approveRecharge('${d.id}','${data.userId}',${data.amount})" class="bg-green-600 text-white rounded-full px-4 py-2 text-xs font-bold">Approve + Add Balance</button><button onclick="db.collection('recharges').doc('${d.id}').delete()" class="bg-red-100 text-red-600 rounded-full px-3 py-2 text-xs">Reject</button></div></div>`;
+    }).join('') || '<p class="text-sm text-gray-400 text-center py-10">No pending recharges</p>';
+  });
+  db.collection('withdrawals').where('status','==','Pending').onSnapshot(snap=>{
+    document.getElementById('wCount').innerText=snap.size;
+    document.getElementById('withdrawList').innerHTML=snap.docs.map(d=>{
+      const data=d.data(); return `<div class="border rounded-xl p-4 flex justify-between items-center bg-orange-50"><div><p class="font-bold">${data.name} - ${data.phone}</p><p class="text-xs">${data.time}</p><p class="text-sm">Withdraw UGX ${data.amount.toLocaleString()} → Receive ${data.receive.toLocaleString()} (Fee ${data.fee})</p></div><div class="flex flex-col gap-2"><button onclick="approveWithdraw('${d.id}','${data.userId}')" class="bg-green-600 text-white rounded-full px-4 py-2 text-xs font-bold">Mark Sent - Complete</button><button onclick="rejectWithdraw('${d.id}','${data.userId}',${data.amount})" class="bg-red-100 text-red-600 rounded-full px-4 py-2 text-xs">Reject & Refund</button></div></div>`;
+    }).join('') || '<p class="text-sm text-gray-400 text-center py-10">No pending withdrawals</p>';
+  });
+  db.collection('users').onSnapshot(snap=>{
+    document.getElementById('uCount').innerText=snap.size;
+    let total=0; snap.forEach(doc=>{total+=doc.data().totalRecharge||0});
+    document.getElementById('tRecharge').innerText=total.toLocaleString()+' UGX';
+    document.getElementById('usersList').innerHTML=snap.docs.map(d=>{
+      const u=d.data(); return `<div class="border rounded-xl p-4"><p class="font-bold">${u.name} - ${u.phone}</p><p class="text-xs text-gray-500">Code: ${u.code} | Balance: UGX ${(u.balance||0).toLocaleString()} | Recharge: ${(u.totalRecharge||0).toLocaleString()} | Invested: ${(u.invested||[]).length}</p><div class="mt-2 flex gap-2"><input id="amt-${d.id}" type="number" placeholder="Amount" class="bg-gray-100 rounded-xl px-3 py-2 text-xs w-24"><button onclick="manualAdd('${d.id}',document.getElementById('amt-${d.id}').value)" class="bg-green-600 text-white rounded-full px-3 py-2 text-xs">Add Balance</button></div></div>`;
+    }).join('');
+  });
+}
+
+async function approveRecharge(rechargeId, userId, amount){
+  if(!confirm(`Approve UGX ${amount.toLocaleString()}? This will add to user balance in Firebase.`)) return;
+  await db.collection('users').doc(userId).update({balance:firebase.firestore.FieldValue.increment(amount), totalRecharge:firebase.firestore.FieldValue.increment(amount)});
+  await db.collection('recharges').doc(rechargeId).update({status:'Approved', time:new Date().toLocaleString()+' - Approved by Admin'});
+  await db.collection('funds').add({userId, type:`Recharge CONFIRMED UGX ${amount.toLocaleString()}`, amount, time:new Date().toLocaleString()+' - Admin Approved'});
+  alert('Approved! Balance added.');
+}
+async function approveWithdraw(id, userId){
+  if(!confirm('Confirm you sent money via MTN?')) return;
+  await db.collection('withdrawals').doc(id).update({status:'Completed', time:new Date().toLocaleString()+' - Paid'});
+  alert('Marked Completed!');
+}
+async function rejectWithdraw(id, userId, amount){
+  if(!confirm(`Reject and refund UGX ${amount.toLocaleString()}?`)) return;
+  await db.collection('users').doc(userId).update({balance:firebase.firestore.FieldValue.increment(amount)});
+  await db.collection('withdrawals').doc(id).delete();
+  alert('Refunded!');
+}
+async function manualAdd(userId, amt){
+  amt=parseInt(amt); if(!amt) return alert('Enter amount');
+  await db.collection('users').doc(userId).update({balance:firebase.firestore.FieldValue.increment(amt), totalRecharge:firebase.firestore.FieldValue.increment(amt)});
+  alert('Added UGX '+amt.toLocaleString());
+}
+</script>
+</body></html>
