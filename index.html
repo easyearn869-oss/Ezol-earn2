@@ -1,122 +1,148 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EZOL ENERGY - Real Solar Shop Uganda</title>
+<title>InvestPro - iOS 27 Investment App</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
-body{background:#f5f7f5}
-.header{background:#0a8a2e;color:white;padding:15px;text-align:center;position:sticky;top:0;z-index:10}
-.header h1{font-size:20px}
-.header p{font-size:12px;opacity:0.9}
-.support-box{background:white;margin:12px;padding:12px;border-radius:12px;display:flex;justify-content:space-between;box-shadow:0 2px 8px rgba(0,0,0,0.08)}
-.support-box a{background:#25D366;color:white;padding:8px 14px;border-radius:20px;text-decoration:none;font-weight:bold}
-.tabs{display:flex;background:white;margin:0 12px;border-radius:12px;overflow:hidden}
-.tabs button{flex:1;padding:12px;border:none;background:white;font-weight:bold;cursor:pointer}
-.tabs button.active{background:#0a8a2e;color:white}
-.content{padding:12px}
-.product-card{background:white;border-radius:12px;padding:12px;margin-bottom:12px;display:flex;gap:12px;box-shadow:0 2px 6px rgba(0,0,0,0.06)}
-.product-card img{width:80px;height:80px;background:#e8f5e9;border-radius:8px;object-fit:cover}
-.price{color:#0a8a2e;font-weight:bold;font-size:16px}
-.btn{background:#0a8a2e;color:white;border:none;padding:8px 14px;border-radius:8px;margin-top:6px;cursor:pointer}
-.wallet{background:white;border-radius:12px;padding:16px;margin-bottom:12px}
-.floating{position:fixed;right:10px;bottom:80px;display:flex;flex-direction:column;gap:8px}
-.float-btn{background:#0a8a2e;color:white;padding:10px 12px;border-radius:20px;text-decoration:none;font-size:12px;text-align:center;box-shadow:0 4px 10px rgba(0,0,0,0.2)}
-.nav{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;border-top:1px solid #ddd}
-.nav button{flex:1;padding:12px 0;border:none;background:white;font-size:11px}
-.nav button.active{color:#0a8a2e;font-weight:bold}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',-apple-system,sans-serif}
+body{background:#000;color:#fff;max-width:420px;margin:0 auto;padding:20px;min-height:100vh}
+.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
+.header h1{font-size:22px;font-weight:800;letter-spacing:-0.5px}
+.avatar{width:36px;height:36px;background:#fff;border-radius:50%}
+.card{background:#1c1c1e;border-radius:28px;padding:22px;border:1px solid rgba(255,255,255,0.08);margin-bottom:16px}
+.label{color:#8e8e93;font-size:13px}
+.value{font-size:36px;font-weight:800;margin-top:4px;letter-spacing:-1px}
+.gain{color:#30d158;font-size:14px;margin-top:6px;display:flex;gap:6px;align-items:center}
+.chart-wrap{height:120px;margin-top:18px}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px}
+.btn{border:none;border-radius:18px;padding:16px;font-weight:700;font-size:15px;cursor:pointer;display:flex;justify-content:center;gap:8px}
+.btn-white{background:#fff;color:#000}
+.btn-dark{background:#2c2c2e;color:#fff}
+.section-title{display:flex;justify-content:space-between;margin-bottom:12px}
+.stock{background:#1c1c1e;border-radius:20px;padding:16px;display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;border:1px solid rgba(255,255,255,0.06)}
+.stock-left{display:flex;gap:12px;align-items:center}
+.icon{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;background:#2c2c2e}
+.stock-name{font-weight:700;font-size:15px}
+.stock-sub{color:#8e8e93;font-size:12px;margin-top:2px}
+.stock-right{text-align:right}
+.price{font-weight:700}
+.change{font-size:12px;margin-top:2px}
+.green{color:#30d158}.red{color:#ff453a}
+.buy-btn{margin-top:6px;background:#fff;color:#000;border:none;border-radius:20px;padding:4px 12px;font-size:11px;font-weight:800;cursor:pointer}
+.deposit-modal{position:fixed;inset:0;background:rgba(0,0,0,0.8);display:none;align-items:flex-end;z-index:99}
+.modal-box{background:#1c1c1e;width:100%;border-radius:32px 32px 0 0;padding:24px}
+input{width:100%;background:#2c2c2e;border:none;border-radius:14px;padding:16px;color:#fff;margin:16px 0;font-size:16px}
 </style>
 </head>
 <body>
+
 <div class="header">
-<h1>EZOL ENERGY</h1>
-<p>Real Solar Shop Uganda - Real Products, Real Warranty</p>
+  <h1>InvestPro • iOS 27</h1>
+  <div class="avatar"></div>
 </div>
 
-<div class="support-box">
-<div><b>Support:</b> 0795143386<br><small>For orders & delivery</small></div>
-<a href="https://wa.me/256795143386">WhatsApp</a>
+<div class="card">
+  <div class="label">Total Portfolio Value</div>
+  <div class="value" id="totalValue">$37,420.50</div>
+  <div class="gain">▲ +12.4% ($1,420) today</div>
+  <div class="chart-wrap"><canvas id="mainChart"></canvas></div>
 </div>
 
-<div class="tabs">
-<button class="active" onclick="showTab('home')">Home</button>
-<button onclick="showTab('product')">Product</button>
-<button onclick="showTab('share')">Share</button>
-<button onclick="showTab('wallet')">Wallet</button>
-<button onclick="showTab('my')">My</button>
+<div class="actions">
+  <button class="btn btn-white" onclick="openModal('Deposit')">💳 Deposit</button>
+  <button class="btn btn-dark" onclick="openModal('Withdraw')">💵 Withdraw</button>
 </div>
 
-<div id="home" class="content">
-<div class="wallet"><h3>☀️ Power Your Home With Real Solar</h3><p style="margin-top:6px;font-size:13px">No daily income tricks. Buy real stock, sell to real customers, keep real profit.</p></div>
-<div class="product-card"><div style="width:80px;height:80px;background:#c8e6c9;border-radius:8px;display:flex;align-items:center;justify-content:center">💡</div><div><b>Solar Bulb 5W Kit</b><br><span class="price">UGX 15,000</span><br><small>Warranty 1 Year + Cable + Panel</small><br><button class="btn" onclick="showTab('product')">View Details</button></div></div>
-<div class="product-card"><div style="width:80px;height:80px;background:#a5d6a7;border-radius:8px;display:flex;align-items:center;justify-content:center">🔋</div><div><b>Lithium Battery 10Ah</b><br><span class="price">UGX 65,000</span><br><small>For 2 bulbs whole night</small><br><button class="btn" onclick="showTab('product')">View Details</button></div></div>
+<div class="section-title">
+  <span style="font-weight:700">My Assets</span>
+  <span style="color:#8e8e93;font-size:13px" id="assetCount">5 assets</span>
 </div>
 
-<div id="product" class="content" style="display:none">
-<div id="plist"></div>
-</div>
+<div id="stockList"></div>
 
-<div id="share" class="content" style="display:none">
-<div class="wallet"><h3>Share Real Shop & Earn Real 5%</h3><p style="font-size:13px;margin-top:8px">When someone buys a real bulb from your link, you get 5% commission. Real commission that you CAN withdraw.</p><br><input id="link" value="https://easyearn869-oss.github.io/Ezo/?ref=0795143386" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px"><br><br><button class="btn" onclick="navigator.clipboard.writeText(document.getElementById('link').value);alert('Link copied')">Copy Link</button></div>
-</div>
-
-<div id="wallet" class="content" style="display:none">
-<div class="wallet"><h3>Wallet - Real Commission Only</h3><p>Balance: <b id="bal">UGX 0</b></p><small>From real product sales, not investment deposits</small><br><br><button class="btn">Withdraw Commission (Real Sales Only)</button><br><br><p style="font-size:12px;color:#666">History:<br>Order #1023 - Solar Bulb - Delivered - Commission UGX 750<br>Order #1024 - Battery - Delivered - Commission UGX 3,250</p></div>
-</div>
-
-<div id="my" class="content" style="display:none">
-<div class="wallet"><h3>My Account</h3><p>Phone: 0795143386 (Support)</p><br><button class="btn">My Orders</button> <button class="btn">Customer Support</button></div>
-</div>
-
-<div class="floating">
-<a class="float-btn" href="https://wa.me/256795143386?text=Hi%20Ezol%20Group">GROUP</a>
-<a class="float-btn" href="https://wa.me/256795143386">CS</a>
-</div>
-
-<div class="nav">
-<button class="active" onclick="showTab('home')">Home</button>
-<button onclick="showTab('product')">Product</button>
-<button onclick="showTab('share')">Share</button>
-<button onclick="showTab('wallet')">Wallet</button>
-<button onclick="showTab('my')">My</button>
+<div class="deposit-modal" id="modal" onclick="closeModal()">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <h3 id="modalTitle" style="font-weight:800;font-size:18px">Deposit</h3>
+    <input type="number" id="amountInput" placeholder="Enter amount">
+    <button class="btn btn-white" style="width:100%" onclick="confirmAction()">Confirm</button>
+  </div>
 </div>
 
 <script>
-const products=[
-["Solar Bulb 5W Kit",15000,"Warranty 1 year, with panel + 3m cable"],
-["Solar Bulb 10W Kit",20000,"Bright for sitting room"],
-["Solar Panel 20W",45000,"Charge battery fast"],
-["Solar Panel 50W",95000,"For house system"],
-["Lithium Battery 10Ah",65000,"Run 2 bulbs all night"],
-["Lithium Battery 20Ah",110000,"Run 4 bulbs"],
-["Solar Torch Rechargeable",25000,"With phone charging"],
-["Solar Radio + Torch",35000,"FM + USB"],
-["Solar Home System 100W",280000,"3 bulbs + charging"],
-["Solar Security Light 50W",85000,"Auto on at night"],
-["Solar Street Light 100W",145000,"Pole light"],
-["Solar Inverter 300W",125000,"AC power"],
-["Charge Controller 10A",35000,"Protect battery"],
-["Solar Cable 10m",15000,"Extension"],
-["Bulb Holder + Switch",5000,"Accessory"],
-["Solar Fan 12V",95000,"Low power fan"],
-["Solar TV 19 inch",450000,"DC TV"],
-["Power Bank Solar 20000mAh",55000,"Phone charge"],
-["Solar Water Pump Kit",650000,"For garden"],
-["Installation Service",50000,"Kampala install"]
+let balance = 15420.50;
+let stocks = [
+  {symbol:'AAPL', name:'Apple Inc', price:182.52, change:2.34, shares:10},
+  {symbol:'TSLA', name:'Tesla Inc', price:248.50, change:-1.2, shares:5},
+  {symbol:'BTC', name:'Bitcoin', price:43250, change:5.1, shares:0.5},
+  {symbol:'GOOGL', name:'Alphabet', price:142.30, change:0.8, shares:8},
+  {symbol:'ETH', name:'Ethereum', price:2250, change:3.2, shares:2},
 ];
-let html="";
-products.forEach((p,i)=>{
-html+=`<div class="product-card"><div style="width:80px;height:80px;background:#e8f5e9;border-radius:8px;display:flex;align-items:center;justify-content:center">☀️</div><div style="flex:1"><b>${i+1}. ${p[0]}</b><br><span class="price">UGX ${p[1].toLocaleString()}</span><br><small>${p[2]}</small><br><div style="margin-top:6px"><span style="font-size:12px;background:#e8f5e9;padding:4px 8px;border-radius:6px">Buy ${p[1]} → Sell ${Math.round(p[1]*1.33)} → Profit ${Math.round(p[1]*0.33)}</span></div><button class="btn" onclick="alert('Order: ${p[0]} - Contact 0795143386 for delivery in Kampala')">Buy For Real Delivery</button></div></div>`;
-});
-document.getElementById('plist').innerHTML=html;
 
-function showTab(t){
-document.querySelectorAll('.content').forEach(c=>c.style.display='none');
-document.getElementById(t).style.display='block';
-document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
-document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));
+let currentAction = '';
+
+function renderStocks(){
+  const list = document.getElementById('stockList');
+  list.innerHTML = '';
+  let total = balance;
+  stocks.forEach((s,i)=>{
+    total += s.price * s.shares;
+    const div = document.createElement('div');
+    div.className = 'stock';
+    div.innerHTML = `
+      <div class="stock-left">
+        <div class="icon">${s.symbol[0]}</div>
+        <div><div class="stock-name">${s.symbol} <span style="color:#8e8e93;font-weight:400;font-size:12px">${s.shares} shares</span></div><div class="stock-sub">${s.name}</div></div>
+      </div>
+      <div class="stock-right">
+        <div class="price">$${s.price.toLocaleString()}</div>
+        <div class="change ${s.change>0?'green':'red'}">${s.change>0?'+':''}${s.change}%</div>
+        <button class="buy-btn" onclick="buyStock(${i})">BUY</button>
+      </div>`;
+    list.appendChild(div);
+  });
+  document.getElementById('totalValue').innerText = '$' + total.toLocaleString(undefined,{minimumFractionDigits:2});
 }
+
+// Chart
+const ctx = document.getElementById('mainChart').getContext('2d');
+new Chart(ctx, {
+  type:'line',
+  data:{labels:['Mon','Tue','Wed','Thu','Fri','Sat','Sun'], datasets:[{data:[10000,10200,10150,10800,11200,11500,12200], borderColor:'#fff', backgroundColor:'rgba(255,255,255,0.08)', borderWidth:2.5, tension:0.4, fill:true, pointRadius:0}]},
+  options:{plugins:{legend:{display:false}}, scales:{x:{display:false}, y:{display:false}}, responsive:true, maintainAspectRatio:false}
+});
+
+function buyStock(i){
+  if(balance >= stocks[i].price){
+    balance -= stocks[i].price;
+    stocks[i].shares += 1;
+    renderStocks();
+    alert('Bought 1 ' + stocks[i].symbol);
+  } else alert('Insufficient balance');
+}
+
+function openModal(type){ currentAction=type; document.getElementById('modalTitle').innerText=type; document.getElementById('modal').style.display='flex'; }
+function closeModal(){ document.getElementById('modal').style.display='none'; }
+function confirmAction(){
+  const amt = parseFloat(document.getElementById('amountInput').value);
+  if(!amt) return;
+  if(currentAction==='Deposit') balance+=amt;
+  else balance-=amt;
+  renderStocks();
+  closeModal();
+  document.getElementById('amountInput').value='';
+}
+
+// Live price simulation
+setInterval(()=>{
+  stocks = stocks.map(s=>({...s, price: +(s.price * (1 + (Math.random()-0.5)/100)).toFixed(2), change: +(Math.random()*4-2).toFixed(2)}));
+  renderStocks();
+},3000);
+
+renderStocks();
 </script>
+
 </body>
 </html>
