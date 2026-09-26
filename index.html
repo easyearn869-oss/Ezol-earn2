@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ezol Earn v2 - Smart Energy</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ezol Earn - Smart Energy</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>body{max-width:430px;margin:0 auto;background:#f5f7fb;padding-bottom:90px;font-family:-apple-system,sans-serif}
+<style>
+body{max-width:430px;margin:0 auto;background:#f5f7fb;padding-bottom:90px;font-family:-apple-system,sans-serif}
 .proof-ticker{height:28px;overflow:hidden}.proof-track{animation:scroll 25s linear infinite}@keyframes scroll{0%{transform:translateY(0)}100%{transform:translateY(-50%)}}
 .floating{position:fixed;right:12px;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:60;box-shadow:0 8px 20px rgba(0,0,0,.3)}
 </style>
@@ -14,7 +15,6 @@
 
 <div class="bg-black text-white text-xs py-2 px-3 flex gap-2"><span class="text-green-400">● LIVE</span><div class="proof-ticker flex-1"><div class="proof-track" id="proofTrack"></div></div></div>
 
-<!-- REGISTER PAGE -->
 <div id="authPage" class="p-6 min-h-screen bg-gradient-to-b from-blue-700 to-cyan-500">
 <h1 class="text-white font-black text-2xl text-center mt-10">Ezol Earn<br><span class="text-sm font-normal">Smart Energy Investment</span></h1>
 <div class="bg-white rounded-[24px] p-6 mt-8 shadow-xl">
@@ -23,8 +23,8 @@
 <input id="regPhone" placeholder="Phone e.g 0795143386" class="w-full bg-gray-100 rounded-xl p-4 mt-3 outline-none" type="tel">
 <input id="regPass" placeholder="Password" type="password" class="w-full bg-gray-100 rounded-xl p-4 mt-3 outline-none">
 <button onclick="register()" class="w-full bg-black text-white rounded-xl py-4 mt-5 font-bold">Register & Get Bonus</button>
-<p class="text-center text-xs mt-4 text-gray-500">Already have account? <b onclick="toggleAuth()" class="text-blue-600 cursor-pointer">Login</b></p>
-<div class="bg-yellow-50 p-3 rounded-xl mt-4 text-[11px] text-yellow-800">By registering you agree to risks. Energy returns not guaranteed.</div>
+<p class="text-center text-xs mt-4">Already have account? <b onclick="toggleAuth()" class="text-blue-600 cursor-pointer">Login</b></p>
+<div class="bg-yellow-50 border border-yellow-200 p-3 rounded-xl mt-4 text-[11px]">Risk: 20% daily is HIGH RISK. Not guaranteed. Invest responsibly.</div>
 </div>
 </div>
 
@@ -34,39 +34,38 @@
 <input id="logPhone" placeholder="Phone Number" class="w-full bg-gray-100 rounded-xl p-4 mt-2 outline-none">
 <input id="logPass" placeholder="Password" type="password" class="w-full bg-gray-100 rounded-xl p-4 mt-3 outline-none">
 <button onclick="login()" class="w-full bg-black text-white rounded-xl py-4 mt-5 font-bold">Login</button>
-<p class="text-center text-xs mt-4 text-gray-500">No account? <b onclick="toggleAuth()" class="text-blue-600 cursor-pointer">Register</b></p>
+<p class="text-center text-xs mt-4">No account? <b onclick="toggleAuth()" class="text-blue-600 cursor-pointer">Register</b></p>
 </div>
 </div>
 
-<!-- MAIN APP -->
 <div id="mainApp" class="hidden">
 <div class="bg-gradient-to-r from-blue-700 to-cyan-500 text-white p-5 rounded-b-[28px]">
-<div class="flex justify-between items-center"><div><p class="text-xs opacity-80">Hello, <span id="userName">Ezra</span></p><h2 class="font-bold text-lg" id="userPhone">0795...</h2></div><div class="bg-white/20 rounded-full px-3 py-1 text-xs">UGX <span id="welcomeBonus">10,000 Bonus</span></div></div>
+<div class="flex justify-between"><div><p class="text-xs opacity-80">Hello, <span id="userName">User</span></p><h2 class="font-bold" id="userPhone">07...</h2></div><div class="bg-white/20 rounded-full px-3 py-1 text-xs">Badge: <span id="badgeLevel">Starter</span></div></div>
 <div class="grid grid-cols-2 gap-3 mt-5">
-<div class="bg-white/15 rounded-2xl p-3"><p class="text-xs opacity-80">Balance</p><p class="font-bold text-lg" id="balTop">UGX 10,000</p></div>
-<div class="bg-white/15 rounded-2xl p-3"><p class="text-xs opacity-80">Daily Profit</p><p class="font-bold text-lg" id="profitTop">UGX 0</p></div>
+<div class="bg-white/15 rounded-2xl p-3"><p class="text-xs opacity-80">Balance</p><p class="font-bold text-lg" id="balTop">UGX 0</p></div>
+<div class="bg-white/15 rounded-2xl p-3"><p class="text-xs opacity-80">Daily Income</p><p class="font-bold text-lg" id="profitTop">UGX 0</p></div>
 </div>
 <button onclick="dailyClick()" id="dailyBtn" class="w-full bg-yellow-400 text-black rounded-xl py-3 mt-4 font-bold"><i class="fa-solid fa-hand-pointer"></i> Daily Click - Claim UGX 1,000</button>
-<p class="text-[11px] opacity-70 mt-1 text-center" id="dailyStatus">Click once per day</p>
+<p class="text-[11px] opacity-70 mt-1 text-center" id="dailyStatus">Once per day</p>
 </div>
 
 <div id="page-home" class="p-4">
-<div class="bg-white rounded-2xl p-4 shadow-sm flex justify-between items-center"><div><p class="text-sm text-gray-500">Investment Badge</p><p class="font-bold" id="badgeLevel">Starter - Level 1</p><div class="w-full bg-gray-200 h-2 rounded-full mt-2"><div id="badgeBar" class="bg-blue-600 h-2 rounded-full" style="width:10%"></div></div></div><div class="text-4xl">🏅</div></div>
+<div class="bg-white rounded-2xl p-4 shadow-sm flex justify-between"><div><p class="text-sm text-gray-500">Investment Badge</p><p class="font-bold" id="badgeLevel2">Starter Level 1</p><div class="w-full bg-gray-200 h-2 rounded-full mt-2"><div id="badgeBar" class="bg-blue-600 h-2 rounded-full" style="width:10%"></div></div></div><div class="text-4xl">🏅</div></div>
 <div class="grid grid-cols-4 gap-3 mt-4 text-center">
-<div onclick="showPage('product')" class="bg-white rounded-2xl p-3 shadow-sm"><i class="fa-solid fa-bolt text-blue-600 text-xl"></i><p class="text-xs mt-1">Products</p></div>
-<div onclick="showPage('share')" class="bg-white rounded-2xl p-3 shadow-sm"><i class="fa-solid fa-share text-green-600 text-xl"></i><p class="text-xs mt-1">Invite</p></div>
-<div onclick="showPage('account')" class="bg-white rounded-2xl p-3 shadow-sm"><i class="fa-solid fa-wallet text-orange-600 text-xl"></i><p class="text-xs mt-1">Wallet</p></div>
-<div onclick="window.open('https://chat.whatsapp.com/GqjifLEgojv44HXGNmE2sH')" class="bg-white rounded-2xl p-3 shadow-sm"><i class="fa-brands fa-whatsapp text-green-500 text-xl"></i><p class="text-xs mt-1">Group</p></div>
+<div onclick="showPage('product')" class="bg-white rounded-2xl p-3 shadow-sm cursor-pointer"><i class="fa-solid fa-bolt text-blue-600 text-xl"></i><p class="text-xs mt-1">Products</p></div>
+<div onclick="showPage('share')" class="bg-white rounded-2xl p-3 shadow-sm cursor-pointer"><i class="fa-solid fa-share text-green-600 text-xl"></i><p class="text-xs mt-1">Share</p></div>
+<div onclick="showPage('account')" class="bg-white rounded-2xl p-3 shadow-sm cursor-pointer"><i class="fa-solid fa-wallet text-orange-600 text-xl"></i><p class="text-xs mt-1">Wallet</p></div>
+<div onclick="window.open('https://chat.whatsapp.com/GqjifLEgojv44HXGNmE2sH')" class="bg-white rounded-2xl p-3 shadow-sm cursor-pointer"><i class="fa-brands fa-whatsapp text-green-500 text-xl"></i><p class="text-xs mt-1">Group</p></div>
 </div>
 </div>
 
-<div id="page-product" class="p-4 hidden"><h2 class="font-bold mb-3">VIP Products - Starts UGX 150,000</h2><div id="productList" class="space-y-3"></div></div>
+<div id="page-product" class="p-4 hidden"><h2 class="font-bold mb-3">VIP Products (15k → 30M)</h2><div id="productList" class="space-y-3"></div></div>
 
 <div id="page-share" class="p-4 hidden">
 <div class="bg-white rounded-2xl p-5 shadow-sm text-center">
-<h3 class="font-bold">Invite & Earn 15% Commission</h3>
+<h3 class="font-bold">Invite & Earn 15%</h3>
 <div class="bg-gray-100 rounded-xl p-3 mt-4 font-mono text-sm break-all" id="refLink"></div>
-<div class="bg-blue-50 rounded-xl p-3 mt-3 flex justify-between text-sm"><span>Code:</span><b id="refCode">EZOL...</b></div>
+<div class="bg-blue-50 rounded-xl p-3 mt-3 flex justify-between text-sm"><span>Code:</span><b id="refCode">EZOL</b></div>
 <button onclick="copyRef()" class="w-full bg-black text-white rounded-xl py-3 mt-3 font-bold">Copy Link</button>
 <div class="grid grid-cols-4 gap-2 mt-4">
 <button onclick="shareTo('whatsapp')" class="bg-green-500 text-white rounded-xl py-3"><i class="fa-brands fa-whatsapp"></i></button>
@@ -80,14 +79,13 @@
 <div id="page-account" class="p-4 hidden">
 <div class="bg-black text-white rounded-2xl p-5"><p class="text-sm opacity-70">My Balance</p><p class="text-2xl font-bold" id="accBal">UGX 0</p>
 <div class="grid grid-cols-2 gap-3 mt-4">
-<button onclick="openRecharge()" class="bg-white text-black rounded-xl py-3 font-bold"><i class="fa-solid fa-plus"></i> Recharge</button>
+<button onclick="openRecharge()" class="bg-white text-black rounded-xl py-3 font-bold">Recharge</button>
 <button onclick="openWithdraw()" class="bg-white/20 rounded-xl py-3 font-bold">Withdraw</button>
 </div>
 </div>
 <div class="bg-white rounded-2xl mt-4 divide-y shadow-sm">
-<div class="p-4 flex justify-between"><span><i class="fa-solid fa-building mr-2"></i>Company Profile</span><i class="fa-solid fa-chevron-right text-gray-300"></i></div>
-<div class="p-4 flex justify-between"><span><i class="fa-solid fa-file mr-2"></i>Rules & Regulations</span><i class="fa-solid fa-chevron-right text-gray-300"></i></div>
-<div class="p-4 flex justify-between"><span><i class="fa-solid fa-clock mr-2"></i>Withdrawal Rules: Min UGX 20k, Fee 10%</span></div>
+<div class="p-4"><i class="fa-solid fa-building mr-2"></i>Company Profile - Ezol Earn Smart Energy Ltd, Kampala</div>
+<div class="p-4"><i class="fa-solid fa-file mr-2"></i>Rules: Min withdraw UGX 20k, Fee 10%, Daily income paid 24h</div>
 <button onclick="logout()" class="w-full text-left p-4 text-red-600 font-bold">Logout</button>
 </div>
 </div>
@@ -109,37 +107,50 @@ let balance = parseInt(localStorage.getItem('ezol_bal')||'0');
 let lastDaily = localStorage.getItem('ezol_daily')||'';
 let invested = JSON.parse(localStorage.getItem('ezol_invested')||'[]');
 
-const products = Array.from({length:20},(_,i)=>{
-  const invest = 150000 + i*50000;
-  const daily = 3000 + i*600;
-  return {id:i+1, name:`VIP ${i+1} - Solar ${['Mini','Lite','Pro','Max','Ultra','Power','Mega'][i%7]}`, invest, daily, days:30+i*3};
-});
+const products = [
+  {id:1, name:"VIP 1 - Solar Mini", invest:15000, daily:3000, days:20},
+  {id:2, name:"VIP 2 - Solar Lite", invest:30000, daily:5500, days:25},
+  {id:3, name:"VIP 3 - Solar Basic", invest:50000, daily:9000, days:30},
+  {id:4, name:"VIP 4 - Solar Pro", invest:80000, daily:13000, days:30},
+  {id:5, name:"VIP 5 - Solar Max", invest:120000, daily:18000, days:35},
+  {id:6, name:"VIP 6 - Solar Power", invest:180000, daily:25000, days:35},
+  {id:7, name:"VIP 7 - Solar Ultra", invest:250000, daily:32000, days:40},
+  {id:8, name:"VIP 8 - Solar Mega", invest:350000, daily:42000, days:40},
+  {id:9, name:"VIP 9 - Solar Grid 1", invest:500000, daily:58000, days:45},
+  {id:10, name:"VIP 10 - Solar Grid 2", invest:700000, daily:78000, days:45},
+  {id:11, name:"VIP 11 - Solar Farm 1", invest:1000000, daily:105000, days:50},
+  {id:12, name:"VIP 12 - Solar Farm 2", invest:1500000, daily:150000, days:50},
+  {id:13, name:"VIP 13 - Solar Plant 1", invest:2000000, daily:190000, days:60},
+  {id:14, name:"VIP 14 - Solar Plant 2", invest:3000000, daily:270000, days:60},
+  {id:15, name:"VIP 15 - Solar Industrial", invest:5000000, daily:420000, days:60},
+  {id:16, name:"VIP 16 - Solar City", invest:7000000, daily:560000, days:60},
+  {id:17, name:"VIP 17 - Solar National 1", invest:10000000, daily:750000, days:60},
+  {id:18, name:"VIP 18 - Solar National 2", invest:15000000, daily:1050000, days:60},
+  {id:19, name:"VIP 19 - Solar Country", invest:20000000, daily:1300000, days:60},
+  {id:20, name:"VIP 20 - Solar Unlimited", invest:30000000, daily:1800000, days:60},
+];
 
-function toggleAuth(){ document.getElementById('authPage').classList.toggle('hidden'); document.getElementById('loginPage').classList.toggle('hidden'); }
-
+function toggleAuth(){document.getElementById('authPage').classList.toggle('hidden');document.getElementById('loginPage').classList.toggle('hidden');}
 function register(){
-  const name = document.getElementById('regName').value.trim();
-  const phone = document.getElementById('regPhone').value.trim();
-  const pass = document.getElementById('regPass').value.trim();
-  if(!name||!phone||!pass) return alert('Fill all fields');
-  user = {name, phone, pass, code:'EZOL_'+phone.slice(-4)+Math.floor(Math.random()*9000)};
-  balance = 10000; // Welcome bonus
-  localStorage.setItem('ezol_user', JSON.stringify(user));
-  localStorage.setItem('ezol_bal', balance);
-  alert('Welcome '+name+'! UGX 10,000 bonus added!');
+  const name=document.getElementById('regName').value.trim();
+  const phone=document.getElementById('regPhone').value.trim();
+  const pass=document.getElementById('regPass').value.trim();
+  if(!name||!phone||!pass) return alert('Fill all');
+  user={name,phone,pass,code:'EZOL_'+phone.slice(-4)+Math.floor(Math.random()*9000)};
+  balance=10000;
+  localStorage.setItem('ezol_user',JSON.stringify(user));
+  localStorage.setItem('ezol_bal',balance);
+  alert('Welcome '+name+'! UGX 10,000 bonus added');
   initApp();
 }
-
 function login(){
-  const phone = document.getElementById('logPhone').value.trim();
-  const pass = document.getElementById('logPass').value.trim();
-  const saved = JSON.parse(localStorage.getItem('ezol_user')||'null');
-  if(saved && saved.phone===phone && saved.pass===pass){ user=saved; balance=parseInt(localStorage.getItem('ezol_bal')||'10000'); initApp(); }
-  else alert('Wrong phone or password. Please register first.');
+  const phone=document.getElementById('logPhone').value.trim();
+  const pass=document.getElementById('logPass').value.trim();
+  const saved=JSON.parse(localStorage.getItem('ezol_user')||'null');
+  if(saved&&saved.phone===phone&&saved.pass===pass){user=saved;balance=parseInt(localStorage.getItem('ezol_bal')||'10000');initApp();}
+  else alert('Wrong credentials');
 }
-
 function initApp(){
-  if(!user) return;
   document.getElementById('authPage').classList.add('hidden');
   document.getElementById('loginPage').classList.add('hidden');
   document.getElementById('mainApp').classList.remove('hidden');
@@ -149,80 +160,65 @@ function initApp(){
   document.getElementById('userPhone').innerText=user.phone;
   document.getElementById('refCode').innerText=user.code;
   document.getElementById('refLink').innerText='https://easyearn869-oss.github.io/Ezo?ref='+user.code;
-  updateBal();
-  renderProducts();
-  renderProofs();
-  checkDaily();
+  updateBal(); renderProducts(); renderProofs(); checkDaily();
 }
-
 function updateBal(){
-  const totalDaily = invested.reduce((a,c)=>a+c.daily,0);
+  const totalDaily=invested.reduce((a,c)=>a+c.daily,0);
   document.getElementById('balTop').innerText='UGX '+balance.toLocaleString();
   document.getElementById('accBal').innerText='UGX '+balance.toLocaleString();
   document.getElementById('profitTop').innerText='UGX '+totalDaily.toLocaleString();
-  localStorage.setItem('ezol_bal', balance);
+  document.getElementById('badgeLevel').innerText= invested.length>0? 'Gold Level '+(invested.length) : 'Starter';
+  document.getElementById('badgeLevel2').innerText= invested.length>0? 'Gold Level '+(invested.length) : 'Starter Level 1';
+  document.getElementById('badgeBar').style.width = Math.min(100, invested.length*10+10)+'%';
+  localStorage.setItem('ezol_bal',balance);
 }
-
 function renderProducts(){
   document.getElementById('productList').innerHTML = products.map(p=>`
     <div class="bg-gradient-to-r from-blue-800 to-cyan-600 text-white rounded-2xl p-4 flex justify-between">
-      <div><p class="font-bold">${p.name}</p><p class="text-xs mt-1 opacity-90">Invest: UGX ${p.invest.toLocaleString()} | Daily UGX ${p.daily.toLocaleString()}</p><p class="text-[10px] opacity-70">${p.days} days | Total ~UGX ${(p.daily*p.days).toLocaleString()}</p></div>
+      <div><p class="font-bold">${p.name}</p><p class="text-xs mt-1">Invest UGX ${p.invest.toLocaleString()} | Daily UGX ${p.daily.toLocaleString()}</p><p class="text-[10px] opacity-70">${p.days} days • Total UGX ${(p.daily*p.days).toLocaleString()}</p></div>
       <button onclick="buyP(${p.id})" class="bg-white text-blue-700 rounded-xl px-4 h-10 font-bold text-sm self-center">Buy</button>
     </div>`).join('');
 }
-
 function buyP(id){
-  const p = products.find(x=>x.id===id);
-  if(balance>=p.invest){ balance-=p.invest; invested.push(p); localStorage.setItem('ezol_invested', JSON.stringify(invested)); updateBal(); alert('Bought '+p.name+'! Daily UGX '+p.daily+' will be added.'); }
-  else { if(confirm('Insufficient! Recharge via MTN?')) openRecharge(); }
+  const p=products.find(x=>x.id===id);
+  if(balance>=p.invest){balance-=p.invest;invested.push(p);localStorage.setItem('ezol_invested',JSON.stringify(invested));updateBal();alert('Bought '+p.name);}
+  else{ if(confirm('Low balance! Recharge via *165*1*1#?')) openRecharge(); }
 }
-
 function dailyClick(){
-  const today = new Date().toDateString();
-  if(lastDaily===today) return alert('Already claimed today! Come tomorrow.');
-  balance+=1000; lastDaily=today; localStorage.setItem('ezol_daily', today); updateBal(); checkDaily();
-  alert('UGX 1,000 daily bonus claimed!');
+  const today=new Date().toDateString();
+  if(lastDaily===today) return alert('Already claimed');
+  balance+=1000;lastDaily=today;localStorage.setItem('ezol_daily',today);updateBal();checkDaily();alert('UGX 1,000 claimed!');
 }
-
 function checkDaily(){
-  const today = new Date().toDateString();
-  const btn = document.getElementById('dailyBtn');
-  if(lastDaily===today){ btn.disabled=true; btn.innerText='✓ Claimed Today'; btn.classList.add('opacity-50'); document.getElementById('dailyStatus').innerText='Come back tomorrow'; }
+  const today=new Date().toDateString();
+  const btn=document.getElementById('dailyBtn');
+  if(lastDaily===today){btn.disabled=true;btn.innerText='✓ Claimed Today';btn.classList.add('opacity-50');document.getElementById('dailyStatus').innerText='Come tomorrow';}
 }
-
 function openRecharge(){
-  const amt = prompt('Enter amount to recharge (UGX): e.g 150000');
+  const amt=prompt('Enter recharge amount UGX (e.g 15000):');
   if(!amt) return;
-  const amount = parseInt(amt);
-  // Automatic MTN USSD - format *165*1*1*...# - we use generic recharge
-  // For real automation you need MTN MoMo API, but this opens dialer
-  if(confirm(`Recharge UGX ${amount.toLocaleString()}?\n\nClick OK to open MTN dialer:\n*165*1*1# (Deposit)\n\nAfter payment, your balance will be updated manually by admin or via API.`)){
-    window.location.href = 'tel:*165*1*1%23'; // Encoded #
-    // Simulate adding after 5 sec for demo - REMOVE in production, use real API verification
-    setTimeout(()=>{ balance+=amount; updateBal(); alert('Recharge of UGX '+amount.toLocaleString()+' received! (Demo - connect MoMo API for real)'); }, 5000);
+  const amount=parseInt(amt);
+  if(confirm(`Recharge UGX ${amount.toLocaleString()}?\nThis will open MTN dialer *165*1*1#\nAfter paying, balance adds (demo)`)){
+    window.location.href='tel:*165*1*1%23';
+    setTimeout(()=>{balance+=amount;updateBal();alert('Recharge UGX '+amount.toLocaleString()+' added (demo - connect real MoMo API for production)');},3000);
   }
 }
-
 function openWithdraw(){
-  const amt = prompt('Withdraw amount (Min UGX 20,000, 10% fee):');
+  const amt=prompt('Withdraw amount Min UGX 20k, Fee 10%:');
   if(!amt) return;
   const n=parseInt(amt);
-  if(n<20000) return alert('Min is UGX 20,000');
-  if(n>balance) return alert('Insufficient balance');
-  const fee = n*0.1; const receive = n-fee;
-  if(confirm(`Withdraw UGX ${n.toLocaleString()}?\nFee 10%: UGX ${fee.toLocaleString()}\nYou receive: UGX ${receive.toLocaleString()}\nTo MoMo: ${user.phone}`)){
-    balance-=n; updateBal(); alert('Withdrawal request sent! You will receive UGX '+receive.toLocaleString()+' in 10 mins.');
+  if(n<20000) return alert('Min 20k');
+  if(n>balance) return alert('Insufficient');
+  const fee=n*0.1; const rec=n-fee;
+  if(confirm(`Withdraw UGX ${n.toLocaleString()}?\nFee: ${fee.toLocaleString()}\nReceive: ${rec.toLocaleString()} to ${user.phone}`)){
+    balance-=n;updateBal();alert('Withdraw request sent! Receive UGX '+rec.toLocaleString());
   }
 }
-
-function showPage(n){ ['home','product','share','account'].forEach(p=>{document.getElementById('page-'+p).classList.toggle('hidden', p!==n); document.getElementById('nav-'+p).classList.toggle('text-blue-600', p===n); document.getElementById('nav-'+p).classList.toggle('text-gray-400', p!==n);}); }
-function copyRef(){ navigator.clipboard.writeText(document.getElementById('refLink').innerText); alert('Copied!'); }
-function shareTo(p){ const url=encodeURIComponent(document.getElementById('refLink').innerText); const text=encodeURIComponent('Join Ezol Earn! Code: '+user.code); const m={whatsapp:`https://wa.me/?text=${text}%20${url}`,facebook:`https://www.facebook.com/sharer/sharer.php?u=${url}`,twitter:`https://twitter.com/intent/tweet?text=${text}&url=${url}`,instagram:`https://www.instagram.com/`}; window.open(m[p],'_blank'); }
-function logout(){ if(confirm('Logout?')){ localStorage.clear(); location.reload(); } }
-
-function renderProofs(){ const proofs=['James K. withdrew UGX 250,000','Aisha M. invested VIP 5 UGX 350k','Okello withdrew UGX 1.2M','Sarah joined VIP 10','Musa withdrew UGX 80k','Brian invested VIP 3']; const track=document.getElementById('proofTrack'); track.innerHTML=[...proofs,...proofs].map(t=>`<div class="py-1">✓ ${t} • now</div>`).join(''); }
-
-// Auto login if saved
+function showPage(n){['home','product','share','account'].forEach(p=>{document.getElementById('page-'+p).classList.toggle('hidden',p!==n);document.getElementById('nav-'+p).classList.toggle('text-blue-600',p===n);document.getElementById('nav-'+p).classList.toggle('text-gray-400',p!==n);});}
+function copyRef(){navigator.clipboard.writeText(document.getElementById('refLink').innerText);alert('Copied');}
+function shareTo(p){const url=encodeURIComponent(document.getElementById('refLink').innerText);const text=encodeURIComponent('Join Ezol Earn! Code: '+user.code);const m={whatsapp:`https://wa.me/?text=${text}%20${url}`,facebook:`https://www.facebook.com/sharer/sharer.php?u=${url}`,twitter:`https://twitter.com/intent/tweet?text=${text}&url=${url}`,instagram:`https://www.instagram.com/`};window.open(m[p],'_blank');}
+function logout(){if(confirm('Logout?')){localStorage.clear();location.reload();}}
+function renderProofs(){const proofs=['James withdrew UGX 250k','Aisha invested VIP 1 UGX 15k','Okello withdrew UGX 1.2M','Sarah joined VIP 3','Musa withdrew UGX 80k','Brian invested VIP 2'];document.getElementById('proofTrack').innerHTML=[...proofs,...proofs].map(t=>`<div class="py-1">✓ ${t} • now</div>`).join('');}
 if(user) initApp();
 </script>
 </body>
