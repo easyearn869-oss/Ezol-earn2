@@ -11,29 +11,31 @@ body{max-width:430px;margin:0 auto;background:#fff;padding-bottom:85px;font-fami
 .btn-green{background:#2e7d32;color:#fff;border-radius:30px}.btn-orange{background:#ef6c00;color:#fff;border-radius:30px}
 .stat-card{background:#e8f5e9;border-radius:16px}
 .floating{position:fixed;right:12px;width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:60;box-shadow:0 8px 20px rgba(0,0,0,.3)}
-.proof-box{height:120px;overflow:hidden;position:relative;background:#111;border-radius:16px}
+.proof-box{height:120px;overflow:hidden;background:#111;border-radius:16px}
 .proof-track{animation:scrollUp 20s linear infinite}@keyframes scrollUp{0%{transform:translateY(0)}100%{transform:translateY(-50%)}}
-.badge-animate{animation:pulse 2s infinite}@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,0.7);display:none;z-index:100;overflow-y:auto}
+.modal-box{background:#fff;max-width:430px;margin:20px auto;border-radius:24px;min-height:80vh}
+.step-img{width:100%;height:160px;background:linear-gradient(135deg,#e8f5e9,#c8e6c9);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:50px}
 </style>
 </head>
 <body>
 
-<!-- AUTH -->
 <div id="authPage" class="p-6 min-h-screen bg-gradient-to-b from-green-700 to-green-400">
-<h1 class="text-white font-black text-2xl text-center mt-10">Ezol Earn<br><span class="text-sm font-normal">Smart Energy</span></h1>
-<div class="bg-white rounded-[24px] p-6 mt-8 shadow-xl">
-<h3 class="font-bold">Create Account</h3><p class="text-xs text-gray-500">Get UGX 10,000 welcome bonus</p>
+<h1 class="text-white font-black text-2xl text-center mt-8">Ezol Earn<br><span class="text-sm font-normal">Smart Energy</span></h1>
+<div class="flex justify-center mt-6"><div class="w-20 h-20 bg-white rounded-full flex items-center justify-center text-3xl">☀️⚡</div></div>
+<div class="bg-white rounded-[24px] p-6 mt-6 shadow-xl">
+<h3 class="font-bold">Create Account</h3><p class="text-xs text-gray-500">Get UGX 10,000 bonus</p>
 <input id="regName" placeholder="Full Names" class="w-full bg-gray-100 rounded-xl p-4 mt-4 outline-none">
 <input id="regPhone" placeholder="Phone 0795143386" class="w-full bg-gray-100 rounded-xl p-4 mt-3 outline-none" type="tel">
 <input id="regPass" placeholder="Password" type="password" class="w-full bg-gray-100 rounded-xl p-4 mt-3 outline-none">
 <button onclick="register()" class="w-full bg-green-700 text-white rounded-full py-4 mt-5 font-bold">Register</button>
-<p class="text-center text-xs mt-4">Have account? <b onclick="toggleAuth()" class="text-green-700 cursor-pointer">Login</b></p>
+<p class="text-center text-xs mt-4">Have account? <b onclick="toggleAuth()" class="text-green-700">Login</b></p>
 </div>
 </div>
 
 <div id="loginPage" class="p-6 min-h-screen bg-gradient-to-b from-green-700 to-green-400 hidden">
-<h1 class="text-white font-black text-2xl text-center mt-10">Welcome Back</h1>
-<div class="bg-white rounded-[24px] p-6 mt-8 shadow-xl">
+<h1 class="text-white font-black text-2xl text-center mt-8">Welcome Back</h1>
+<div class="bg-white rounded-[24px] p-6 mt-6 shadow-xl">
 <input id="logPhone" placeholder="Phone" class="w-full bg-gray-100 rounded-xl p-4 outline-none">
 <input id="logPass" placeholder="Password" type="password" class="w-full bg-gray-100 rounded-xl p-4 mt-3 outline-none">
 <button onclick="login()" class="w-full bg-green-700 text-white rounded-full py-4 mt-5 font-bold">Login</button>
@@ -43,47 +45,39 @@ body{max-width:430px;margin:0 auto;background:#fff;padding-bottom:85px;font-fami
 
 <div id="mainApp" class="hidden">
 
-<!-- HOME - NOW WITH BADGE + LIVE PROOFS UPWARD + CS + GROUP + DAILY CLICK -->
 <div id="page-home" class="p-4">
-<!-- Badge Card -->
-<div class="bg-gradient-to-r from-green-700 to-green-500 text-white rounded-[22px] p-5 flex justify-between items-center badge-animate">
-<div><p class="text-xs opacity-80">My Investment Badge</p><p class="font-bold text-lg mt-1" id="badgeLevel">Starter Level 1</p><div class="w-32 bg-white/30 h-2 rounded-full mt-2"><div id="badgeBar" class="bg-yellow-400 h-2 rounded-full" style="width:10%"></div></div><p class="text-[10px] opacity-80 mt-1">Invest to level up</p></div>
-<div class="text-4xl bg-white/20 w-14 h-14 rounded-full flex items-center justify-center">🏅</div>
+<div class="bg-gradient-to-r from-green-700 to-green-500 text-white rounded-[22px] p-5 flex justify-between items-center">
+<div><p class="text-xs opacity-80">My Investment Badge</p><p class="font-bold text-lg mt-1" id="badgeLevel">Starter Level 1</p><div class="w-32 bg-white/30 h-2 rounded-full mt-2"><div id="badgeBar" class="bg-yellow-400 h-2 rounded-full" style="width:10%"></div></div></div>
+<div class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center text-2xl">🏅</div>
 </div>
 
-<!-- Live Proofs Moving Upward -->
 <div class="mt-4">
-<p class="font-bold text-sm mb-2 flex items-center gap-2"><span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>Live Proofs - Withdrawals & Investments</p>
+<p class="font-bold text-sm mb-2"><span class="w-2 h-2 bg-green-500 rounded-full inline-block animate-pulse"></span> Live Proofs</p>
 <div class="proof-box p-3"><div class="proof-track" id="proofTrack"></div></div>
 </div>
 
-<!-- Daily Click -->
 <div class="light-green rounded-[22px] p-4 mt-4 text-center">
-<p class="font-bold text-sm">Daily Reward</p><p class="text-xs text-gray-600 mt-1">Click once per day to earn</p>
-<button onclick="dailyClick()" id="dailyBtn" class="w-full bg-yellow-400 text-black rounded-full py-3 mt-3 font-bold text-sm"><i class="fa-solid fa-hand-pointer"></i> Claim UGX 1,000 Daily Click</button>
-<p class="text-[10px] mt-2 text-gray-500" id="dailyStatus">Available now - click once per 24h</p>
+<p class="font-bold text-sm">Daily Reward</p>
+<button onclick="dailyClick()" id="dailyBtn" class="w-full bg-yellow-400 text-black rounded-full py-3 mt-3 font-bold text-sm">Claim UGX 1,000 Daily Click</button>
+<p class="text-[10px] mt-2 text-gray-500" id="dailyStatus">Once per day</p>
 </div>
 
-<!-- CS + Group Buttons Row -->
 <div class="grid grid-cols-2 gap-3 mt-4">
 <a href="https://wa.me/256795143386" class="bg-green-600 text-white rounded-2xl p-4 text-center font-bold text-sm"><i class="fa-solid fa-headset text-xl block mb-1"></i>Customer Service<br><span class="text-[11px] font-normal">0795143386</span></a>
-<a href="https://chat.whatsapp.com/GqjifLEgojv44HXGNmE2sH" class="bg-blue-600 text-white rounded-2xl p-4 text-center font-bold text-sm"><i class="fa-solid fa-users text-xl block mb-1"></i>Join Group<br><span class="text-[11px] font-normal">WhatsApp Group</span></a>
+<a href="https://chat.whatsapp.com/GqjifLEgojv44HXGNmE2sH" class="bg-blue-600 text-white rounded-2xl p-4 text-center font-bold text-sm"><i class="fa-solid fa-users text-xl block mb-1"></i>Join Group<br><span class="text-[11px] font-normal">WhatsApp</span></a>
 </div>
 
-<!-- Quick Stats -->
 <div class="grid grid-cols-2 gap-3 mt-4">
 <div class="stat-card p-3"><p class="text-[11px] font-bold">BALANCE</p><p class="font-bold mt-1" id="homeBalance">UGX 0</p></div>
 <div class="stat-card p-3"><p class="text-[11px] font-bold">TODAY INCOME</p><p class="font-bold mt-1" id="homeToday">UGX 0</p></div>
 </div>
 </div>
 
-<!-- PRODUCT -->
 <div id="page-product" class="p-4 hidden">
-<h3 class="font-bold text-lg">VIP Products - From 15k</h3><p class="text-xs text-gray-500">Invest 15k = Earn 3k daily</p>
+<h3 class="font-bold text-lg">VIP Products From 15k</h3><p class="text-xs text-gray-500">Invest 15k = Earn 3k daily</p>
 <div id="productList" class="space-y-3 mt-4"></div>
 </div>
 
-<!-- SHARE -->
 <div id="page-share" class="p-4 hidden">
 <div class="bg-white border rounded-[24px] p-5 text-center">
 <h3 class="font-bold text-lg">Invite & Earn 15%</h3>
@@ -99,7 +93,6 @@ body{max-width:430px;margin:0 auto;background:#fff;padding-bottom:85px;font-fami
 </div>
 </div>
 
-<!-- WALLET - SCREENSHOT DESIGN -->
 <div id="page-wallet" class="p-4 hidden">
 <div class="light-green rounded-[24px] p-6 text-center">
 <p class="text-4xl font-bold"><span id="walBalance">5,000</span> <span class="text-lg">UGX</span></p>
@@ -123,12 +116,103 @@ body{max-width:430px;margin:0 auto;background:#fff;padding-bottom:85px;font-fami
 </div>
 </div>
 
+<!-- MY PAGE WITH NEW BUTTONS -->
 <div id="page-my" class="p-4 hidden">
-<div class="light-green rounded-[24px] p-5"><p class="text-sm">My Account</p><p class="font-bold text-lg" id="myName">User</p><p class="text-sm" id="myPhone">07...</p><p class="text-xs mt-2">Balance: <b id="myBalance">UGX 0</b></p></div>
+<div class="light-green rounded-[24px] p-5 flex gap-4 items-center">
+<img src="logo.png" onerror="this.style.display='none'" class="w-16 h-16 rounded-full bg-white p-1">
+<div><p class="text-sm text-gray-600">My Account</p><p class="font-bold text-lg" id="myName">User</p><p class="text-sm" id="myPhone">07...</p><p class="text-xs mt-1">Balance: <b id="myBalance">UGX 0</b></p></div>
+</div>
+
 <div class="mt-4 space-y-3">
-<div class="card-light p-4"><i class="fa-solid fa-building mr-2"></i>Company Profile - Ezol Earn Ltd</div>
-<div class="card-light p-4"><i class="fa-solid fa-file mr-2"></i>Rules & Regulations</div>
-<button onclick="logout()" class="w-full card-light p-4 text-left text-red-600 font-bold">Logout</button>
+<button onclick="openModal('companyModal')" class="w-full card-light p-4 flex justify-between items-center text-left"><span><i class="fa-solid fa-building text-green-700 mr-2"></i>Company Profile</span><i class="fa-solid fa-chevron-right text-xs text-gray-400"></i></button>
+<button onclick="openModal('rulesModal')" class="w-full card-light p-4 flex justify-between items-center text-left"><span><i class="fa-solid fa-file-shield text-blue-600 mr-2"></i>Rules & Regulations</span><i class="fa-solid fa-chevron-right text-xs text-gray-400"></i></button>
+<button onclick="openModal('howtoModal')" class="w-full card-light p-4 flex justify-between items-center text-left"><span><i class="fa-solid fa-circle-question text-orange-500 mr-2"></i>How To Use The App</span><i class="fa-solid fa-chevron-right text-xs text-gray-400"></i></button>
+<button onclick="window.open('https://chat.whatsapp.com/GqjifLEgojv44HXGNmE2sH')" class="w-full card-light p-4 flex justify-between items-center text-left"><span><i class="fa-brands fa-whatsapp text-green-600 mr-2"></i>WhatsApp Group</span><i class="fa-solid fa-chevron-right text-xs text-gray-400"></i></button>
+<button onclick="logout()" class="w-full card-light p-4 text-left text-red-600 font-bold"><i class="fa-solid fa-right-from-bracket mr-2"></i>Logout</button>
+</div>
+</div>
+</div>
+
+<!-- MODALS -->
+<div id="companyModal" class="modal" onclick="closeModal('companyModal')">
+<div class="modal-box p-6" onclick="event.stopPropagation()">
+<div class="flex justify-between items-center"><h2 class="font-bold text-xl">Company Profile</h2><button onclick="closeModal('companyModal')" class="w-8 h-8 bg-gray-100 rounded-full">✕</button></div>
+<div class="text-center mt-6">
+<div class="w-24 h-24 bg-green-100 rounded-full mx-auto flex items-center justify-center text-4xl">☀️⚡</div>
+<h3 class="font-black text-2xl mt-4">Ezol Earn</h3><p class="text-sm text-green-700 font-bold">Smart Energy Investment</p>
+<p class="text-xs text-gray-500 mt-1">Kampala, Uganda • Since 2023</p>
+</div>
+<div class="mt-6 space-y-4 text-sm leading-relaxed">
+<p><b>Who We Are:</b> Ezol Earn Smart Energy Ltd is a Ugandan renewable energy investment platform. We build solar mini-grids in rural Uganda and share profits with investors.</p>
+<p><b>Our Mission:</b> Light up Uganda with affordable solar while creating income for every Ugandan household.</p>
+<p><b>Location:</b> Plot 14, Nakawa Industrial Area, Kampala<br>Phone: 0795143386<br>Email: support@ezolearn.ug</p>
+<p><b>License:</b> URSB Reg No. 80034567 • MEMD Approved Solar Operator</p>
+<div class="bg-green-50 rounded-xl p-4 text-xs"><i class="fa-solid fa-shield-halved text-green-700"></i> Your funds are used for real solar panel installations. Returns come from electricity sales to homes and businesses.</div>
+</div>
+</div>
+</div>
+
+<div id="rulesModal" class="modal" onclick="closeModal('rulesModal')">
+<div class="modal-box p-6" onclick="event.stopPropagation()">
+<div class="flex justify-between items-center"><h2 class="font-bold text-xl">Rules & Regulations</h2><button onclick="closeModal('rulesModal')" class="w-8 h-8 bg-gray-100 rounded-full">✕</button></div>
+<div class="mt-6 space-y-4 text-sm">
+<div class="bg-yellow-50 border border-yellow-200 rounded-xl p-3 text-xs"><b>⚠️ Risk Warning:</b> 20% daily returns are HIGH RISK. Not guaranteed. Invest only what you can afford to lose.</div>
+<p><b>1. Deposit Rules:</b><br>• Minimum recharge UGX 15,000<br>• Use MTN *165*1*1# or Airtel<br>• Recharge processed in 5-10 mins<br>• No fee on recharge</p>
+<p><b>2. Withdrawal Rules:</b><br>• Minimum withdrawal UGX 20,000<br>• Fee 10% on all withdrawals<br>• Processed Mon-Sat 8am-8pm<br>• To same MoMo number registered<br>• Max 3 withdrawals per day</p>
+<p><b>3. Investment Rules:</b><br>• VIP 1: UGX 15k = UGX 3k daily for 20 days<br>• Income paid daily at midnight<br>• Products can be bought multiple times<br>• No refund after buying product</p>
+<p><b>4. Referral Rules:</b><br>• Level 1: 15% commission<br>• Level 2: 3% commission<br>• Level 3: 1% commission<br>• Commission paid instantly</p>
+<p><b>5. Prohibited:</b><br>• Multiple accounts • Fake proofs • Chargeback fraud • Abusing bonus</p>
+<p><b>6. Legal:</b> Users must be 18+. Comply with Uganda Capital Markets Authority & UCC guidelines.</p>
+</div>
+</div>
+</div>
+
+<div id="howtoModal" class="modal" onclick="closeModal('howtoModal')">
+<div class="modal-box p-6" onclick="event.stopPropagation()">
+<div class="flex justify-between items-center"><h2 class="font-bold text-xl">How To Use App</h2><button onclick="closeModal('howtoModal')" class="w-8 h-8 bg-gray-100 rounded-full">✕</button></div>
+
+<div class="mt-6 space-y-6">
+<div>
+<p class="font-bold text-sm"><span class="bg-green-700 text-white w-6 h-6 rounded-full inline-flex items-center justify-center text-xs mr-2">1</span>Register Account</p>
+<div class="step-img mt-2">📝<span class="text-sm ml-2">Enter Name, Phone, Password</span></div>
+<p class="text-xs text-gray-500 mt-2">Click Register button on home. You get UGX 10,000 welcome bonus instantly.</p>
+</div>
+
+<div>
+<p class="font-bold text-sm"><span class="bg-green-700 text-white w-6 h-6 rounded-full inline-flex items-center justify-center text-xs mr-2">2</span>Recharge Wallet</p>
+<div class="step-img mt-2">💳 ➡️ 📱</div>
+<p class="text-xs text-gray-500 mt-2">Go to Wallet → Click Recharge → Enter amount → Dial *165*1*1# → Confirm payment. Balance updates in 2 mins.</p>
+</div>
+
+<div>
+<p class="font-bold text-sm"><span class="bg-green-700 text-white w-6 h-6 rounded-full inline-flex items-center justify-center text-xs mr-2">3</span>Buy VIP Product</p>
+<div class="step-img mt-2">☀️ → 💰</div>
+<p class="text-xs text-gray-500 mt-2">Go to Product → Choose VIP 1 (UGX 15k) → Click Buy → Confirm. Daily income starts next day.</p>
+</div>
+
+<div>
+<p class="font-bold text-sm"><span class="bg-green-700 text-white w-6 h-6 rounded-full inline-flex items-center justify-center text-xs mr-2">4</span>Daily Click Bonus</p>
+<div class="step-img mt-2">👆 = 1000 UGX</div>
+<p class="text-xs text-gray-500 mt-2">Every day go to Home → Click "Claim UGX 1,000" button. Only once per 24 hours.</p>
+</div>
+
+<div>
+<p class="font-bold text-sm"><span class="bg-green-700 text-white w-6 h-6 rounded-full inline-flex items-center justify-center text-xs mr-2">5</span>Invite Friends</p>
+<div class="step-img mt-2">🔗 → 👥 → 💵</div>
+<p class="text-xs text-gray-500 mt-2">Go to Share → Copy your referral link → Share to WhatsApp, Facebook, Twitter. Earn 15% when friends invest.</p>
+</div>
+
+<div>
+<p class="font-bold text-sm"><span class="bg-green-700 text-white w-6 h-6 rounded-full inline-flex items-center justify-center text-xs mr-2">6</span>Withdraw Profit</p>
+<div class="step-img mt-2">💵 → 📲</div>
+<p class="text-xs text-gray-500 mt-2">Go to Wallet → Click Withdraw → Enter amount (Min 20k) → Confirm. Money sent to your MoMo number. 10% fee.</p>
+</div>
+
+<div class="bg-blue-50 rounded-xl p-4 text-xs">
+<b>Need Help?</b><br>
+Customer Service: <a href="https://wa.me/256795143386" class="text-green-700 font-bold">0795143386 (WhatsApp)</a><br>
+Group: <a href="https://chat.whatsapp.com/GqjifLEgojv44HXGNmE2sH" class="text-blue-600 font-bold">Join WhatsApp Group</a>
+</div>
 </div>
 </div>
 </div>
@@ -141,9 +225,8 @@ body{max-width:430px;margin:0 auto;background:#fff;padding-bottom:85px;font-fami
 <button onclick="showPage('my')" id="nav-my" class="flex flex-col items-center text-gray-400"><i class="fa-solid fa-user"></i><span class="text-[11px] mt-1">My</span></button>
 </div>
 
-<!-- Floating CS + Group -->
-<a href="https://wa.me/256795143386" class="floating bg-green-600 text-white bottom-[90px]" title="Customer Service"><i class="fa-solid fa-headset text-xl"></i></a>
-<a href="https://chat.whatsapp.com/GqjifLEgojv44HXGNmE2sH" class="floating bg-blue-600 text-white bottom-[150px]" title="Group"><i class="fa-solid fa-users"></i></a>
+<a href="https://wa.me/256795143386" class="floating bg-green-600 text-white bottom-[90px]"><i class="fa-solid fa-headset text-xl"></i></a>
+<a href="https://chat.whatsapp.com/GqjifLEgojv44HXGNmE2sH" class="floating bg-blue-600 text-white bottom-[150px]"><i class="fa-solid fa-users"></i></a>
 
 <script>
 let user = JSON.parse(localStorage.getItem('ezol_user')||'null');
@@ -229,13 +312,13 @@ function buyP(id){
 function dailyClick(){
   const today=new Date().toDateString();
   if(lastDaily===today) return alert('Already claimed');
-  balance+=1000;totalIncome+=1000;lastDaily=today;localStorage.setItem('ezol_daily',today);updateWallet();checkDaily();alert('UGX 1,000 daily click claimed!');
+  balance+=1000;totalIncome+=1000;lastDaily=today;localStorage.setItem('ezol_daily',today);updateWallet();checkDaily();alert('UGX 1,000 claimed!');
 }
 function checkDaily(){
   const today=new Date().toDateString();
   const btn=document.getElementById('dailyBtn');
   if(!btn) return;
-  if(lastDaily===today){btn.disabled=true;btn.innerText='✓ Claimed Today';btn.classList.add('opacity-50');document.getElementById('dailyStatus').innerText='Come back tomorrow';}
+  if(lastDaily===today){btn.disabled=true;btn.innerText='✓ Claimed Today';btn.classList.add('opacity-50');document.getElementById('dailyStatus').innerText='Come tomorrow';}
 }
 function openRecharge(){
   const amt=prompt('Enter recharge UGX e.g 15000:');
@@ -276,12 +359,12 @@ function renderProofs(){
     "✅ Sarah N. bought VIP 5 UGX 120k - 10m ago",
     "✅ Musa withdrew UGX 80,000 - 12m ago",
     "✅ Brian K. invested VIP 2 UGX 30k - 15m ago",
-    "✅ Grace L. withdrew UGX 500,000 - 18m ago",
-    "✅ David O. joined VIP 3 - 20m ago",
   ];
   const all=[...proofs,...proofs];
   document.getElementById('proofTrack').innerHTML=all.map(t=>`<div class="py-2 text-xs border-b border-gray-800 text-green-300">${t}</div>`).join('');
 }
+function openModal(id){document.getElementById(id).style.display='block';}
+function closeModal(id){document.getElementById(id).style.display='none';}
 if(user) initApp();
 </script>
 </body>
