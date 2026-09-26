@@ -6,37 +6,34 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-body{max-width:430px;margin:0 auto;background:#ffffff;padding-bottom:80px;font-family:-apple-system,sans-serif}
-.light-green{background:#e8f5e9}
-.card-light{background:#f1f8f1;border-radius:24px}
-.btn-green{background:#2e7d32;color:#fff;border-radius:30px}
-.btn-orange{background:#ef6c00;color:#fff;border-radius:30px}
-.stat-card{background:#e8f5e9;border-radius:18px}
-.floating{position:fixed;right:14px;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:60;box-shadow:0 6px 16px rgba(0,0,0,.3)}
-.proof-bar{height:26px;overflow:hidden;background:#000;color:#fff;font-size:11px}
-.proof-track{animation:scroll 20s linear infinite}@keyframes scroll{0%{transform:translateY(0)}100%{transform:translateY(-50%)}}
+body{max-width:430px;margin:0 auto;background:#fff;padding-bottom:85px;font-family:-apple-system,sans-serif}
+.light-green{background:#e8f5e9}.card-light{background:#f1f8f1;border-radius:22px}
+.btn-green{background:#2e7d32;color:#fff;border-radius:30px}.btn-orange{background:#ef6c00;color:#fff;border-radius:30px}
+.stat-card{background:#e8f5e9;border-radius:16px}
+.floating{position:fixed;right:12px;width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:60;box-shadow:0 8px 20px rgba(0,0,0,.3)}
+.proof-box{height:120px;overflow:hidden;position:relative;background:#111;border-radius:16px}
+.proof-track{animation:scrollUp 20s linear infinite}@keyframes scrollUp{0%{transform:translateY(0)}100%{transform:translateY(-50%)}}
+.badge-animate{animation:pulse 2s infinite}@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
 </style>
 </head>
 <body>
 
-<div class="proof-bar flex items-center px-3 gap-2"><span class="text-green-400">● LIVE</span><div class="flex-1 overflow-hidden h-[26px]"><div class="proof-track" id="proofTrack"></div></div></div>
-
 <!-- AUTH -->
 <div id="authPage" class="p-6 min-h-screen bg-gradient-to-b from-green-700 to-green-400">
-<h1 class="text-white font-black text-2xl text-center mt-12">Ezol Earn<br><span class="text-sm font-normal">Smart Energy</span></h1>
-<div class="bg-white rounded-[24px] p-6 mt-8">
-<h3 class="font-bold">Create Account</h3><p class="text-xs text-gray-500">Get UGX 10,000 bonus</p>
+<h1 class="text-white font-black text-2xl text-center mt-10">Ezol Earn<br><span class="text-sm font-normal">Smart Energy</span></h1>
+<div class="bg-white rounded-[24px] p-6 mt-8 shadow-xl">
+<h3 class="font-bold">Create Account</h3><p class="text-xs text-gray-500">Get UGX 10,000 welcome bonus</p>
 <input id="regName" placeholder="Full Names" class="w-full bg-gray-100 rounded-xl p-4 mt-4 outline-none">
 <input id="regPhone" placeholder="Phone 0795143386" class="w-full bg-gray-100 rounded-xl p-4 mt-3 outline-none" type="tel">
 <input id="regPass" placeholder="Password" type="password" class="w-full bg-gray-100 rounded-xl p-4 mt-3 outline-none">
 <button onclick="register()" class="w-full bg-green-700 text-white rounded-full py-4 mt-5 font-bold">Register</button>
-<p class="text-center text-xs mt-4">Have account? <b onclick="toggleAuth()" class="text-green-700">Login</b></p>
+<p class="text-center text-xs mt-4">Have account? <b onclick="toggleAuth()" class="text-green-700 cursor-pointer">Login</b></p>
 </div>
 </div>
 
 <div id="loginPage" class="p-6 min-h-screen bg-gradient-to-b from-green-700 to-green-400 hidden">
-<h1 class="text-white font-black text-2xl text-center mt-12">Welcome Back</h1>
-<div class="bg-white rounded-[24px] p-6 mt-8">
+<h1 class="text-white font-black text-2xl text-center mt-10">Welcome Back</h1>
+<div class="bg-white rounded-[24px] p-6 mt-8 shadow-xl">
 <input id="logPhone" placeholder="Phone" class="w-full bg-gray-100 rounded-xl p-4 outline-none">
 <input id="logPass" placeholder="Password" type="password" class="w-full bg-gray-100 rounded-xl p-4 mt-3 outline-none">
 <button onclick="login()" class="w-full bg-green-700 text-white rounded-full py-4 mt-5 font-bold">Login</button>
@@ -44,37 +41,57 @@ body{max-width:430px;margin:0 auto;background:#ffffff;padding-bottom:80px;font-f
 </div>
 </div>
 
-<!-- MAIN -->
 <div id="mainApp" class="hidden">
 
-<!-- HOME PAGE -->
+<!-- HOME - NOW WITH BADGE + LIVE PROOFS UPWARD + CS + GROUP + DAILY CLICK -->
 <div id="page-home" class="p-4">
-<div class="light-green rounded-[24px] p-5 text-center">
-<p class="text-xs text-gray-600">Hello, <span id="userName">User</span> - <span id="badgeLevel">Starter</span></p>
-<p class="font-bold text-sm mt-1"><span id="userPhone">07...</span> | Code: <span id="refCodeSmall">EZOL</span></p>
-<button onclick="dailyClick()" id="dailyBtn" class="bg-yellow-400 text-black rounded-full px-5 py-2 mt-3 text-sm font-bold">Daily Click UGX 1,000</button>
-<p class="text-[10px] mt-1" id="dailyStatus">Once per day</p>
-</div>
-<h3 class="font-bold mt-6">VIP Products</h3>
-<div id="productListHome" class="space-y-3 mt-3"></div>
+<!-- Badge Card -->
+<div class="bg-gradient-to-r from-green-700 to-green-500 text-white rounded-[22px] p-5 flex justify-between items-center badge-animate">
+<div><p class="text-xs opacity-80">My Investment Badge</p><p class="font-bold text-lg mt-1" id="badgeLevel">Starter Level 1</p><div class="w-32 bg-white/30 h-2 rounded-full mt-2"><div id="badgeBar" class="bg-yellow-400 h-2 rounded-full" style="width:10%"></div></div><p class="text-[10px] opacity-80 mt-1">Invest to level up</p></div>
+<div class="text-4xl bg-white/20 w-14 h-14 rounded-full flex items-center justify-center">🏅</div>
 </div>
 
-<!-- PRODUCT PAGE -->
+<!-- Live Proofs Moving Upward -->
+<div class="mt-4">
+<p class="font-bold text-sm mb-2 flex items-center gap-2"><span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>Live Proofs - Withdrawals & Investments</p>
+<div class="proof-box p-3"><div class="proof-track" id="proofTrack"></div></div>
+</div>
+
+<!-- Daily Click -->
+<div class="light-green rounded-[22px] p-4 mt-4 text-center">
+<p class="font-bold text-sm">Daily Reward</p><p class="text-xs text-gray-600 mt-1">Click once per day to earn</p>
+<button onclick="dailyClick()" id="dailyBtn" class="w-full bg-yellow-400 text-black rounded-full py-3 mt-3 font-bold text-sm"><i class="fa-solid fa-hand-pointer"></i> Claim UGX 1,000 Daily Click</button>
+<p class="text-[10px] mt-2 text-gray-500" id="dailyStatus">Available now - click once per 24h</p>
+</div>
+
+<!-- CS + Group Buttons Row -->
+<div class="grid grid-cols-2 gap-3 mt-4">
+<a href="https://wa.me/256795143386" class="bg-green-600 text-white rounded-2xl p-4 text-center font-bold text-sm"><i class="fa-solid fa-headset text-xl block mb-1"></i>Customer Service<br><span class="text-[11px] font-normal">0795143386</span></a>
+<a href="https://chat.whatsapp.com/GqjifLEgojv44HXGNmE2sH" class="bg-blue-600 text-white rounded-2xl p-4 text-center font-bold text-sm"><i class="fa-solid fa-users text-xl block mb-1"></i>Join Group<br><span class="text-[11px] font-normal">WhatsApp Group</span></a>
+</div>
+
+<!-- Quick Stats -->
+<div class="grid grid-cols-2 gap-3 mt-4">
+<div class="stat-card p-3"><p class="text-[11px] font-bold">BALANCE</p><p class="font-bold mt-1" id="homeBalance">UGX 0</p></div>
+<div class="stat-card p-3"><p class="text-[11px] font-bold">TODAY INCOME</p><p class="font-bold mt-1" id="homeToday">UGX 0</p></div>
+</div>
+</div>
+
+<!-- PRODUCT -->
 <div id="page-product" class="p-4 hidden">
-<h3 class="font-bold text-lg">Products - From UGX 15,000</h3>
-<p class="text-xs text-gray-500">Invest 15k = Earn 3k daily</p>
+<h3 class="font-bold text-lg">VIP Products - From 15k</h3><p class="text-xs text-gray-500">Invest 15k = Earn 3k daily</p>
 <div id="productList" class="space-y-3 mt-4"></div>
 </div>
 
-<!-- SHARE PAGE -->
+<!-- SHARE -->
 <div id="page-share" class="p-4 hidden">
 <div class="bg-white border rounded-[24px] p-5 text-center">
-<h3 class="font-bold text-lg">Invite Friends Earn 15%</h3>
+<h3 class="font-bold text-lg">Invite & Earn 15%</h3>
 <div class="bg-gray-100 rounded-xl p-3 mt-4 text-xs break-all" id="refLink"></div>
-<div class="flex justify-between bg-green-50 rounded-xl p-3 mt-3 text-sm"><span>Referral Code</span><b id="refCode">EZOL</b></div>
+<div class="flex justify-between bg-green-50 rounded-xl p-3 mt-3 text-sm"><span>Code</span><b id="refCode">EZOL</b></div>
 <button onclick="copyRef()" class="w-full bg-black text-white rounded-full py-3 mt-3 font-bold">Copy Link</button>
 <div class="grid grid-cols-4 gap-2 mt-4">
-<button onclick="shareTo('whatsapp')" class="bg-green-600 text-white rounded-full py-3"><i class="fa-brands fa-whatsapp text-xl"></i></button>
+<button onclick="shareTo('whatsapp')" class="bg-green-600 text-white rounded-full py-3"><i class="fa-brands fa-whatsapp"></i></button>
 <button onclick="shareTo('facebook')" class="bg-blue-600 text-white rounded-full py-3"><i class="fa-brands fa-facebook"></i></button>
 <button onclick="shareTo('twitter')" class="bg-black text-white rounded-full py-3"><i class="fa-brands fa-x-twitter"></i></button>
 <button onclick="shareTo('instagram')" class="bg-pink-600 text-white rounded-full py-3"><i class="fa-brands fa-instagram"></i></button>
@@ -82,58 +99,51 @@ body{max-width:430px;margin:0 auto;background:#ffffff;padding-bottom:80px;font-f
 </div>
 </div>
 
-<!-- WALLET PAGE - EXACT AS SCREENSHOT -->
+<!-- WALLET - SCREENSHOT DESIGN -->
 <div id="page-wallet" class="p-4 hidden">
 <div class="light-green rounded-[24px] p-6 text-center">
 <p class="text-4xl font-bold"><span id="walBalance">5,000</span> <span class="text-lg">UGX</span></p>
-<div class="bg-white rounded-full inline-flex px-5 py-2 mt-3 text-sm shadow-sm">
-<span class="text-gray-500">Recharge Wallet &nbsp;</span><b id="walRechargeSmall">0 UGX</b>
+<div class="bg-white rounded-full inline-flex px-5 py-2 mt-3 text-sm shadow-sm"><span class="text-gray-500">Recharge Wallet &nbsp;</span><b id="walRechargeSmall">0 UGX</b></div>
 </div>
-</div>
-
 <div class="space-y-3 mt-5">
-<div class="card-light p-4 flex justify-between items-center" onclick="alert('Withdrawal History:\nNo records yet')"><span class="text-gray-600">Withdrawal History</span><i class="fa-solid fa-chevron-right text-gray-400 text-xs"></i></div>
-<div class="card-light p-4 flex justify-between items-center" onclick="alert('Fund History:\nWelcome bonus UGX 10,000\nDaily clicks etc')"><span class="text-gray-600">Fund History</span><i class="fa-solid fa-chevron-right text-gray-400 text-xs"></i></div>
-<div class="card-light p-4 flex justify-between items-center"><span class="text-gray-600">Energy Storage</span><b id="energyCount">0</b></div>
+<div class="card-light p-4 flex justify-between"><span class="text-gray-600">Withdrawal History</span><i class="fa-solid fa-chevron-right text-xs"></i></div>
+<div class="card-light p-4 flex justify-between"><span class="text-gray-600">Fund History</span><i class="fa-solid fa-chevron-right text-xs"></i></div>
+<div class="card-light p-4 flex justify-between"><span class="text-gray-600">Energy Storage</span><b id="energyCount">0</b></div>
 </div>
-
 <div class="grid grid-cols-2 gap-4 mt-5">
 <button onclick="openRecharge()" class="btn-green py-4 font-bold text-lg">Recharge</button>
 <button onclick="openWithdraw()" class="btn-orange py-4 font-bold text-lg">Withdraw</button>
 </div>
-
-<p class="font-bold mt-6 text-sm tracking-wider">STATISTICS</p>
+<p class="font-bold mt-6 text-sm">STATISTICS</p>
 <div class="grid grid-cols-2 gap-3 mt-3">
-<div class="stat-card p-4"><p class="text-xs font-bold">TODAY'S INCOME</p><p class="text-xl font-bold mt-2"><span id="todayIncome">0.00</span> <span class="text-xs font-normal">UGX</span></p></div>
-<div class="stat-card p-4"><p class="text-xs font-bold">TOTAL INCOME</p><p class="text-xl font-bold mt-2"><span id="totalIncome">0.00</span> <span class="text-xs font-normal">UGX</span></p></div>
-<div class="stat-card p-4"><p class="text-xs font-bold">TOTAL RECHARGE</p><p class="text-xl font-bold mt-2"><span id="totalRecharge">0.00</span> <span class="text-xs font-normal">UGX</span></p></div>
-<div class="stat-card p-4"><p class="text-xs font-bold">TOTAL WITHDRAWAL</p><p class="text-xl font-bold mt-2"><span id="totalWithdraw">0.00</span> <span class="text-xs font-normal">UGX</span></p></div>
+<div class="stat-card p-4"><p class="text-xs font-bold">TODAY'S INCOME</p><p class="text-xl font-bold mt-2"><span id="todayIncome">0.00</span> <span class="text-xs">UGX</span></p></div>
+<div class="stat-card p-4"><p class="text-xs font-bold">TOTAL INCOME</p><p class="text-xl font-bold mt-2"><span id="totalIncome">0.00</span> <span class="text-xs">UGX</span></p></div>
+<div class="stat-card p-4"><p class="text-xs font-bold">TOTAL RECHARGE</p><p class="text-xl font-bold mt-2"><span id="totalRecharge">0.00</span> <span class="text-xs">UGX</span></p></div>
+<div class="stat-card p-4"><p class="text-xs font-bold">TOTAL WITHDRAWAL</p><p class="text-xl font-bold mt-2"><span id="totalWithdraw">0.00</span> <span class="text-xs">UGX</span></p></div>
 </div>
 </div>
 
-<!-- MY ACCOUNT PAGE -->
 <div id="page-my" class="p-4 hidden">
-<div class="light-green rounded-[24px] p-5"><p class="text-sm">My Account</p><p class="font-bold text-lg mt-1" id="myName">User</p><p class="text-sm" id="myPhone">0795...</p><p class="text-xs mt-2">Balance: <b id="myBalance">UGX 0</b></p></div>
+<div class="light-green rounded-[24px] p-5"><p class="text-sm">My Account</p><p class="font-bold text-lg" id="myName">User</p><p class="text-sm" id="myPhone">07...</p><p class="text-xs mt-2">Balance: <b id="myBalance">UGX 0</b></p></div>
 <div class="mt-4 space-y-3">
-<div class="card-light p-4 flex justify-between"><span><i class="fa-solid fa-building mr-2"></i>Company Profile</span><i class="fa-solid fa-chevron-right text-gray-400 text-xs"></i></div>
-<div class="card-light p-4 flex justify-between"><span><i class="fa-solid fa-file-lines mr-2"></i>Rules & Regulations</span><i class="fa-solid fa-chevron-right text-gray-400 text-xs"></i></div>
-<div class="card-light p-4 flex justify-between" onclick="window.open('https://chat.whatsapp.com/GqjifLEgojv44HXGNmE2sH')"><span><i class="fa-brands fa-whatsapp mr-2"></i>WhatsApp Group</span><i class="fa-solid fa-chevron-right text-gray-400 text-xs"></i></div>
+<div class="card-light p-4"><i class="fa-solid fa-building mr-2"></i>Company Profile - Ezol Earn Ltd</div>
+<div class="card-light p-4"><i class="fa-solid fa-file mr-2"></i>Rules & Regulations</div>
 <button onclick="logout()" class="w-full card-light p-4 text-left text-red-600 font-bold">Logout</button>
 </div>
 </div>
-
 </div>
 
-<!-- BOTTOM NAV EXACT LIKE SCREENSHOT -->
 <div class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] bg-white border-t flex justify-around py-3 hidden" id="bottomNav">
-<button onclick="showPage('home')" id="nav-home" class="flex flex-col items-center text-gray-400"><i class="fa-solid fa-house text-lg"></i><span class="text-[11px] mt-1">Home</span></button>
-<button onclick="showPage('product')" id="nav-product" class="flex flex-col items-center text-gray-400"><i class="fa-solid fa-box text-lg"></i><span class="text-[11px] mt-1">Product</span></button>
-<button onclick="showPage('share')" id="nav-share" class="flex flex-col items-center text-gray-400"><i class="fa-solid fa-share-nodes text-lg"></i><span class="text-[11px] mt-1">Share</span></button>
-<button onclick="showPage('wallet')" id="nav-wallet" class="flex flex-col items-center text-green-700"><i class="fa-solid fa-wallet text-lg"></i><span class="text-[11px] mt-1 font-bold">Wallet</span></button>
-<button onclick="showPage('my')" id="nav-my" class="flex flex-col items-center text-gray-400"><i class="fa-solid fa-user text-lg"></i><span class="text-[11px] mt-1">My</span></button>
+<button onclick="showPage('home')" id="nav-home" class="flex flex-col items-center text-green-700"><i class="fa-solid fa-house"></i><span class="text-[11px] mt-1">Home</span></button>
+<button onclick="showPage('product')" id="nav-product" class="flex flex-col items-center text-gray-400"><i class="fa-solid fa-box"></i><span class="text-[11px] mt-1">Product</span></button>
+<button onclick="showPage('share')" id="nav-share" class="flex flex-col items-center text-gray-400"><i class="fa-solid fa-share-nodes"></i><span class="text-[11px] mt-1">Share</span></button>
+<button onclick="showPage('wallet')" id="nav-wallet" class="flex flex-col items-center text-gray-400"><i class="fa-solid fa-wallet"></i><span class="text-[11px] mt-1">Wallet</span></button>
+<button onclick="showPage('my')" id="nav-my" class="flex flex-col items-center text-gray-400"><i class="fa-solid fa-user"></i><span class="text-[11px] mt-1">My</span></button>
 </div>
 
-<a href="https://wa.me/256795143386" class="floating bg-green-700 text-white bottom-[90px]"><i class="fa-solid fa-headset text-xl"></i></a>
+<!-- Floating CS + Group -->
+<a href="https://wa.me/256795143386" class="floating bg-green-600 text-white bottom-[90px]" title="Customer Service"><i class="fa-solid fa-headset text-xl"></i></a>
+<a href="https://chat.whatsapp.com/GqjifLEgojv44HXGNmE2sH" class="floating bg-blue-600 text-white bottom-[150px]" title="Group"><i class="fa-solid fa-users"></i></a>
 
 <script>
 let user = JSON.parse(localStorage.getItem('ezol_user')||'null');
@@ -145,16 +155,26 @@ let lastDaily = localStorage.getItem('ezol_daily')||'';
 let invested = JSON.parse(localStorage.getItem('ezol_invested')||'[]');
 
 const products = [
-  {id:1, name:"VIP 1 - Solar Mini", invest:15000, daily:3000, days:20, img:"☀️"},
-  {id:2, name:"VIP 2 - Solar Lite", invest:30000, daily:5500, days:25, img:"🔋"},
-  {id:3, name:"VIP 3 - Solar Basic", invest:50000, daily:9000, days:30, img:"⚡"},
-  {id:4, name:"VIP 4 - Solar Pro", invest:80000, daily:13000, days:30, img:"🌞"},
-  {id:5, name:"VIP 5 - Solar Max", invest:120000, daily:18000, days:35, img:"🏭"},
-  {id:6, name:"VIP 6 - Solar Power", invest:180000, daily:25000, days:35, img:"💡"},
-  {id:7, name:"VIP 7 - Solar Ultra", invest:250000, daily:32000, days:40, img:"🔌"},
-  {id:8, name:"VIP 8 - Solar Mega", invest:350000, daily:42000, days:40, img:"🌐"},
-  {id:9, name:"VIP 9 - Grid 1", invest:500000, daily:58000, days:45, img:"🏢"},
-  {id:10, name:"VIP 10 - Grid 2", invest:700000, daily:78000, days:45, img:"⚙️"},
+  {id:1, name:"VIP 1 - Solar Mini", invest:15000, daily:3000, days:20},
+  {id:2, name:"VIP 2 - Solar Lite", invest:30000, daily:5500, days:25},
+  {id:3, name:"VIP 3 - Solar Basic", invest:50000, daily:9000, days:30},
+  {id:4, name:"VIP 4 - Solar Pro", invest:80000, daily:13000, days:30},
+  {id:5, name:"VIP 5 - Solar Max", invest:120000, daily:18000, days:35},
+  {id:6, name:"VIP 6 - Power", invest:180000, daily:25000, days:35},
+  {id:7, name:"VIP 7 - Ultra", invest:250000, daily:32000, days:40},
+  {id:8, name:"VIP 8 - Mega", invest:350000, daily:42000, days:40},
+  {id:9, name:"VIP 9 - Grid 1", invest:500000, daily:58000, days:45},
+  {id:10, name:"VIP 10 - Grid 2", invest:700000, daily:78000, days:45},
+  {id:11, name:"VIP 11 - Farm 1", invest:1000000, daily:105000, days:50},
+  {id:12, name:"VIP 12 - Farm 2", invest:1500000, daily:150000, days:50},
+  {id:13, name:"VIP 13 - Plant 1", invest:2000000, daily:190000, days:60},
+  {id:14, name:"VIP 14 - Plant 2", invest:3000000, daily:270000, days:60},
+  {id:15, name:"VIP 15 - Industrial", invest:5000000, daily:420000, days:60},
+  {id:16, name:"VIP 16 - City", invest:7000000, daily:560000, days:60},
+  {id:17, name:"VIP 17 - National 1", invest:10000000, daily:750000, days:60},
+  {id:18, name:"VIP 18 - National 2", invest:15000000, daily:1050000, days:60},
+  {id:19, name:"VIP 19 - Country", invest:20000000, daily:1300000, days:60},
+  {id:20, name:"VIP 20 - Unlimited", invest:30000000, daily:1800000, days:60},
 ];
 
 function toggleAuth(){document.getElementById('authPage').classList.toggle('hidden');document.getElementById('loginPage').classList.toggle('hidden');}
@@ -165,8 +185,7 @@ function register(){
   if(!name||!phone||!pass) return alert('Fill all');
   user={name,phone,pass,code:'EZOL_'+phone.slice(-4)+Math.floor(Math.random()*9000)};
   balance=10000; totalRecharge=0; totalWithdraw=0; totalIncome=10000;
-  localStorage.setItem('ezol_user',JSON.stringify(user));
-  saveAll(); alert('Welcome! UGX 10,000 bonus added'); initApp();
+  localStorage.setItem('ezol_user',JSON.stringify(user)); saveAll(); alert('Welcome! UGX 10,000 bonus'); initApp();
 }
 function login(){
   const phone=document.getElementById('logPhone').value.trim();
@@ -175,30 +194,15 @@ function login(){
   if(saved&&saved.phone===phone&&saved.pass===pass){user=saved;balance=parseInt(localStorage.getItem('ezol_bal')||'10000');totalRecharge=parseInt(localStorage.getItem('ezol_recharge')||'0');totalWithdraw=parseInt(localStorage.getItem('ezol_withdraw')||'0');totalIncome=parseInt(localStorage.getItem('ezol_income')||'0');initApp();}
   else alert('Wrong credentials');
 }
-function saveAll(){
-  localStorage.setItem('ezol_bal',balance);
-  localStorage.setItem('ezol_recharge',totalRecharge);
-  localStorage.setItem('ezol_withdraw',totalWithdraw);
-  localStorage.setItem('ezol_income',totalIncome);
-}
+function saveAll(){localStorage.setItem('ezol_bal',balance);localStorage.setItem('ezol_recharge',totalRecharge);localStorage.setItem('ezol_withdraw',totalWithdraw);localStorage.setItem('ezol_income',totalIncome);}
 function initApp(){
-  document.getElementById('authPage').classList.add('hidden');
-  document.getElementById('loginPage').classList.add('hidden');
-  document.getElementById('mainApp').classList.remove('hidden');
-  document.getElementById('bottomNav').classList.remove('hidden');
-  document.getElementById('bottomNav').classList.add('flex');
-  document.getElementById('userName').innerText=user.name;
-  document.getElementById('userPhone').innerText=user.phone;
-  document.getElementById('myName').innerText=user.name;
-  document.getElementById('myPhone').innerText=user.phone;
-  document.getElementById('refCode').innerText=user.code;
-  document.getElementById('refCodeSmall').innerText=user.code;
-  document.getElementById('refLink').innerText='https://easyearn869-oss.github.io/Ezo?ref='+user.code;
-  document.getElementById('badgeLevel').innerText=invested.length>0?'Gold L'+invested.length:'Starter';
-  updateWallet(); renderProducts(); renderProofs(); checkDaily();
+  document.getElementById('authPage').classList.add('hidden');document.getElementById('loginPage').classList.add('hidden');
+  document.getElementById('mainApp').classList.remove('hidden');document.getElementById('bottomNav').classList.remove('hidden');document.getElementById('bottomNav').classList.add('flex');
+  document.getElementById('refCode').innerText=user.code;document.getElementById('refLink').innerText='https://easyearn869-oss.github.io/Ezo?ref='+user.code;
+  updateWallet(); renderProducts(); renderProofs(); checkDaily(); showPage('home');
 }
 function updateWallet(){
-  const todayInc = invested.reduce((a,c)=>a+c.daily,0) + (lastDaily===new Date().toDateString()?1000:0);
+  const todayInc=invested.reduce((a,c)=>a+c.daily,0)+(lastDaily===new Date().toDateString()?1000:0);
   document.getElementById('walBalance').innerText=balance.toLocaleString();
   document.getElementById('walRechargeSmall').innerText=totalRecharge.toLocaleString()+' UGX';
   document.getElementById('myBalance').innerText='UGX '+balance.toLocaleString();
@@ -207,53 +211,50 @@ function updateWallet(){
   document.getElementById('totalIncome').innerText=totalIncome.toLocaleString();
   document.getElementById('totalRecharge').innerText=totalRecharge.toLocaleString();
   document.getElementById('totalWithdraw').innerText=totalWithdraw.toLocaleString();
+  document.getElementById('homeBalance').innerText='UGX '+balance.toLocaleString();
+  document.getElementById('homeToday').innerText='UGX '+todayInc.toLocaleString();
+  document.getElementById('badgeLevel').innerText=invested.length>0?'Gold Level '+invested.length:'Starter Level 1';
+  document.getElementById('badgeBar').style.width=Math.min(100,invested.length*10+10)+'%';
   saveAll();
 }
 function renderProducts(){
-  const html = products.map(p=>`
-    <div class="bg-white border rounded-2xl p-4 flex justify-between items-center">
-      <div class="flex gap-3 items-center">
-        <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">${p.img}</div>
-        <div><p class="font-bold text-sm">${p.name}</p><p class="text-xs text-gray-500">Invest ${p.invest.toLocaleString()} | Daily ${p.daily.toLocaleString()}</p></div>
-      </div>
-      <button onclick="buyP(${p.id})" class="bg-green-700 text-white rounded-full px-4 py-2 text-xs font-bold">Buy</button>
-    </div>`).join('');
+  const html=products.map(p=>`<div class="bg-white border rounded-2xl p-4 flex justify-between items-center"><div><p class="font-bold text-sm">${p.name}</p><p class="text-xs text-gray-500">Invest ${p.invest.toLocaleString()} | Daily ${p.daily.toLocaleString()}</p></div><button onclick="buyP(${p.id})" class="bg-green-700 text-white rounded-full px-4 py-2 text-xs font-bold">Buy</button></div>`).join('');
   document.getElementById('productList').innerHTML=html;
-  document.getElementById('productListHome').innerHTML=html;
 }
 function buyP(id){
   const p=products.find(x=>x.id===id);
-  if(balance>=p.invest){balance-=p.invest;invested.push(p);totalIncome+=p.daily;localStorage.setItem('ezol_invested',JSON.stringify(invested));updateWallet();alert('Bought '+p.name+'! Daily UGX '+p.daily);}
+  if(balance>=p.invest){balance-=p.invest;invested.push(p);totalIncome+=p.daily;localStorage.setItem('ezol_invested',JSON.stringify(invested));updateWallet();alert('Bought '+p.name);}
   else if(confirm('Low balance! Recharge?')) openRecharge();
 }
 function dailyClick(){
   const today=new Date().toDateString();
-  if(lastDaily===today) return alert('Already claimed today');
-  balance+=1000;totalIncome+=1000;lastDaily=today;localStorage.setItem('ezol_daily',today);updateWallet();checkDaily();alert('UGX 1,000 claimed!');
+  if(lastDaily===today) return alert('Already claimed');
+  balance+=1000;totalIncome+=1000;lastDaily=today;localStorage.setItem('ezol_daily',today);updateWallet();checkDaily();alert('UGX 1,000 daily click claimed!');
 }
 function checkDaily(){
   const today=new Date().toDateString();
   const btn=document.getElementById('dailyBtn');
-  if(lastDaily===today){btn.disabled=true;btn.innerText='✓ Claimed Today';btn.classList.add('opacity-50');document.getElementById('dailyStatus').innerText='Come tomorrow';}
+  if(!btn) return;
+  if(lastDaily===today){btn.disabled=true;btn.innerText='✓ Claimed Today';btn.classList.add('opacity-50');document.getElementById('dailyStatus').innerText='Come back tomorrow';}
 }
 function openRecharge(){
-  const amt=prompt('Enter recharge amount UGX (e.g 15000):');
+  const amt=prompt('Enter recharge UGX e.g 15000:');
   if(!amt) return;
   const amount=parseInt(amt);
-  if(confirm(`Recharge UGX ${amount.toLocaleString()}?\nOpen MTN *165*1*1#?`)){
+  if(confirm(`Recharge UGX ${amount.toLocaleString()}?\nOpen *165*1*1#?`)){
     window.location.href='tel:*165*1*1%23';
-    setTimeout(()=>{balance+=amount;totalRecharge+=amount;updateWallet();alert('Recharge UGX '+amount.toLocaleString()+' added (Demo)');},2000);
+    setTimeout(()=>{balance+=amount;totalRecharge+=amount;updateWallet();alert('Recharge added (demo)');},2000);
   }
 }
 function openWithdraw(){
-  const amt=prompt('Withdraw Min UGX 20k, Fee 10%:');
+  const amt=prompt('Withdraw Min 20k Fee 10%:');
   if(!amt) return;
   const n=parseInt(amt);
   if(n<20000) return alert('Min 20k');
   if(n>balance) return alert('Insufficient');
   const fee=n*0.1; const rec=n-fee;
-  if(confirm(`Withdraw UGX ${n.toLocaleString()}?\nFee ${fee.toLocaleString()}\nReceive ${rec.toLocaleString()} to ${user.phone}`)){
-    balance-=n;totalWithdraw+=n;updateWallet();alert('Withdraw sent! Receive UGX '+rec.toLocaleString());
+  if(confirm(`Withdraw ${n.toLocaleString()}? Receive ${rec.toLocaleString()} to ${user.phone}`)){
+    balance-=n;totalWithdraw+=n;updateWallet();alert('Withdraw sent! Receive '+rec.toLocaleString());
   }
 }
 function showPage(n){
@@ -261,15 +262,27 @@ function showPage(n){
     const el=document.getElementById('page-'+p);
     if(el) el.classList.toggle('hidden',p!==n);
     const nav=document.getElementById('nav-'+p);
-    if(nav){nav.classList.toggle('text-green-700',p===n);nav.classList.toggle('text-gray-400',p!==n);nav.classList.toggle('font-bold',p===n);}
+    if(nav){nav.classList.toggle('text-green-700',p===n);nav.classList.toggle('text-gray-400',p!==n);}
   });
 }
 function copyRef(){navigator.clipboard.writeText(document.getElementById('refLink').innerText);alert('Copied');}
 function shareTo(p){const url=encodeURIComponent(document.getElementById('refLink').innerText);const text=encodeURIComponent('Join Ezol Earn! Code: '+user.code);const m={whatsapp:`https://wa.me/?text=${text}%20${url}`,facebook:`https://www.facebook.com/sharer/sharer.php?u=${url}`,twitter:`https://twitter.com/intent/tweet?text=${text}&url=${url}`,instagram:`https://www.instagram.com/`};window.open(m[p],'_blank');}
 function logout(){if(confirm('Logout?')){localStorage.clear();location.reload();}}
-function renderProofs(){const proofs=['James withdrew UGX 250k','Aisha invested VIP 1 15k','Okello withdrew 1.2M','Sarah joined VIP 3','Musa withdrew 80k'];document.getElementById('proofTrack').innerHTML=[...proofs,...proofs].map(t=>`<div class="py-1">✓ ${t} • now</div>`).join('');}
+function renderProofs(){
+  const proofs=[
+    "✅ James K. withdrew UGX 250,000 - 2m ago",
+    "✅ Aisha M. invested VIP 1 UGX 15,000 - 5m ago",
+    "✅ Okello P. withdrew UGX 1,200,000 - 7m ago",
+    "✅ Sarah N. bought VIP 5 UGX 120k - 10m ago",
+    "✅ Musa withdrew UGX 80,000 - 12m ago",
+    "✅ Brian K. invested VIP 2 UGX 30k - 15m ago",
+    "✅ Grace L. withdrew UGX 500,000 - 18m ago",
+    "✅ David O. joined VIP 3 - 20m ago",
+  ];
+  const all=[...proofs,...proofs];
+  document.getElementById('proofTrack').innerHTML=all.map(t=>`<div class="py-2 text-xs border-b border-gray-800 text-green-300">${t}</div>`).join('');
+}
 if(user) initApp();
-else showPage('wallet');
 </script>
 </body>
 </html>
