@@ -1,72 +1,253 @@
 <!DOCTYPE html>
-<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Ezol Admin - Firebase</title>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ezol Earn - Admin v8 - 500 Bonus</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-</head><body class="p-4 max-w-[1000px] mx-auto bg-gray-100">
-<script>
-const firebaseConfig = { apiKey: "YOUR_API_KEY", authDomain: "YOUR_PROJECT.firebaseapp.com", projectId: "YOUR_PROJECT_ID", storageBucket: "YOUR_PROJECT.appspot.com", messagingSenderId: "123456789", appId: "1:123456789:web:abcdef" };
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-</script>
-<div id="login" class="min-h-screen flex items-center justify-center"><div class="bg-white rounded-2xl p-8 w-full max-w-sm shadow-xl"><h1 class="font-black text-xl text-center">Ezol Admin</h1><input id="pass" type="password" placeholder="Password admin123" class="w-full bg-gray-100 rounded-xl p-4 mt-6"><button onclick="if(document.getElementById('pass').value==='admin123'){document.getElementById('login').classList.add('hidden');document.getElementById('app').classList.remove('hidden');loadAll()}else alert('Wrong')" class="w-full bg-black text-white rounded-full py-4 mt-4 font-bold">Login</button></div></div>
-<div id="app" class="hidden">
-<div class="bg-green-700 text-white rounded-2xl p-5 flex justify-between"><h1 class="font-bold">Firebase Admin Dashboard - Real-Time</h1><button onclick="location.reload()" class="bg-white/20 rounded-full px-4 py-2 text-sm">Refresh</button></div>
-<div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4"><div class="bg-white rounded-xl p-4"><p class="text-xs text-gray-500">USERS</p><p class="font-bold text-xl" id="uCount">0</p></div><div class="bg-white rounded-xl p-4"><p class="text-xs text-gray-500">PENDING RECHARGE</p><p class="font-bold text-xl text-orange-600" id="rCount">0</p></div><div class="bg-white rounded-xl p-4"><p class="text-xs text-gray-500">PENDING WITHDRAW</p><p class="font-bold text-xl text-red-600" id="wCount">0</p></div><div class="bg-white rounded-xl p-4"><p class="text-xs text-gray-500">TOTAL RECHARGE</p><p class="font-bold text-xl" id="tRecharge">0</p></div></div>
-<div class="flex gap-2 mt-6 overflow-x-auto"><button onclick="showTab('recharge')" id="t-recharge" class="bg-black text-white rounded-full px-5 py-2 text-sm">Recharges</button><button onclick="showTab('withdraw')" id="t-withdraw" class="bg-white rounded-full px-5 py-2 text-sm">Withdraws</button><button onclick="showTab('users')" id="t-users" class="bg-white rounded-full px-5 py-2 text-sm">Users</button></div>
-<div id="c-recharge" class="mt-4 bg-white rounded-2xl p-5"><h3 class="font-bold">Pending Recharges - Approve after receiving MTN on 0795143386</h3><div id="rechargeList" class="mt-4 space-y-3"></div></div>
-<div id="c-withdraw" class="mt-4 bg-white rounded-2xl p-5 hidden"><h3 class="font-bold">Pending Withdrawals - Send via *165*1*1# then Complete</h3><div id="withdrawList" class="mt-4 space-y-3"></div></div>
-<div id="c-users" class="mt-4 bg-white rounded-2xl p-5 hidden"><h3 class="font-bold">All Users</h3><div id="usersList" class="mt-4 space-y-3"></div></div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>body{max-width:1000px;margin:0 auto;background:#f3f4f6;font-family:-apple-system,sans-serif}</style>
+</head>
+<body class="p-4">
+
+<div id="adminLogin" class="min-h-screen flex items-center justify-center">
+<div class="bg-white rounded-[24px] p-8 w-full max-w-sm shadow-xl">
+<h1 class="font-black text-2xl text-center">Ezol Admin v8</h1><p class="text-xs text-center text-gray-500 mt-1">Bonus 500 UGX Version</p>
+<input id="adminPass" type="password" placeholder="Admin Password" class="w-full bg-gray-100 rounded-xl p-4 mt-6 outline-none">
+<button onclick="adminLogin()" class="w-full bg-black text-white rounded-full py-4 mt-4 font-bold">Login</button>
+<p class="text-[10px] text-center mt-3 text-gray-400">Default: admin123</p>
 </div>
+</div>
+
+<div id="adminApp" class="hidden">
+<div class="bg-gradient-to-r from-green-700 to-green-500 text-white rounded-[20px] p-6 flex justify-between items-center">
+<div><h1 class="font-bold text-xl">Admin Dashboard - 500 Bonus</h1><p class="text-xs opacity-80" id="adminDate"></p></div>
+<button onclick="logoutAdmin()" class="bg-white/20 rounded-full px-4 py-2 text-sm">Logout</button>
+</div>
+
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-6">
+<div class="bg-white rounded-2xl p-4 shadow-sm"><p class="text-xs text-gray-500">TOTAL USERS (This Phone)</p><p class="font-bold text-xl mt-1" id="statUsers">0</p></div>
+<div class="bg-white rounded-2xl p-4 shadow-sm"><p class="text-xs text-gray-500">PENDING RECHARGE</p><p class="font-bold text-xl mt-1 text-orange-600" id="statRechargePending">0</p></div>
+<div class="bg-white rounded-2xl p-4 shadow-sm"><p class="text-xs text-gray-500">PENDING WITHDRAW</p><p class="font-bold text-xl mt-1 text-red-600" id="statWithdrawPending">0</p></div>
+<div class="bg-white rounded-2xl p-4 shadow-sm"><p class="text-xs text-gray-500">BALANCE ON THIS DEVICE</p><p class="font-bold text-xl mt-1" id="statBalance">0 UGX</p></div>
+</div>
+
+<div class="flex gap-2 mt-6 overflow-x-auto pb-2">
+<button onclick="showTab('recharge')" id="tab-recharge" class="bg-black text-white rounded-full px-5 py-2 text-sm font-bold whitespace-nowrap">Recharge Pending</button>
+<button onclick="showTab('withdraw')" id="tab-withdraw" class="bg-white rounded-full px-5 py-2 text-sm font-bold whitespace-nowrap">Withdraw Pending</button>
+<button onclick="showTab('users')" id="tab-users" class="bg-white rounded-full px-5 py-2 text-sm font-bold whitespace-nowrap">Users</button>
+<button onclick="showTab('manual')" id="tab-manual" class="bg-white rounded-full px-5 py-2 text-sm font-bold whitespace-nowrap">Manual Credit 500</button>
+</div>
+
+<div id="tabContent-recharge" class="mt-4">
+<div class="bg-white rounded-2xl p-5 shadow-sm">
+<h3 class="font-bold">Recharge Requests - Approve AFTER MTN SMS on 0795143386</h3>
+<div id="rechargeList" class="mt-4 space-y-3"></div>
+</div>
+</div>
+
+<div id="tabContent-withdraw" class="mt-4 hidden">
+<div class="bg-white rounded-2xl p-5 shadow-sm">
+<h3 class="font-bold">Withdrawal Requests - Send via *165*1*1# then Complete</h3>
+<div id="withdrawList" class="mt-4 space-y-3"></div>
+</div>
+</div>
+
+<div id="tabContent-users" class="mt-4 hidden">
+<div class="bg-white rounded-2xl p-5 shadow-sm">
+<h3 class="font-bold">User on This Device (LocalStorage Demo)</h3>
+<div id="usersList" class="mt-4 space-y-3"></div>
+<div class="mt-6 p-4 bg-blue-50 rounded-xl text-xs">
+<b>Current Setup:</b> This is LocalStorage - shows only user registered on THIS phone. Bonus is 500 UGX. For real multi-user, we need Firebase. Want Firebase version with 500 bonus too?
+</div>
+</div>
+</div>
+
+<div id="tabContent-manual" class="mt-4 hidden">
+<div class="bg-white rounded-2xl p-5 shadow-sm">
+<h3 class="font-bold">Manual Credit - Bonus 500 Version</h3>
+<p class="text-xs text-gray-500 mt-1">Add balance after user sends MTN screenshot</p>
+<div class="mt-4 space-y-3">
+<input id="manualPhone" placeholder="User Phone" class="w-full bg-gray-100 rounded-xl p-4 outline-none">
+<input id="manualAmount" type="number" placeholder="Amount e.g 15000 (Bonus is 500)" class="w-full bg-gray-100 rounded-xl p-4 outline-none">
+<select id="manualType" class="w-full bg-gray-100 rounded-xl p-4 outline-none">
+<option value="recharge">Add Recharge (Credit User)</option>
+<option value="deduct">Deduct (Penalty)</option>
+<option value="bonus">Add Bonus 500 Again</option>
+</select>
+<button onclick="manualAction()" class="w-full bg-green-700 text-white rounded-full py-4 font-bold">Confirm</button>
+<button onclick="resetTo500()" class="w-full bg-gray-100 text-black rounded-full py-3 font-bold text-sm">Reset This Device to 500 UGX Bonus</button>
+</div>
+</div>
+</div>
+
+</div>
+
 <script>
-function showTab(n){['recharge','withdraw','users'].forEach(t=>{document.getElementById('c-'+t).classList.toggle('hidden',t!==n);document.getElementById('t-'+t).classList.toggle('bg-black',t===n);document.getElementById('t-'+t).classList.toggle('text-white',t===n);document.getElementById('t-'+t).classList.toggle('bg-white',t!==n);});}
+const ADMIN_PASSWORD = "admin123";
+const BONUS = 500;
+let withdrawHistory = JSON.parse(localStorage.getItem('ezol_withdraw_history')||'[]');
+let fundHistory = JSON.parse(localStorage.getItem('ezol_fund_history')||'[]');
+let user = JSON.parse(localStorage.getItem('ezol_user')||'null');
+let balance = parseInt(localStorage.getItem('ezol_bal')||String(BONUS));
+let totalRecharge = parseInt(localStorage.getItem('ezol_recharge')||'0');
 
-async function loadAll(){
-  // Real-time listeners
-  db.collection('recharges').where('status','==','Pending').onSnapshot(snap=>{
-    document.getElementById('rCount').innerText=snap.size;
-    document.getElementById('rechargeList').innerHTML=snap.docs.map(d=>{
-      const data=d.data(); return `<div class="border rounded-xl p-4 flex justify-between items-center"><div><p class="font-bold">${data.name} - ${data.phone}</p><p class="text-xs text-gray-500">${data.time}</p><p class="text-sm font-bold text-green-600">UGX ${data.amount.toLocaleString()}</p></div><div class="flex gap-2"><button onclick="approveRecharge('${d.id}','${data.userId}',${data.amount})" class="bg-green-600 text-white rounded-full px-4 py-2 text-xs font-bold">Approve + Add Balance</button><button onclick="db.collection('recharges').doc('${d.id}').delete()" class="bg-red-100 text-red-600 rounded-full px-3 py-2 text-xs">Reject</button></div></div>`;
-    }).join('') || '<p class="text-sm text-gray-400 text-center py-10">No pending recharges</p>';
-  });
-  db.collection('withdrawals').where('status','==','Pending').onSnapshot(snap=>{
-    document.getElementById('wCount').innerText=snap.size;
-    document.getElementById('withdrawList').innerHTML=snap.docs.map(d=>{
-      const data=d.data(); return `<div class="border rounded-xl p-4 flex justify-between items-center bg-orange-50"><div><p class="font-bold">${data.name} - ${data.phone}</p><p class="text-xs">${data.time}</p><p class="text-sm">Withdraw UGX ${data.amount.toLocaleString()} → Receive ${data.receive.toLocaleString()} (Fee ${data.fee})</p></div><div class="flex flex-col gap-2"><button onclick="approveWithdraw('${d.id}','${data.userId}')" class="bg-green-600 text-white rounded-full px-4 py-2 text-xs font-bold">Mark Sent - Complete</button><button onclick="rejectWithdraw('${d.id}','${data.userId}',${data.amount})" class="bg-red-100 text-red-600 rounded-full px-4 py-2 text-xs">Reject & Refund</button></div></div>`;
-    }).join('') || '<p class="text-sm text-gray-400 text-center py-10">No pending withdrawals</p>';
-  });
-  db.collection('users').onSnapshot(snap=>{
-    document.getElementById('uCount').innerText=snap.size;
-    let total=0; snap.forEach(doc=>{total+=doc.data().totalRecharge||0});
-    document.getElementById('tRecharge').innerText=total.toLocaleString()+' UGX';
-    document.getElementById('usersList').innerHTML=snap.docs.map(d=>{
-      const u=d.data(); return `<div class="border rounded-xl p-4"><p class="font-bold">${u.name} - ${u.phone}</p><p class="text-xs text-gray-500">Code: ${u.code} | Balance: UGX ${(u.balance||0).toLocaleString()} | Recharge: ${(u.totalRecharge||0).toLocaleString()} | Invested: ${(u.invested||[]).length}</p><div class="mt-2 flex gap-2"><input id="amt-${d.id}" type="number" placeholder="Amount" class="bg-gray-100 rounded-xl px-3 py-2 text-xs w-24"><button onclick="manualAdd('${d.id}',document.getElementById('amt-${d.id}').value)" class="bg-green-600 text-white rounded-full px-3 py-2 text-xs">Add Balance</button></div></div>`;
-    }).join('');
+document.getElementById('adminDate').innerText = new Date().toLocaleString();
+
+function adminLogin(){
+  const p = document.getElementById('adminPass').value;
+  if(p===ADMIN_PASSWORD){
+    localStorage.setItem('ezol_admin','yes');
+    document.getElementById('adminLogin').classList.add('hidden');
+    document.getElementById('adminApp').classList.remove('hidden');
+    loadStats(); loadRecharges(); loadWithdraws(); loadUsers();
+  } else alert('Wrong password! Default is admin123');
+}
+function logoutAdmin(){ localStorage.removeItem('ezol_admin'); location.reload(); }
+if(localStorage.getItem('ezol_admin')==='yes'){
+  document.getElementById('adminLogin').classList.add('hidden');
+  document.getElementById('adminApp').classList.remove('hidden');
+  loadStats(); loadRecharges(); loadWithdraws(); loadUsers();
+}
+
+function loadStats(){
+  const pendingRecharge = fundHistory.filter(f=>f.type.includes('PENDING')).length;
+  const pendingWithdraw = withdrawHistory.filter(w=>w.status==='Pending').length;
+  document.getElementById('statUsers').innerText = user? '1 User - '+user.phone : '0';
+  document.getElementById('statRechargePending').innerText = pendingRecharge;
+  document.getElementById('statWithdrawPending').innerText = pendingWithdraw;
+  document.getElementById('statBalance').innerText = balance.toLocaleString() + ' UGX (Bonus '+BONUS+')';
+}
+
+function loadRecharges(){
+  const list = document.getElementById('rechargeList');
+  const pendings = fundHistory.filter(f=>f.type.includes('PENDING'));
+  if(pendings.length===0){ list.innerHTML='<p class="text-sm text-gray-400 text-center py-10">No pending recharges<br>When user clicks Recharge, it appears here PENDING</p>'; return; }
+  list.innerHTML = pendings.map((f,i)=>{
+    const originalIndex = fundHistory.indexOf(f);
+    return `<div class="border rounded-xl p-4 flex justify-between items-center bg-orange-50 border-orange-200">
+      <div><p class="font-bold text-sm">${f.type}</p><p class="text-xs text-gray-500">${f.time}</p><p class="text-xs font-bold text-green-600">+UGX ${f.amount.toLocaleString()}</p></div>
+      <div class="flex gap-2"><button onclick="approveRecharge(${originalIndex},${f.amount})" class="bg-green-600 text-white rounded-full px-4 py-2 text-xs font-bold">Approve + Add ${f.amount.toLocaleString()}</button><button onclick="rejectRecharge(${originalIndex})" class="bg-red-100 text-red-600 rounded-full px-3 py-2 text-xs">Reject</button></div>
+    </div>`;
+  }).join('');
+}
+
+function approveRecharge(index, amount){
+  if(!confirm(`Approve UGX ${amount.toLocaleString()}?\nWill add to user balance (currently ${balance.toLocaleString()} with ${BONUS} bonus).`)) return;
+  let currentBal = parseInt(localStorage.getItem('ezol_bal')||String(BONUS));
+  let currentRecharge = parseInt(localStorage.getItem('ezol_recharge')||'0');
+  currentBal += amount;
+  currentRecharge += amount;
+  localStorage.setItem('ezol_bal', currentBal);
+  localStorage.setItem('ezol_recharge', currentRecharge);
+  fundHistory[index].type = `Recharge CONFIRMED UGX ${amount.toLocaleString()}`;
+  fundHistory[index].time = new Date().toLocaleString() + ' - Approved by Admin';
+  fundHistory[index].status = 'confirmed';
+  localStorage.setItem('ezol_fund_history', JSON.stringify(fundHistory));
+  balance = currentBal;
+  loadStats(); loadRecharges();
+  alert(`Approved! UGX ${amount.toLocaleString()} added. New balance: UGX ${currentBal.toLocaleString()}`);
+}
+
+function rejectRecharge(index){
+  if(!confirm('Reject this recharge?')) return;
+  fundHistory.splice(index,1);
+  localStorage.setItem('ezol_fund_history', JSON.stringify(fundHistory));
+  loadStats(); loadRecharges();
+}
+
+function loadWithdraws(){
+  const list = document.getElementById('withdrawList');
+  if(withdrawHistory.length===0){ list.innerHTML='<p class="text-sm text-gray-400 text-center py-10">No withdrawal requests</p>'; return; }
+  list.innerHTML = withdrawHistory.map((w,i)=>`
+    <div class="border rounded-xl p-4 flex justify-between items-center ${w.status==='Pending'?'bg-orange-50 border-orange-200':''}">
+      <div><p class="font-bold text-sm">UGX ${w.amount.toLocaleString()} → Receive UGX ${w.receive.toLocaleString()}</p><p class="text-xs text-gray-500">To: ${w.phone} • ${w.time}</p><p class="text-xs">Fee: ${w.fee.toLocaleString()} • Status: <b class="${w.status==='Pending'?'text-orange-600':'text-green-600'}">${w.status}</b></p></div>
+      <div class="flex flex-col gap-2">
+        ${w.status==='Pending'? `<button onclick="approveWithdraw(${i})" class="bg-green-600 text-white rounded-full px-4 py-2 text-xs font-bold">Mark Sent - Complete</button><button onclick="rejectWithdraw(${i})" class="bg-red-100 text-red-600 rounded-full px-4 py-2 text-xs">Reject & Refund</button>` : `<span class="bg-green-100 text-green-700 rounded-full px-3 py-1 text-xs font-bold">✓ ${w.status}</span>`}
+      </div>
+    </div>
+  `).join('');
+}
+
+function approveWithdraw(i){
+  if(!confirm(`Confirm you sent UGX ${withdrawHistory[i].receive.toLocaleString()} to ${withdrawHistory[i].phone} via MTN *165*1*1#?`)) return;
+  withdrawHistory[i].status = 'Completed';
+  withdrawHistory[i].time = new Date().toLocaleString() + ' - Paid by Admin';
+  localStorage.setItem('ezol_withdraw_history', JSON.stringify(withdrawHistory));
+  loadStats(); loadWithdraws();
+  alert('Withdrawal marked Completed!');
+}
+function rejectWithdraw(i){
+  if(!confirm('Reject and refund amount to user balance?')) return;
+  const amt = withdrawHistory[i].amount;
+  let currentBal = parseInt(localStorage.getItem('ezol_bal')||String(BONUS));
+  currentBal += amt;
+  localStorage.setItem('ezol_bal', currentBal);
+  withdrawHistory.splice(i,1);
+  localStorage.setItem('ezol_withdraw_history', JSON.stringify(withdrawHistory));
+  loadStats(); loadWithdraws();
+  alert(`Rejected! UGX ${amt.toLocaleString()} refunded.`);
+}
+
+function loadUsers(){
+  const list = document.getElementById('usersList');
+  if(!user){ list.innerHTML='<p class="text-sm text-gray-400">No user found on this device - Register first in main app</p>'; return; }
+  list.innerHTML = `
+    <div class="border rounded-xl p-4">
+      <p class="font-bold">${user.name} - Bonus ${BONUS} UGX Version</p>
+      <p class="text-xs text-gray-500">${user.phone} • Code: ${user.code}</p>
+      <p class="text-xs mt-2">Balance: <b>UGX ${balance.toLocaleString()}</b> | Recharge: ${totalRecharge.toLocaleString()} UGX | Total Income: ${localStorage.getItem('ezol_income')||BONUS}</p>
+      <p class="text-xs">Invested: ${JSON.parse(localStorage.getItem('ezol_invested')||'[]').length} products | Fund records: ${fundHistory.length}</p>
+    </div>
+  `;
+}
+
+function showTab(name){
+  ['recharge','withdraw','users','manual'].forEach(t=>{
+    document.getElementById('tabContent-'+t).classList.toggle('hidden', t!==name);
+    const btn = document.getElementById('tab-'+t);
+    btn.classList.toggle('bg-black', t===name);
+    btn.classList.toggle('text-white', t===name);
+    btn.classList.toggle('bg-white', t!==name);
   });
 }
 
-async function approveRecharge(rechargeId, userId, amount){
-  if(!confirm(`Approve UGX ${amount.toLocaleString()}? This will add to user balance in Firebase.`)) return;
-  await db.collection('users').doc(userId).update({balance:firebase.firestore.FieldValue.increment(amount), totalRecharge:firebase.firestore.FieldValue.increment(amount)});
-  await db.collection('recharges').doc(rechargeId).update({status:'Approved', time:new Date().toLocaleString()+' - Approved by Admin'});
-  await db.collection('funds').add({userId, type:`Recharge CONFIRMED UGX ${amount.toLocaleString()}`, amount, time:new Date().toLocaleString()+' - Admin Approved'});
-  alert('Approved! Balance added.');
+function manualAction(){
+  const phone = document.getElementById('manualPhone').value.trim();
+  const amount = parseInt(document.getElementById('manualAmount').value);
+  const type = document.getElementById('manualType').value;
+  if(!amount) return alert('Enter amount');
+  let currentBal = parseInt(localStorage.getItem('ezol_bal')||String(BONUS));
+  let currentRecharge = parseInt(localStorage.getItem('ezol_recharge')||'0');
+
+  if(type==='recharge'){
+    currentBal+=amount; currentRecharge+=amount;
+    fundHistory.unshift({type:`Manual Credit UGX ${amount.toLocaleString()} by Admin`,amount:amount,time:new Date().toLocaleString()+' - Admin: '+phone});
+    alert(`Added UGX ${amount.toLocaleString()}. New balance UGX ${currentBal.toLocaleString()}`);
+  } else if(type==='deduct'){
+    currentBal-=amount;
+    fundHistory.unshift({type:`Manual Deduct UGX ${amount.toLocaleString()} by Admin`,amount:-amount,time:new Date().toLocaleString()});
+    alert(`Deducted UGX ${amount.toLocaleString()}. New balance UGX ${currentBal.toLocaleString()}`);
+  } else if(type==='bonus'){
+    currentBal+=BONUS;
+    fundHistory.unshift({type:`Bonus ${BONUS} UGX Added by Admin`,amount:BONUS,time:new Date().toLocaleString()});
+    alert(`Bonus ${BONUS} added! New balance UGX ${currentBal.toLocaleString()}`);
+  }
+  localStorage.setItem('ezol_bal', currentBal);
+  localStorage.setItem('ezol_recharge', currentRecharge);
+  localStorage.setItem('ezol_fund_history', JSON.stringify(fundHistory));
+  loadStats(); loadRecharges(); loadUsers();
 }
-async function approveWithdraw(id, userId){
-  if(!confirm('Confirm you sent money via MTN?')) return;
-  await db.collection('withdrawals').doc(id).update({status:'Completed', time:new Date().toLocaleString()+' - Paid'});
-  alert('Marked Completed!');
-}
-async function rejectWithdraw(id, userId, amount){
-  if(!confirm(`Reject and refund UGX ${amount.toLocaleString()}?`)) return;
-  await db.collection('users').doc(userId).update({balance:firebase.firestore.FieldValue.increment(amount)});
-  await db.collection('withdrawals').doc(id).delete();
-  alert('Refunded!');
-}
-async function manualAdd(userId, amt){
-  amt=parseInt(amt); if(!amt) return alert('Enter amount');
-  await db.collection('users').doc(userId).update({balance:firebase.firestore.FieldValue.increment(amt), totalRecharge:firebase.firestore.FieldValue.increment(amt)});
-  alert('Added UGX '+amt.toLocaleString());
+
+function resetTo500(){
+  if(!confirm(`Reset this device to ${BONUS} UGX bonus?\nThis will clear old 10k/71k bug.`)) return;
+  localStorage.setItem('ezol_bal', BONUS);
+  localStorage.setItem('ezol_income', BONUS);
+  localStorage.setItem('ezol_recharge', '0');
+  localStorage.setItem('ezol_withdraw', '0');
+  localStorage.setItem('ezol_fund_history', JSON.stringify([{type:"Welcome Bonus "+BONUS+" UGX",amount:BONUS,time:new Date().toLocaleString()}]));
+  alert(`Reset to ${BONUS} UGX done! Reload main app.`);
+  loadStats();
 }
 </script>
-</body></html>
+</body>
+</html>
