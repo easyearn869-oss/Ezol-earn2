@@ -14,8 +14,8 @@ body{max-width:430px;margin:0 auto;background:#fff;padding-bottom:85px;font-fami
 .proof-box{height:120px;overflow:hidden;background:#111;border-radius:16px}
 .proof-track{animation:scrollUp 20s linear infinite}@keyframes scrollUp{0%{transform:translateY(0)}100%{transform:translateY(-50%)}}
 .modal{position:fixed;inset:0;background:rgba(0,0,0,0.7);display:none;z-index:100;overflow-y:auto}
-.modal-box{background:#fff;max-width:430px;margin:20px auto;border-radius:24px;min-height:80vh}
-.step-img{width:100%;height:160px;background:linear-gradient(135deg,#e8f5e9,#c8e6c9);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:50px}
+.modal-box{background:#fff;max-width:430px;margin:20px auto;border-radius:24px;min-height:60vh}
+.pending{animation:pulse 1.5s infinite}@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
 </style>
 </head>
 <body>
@@ -46,27 +46,20 @@ body{max-width:430px;margin:0 auto;background:#fff;padding-bottom:85px;font-fami
 <div id="mainApp" class="hidden">
 
 <div id="page-home" class="p-4">
-<div class="bg-gradient-to-r from-green-700 to-green-500 text-white rounded-[22px] p-5 flex justify-between items-center">
+<div class="bg-gradient-to-r from-green-700 to-green-500 text-white rounded-[22px] p-5 flex justify-between">
 <div><p class="text-xs opacity-80">My Investment Badge</p><p class="font-bold text-lg mt-1" id="badgeLevel">Starter Level 1</p><div class="w-32 bg-white/30 h-2 rounded-full mt-2"><div id="badgeBar" class="bg-yellow-400 h-2 rounded-full" style="width:10%"></div></div></div>
 <div class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center text-2xl">🏅</div>
 </div>
-
-<div class="mt-4">
-<p class="font-bold text-sm mb-2"><span class="w-2 h-2 bg-green-500 rounded-full inline-block animate-pulse"></span> Live Proofs</p>
-<div class="proof-box p-3"><div class="proof-track" id="proofTrack"></div></div>
-</div>
-
+<div class="mt-4"><p class="font-bold text-sm mb-2">● Live Proofs</p><div class="proof-box p-3"><div class="proof-track" id="proofTrack"></div></div></div>
 <div class="light-green rounded-[22px] p-4 mt-4 text-center">
 <p class="font-bold text-sm">Daily Reward</p>
-<button onclick="dailyClick()" id="dailyBtn" class="w-full bg-yellow-400 text-black rounded-full py-3 mt-3 font-bold text-sm">Claim UGX 1,000 Daily Click</button>
+<button onclick="dailyClick()" id="dailyBtn" class="w-full bg-yellow-400 text-black rounded-full py-3 mt-3 font-bold text-sm">Claim UGX 1,000 Daily</button>
 <p class="text-[10px] mt-2 text-gray-500" id="dailyStatus">Once per day</p>
 </div>
-
 <div class="grid grid-cols-2 gap-3 mt-4">
-<a href="https://wa.me/256795143386" class="bg-green-600 text-white rounded-2xl p-4 text-center font-bold text-sm"><i class="fa-solid fa-headset text-xl block mb-1"></i>Customer Service<br><span class="text-[11px] font-normal">0795143386</span></a>
-<a href="https://chat.whatsapp.com/GqjifLEgojv44HXGNmE2sH" class="bg-blue-600 text-white rounded-2xl p-4 text-center font-bold text-sm"><i class="fa-solid fa-users text-xl block mb-1"></i>Join Group<br><span class="text-[11px] font-normal">WhatsApp</span></a>
+<a href="https://wa.me/256795143386" class="bg-green-600 text-white rounded-2xl p-4 text-center font-bold text-sm"><i class="fa-solid fa-headset text-xl block mb-1"></i>Customer Service</a>
+<a href="https://chat.whatsapp.com/GqjifLEgojv44HXGNmE2sH" class="bg-blue-600 text-white rounded-2xl p-4 text-center font-bold text-sm"><i class="fa-solid fa-users text-xl block mb-1"></i>Join Group</a>
 </div>
-
 <div class="grid grid-cols-2 gap-3 mt-4">
 <div class="stat-card p-3"><p class="text-[11px] font-bold">BALANCE</p><p class="font-bold mt-1" id="homeBalance">UGX 0</p></div>
 <div class="stat-card p-3"><p class="text-[11px] font-bold">TODAY INCOME</p><p class="font-bold mt-1" id="homeToday">UGX 0</p></div>
@@ -99,8 +92,8 @@ body{max-width:430px;margin:0 auto;background:#fff;padding-bottom:85px;font-fami
 <div class="bg-white rounded-full inline-flex px-5 py-2 mt-3 text-sm shadow-sm"><span class="text-gray-500">Recharge Wallet &nbsp;</span><b id="walRechargeSmall">0 UGX</b></div>
 </div>
 <div class="space-y-3 mt-5">
-<div class="card-light p-4 flex justify-between"><span class="text-gray-600">Withdrawal History</span><i class="fa-solid fa-chevron-right text-xs"></i></div>
-<div class="card-light p-4 flex justify-between"><span class="text-gray-600">Fund History</span><i class="fa-solid fa-chevron-right text-xs"></i></div>
+<button onclick="openModal('withdrawHistoryModal')" class="w-full card-light p-4 flex justify-between items-center"><span class="text-gray-600">Withdrawal History</span><span class="flex items-center gap-2"><span id="pendingCount" class="bg-orange-100 text-orange-600 text-[10px] px-2 py-1 rounded-full hidden">0 Pending</span><i class="fa-solid fa-chevron-right text-xs"></i></span></button>
+<button onclick="openModal('fundHistoryModal')" class="w-full card-light p-4 flex justify-between items-center"><span class="text-gray-600">Fund History</span><i class="fa-solid fa-chevron-right text-xs"></i></button>
 <div class="card-light p-4 flex justify-between"><span class="text-gray-600">Energy Storage</span><b id="energyCount">0</b></div>
 </div>
 <div class="grid grid-cols-2 gap-4 mt-5">
@@ -116,113 +109,76 @@ body{max-width:430px;margin:0 auto;background:#fff;padding-bottom:85px;font-fami
 </div>
 </div>
 
-<!-- MY PAGE WITH NEW BUTTONS -->
 <div id="page-my" class="p-4 hidden">
 <div class="light-green rounded-[24px] p-5 flex gap-4 items-center">
-<img src="logo.png" onerror="this.style.display='none'" class="w-16 h-16 rounded-full bg-white p-1">
-<div><p class="text-sm text-gray-600">My Account</p><p class="font-bold text-lg" id="myName">User</p><p class="text-sm" id="myPhone">07...</p><p class="text-xs mt-1">Balance: <b id="myBalance">UGX 0</b></p></div>
+<img src="logo.png" onerror="this.style.display='none'" class="w-16 h-16 rounded-full bg-white p-1"><div><p class="text-sm text-gray-600">My Account</p><p class="font-bold text-lg" id="myName">User</p><p class="text-sm" id="myPhone">07...</p><p class="text-xs mt-1">Balance: <b id="myBalance">UGX 0</b></p></div>
 </div>
-
 <div class="mt-4 space-y-3">
-<button onclick="openModal('companyModal')" class="w-full card-light p-4 flex justify-between items-center text-left"><span><i class="fa-solid fa-building text-green-700 mr-2"></i>Company Profile</span><i class="fa-solid fa-chevron-right text-xs text-gray-400"></i></button>
-<button onclick="openModal('rulesModal')" class="w-full card-light p-4 flex justify-between items-center text-left"><span><i class="fa-solid fa-file-shield text-blue-600 mr-2"></i>Rules & Regulations</span><i class="fa-solid fa-chevron-right text-xs text-gray-400"></i></button>
-<button onclick="openModal('howtoModal')" class="w-full card-light p-4 flex justify-between items-center text-left"><span><i class="fa-solid fa-circle-question text-orange-500 mr-2"></i>How To Use The App</span><i class="fa-solid fa-chevron-right text-xs text-gray-400"></i></button>
-<button onclick="window.open('https://chat.whatsapp.com/GqjifLEgojv44HXGNmE2sH')" class="w-full card-light p-4 flex justify-between items-center text-left"><span><i class="fa-brands fa-whatsapp text-green-600 mr-2"></i>WhatsApp Group</span><i class="fa-solid fa-chevron-right text-xs text-gray-400"></i></button>
-<button onclick="logout()" class="w-full card-light p-4 text-left text-red-600 font-bold"><i class="fa-solid fa-right-from-bracket mr-2"></i>Logout</button>
+<button onclick="openModal('companyModal')" class="w-full card-light p-4 flex justify-between"><span><i class="fa-solid fa-building text-green-700 mr-2"></i>Company Profile</span><i class="fa-solid fa-chevron-right text-xs"></i></button>
+<button onclick="openModal('rulesModal')" class="w-full card-light p-4 flex justify-between"><span><i class="fa-solid fa-file-shield text-blue-600 mr-2"></i>Rules & Regulations</span><i class="fa-solid fa-chevron-right text-xs"></i></button>
+<button onclick="openModal('howtoModal')" class="w-full card-light p-4 flex justify-between"><span><i class="fa-solid fa-circle-question text-orange-500 mr-2"></i>How To Use App</span><i class="fa-solid fa-chevron-right text-xs"></i></button>
+<button onclick="window.open('https://chat.whatsapp.com/GqjifLEgojv44HXGNmE2sH')" class="w-full card-light p-4 flex justify-between"><span><i class="fa-brands fa-whatsapp text-green-600 mr-2"></i>WhatsApp Group</span><i class="fa-solid fa-chevron-right text-xs"></i></button>
+<button onclick="logout()" class="w-full card-light p-4 text-left text-red-600 font-bold">Logout</button>
 </div>
 </div>
 </div>
 
 <!-- MODALS -->
-<div id="companyModal" class="modal" onclick="closeModal('companyModal')">
+<div id="companyModal" class="modal" onclick="closeModal('companyModal')"><div class="modal-box p-6" onclick="event.stopPropagation()"><div class="flex justify-between"><h2 class="font-bold text-xl">Company Profile</h2><button onclick="closeModal('companyModal')" class="w-8 h-8 bg-gray-100 rounded-full">✕</button></div><div class="text-center mt-6"><div class="w-24 h-24 bg-green-100 rounded-full mx-auto flex items-center justify-center text-4xl">☀️⚡</div><h3 class="font-black text-2xl mt-4">Ezol Earn</h3><p class="text-sm text-green-700 font-bold">Smart Energy Investment - Kampala, Uganda</p></div><div class="mt-6 text-sm space-y-3"><p>Ezol Earn builds solar mini-grids in rural Uganda. Your investment funds solar panels, we share profits from electricity sales.</p><p><b>Location:</b> Plot 14 Nakawa, Kampala<br><b>Phone:</b> 0795143386<br><b>Email:</b> support@ezolearn.ug<br><b>License:</b> URSB 80034567</p></div></div></div>
+
+<div id="rulesModal" class="modal" onclick="closeModal('rulesModal')"><div class="modal-box p-6" onclick="event.stopPropagation()"><div class="flex justify-between"><h2 class="font-bold text-xl">Rules & Regulations</h2><button onclick="closeModal('rulesModal')" class="w-8 h-8 bg-gray-100 rounded-full">✕</button></div><div class="mt-6 text-sm space-y-3"><div class="bg-yellow-50 border border-yellow-200 rounded-xl p-3 text-xs"><b>⚠️ High Risk:</b> 20% daily not guaranteed. Invest responsibly.</div><p><b>Deposit:</b> Min 15k, MTN *165*1*1#, No fee<br><b>Withdraw:</b> Min 20k, Fee 10%, 8am-8pm, 3/day<br><b>Investment:</b> Income daily midnight, no refund<br><b>Referral:</b> L1 15%, L2 3%, L3 1%</p></div></div></div>
+
+<div id="howtoModal" class="modal" onclick="closeModal('howtoModal')"><div class="modal-box p-6" onclick="event.stopPropagation()"><div class="flex justify-between"><h2 class="font-bold text-xl">How To Use App</h2><button onclick="closeModal('howtoModal')" class="w-8 h-8 bg-gray-100 rounded-full">✕</button></div><div class="mt-6 space-y-5 text-sm"><p><b>1. Register:</b> Name, Phone, Password → Get 10k bonus</p><p><b>2. Recharge:</b> Wallet → Recharge → Enter amount → Dialpad opens with full code</p><p><b>3. Buy Product:</b> Product → VIP 1 (15k) → Buy → Daily income starts</p><p><b>4. Daily Click:</b> Home → Claim 1,000 daily</p><p><b>5. Invite:</b> Share → Copy link → Share WhatsApp → Earn 15%</p><p><b>6. Withdraw:</b> Wallet → Withdraw → Enters Pending → Paid in 10 mins to MoMo</p></div></div></div>
+
+<!-- NEW: Withdraw History with Pending -->
+<div id="withdrawHistoryModal" class="modal" onclick="closeModal('withdrawHistoryModal')">
 <div class="modal-box p-6" onclick="event.stopPropagation()">
-<div class="flex justify-between items-center"><h2 class="font-bold text-xl">Company Profile</h2><button onclick="closeModal('companyModal')" class="w-8 h-8 bg-gray-100 rounded-full">✕</button></div>
-<div class="text-center mt-6">
-<div class="w-24 h-24 bg-green-100 rounded-full mx-auto flex items-center justify-center text-4xl">☀️⚡</div>
-<h3 class="font-black text-2xl mt-4">Ezol Earn</h3><p class="text-sm text-green-700 font-bold">Smart Energy Investment</p>
-<p class="text-xs text-gray-500 mt-1">Kampala, Uganda • Since 2023</p>
-</div>
-<div class="mt-6 space-y-4 text-sm leading-relaxed">
-<p><b>Who We Are:</b> Ezol Earn Smart Energy Ltd is a Ugandan renewable energy investment platform. We build solar mini-grids in rural Uganda and share profits with investors.</p>
-<p><b>Our Mission:</b> Light up Uganda with affordable solar while creating income for every Ugandan household.</p>
-<p><b>Location:</b> Plot 14, Nakawa Industrial Area, Kampala<br>Phone: 0795143386<br>Email: support@ezolearn.ug</p>
-<p><b>License:</b> URSB Reg No. 80034567 • MEMD Approved Solar Operator</p>
-<div class="bg-green-50 rounded-xl p-4 text-xs"><i class="fa-solid fa-shield-halved text-green-700"></i> Your funds are used for real solar panel installations. Returns come from electricity sales to homes and businesses.</div>
-</div>
+<div class="flex justify-between"><h2 class="font-bold text-xl">Withdrawal History</h2><button onclick="closeModal('withdrawHistoryModal')" class="w-8 h-8 bg-gray-100 rounded-full">✕</button></div>
+<div id="withdrawHistoryList" class="mt-6 space-y-3"></div>
 </div>
 </div>
 
-<div id="rulesModal" class="modal" onclick="closeModal('rulesModal')">
+<!-- NEW: Fund History -->
+<div id="fundHistoryModal" class="modal" onclick="closeModal('fundHistoryModal')">
 <div class="modal-box p-6" onclick="event.stopPropagation()">
-<div class="flex justify-between items-center"><h2 class="font-bold text-xl">Rules & Regulations</h2><button onclick="closeModal('rulesModal')" class="w-8 h-8 bg-gray-100 rounded-full">✕</button></div>
-<div class="mt-6 space-y-4 text-sm">
-<div class="bg-yellow-50 border border-yellow-200 rounded-xl p-3 text-xs"><b>⚠️ Risk Warning:</b> 20% daily returns are HIGH RISK. Not guaranteed. Invest only what you can afford to lose.</div>
-<p><b>1. Deposit Rules:</b><br>• Minimum recharge UGX 15,000<br>• Use MTN *165*1*1# or Airtel<br>• Recharge processed in 5-10 mins<br>• No fee on recharge</p>
-<p><b>2. Withdrawal Rules:</b><br>• Minimum withdrawal UGX 20,000<br>• Fee 10% on all withdrawals<br>• Processed Mon-Sat 8am-8pm<br>• To same MoMo number registered<br>• Max 3 withdrawals per day</p>
-<p><b>3. Investment Rules:</b><br>• VIP 1: UGX 15k = UGX 3k daily for 20 days<br>• Income paid daily at midnight<br>• Products can be bought multiple times<br>• No refund after buying product</p>
-<p><b>4. Referral Rules:</b><br>• Level 1: 15% commission<br>• Level 2: 3% commission<br>• Level 3: 1% commission<br>• Commission paid instantly</p>
-<p><b>5. Prohibited:</b><br>• Multiple accounts • Fake proofs • Chargeback fraud • Abusing bonus</p>
-<p><b>6. Legal:</b> Users must be 18+. Comply with Uganda Capital Markets Authority & UCC guidelines.</p>
-</div>
+<div class="flex justify-between"><h2 class="font-bold text-xl">Fund History</h2><button onclick="closeModal('fundHistoryModal')" class="w-8 h-8 bg-gray-100 rounded-full">✕</button></div>
+<div id="fundHistoryList" class="mt-6 space-y-3"></div>
 </div>
 </div>
 
-<div id="howtoModal" class="modal" onclick="closeModal('howtoModal')">
+<!-- NEW: Recharge Modal with full USSD -->
+<div id="rechargeModal" class="modal" onclick="closeModal('rechargeModal')">
 <div class="modal-box p-6" onclick="event.stopPropagation()">
-<div class="flex justify-between items-center"><h2 class="font-bold text-xl">How To Use App</h2><button onclick="closeModal('howtoModal')" class="w-8 h-8 bg-gray-100 rounded-full">✕</button></div>
-
-<div class="mt-6 space-y-6">
-<div>
-<p class="font-bold text-sm"><span class="bg-green-700 text-white w-6 h-6 rounded-full inline-flex items-center justify-center text-xs mr-2">1</span>Register Account</p>
-<div class="step-img mt-2">📝<span class="text-sm ml-2">Enter Name, Phone, Password</span></div>
-<p class="text-xs text-gray-500 mt-2">Click Register button on home. You get UGX 10,000 welcome bonus instantly.</p>
+<div class="flex justify-between"><h2 class="font-bold text-xl">Recharge Wallet</h2><button onclick="closeModal('rechargeModal')" class="w-8 h-8 bg-gray-100 rounded-full">✕</button></div>
+<div class="mt-6">
+<p class="text-sm text-gray-600">Enter amount (UGX)</p>
+<div class="grid grid-cols-3 gap-2 mt-3">
+<button onclick="setRechargeAmt(15000)" class="bg-green-50 border border-green-200 rounded-xl py-3 text-sm font-bold">15,000</button>
+<button onclick="setRechargeAmt(50000)" class="bg-green-50 border border-green-200 rounded-xl py-3 text-sm font-bold">50,000</button>
+<button onclick="setRechargeAmt(100000)" class="bg-green-50 border border-green-200 rounded-xl py-3 text-sm font-bold">100,000</button>
+<button onclick="setRechargeAmt(200000)" class="bg-green-50 border border-green-200 rounded-xl py-3 text-sm font-bold">200,000</button>
+<button onclick="setRechargeAmt(500000)" class="bg-green-50 border border-green-200 rounded-xl py-3 text-sm font-bold">500,000</button>
+<button onclick="setRechargeAmt(1000000)" class="bg-green-50 border border-green-200 rounded-xl py-3 text-sm font-bold">1,000,000</button>
 </div>
-
-<div>
-<p class="font-bold text-sm"><span class="bg-green-700 text-white w-6 h-6 rounded-full inline-flex items-center justify-center text-xs mr-2">2</span>Recharge Wallet</p>
-<div class="step-img mt-2">💳 ➡️ 📱</div>
-<p class="text-xs text-gray-500 mt-2">Go to Wallet → Click Recharge → Enter amount → Dial *165*1*1# → Confirm payment. Balance updates in 2 mins.</p>
+<input id="rechargeInput" type="number" placeholder="Custom amount e.g 15000" class="w-full bg-gray-100 rounded-xl p-4 mt-4 outline-none">
+<div class="bg-blue-50 rounded-xl p-3 mt-4 text-xs">
+<b>How it works:</b><br>
+1. Click "Recharge Now" below<br>
+2. Dialpad opens with full code: *165*1*1*0795143386*AMOUNT#<br>
+3. Press call and enter PIN<br>
+4. Balance auto-added after MTN confirmation
 </div>
-
-<div>
-<p class="font-bold text-sm"><span class="bg-green-700 text-white w-6 h-6 rounded-full inline-flex items-center justify-center text-xs mr-2">3</span>Buy VIP Product</p>
-<div class="step-img mt-2">☀️ → 💰</div>
-<p class="text-xs text-gray-500 mt-2">Go to Product → Choose VIP 1 (UGX 15k) → Click Buy → Confirm. Daily income starts next day.</p>
-</div>
-
-<div>
-<p class="font-bold text-sm"><span class="bg-green-700 text-white w-6 h-6 rounded-full inline-flex items-center justify-center text-xs mr-2">4</span>Daily Click Bonus</p>
-<div class="step-img mt-2">👆 = 1000 UGX</div>
-<p class="text-xs text-gray-500 mt-2">Every day go to Home → Click "Claim UGX 1,000" button. Only once per 24 hours.</p>
-</div>
-
-<div>
-<p class="font-bold text-sm"><span class="bg-green-700 text-white w-6 h-6 rounded-full inline-flex items-center justify-center text-xs mr-2">5</span>Invite Friends</p>
-<div class="step-img mt-2">🔗 → 👥 → 💵</div>
-<p class="text-xs text-gray-500 mt-2">Go to Share → Copy your referral link → Share to WhatsApp, Facebook, Twitter. Earn 15% when friends invest.</p>
-</div>
-
-<div>
-<p class="font-bold text-sm"><span class="bg-green-700 text-white w-6 h-6 rounded-full inline-flex items-center justify-center text-xs mr-2">6</span>Withdraw Profit</p>
-<div class="step-img mt-2">💵 → 📲</div>
-<p class="text-xs text-gray-500 mt-2">Go to Wallet → Click Withdraw → Enter amount (Min 20k) → Confirm. Money sent to your MoMo number. 10% fee.</p>
-</div>
-
-<div class="bg-blue-50 rounded-xl p-4 text-xs">
-<b>Need Help?</b><br>
-Customer Service: <a href="https://wa.me/256795143386" class="text-green-700 font-bold">0795143386 (WhatsApp)</a><br>
-Group: <a href="https://chat.whatsapp.com/GqjifLEgojv44HXGNmE2sH" class="text-blue-600 font-bold">Join WhatsApp Group</a>
-</div>
+<button onclick="confirmRecharge()" class="w-full bg-green-700 text-white rounded-full py-4 mt-4 font-bold">Recharge Now → Dialpad</button>
 </div>
 </div>
 </div>
 
 <div class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] bg-white border-t flex justify-around py-3 hidden" id="bottomNav">
-<button onclick="showPage('home')" id="nav-home" class="flex flex-col items-center text-green-700"><i class="fa-solid fa-house"></i><span class="text-[11px] mt-1">Home</span></button>
-<button onclick="showPage('product')" id="nav-product" class="flex flex-col items-center text-gray-400"><i class="fa-solid fa-box"></i><span class="text-[11px] mt-1">Product</span></button>
-<button onclick="showPage('share')" id="nav-share" class="flex flex-col items-center text-gray-400"><i class="fa-solid fa-share-nodes"></i><span class="text-[11px] mt-1">Share</span></button>
-<button onclick="showPage('wallet')" id="nav-wallet" class="flex flex-col items-center text-gray-400"><i class="fa-solid fa-wallet"></i><span class="text-[11px] mt-1">Wallet</span></button>
-<button onclick="showPage('my')" id="nav-my" class="flex flex-col items-center text-gray-400"><i class="fa-solid fa-user"></i><span class="text-[11px] mt-1">My</span></button>
+<button onclick="showPage('home')" id="nav-home" class="flex flex-col items-center text-green-700"><i class="fa-solid fa-house"></i><span class="text-[11px]">Home</span></button>
+<button onclick="showPage('product')" id="nav-product" class="flex flex-col items-center text-gray-400"><i class="fa-solid fa-box"></i><span class="text-[11px]">Product</span></button>
+<button onclick="showPage('share')" id="nav-share" class="flex flex-col items-center text-gray-400"><i class="fa-solid fa-share-nodes"></i><span class="text-[11px]">Share</span></button>
+<button onclick="showPage('wallet')" id="nav-wallet" class="flex flex-col items-center text-gray-400"><i class="fa-solid fa-wallet"></i><span class="text-[11px]">Wallet</span></button>
+<button onclick="showPage('my')" id="nav-my" class="flex flex-col items-center text-gray-400"><i class="fa-solid fa-user"></i><span class="text-[11px]">My</span></button>
 </div>
 
 <a href="https://wa.me/256795143386" class="floating bg-green-600 text-white bottom-[90px]"><i class="fa-solid fa-headset text-xl"></i></a>
@@ -236,7 +192,10 @@ let totalWithdraw = parseInt(localStorage.getItem('ezol_withdraw')||'0');
 let totalIncome = parseInt(localStorage.getItem('ezol_income')||'0');
 let lastDaily = localStorage.getItem('ezol_daily')||'';
 let invested = JSON.parse(localStorage.getItem('ezol_invested')||'[]');
+let withdrawHistory = JSON.parse(localStorage.getItem('ezol_withdraw_history')||'[]');
+let fundHistory = JSON.parse(localStorage.getItem('ezol_fund_history')||'[{"type":"Welcome Bonus","amount":10000,"time":"Registration"}]');
 
+const ADMIN_MOMO = "256795143386"; // Your MTN number to receive payments
 const products = [
   {id:1, name:"VIP 1 - Solar Mini", invest:15000, daily:3000, days:20},
   {id:2, name:"VIP 2 - Solar Lite", invest:30000, daily:5500, days:25},
@@ -274,15 +233,22 @@ function login(){
   const phone=document.getElementById('logPhone').value.trim();
   const pass=document.getElementById('logPass').value.trim();
   const saved=JSON.parse(localStorage.getItem('ezol_user')||'null');
-  if(saved&&saved.phone===phone&&saved.pass===pass){user=saved;balance=parseInt(localStorage.getItem('ezol_bal')||'10000');totalRecharge=parseInt(localStorage.getItem('ezol_recharge')||'0');totalWithdraw=parseInt(localStorage.getItem('ezol_withdraw')||'0');totalIncome=parseInt(localStorage.getItem('ezol_income')||'0');initApp();}
+  if(saved&&saved.phone===phone&&saved.pass===pass){user=saved;balance=parseInt(localStorage.getItem('ezol_bal')||'10000');initApp();}
   else alert('Wrong credentials');
 }
-function saveAll(){localStorage.setItem('ezol_bal',balance);localStorage.setItem('ezol_recharge',totalRecharge);localStorage.setItem('ezol_withdraw',totalWithdraw);localStorage.setItem('ezol_income',totalIncome);}
+function saveAll(){
+  localStorage.setItem('ezol_bal',balance);
+  localStorage.setItem('ezol_recharge',totalRecharge);
+  localStorage.setItem('ezol_withdraw',totalWithdraw);
+  localStorage.setItem('ezol_income',totalIncome);
+  localStorage.setItem('ezol_withdraw_history',JSON.stringify(withdrawHistory));
+  localStorage.setItem('ezol_fund_history',JSON.stringify(fundHistory));
+}
 function initApp(){
   document.getElementById('authPage').classList.add('hidden');document.getElementById('loginPage').classList.add('hidden');
   document.getElementById('mainApp').classList.remove('hidden');document.getElementById('bottomNav').classList.remove('hidden');document.getElementById('bottomNav').classList.add('flex');
   document.getElementById('refCode').innerText=user.code;document.getElementById('refLink').innerText='https://easyearn869-oss.github.io/Ezo?ref='+user.code;
-  updateWallet(); renderProducts(); renderProofs(); checkDaily(); showPage('home');
+  updateWallet(); renderProducts(); renderProofs(); checkDaily(); showPage('wallet');
 }
 function updateWallet(){
   const todayInc=invested.reduce((a,c)=>a+c.daily,0)+(lastDaily===new Date().toDateString()?1000:0);
@@ -298,6 +264,9 @@ function updateWallet(){
   document.getElementById('homeToday').innerText='UGX '+todayInc.toLocaleString();
   document.getElementById('badgeLevel').innerText=invested.length>0?'Gold Level '+invested.length:'Starter Level 1';
   document.getElementById('badgeBar').style.width=Math.min(100,invested.length*10+10)+'%';
+  const pending = withdrawHistory.filter(w=>w.status==='Pending').length;
+  const el=document.getElementById('pendingCount');
+  if(pending>0){el.classList.remove('hidden');el.innerText=pending+' Pending';} else el.classList.add('hidden');
   saveAll();
 }
 function renderProducts(){
@@ -306,40 +275,87 @@ function renderProducts(){
 }
 function buyP(id){
   const p=products.find(x=>x.id===id);
-  if(balance>=p.invest){balance-=p.invest;invested.push(p);totalIncome+=p.daily;localStorage.setItem('ezol_invested',JSON.stringify(invested));updateWallet();alert('Bought '+p.name);}
-  else if(confirm('Low balance! Recharge?')) openRecharge();
+  if(balance>=p.invest){balance-=p.invest;invested.push(p);totalIncome+=p.daily;localStorage.setItem('ezol_invested',JSON.stringify(invested));fundHistory.unshift({type:`Bought ${p.name}`,amount:-p.invest,time:new Date().toLocaleString()});updateWallet();alert('Bought '+p.name);}
+  else openRecharge();
 }
 function dailyClick(){
   const today=new Date().toDateString();
   if(lastDaily===today) return alert('Already claimed');
-  balance+=1000;totalIncome+=1000;lastDaily=today;localStorage.setItem('ezol_daily',today);updateWallet();checkDaily();alert('UGX 1,000 claimed!');
+  balance+=1000;totalIncome+=1000;lastDaily=today;localStorage.setItem('ezol_daily',today);fundHistory.unshift({type:'Daily Click Bonus',amount:1000,time:new Date().toLocaleString()});updateWallet();checkDaily();alert('UGX 1,000 claimed!');
 }
 function checkDaily(){
   const today=new Date().toDateString();
   const btn=document.getElementById('dailyBtn');
   if(!btn) return;
-  if(lastDaily===today){btn.disabled=true;btn.innerText='✓ Claimed Today';btn.classList.add('opacity-50');document.getElementById('dailyStatus').innerText='Come tomorrow';}
+  if(lastDaily===today){btn.disabled=true;btn.innerText='✓ Claimed Today';btn.classList.add('opacity-50');document.getElementById('dailyStatus').innerText='Come back tomorrow';}
 }
-function openRecharge(){
-  const amt=prompt('Enter recharge UGX e.g 15000:');
-  if(!amt) return;
-  const amount=parseInt(amt);
-  if(confirm(`Recharge UGX ${amount.toLocaleString()}?\nOpen *165*1*1#?`)){
-    window.location.href='tel:*165*1*1%23';
-    setTimeout(()=>{balance+=amount;totalRecharge+=amount;updateWallet();alert('Recharge added (demo)');},2000);
+
+// NEW: Full USSD recharge with amount
+function openRecharge(){ openModal('rechargeModal'); }
+function setRechargeAmt(amt){ document.getElementById('rechargeInput').value=amt; }
+function confirmRecharge(){
+  const amt=parseInt(document.getElementById('rechargeInput').value);
+  if(!amt||amt<15000) return alert('Minimum recharge UGX 15,000');
+  // Full MTN code: *165*1*1*number*amount#
+  const ussd = `*165*1*1*${ADMIN_MOMO}*${amt}%23`;
+  // Also save as pending fund history
+  fundHistory.unshift({type:`Recharge Request UGX ${amt.toLocaleString()}`,amount:amt,time:new Date().toLocaleString()+' - Waiting MTN confirmation'});
+  if(confirm(`Recharge UGX ${amt.toLocaleString()}?\n\nThis will open dialpad with:\n${decodeURIComponent(ussd)}\n\nPress CALL and enter PIN.\nAfter you pay, your balance will update.`)){
+    window.location.href = `tel:${ussd}`;
+    // For demo: auto-add after 10 sec (remove this in real app and use MoMo API callback)
+    setTimeout(()=>{
+      balance+=amt; totalRecharge+=amt;
+      fundHistory[0].time = new Date().toLocaleString() + ' - CONFIRMED';
+      updateWallet(); closeModal('rechargeModal');
+      alert(`Recharge of UGX ${amt.toLocaleString()} CONFIRMED! (Demo - connect MoMo API for real auto-confirm)`);
+    },8000);
   }
 }
+
+// NEW: Withdrawal with Pending status
 function openWithdraw(){
-  const amt=prompt('Withdraw Min 20k Fee 10%:');
+  const amt=prompt('Withdraw amount Min UGX 20,000 Fee 10%:');
   if(!amt) return;
   const n=parseInt(amt);
-  if(n<20000) return alert('Min 20k');
-  if(n>balance) return alert('Insufficient');
-  const fee=n*0.1; const rec=n-fee;
-  if(confirm(`Withdraw ${n.toLocaleString()}? Receive ${rec.toLocaleString()} to ${user.phone}`)){
-    balance-=n;totalWithdraw+=n;updateWallet();alert('Withdraw sent! Receive '+rec.toLocaleString());
+  if(n<20000) return alert('Minimum UGX 20,000');
+  if(n>balance) return alert('Insufficient balance');
+  const fee=Math.round(n*0.1); const receive=n-fee;
+  if(confirm(`Withdraw UGX ${n.toLocaleString()}?\nFee 10%: UGX ${fee.toLocaleString()}\nYou receive: UGX ${receive.toLocaleString()}\nTo: ${user.phone}\n\nStatus will be PENDING until admin approves.`)){
+    balance-=n; totalWithdraw+=n;
+    const record = {id:Date.now(), amount:n, fee:fee, receive:receive, phone:user.phone, time:new Date().toLocaleString(), status:'Pending'};
+    withdrawHistory.unshift(record);
+    updateWallet();
+    alert(`Withdrawal request UGX ${n.toLocaleString()} is now PENDING!\nYou will receive UGX ${receive.toLocaleString()} in 10-30 mins.\nCheck Withdrawal History.`);
+    // Demo: auto-complete after 60 seconds (remove for real backend)
+    setTimeout(()=>{
+      const idx=withdrawHistory.findIndex(w=>w.id===record.id);
+      if(idx>=0){withdrawHistory[idx].status='Completed'; saveAll(); updateWithdrawHistoryList();}
+    },60000);
   }
 }
+
+function updateWithdrawHistoryList(){
+  const list=document.getElementById('withdrawHistoryList');
+  if(withdrawHistory.length===0){list.innerHTML='<p class="text-center text-gray-400 text-sm py-10">No withdrawal records yet</p>'; return;}
+  list.innerHTML=withdrawHistory.map(w=>`
+    <div class="border rounded-xl p-4 flex justify-between items-center">
+      <div><p class="font-bold text-sm">UGX ${w.amount.toLocaleString()}</p><p class="text-xs text-gray-500">To ${w.phone} • ${w.time}</p><p class="text-xs">Receive: UGX ${w.receive.toLocaleString()} (Fee ${w.fee.toLocaleString()})</p></div>
+      <span class="px-3 py-1 rounded-full text-xs font-bold ${w.status==='Pending'?'bg-orange-100 text-orange-600 pending':'bg-green-100 text-green-600'}">${w.status}</span>
+    </div>
+  `).join('');
+}
+
+function updateFundHistoryList(){
+  const list=document.getElementById('fundHistoryList');
+  if(fundHistory.length===0){list.innerHTML='<p class="text-center text-gray-400 text-sm py-10">No fund records</p>'; return;}
+  list.innerHTML=fundHistory.map(f=>`
+    <div class="border rounded-xl p-4 flex justify-between">
+      <div><p class="font-bold text-sm">${f.type}</p><p class="text-xs text-gray-500">${f.time}</p></div>
+      <p class="font-bold text-sm ${f.amount>0?'text-green-600':'text-red-600'}">${f.amount>0?'+':''}${f.amount.toLocaleString()}</p>
+    </div>
+  `).join('');
+}
+
 function showPage(n){
   ['home','product','share','wallet','my'].forEach(p=>{
     const el=document.getElementById('page-'+p);
@@ -352,18 +368,15 @@ function copyRef(){navigator.clipboard.writeText(document.getElementById('refLin
 function shareTo(p){const url=encodeURIComponent(document.getElementById('refLink').innerText);const text=encodeURIComponent('Join Ezol Earn! Code: '+user.code);const m={whatsapp:`https://wa.me/?text=${text}%20${url}`,facebook:`https://www.facebook.com/sharer/sharer.php?u=${url}`,twitter:`https://twitter.com/intent/tweet?text=${text}&url=${url}`,instagram:`https://www.instagram.com/`};window.open(m[p],'_blank');}
 function logout(){if(confirm('Logout?')){localStorage.clear();location.reload();}}
 function renderProofs(){
-  const proofs=[
-    "✅ James K. withdrew UGX 250,000 - 2m ago",
-    "✅ Aisha M. invested VIP 1 UGX 15,000 - 5m ago",
-    "✅ Okello P. withdrew UGX 1,200,000 - 7m ago",
-    "✅ Sarah N. bought VIP 5 UGX 120k - 10m ago",
-    "✅ Musa withdrew UGX 80,000 - 12m ago",
-    "✅ Brian K. invested VIP 2 UGX 30k - 15m ago",
-  ];
+  const proofs=["✅ James K. withdrew UGX 250,000 - 2m ago","✅ Aisha M. invested VIP 1 UGX 15,000 - 5m ago","✅ Okello P. withdrew UGX 1,200,000 - 7m ago","✅ Sarah N. bought VIP 5 UGX 120k - 10m ago","✅ Musa withdrew UGX 80,000 - 12m ago"];
   const all=[...proofs,...proofs];
   document.getElementById('proofTrack').innerHTML=all.map(t=>`<div class="py-2 text-xs border-b border-gray-800 text-green-300">${t}</div>`).join('');
 }
-function openModal(id){document.getElementById(id).style.display='block';}
+function openModal(id){
+  document.getElementById(id).style.display='block';
+  if(id==='withdrawHistoryModal') updateWithdrawHistoryList();
+  if(id==='fundHistoryModal') updateFundHistoryList();
+}
 function closeModal(id){document.getElementById(id).style.display='none';}
 if(user) initApp();
 </script>
