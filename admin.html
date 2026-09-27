@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Admin - Ezol Earn</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+</head>
+<body class="bg-gray-100 min-h-screen p-4 max-w-[480px] mx-auto">
+
+<!-- LOGIN -->
+<div id="loginPage" class="mt-20">
+<h1 class="font-black text-3xl text-center">Ezol Admin</h1>
+<p class="text-center text-sm text-gray-500 mt-2">500 Bonus Version</p>
+<input id="adminPass" type="password" placeholder="Password admin123" class="w-full bg-white border rounded-xl p-4 mt-8 outline-none">
+<button onclick="adminLogin()" class="w-full bg-black text-white rounded-full py-4 mt-4 font-bold">Login</button>
+</div>
+
+<!-- PANEL -->
+<div id="adminPanel" class="hidden">
+<div class="flex justify-between items-center mt-4">
+<h1 class="font-black text-xl">Dashboard - <span id="userCount">0 Users</span></h1>
+<button onclick="location.reload()" class="bg-white border rounded-full px-4 py-2 text-xs font-bold">Refresh</button>
+</div>
+
+<div class="grid grid-cols-3 gap-2 mt-5">
+<div class="bg-white rounded-2xl p-3 text-center border"><p class="text-[10px] text-gray-500">TOTAL USERS</p><b id="totalUsers" class="text-lg">0</b></div>
+<div class="bg-white rounded-2xl p-3 text-center border"><p class="text-[10px] text-gray-500">RECHARGE PENDING</p><b id="pendingRe" class="text-lg text-orange-600">0</b></div>
+<div class="bg-white rounded-2xl p-3 text-center border"><p class="text-[10px] text-gray-500">WITHDRAW PENDING</p><b id="pendingW" class="text-lg text-red-600">0</b></div>
+</div>
+
+<!-- INFO FOR 404 FIX -->
+<div class="bg-blue-50 border border-blue-200 rounded-xl p-3 mt-4 text-[11px]">
+<b>Note:</b> If your site shows 404, go to GitHub → Settings → Pages → Source: main branch / root → Save. And rename file to <b>index.html</b> (lowercase)
+</div>
+
+<h2 class="font-bold mt-6 text-sm">● ALL USERS - Unlimited - 500 Bonus</h2>
+<div id="userList" class="space-y-2 mt-3"></div>
+
+<h2 class="font-bold mt-8 text-sm">● RECHARGES PENDING - Approve to Add Balance</h2>
+<div id="rechargeList" class="space-y-2 mt-3"></div>
+
+<h2 class="font-bold mt-8 text-sm">● WITHDRAWALS PENDING - Send via MTN *165*1*1#</h2>
+<div id="withdrawList" class="space-y-2 mt-3"></div>
+
+<div class="h-20"></div>
+</div>
+
+<script>
+// SAME CONFIG AS INDEX.HTML - CHANGE THIS TO YOUR REAL FIREBASE LATER
+const firebaseConfig = {
+  apiKey: "AIzaSyB7jK6hRzXyQwE8fT9lM0nPqRsUvWxYzAbC",
+  authDomain: "ezol-earn-demo.firebaseapp.com",
+  projectId: "ezol-earn-demo",
+};
+let db=null;
+try{ firebase.initializeApp(firebaseConfig); db=firebase.firestore(); }catch(e){ console.log("Firebase not set",e); }
+
+function adminLogin(){
+  if(document.getElementById('adminPass').value==='admin123'){
+    document.getElementById('loginPage').classList.add('hidden');
+    document.getElementById('adminPanel').classList.remove('hidden');
+    loadAll();
+  } else alert('Wrong password - use admin123');
+}
+
+async function loadAll(){
+  if(!db) {
+    document.getElementById('userList').innerHTML='<p class="bg-white rounded-xl p-4 text-xs">Firebase not configured. This admin is for Firebase version.<br>For localStorage v7, users are stored on each phone only.<br>To see all users from all phones, you need Firebase.<br><br>Use the Firebase v10 code I sent earlier.</p>';
+    return;
+  }
+  // USERS
+  const usersSnap = await db.collection('users').get();
+  document.getElementById('userCount').innerText = usersSnap.size + ' Users';
+  document.getElementById('totalUsers').innerText = usersSnap.size;
+  if(usersSnap.empty){
+    document.getElementById('userList').innerHTML='<p class="bg-white rounded-xl p-4 text-center text-gray-400 text-xs">No users yet. Register with 0770000001</p>';
+  } else {
+    document.getElementById('userList').innerHTML = usersSnap.docs.map(doc=>{
+      const u=doc.data();
+      return `<div class="bg-white border rounded-xl p-3 text-xs">
+        <div class="flex justify-between"><b>${u.name}</b><span class="text-gray-500">${u.time||''}</span></div>
+        <p class="mt-1">Phone: <b>${u.phone}</b> | Pass: <b class="text-red-600">${u.pass}</b></p>
+        <p>Balance: <b>UGX ${(u.balance||0).toLocaleString()}</b> | Code: ${u.code} | Bonus: 500</p>
+        <p>Recharge: ${(u.totalRecharge||0).toLocaleString()} | Withdraw: ${(u.totalWithdraw||0).toLocaleString()} | Invested: ${(u.invested||[]).length}</p>
+        <div class="flex gap-2 mt-2">
+          <button onclick="deleteUser('${doc.id}')" class="bg-red-600 text-white rounded-full px-3 py-1 text-[11px]">Delete</button>
+          <button onclick="addBonus('${doc.id}')" class="bg-green-600 text-white rounded-full px-3 py-1 text-[11px]">+500 Bonus</button>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  // RECHARGES
+  const reSnap = await db.collection('recharges').where('status','==','Pending').get();
+  document.getElementById('pendingRe').innerText = reSnap.size;
+  document.getElementById('rechargeList').innerHTML = reSnap.empty? '<p class="bg-white rounded-xl p-4 text-center text-gray-400 text-xs">No pending recharges</p>' :
+    reSnap.docs.map(d=>{
+      const r=d.data();
+      return `<div class="bg-white border rounded-xl p-3 text-xs">
+        <p><b>${r.name}</b> - ${r.phone} - <b class="text-green-600">UGX ${r.amount.toLocaleString()}</b></p>
+        <p class="text-gray-500">${r.time}</p>
+        <p class="mt-1">USSD: *165*1*1*256795143386*${r.amount}# - Check MTN SMS</p>
+        <button onclick="approveRecharge('${d.id}','${r.userId}',${r.amount})" class="w-full bg-green-700 text-white rounded-full py-2 mt-2 font-bold">Approve - Add UGX ${r.amount.toLocaleString()} to User</button>
+      </div>`;
+    }).join('');
+
+  // WITHDRAWALS
+  const wSnap = await db.collection('withdrawals').where('status','==','Pending').get();
+  document.getElementById('pendingW').innerText = wSnap.size;
+  document.getElementById('withdrawList').innerHTML = wSnap.empty? '<p class="bg-white rounded-xl p-4 text-center text-gray-400 text-xs">No pending withdrawals</p>' :
+    wSnap.docs.map(d=>{
+      const w=d.data();
+      return `<div class="bg-white border rounded-xl p-3 text-xs">
+        <p><b>${w.name}</b> - ${w.phone} - <b class="text-red-600">UGX ${w.amount.toLocaleString()}</b></p>
+        <p class="text-gray-500">${w.time} - Receive: UGX ${w.receive.toLocaleString()} Fee: ${w.fee.toLocaleString()}</p>
+        <p class="mt-1">Dial: *165*1*1*${w.phone.replace(/^0/,'256')}*${w.receive}# to send</p>
+        <button onclick="approveWithdraw('${d.id}')" class="w-full bg-blue-600 text-white rounded-full py-2 mt-2 font-bold">Mark as PAID - I sent via MTN</button>
+      </div>`;
+    }).join('');
+}
+
+async function deleteUser(id){
+  if(!confirm('Delete this user permanently?')) return;
+  await db.collection('users').doc(id).delete();
+  alert('Deleted'); loadAll();
+}
+async function addBonus(id){
+  await db.collection('users').doc(id).update({balance:firebase.firestore.FieldValue.increment(500), totalIncome:firebase.firestore.FieldValue.increment(500)});
+  alert('Added 500 bonus'); loadAll();
+}
+async function approveRecharge(rechargeId, userId, amount){
+  if(!confirm(`Approve UGX ${amount.toLocaleString()}?\nThis will ADD balance to user.`)) return;
+  await db.collection('users').doc(userId).update({balance:firebase.firestore.FieldValue.increment(amount), totalRecharge:firebase.firestore.FieldValue.increment(amount)});
+  await db.collection('recharges').doc(rechargeId).update({status:'Approved', approvedAt: new Date().toLocaleString()});
+  alert('Approved! Balance added.'); loadAll();
+}
+async function approveWithdraw(id){
+  if(!confirm('Confirm you sent money via MTN *165*1*1#?')) return;
+  await db.collection('withdrawals').doc(id).update({status:'Paid', paidAt: new Date().toLocaleString()});
+  alert('Marked as Paid'); loadAll();
+}
+</script>
+</body>
+</html>
