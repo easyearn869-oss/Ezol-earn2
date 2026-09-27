@@ -1,119 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Admin v7 - 500 Bonus</title>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ezol Admin - Firebase</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<style>
-body{max-width:480px;margin:0 auto;background:#f5f5f5;font-family:-apple-system,sans-serif;padding-bottom:20px}
-.card{background:#fff;border-radius:16px;border:1px solid #e5e5e5}
-</style>
-</head>
-<body class="p-4">
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, collection, getDocs, doc, updateDoc, query, orderBy } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+const firebaseConfig = {
+  apiKey: "PASTE_YOUR_APIKEY",
+  authDomain: "ezol-earn2.firebaseapp.com",
+  projectId: "ezol-earn2",
+  storageBucket: "ezol-earn2.appspot.com",
+  messagingSenderId: "PASTE_SENDER_ID",
+  appId: "PASTE_APPID"
+};
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-<div id="loginPage" class="mt-16 card p-6">
-<h1 class="font-black text-2xl text-center">Ezol Admin v7</h1>
-<p class="text-center text-xs text-gray-500 mt-1">500 UGX Bonus - localStorage Version</p>
-<input id="pass" type="password" placeholder="admin123" class="w-full bg-gray-100 rounded-xl p-4 mt-8 outline-none">
-<button onclick="login()" class="w-full bg-black text-white rounded-full py-4 mt-4 font-bold">Login</button>
-<p class="text-[11px] text-gray-400 mt-4 text-center">Note: v7 stores 1 user per phone in localStorage. To see ALL users from all phones you need Firebase v10.</p>
-</div>
+async function loadAll(){
+  document.getElementById('status').innerText='Loading...';
+  const usersSnap = await getDocs(collection(db,"users"));
+  let html = `<p class="font-bold mb-3">Total Users: ${usersSnap.size}</p><div class="space-y-2">`;
+  let totalBal=0,totalRech=0;
+  usersSnap.forEach(d=>{
+    const u=d.data();
+    totalBal+=u.balance||0; totalRech+=u.totalRecharge||0;
+    html+=`<div class="bg-white p-3 rounded-xl border text-sm">
+      <p><b>${u.name||'No Name'}</b> - ${u.phone} (${d.id})</p>
+      <p>Code: ${u.code||'-'} | Balance: <b>UGX ${(u.balance||0).toLocaleString()}</b></p>
+      <p>Recharge: ${(u.totalRecharge||0).toLocaleString()} | Withdraw: ${(u.totalWithdraw||0).toLocaleString()} | Invested: ${u.invested||0} items</p>
+      <p class="text-xs text-gray-500">Last: ${u.lastActive?new Date(u.lastActive.seconds*1000).toLocaleString():'-'}</p>
+    </div>`;
+  });
+  html+=`</div><div class="mt-4 p-4 bg-green-100 rounded-xl"><p>Total Balance in system: UGX ${totalBal.toLocaleString()}</p><p>Total Recharge: UGX ${totalRech.toLocaleString()}</p></div>`;
+  document.getElementById('users').innerHTML=html;
 
-<div id="panel" class="hidden">
-<div class="flex justify-between items-center mt-2">
-<h1 class="font-black text-lg">Admin Panel - 500 Bonus</h1>
-<button onclick="load()" class="bg-white border rounded-full px-3 py-1 text-xs font-bold">Refresh</button>
-</div>
+  const withSnap = await getDocs(query(collection(db,"withdrawals"), orderBy("time","desc")));
+  let whtml=`<p class="font-bold mb-3">Withdrawals: ${withSnap.size}</p>`;
+  withSnap.forEach(d=>{const w=d.data(); whtml+=`<div class="bg-white p-3 rounded-xl border text-sm mb-2"><p><b>UGX ${w.amount}</b> → ${w.phone} | Receive ${w.receive} | Fee ${w.fee}</p><p>${w.name} - ${w.time?.toDate? w.time.toDate().toLocaleString(): w.time}</p><p>Status: <b class="${w.status==='Pending'?'text-orange-600':'text-green-600'}">${w.status}</b></p></div>`});
+  document.getElementById('withdraws').innerHTML=whtml;
 
-<div class="bg-yellow-50 border border-yellow-200 rounded-xl p-3 mt-4 text-[11px]">
-<b>⚠️ v7 Limitation:</b> This version saves data only on THIS phone (localStorage).<br>
-- User A registers on phone A → You see him only on phone A<br>
-- User B registers on phone B → You see him only on phone B<br>
-- Dark Admin v6.3 needs Firebase to see ALL users together LIVE.<br>
-<b>Fix:</b> Use the Firebase v10 index.html if you want 1 admin to see 1000 users.
-</div>
-
-<div class="grid grid-cols-3 gap-2 mt-4">
-<div class="card p-3 text-center"><p class="text-[10px]">BALANCE</p><b id="statBal">0</b></div>
-<div class="card p-3 text-center"><p class="text-[10px]">RECHARGE</p><b id="statRe">0</b></div>
-<div class="card p-3 text-center"><p class="text-[10px]">WITHDRAW</p><b id="statW">0</b></div>
-</div>
-
-<h2 class="font-bold mt-6 text-sm">● Current User on THIS Device</h2>
-<div id="userBox" class="card p-4 mt-2 text-xs"></div>
-
-<h2 class="font-bold mt-6 text-sm">● Fund History (This Device)</h2>
-<div id="fundBox" class="space-y-2 mt-2"></div>
-
-<h2 class="font-bold mt-6 text-sm">● Withdraw History (This Device)</h2>
-<div id="withBox" class="space-y-2 mt-2"></div>
-
-<h2 class="font-bold mt-6 text-sm">● Admin Tools</h2>
-<div class="card p-4 mt-2 space-y-2">
-<button onclick="clearUser()" class="w-full bg-red-600 text-white rounded-full py-3 font-bold text-sm">Delete This User + Clear Bonus</button>
-<button onclick="add500()" class="w-full bg-green-600 text-white rounded-full py-3 font-bold text-sm">+ Add 500 UGX Bonus to This User</button>
-<button onclick="clearAll()" class="w-full bg-black text-white rounded-full py-3 font-bold text-sm">Clear ALL localStorage (Reset to 0)</button>
-<p class="text-[10px] text-gray-400 text-center">After clearing, register again → You will get 500 UGX (not 10,000)</p>
-</div>
-
-<div class="h-10"></div>
-</div>
-
-<script>
-function login(){
-  if(document.getElementById('pass').value==='admin123'){
-    document.getElementById('loginPage').classList.add('hidden');
-    document.getElementById('panel').classList.remove('hidden');
-    load();
-  } else alert('Wrong - admin123');
+  const rechSnap = await getDocs(query(collection(db,"recharges"), orderBy("time","desc")));
+  let rhtml=`<p class="font-bold mb-3">Recharges: ${rechSnap.size}</p>`;
+  rechSnap.forEach(d=>{const r=d.data(); rhtml+=`<div class="bg-white p-3 rounded-xl border text-sm mb-2"><p><b>UGX ${r.amount}</b> from ${r.phone} (${r.name})</p><p>Status: ${r.status} - ${r.time?.toDate? r.time.toDate().toLocaleString(): r.time}</p><button onclick="approve('${d.id}',${r.amount},'${r.phone}')" class="bg-green-600 text-white px-3 py-1 rounded-full text-xs mt-2">Approve</button></div>`});
+  document.getElementById('recharges').innerHTML=rhtml;
+  document.getElementById('status').innerText='Live from ezol-earn2';
 }
-
-function load(){
-  const user = JSON.parse(localStorage.getItem('ezol_user')||'null');
-  const bal = localStorage.getItem('ezol_bal')||'500';
-  const re = localStorage.getItem('ezol_recharge')||'0';
-  const wd = localStorage.getItem('ezol_withdraw')||'0';
-  const fund = JSON.parse(localStorage.getItem('ezol_fund_history')||'[]');
-  const withH = JSON.parse(localStorage.getItem('ezol_withdraw_history')||'[]');
-  const invested = JSON.parse(localStorage.getItem('ezol_invested')||'[]');
-
-  document.getElementById('statBal').innerText = parseInt(bal).toLocaleString();
-  document.getElementById('statRe').innerText = parseInt(re).toLocaleString();
-  document.getElementById('statW').innerText = parseInt(wd).toLocaleString();
-
-  if(!user){
-    document.getElementById('userBox').innerHTML='<p class="text-gray-400 text-center py-4">No user registered on THIS phone<br>Register with 0770000001 in main app</p>';
-  } else {
-    document.getElementById('userBox').innerHTML=`
-      <p><b>Name:</b> ${user.name}</p>
-      <p><b>Phone:</b> ${user.phone}</p>
-      <p><b>Pass:</b> <span class="text-red-600 font-bold">${user.pass}</span></p>
-      <p><b>Code:</b> ${user.code}</p>
-      <p><b>Balance:</b> UGX ${parseInt(bal).toLocaleString()} (Bonus 500)</p>
-      <p><b>Invested:</b> ${invested.length} products</p>
-      <p class="mt-2 text-[10px] text-gray-400">This user exists only on this browser. Other phones have their own separate storage.</p>
-    `;
-  }
-
-  document.getElementById('fundBox').innerHTML = fund.length===0? '<p class="card p-3 text-center text-gray-400 text-xs">No funds</p>' :
-    fund.map(f=>`<div class="card p-3 flex justify-between text-xs"><div><b>${f.type}</b><p class="text-gray-400">${f.time}</p></div><b class="${f.amount>0?'text-green-600':'text-red-600'}">${f.amount>0?'+':''}${f.amount.toLocaleString()}</b></div>`).join('');
-
-  document.getElementById('withBox').innerHTML = withH.length===0? '<p class="card p-3 text-center text-gray-400 text-xs">No withdrawals</p>' :
-    withH.map(w=>`<div class="card p-3 flex justify-between text-xs"><div><b>UGX ${w.amount.toLocaleString()}</b> to ${w.phone}<p class="text-gray-400">${w.time} - ${w.status}</p><p>Receive: ${w.receive.toLocaleString()} Fee: ${w.fee}</p></div><span class="bg-orange-100 text-orange-600 px-2 py-1 rounded-full text-[10px] h-fit">${w.status}</span></div>`).join('');
+window.loadAll=loadAll;
+window.approve=async function(id,amt,phone){
+  if(!confirm(`Approve UGX ${amt} for ${phone}?`)) return;
+  // In real app you would update user balance here
+  alert('To approve: Go to MTN MoMo → Check if money received → Then manually update user balance in Firestore → users → '+phone+' → increase balance');
 }
-
-function clearUser(){ if(confirm('Delete user on THIS device?')){ localStorage.removeItem('ezol_user'); load(); } }
-function add500(){
-  let bal=parseInt(localStorage.getItem('ezol_bal')||'0');
-  bal+=500;
-  localStorage.setItem('ezol_bal',bal);
-  let income=parseInt(localStorage.getItem('ezol_income')||'0'); localStorage.setItem('ezol_income',income+500);
-  const fund=JSON.parse(localStorage.getItem('ezol_fund_history')||'[]');
-  fund.unshift({type:'Admin +500 Bonus',amount:500,time:new Date().toLocaleString()});
-  localStorage.setItem('ezol_fund_history',JSON.stringify(fund));
-  alert('Added 500'); load();
-}
-function clearAll(){ if(confirm('Clear ALL data and reset to 500 bonus?')){ localStorage.clear(); location.reload(); } }
+loadAll();
 </script>
-</body>
-</html>
+</head>
+<body class="bg-gray-100 max-w-5xl mx-auto p-4">
+<h1 class="text-2xl font-black">Ezol Earn Admin Panel</h1>
+<p id="status" class="text-sm text-gray-500">Connecting to ezol-earn2...</p>
+<div class="mt-4 flex gap-2"><button onclick="loadAll()" class="bg-black text-white px-6 py-2 rounded-full">Refresh</button><a href="index.html" class="bg-white border px-6 py-2 rounded-full">Go to App</a></div>
+<div class="grid md:grid-cols-3 gap-4 mt-6">
+<div><h2 class="font-bold">Users</h2><div id="users" class="mt-2">Loading...</div></div>
+<div><h2 class="font-bold">Withdraw Requests</h2><div id="withdraws" class="mt-2">Loading...</div></div>
+<div><h2 class="font-bold">Recharge Requests</h2><div id="recharges" class="mt-2">Loading...</div></div>
+</div>
+<div class="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-xl text-xs"><b>How to use:</b><br>1. Replace PASTE_YOUR_APIKEY with real key from Firebase → Project Settings → General → Config<br>2. Deploy admin.html same as index.html<br>3. Access via yoursite.netlify.app/admin.html<br>4. All users who register will appear here LIVE</div>
+</body></html>
